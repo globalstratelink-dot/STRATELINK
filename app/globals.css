@@ -84,6 +84,11 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Custom colors for STRATELINK GLOBAL theme */
+    --navy: 4 19% 10%; /* #041331 */
+    --copper: 15 30% 50%; /* #A97968 */
+    --sand: 25 45% 70%; /* #DBAC8E */
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -118,6 +123,11 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    /* Custom colors for STRATELINK GLOBAL theme - Dark mode */
+    --navy: 4 19% 5%; /* Plus sombre que #041331 */
+    --copper: 15 30% 60%; /* Plus lumineux que #A97968 */
+    --sand: 25 45% 80%; /* Plus lumineux que #DBAC8E */
   }
 }
 

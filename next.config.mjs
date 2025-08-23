@@ -26,22 +26,14 @@ const nextConfig = {
     minimumCacheTTL: 60,
   },
   experimental: {
-    optimizeCss: true,  // ✅ Optimisation CSS activée
+    // optimizeCss: true,  // ❌ Désactivé pour éviter les erreurs de décodage
     optimizePackageImports: ['lucide-react', 'framer-motion'],
-    turbo: {
-      rules: {
-        '*.css': {
-          loaders: ['css-loader'],
-          as: '*.css',
-        },
-      },
-    },
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   swcMinify: true,
-  compress: true,
+  compress: false,  // Désactivé pour éviter les erreurs de décodage
   poweredByHeader: false,
   generateEtags: false,
   
@@ -55,9 +47,6 @@ const nextConfig = {
         chunks: 'all',
         enforce: true,
       };
-      
-      // Minimisation CSS
-      config.optimization.minimize = true;
     }
     
     return config;
@@ -83,6 +72,16 @@ const nextConfig = {
           },
         ],
       },
+      // Headers pour éviter les problèmes de cache en développement
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+        ],
+      },
       // Headers d'optimisation des performances
       {
         source: '/_next/static/css/:path*',
@@ -91,10 +90,7 @@ const nextConfig = {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
-          {
-            key: 'Content-Encoding',
-            value: 'gzip',
-          },
+          // Supprimé Content-Encoding pour éviter les erreurs de décodage
         ],
       },
       {
