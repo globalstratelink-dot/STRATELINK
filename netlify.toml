@@ -1,16 +1,26 @@
 [build]
   command = "pnpm build"
-  publish = "out"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirection SPA pour les routes de l'application
+# Plugin Next.js pour Netlify
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Configuration des fonctions serverless
+[functions]
+  directory = ".netlify/functions"
+  node_bundler = "esbuild"
+
+# Redirections pour SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# Headers de sécurité
 [[headers]]
   for = "/*"
   [headers.values]
@@ -18,3 +28,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Configuration des fonctions Netlify
+[functions]
+  directory = ".netlify/functions"

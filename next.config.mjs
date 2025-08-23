@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // Réactivé pour le déploiement statique sur Netlify
+  // Pas d'export statique pour permettre les API routes
+  // output: 'export', 
+  
   trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
@@ -24,6 +26,29 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
+  
+  // Configuration spécifique pour Netlify
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, DELETE, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization',
+          },
+        ],
+      },
+    ]
+  },
 }
 
 export default nextConfig

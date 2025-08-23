@@ -30,6 +30,15 @@ export const EMAIL_TEMPLATE = {
   company_name: 'Stratelink Global'
 }
 
+// Validation de la configuration
+export function isEmailJSConfigured(): boolean {
+  return (
+    EMAILJS_CONFIG.SERVICE_ID !== 'service_xxxxxxx' &&
+    EMAILJS_CONFIG.TEMPLATE_ID !== 'template_xxxxxxx' &&
+    EMAILJS_CONFIG.PUBLIC_KEY !== 'xxxxxxxxxxxxxxxxxxxx'
+  )
+}
+
 // Instructions de configuration:
 // 1. Allez sur https://www.emailjs.com/ et créez un compte
 // 2. Créez un service Gmail et notez le SERVICE_ID

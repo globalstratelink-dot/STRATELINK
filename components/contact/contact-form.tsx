@@ -7,12 +7,12 @@ import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react"
 import { useLanguage } from "@/contexts/language-context"
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
-import { useEmailSender } from "@/hooks/use-email-sender"
+import { useNodemailerSender } from "@/hooks/use-nodemailer-sender"
 import { motion, AnimatePresence } from "framer-motion"
 
 export function ContactForm() {
   const { t } = useLanguage()
-  const { emailState, sendEmail, resetState } = useEmailSender()
+  const { emailState, sendEmail, resetState } = useNodemailerSender()
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",

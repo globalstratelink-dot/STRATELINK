@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import emailjs from '@emailjs/browser'
-import { EMAILJS_CONFIG } from '@/lib/emailjs-config'
+import { EMAILJS_CONFIG, isEmailJSConfigured } from '@/lib/emailjs-config'
 
 interface EmailData {
   firstName: string
@@ -36,7 +36,7 @@ export function useEmailSender() {
 
     try {
       // Vérifier que la configuration est correcte
-      if (!EMAILJS_CONFIG.SERVICE_ID || !EMAILJS_CONFIG.TEMPLATE_ID || !EMAILJS_CONFIG.PUBLIC_KEY) {
+      if (!isEmailJSConfigured()) {
         throw new Error('Configuration EmailJS manquante. Veuillez configurer les clés dans lib/emailjs-config.ts')
       }
 
