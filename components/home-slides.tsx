@@ -88,12 +88,13 @@ export function HomeSlides() {
                     
                     {/* Image with Fallback */}
                     <Image
-                      src="/technological-futuristic-holograms-logistics-means-transport.jpg"
+                      src="/2152005452.webp"
                       alt="Global Logistics Transportation Network - Stratelink Global"
                       fill
                       className="object-cover"
                       priority
-                      sizes="500px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 50vw, 400px"
+                      quality={85}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
@@ -215,7 +216,7 @@ export function HomeSlides() {
                 {/* Image Container */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
                   <Image
-                    src="/technological-futuristic-holograms-logistics-means-transport.jpg"
+                    src="/2151663057.webp"
                     alt="Technological Futuristic Holograms - Logistics and Transport"
                     width={800}
                     height={400}
@@ -223,7 +224,8 @@ export function HomeSlides() {
                     priority
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 800px"
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 800px"
+                    quality={85}
                   />
                   
                   {/* Overlay */}
