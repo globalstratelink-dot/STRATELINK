@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'export', // Commenté pour permettre l'utilisation des API routes avec Nodemailer
+  output: 'export', // Réactivé pour le déploiement statique sur Netlify
   trailingSlash: true,
   eslint: {
     ignoreDuringBuilds: true,
