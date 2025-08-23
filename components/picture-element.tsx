@@ -86,27 +86,27 @@ export function ResponsivePictureLogo({ className = "" }: { className?: string }
       {/* Mobile - w-14 h-10 (56x40) */}
       <source
         media="(max-width: 640px)"
-        srcSet="/optimized/new-logo-mobile.png"
+        srcSet="/optimized/new-logo-16x16.png"
         type="image/png"
       />
       
       {/* Tablet - w-16 h-12 (64x48) */}
       <source
         media="(min-width: 641px) and (max-width: 1024px)"
-        srcSet="/optimized/new-logo-tablet.png"
+        srcSet="/optimized/new-logo-32x32.png"
         type="image/png"
       />
       
       {/* Desktop - w-20 h-16 (80x64) */}
       <source
         media="(min-width: 1025px)"
-        srcSet="/optimized/new-logo-desktop.png"
+        srcSet="/optimized/new-logo-64x64.png"
         type="image/png"
       />
       
-      {/* Image par défaut */}
+      {/* Image par défaut optimisée */}
       <img
-        src="/optimized/new-logo-desktop.png"
+        src="/optimized/new-logo-32x32.png"
         alt="STRATELINK GLOBAL"
         className="w-14 h-10 sm:w-16 sm:h-12 lg:w-20 lg:h-16 filter brightness-125"
         loading="eager"
@@ -129,29 +129,31 @@ export function HomePagePicture({
 }) {
   const config = {
     hero: {
-      src: '/2152005452.webp',
+      src: '/optimized/2152005452-378x252.webp',
+      srcSet: '/optimized/2152005452-mobile.webp 480w, /optimized/2152005452-tablet.webp 768w, /optimized/2152005452-desktop.webp 1024w',
       sizes: "(max-width: 640px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 50vw, 400px",
       alt: "Global Logistics Transportation Network - Stratelink Global"
     },
     services: {
-      src: '/2151663057.webp',
+      src: '/optimized/2151663057-330x471.webp',
+      srcSet: '/optimized/2151663057-mobile.webp 480w, /optimized/2151663057-tablet.webp 768w, /optimized/2151663057-desktop.webp 1024w',
       sizes: "(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 800px",
       alt: "Technological Futuristic Holograms - Logistics and Transport"
     }
   }
 
-  const { src, sizes, alt } = config[type]
+  const { src, srcSet, sizes, alt } = config[type]
 
   return (
     <picture className={className}>
-      {/* Version WebP */}
+      {/* Version WebP optimisée avec srcSet responsive */}
       <source
-        srcSet={src}
+        srcSet={srcSet}
         type="image/webp"
         sizes={sizes}
       />
       
-      {/* Version de fallback (même image) */}
+      {/* Version de fallback optimisée */}
       <img
         src={src}
         alt={alt}

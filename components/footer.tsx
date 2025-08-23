@@ -63,7 +63,7 @@ export function Footer() {
                   className="flex items-center space-x-1"
                 >
                   <Image
-                    src="/new-logo.png"
+                    src="/optimized/new-logo-16x16.png"
                     alt="STRATELINK"
                     width={16}
                     height={16}

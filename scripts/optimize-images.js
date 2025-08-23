@@ -1,99 +1,205 @@
+const sharp = require('sharp');
 const fs = require('fs');
 const path = require('path');
-const imagemin = require('imagemin');
-const imageminWebp = require('imagemin-webp');
-const imageminPngquant = require('imagemin-pngquant');
-const sharp = require('sharp');
 
-const PUBLIC_DIR = path.join(__dirname, '../public');
-const OUTPUT_DIR = path.join(__dirname, '../public/optimized');
+console.log('🖼️ Optimisation des images selon les recommandations Lighthouse\n');
 
-// Créer le dossier de sortie s'il n'existe pas
-if (!fs.existsSync(OUTPUT_DIR)) {
-  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-}
+// Configuration des optimisations basées sur le rapport Lighthouse
+const optimizations = [
+  {
+    input: 'public/2152005452.webp',
+    outputs: [
+      {
+        name: '2152005452-378x252.webp',
+        width: 378,
+        height: 252,
+        quality: 80
+      },
+      {
+        name: '2152005452-1000x667.webp',
+        width: 1000,
+        height: 667,
+        quality: 85
+      }
+    ]
+  },
+  {
+    input: 'public/2151663057.webp',
+    outputs: [
+      {
+        name: '2151663057-330x471.webp',
+        width: 330,
+        height: 471,
+        quality: 80
+      },
+      {
+        name: '2151663057-700x678.webp',
+        width: 700,
+        height: 678,
+        quality: 85
+      }
+    ]
+  },
+  {
+    input: 'public/new-logo.png',
+    outputs: [
+      {
+        name: 'new-logo-16x16.png',
+        width: 16,
+        height: 16,
+        quality: 90
+      },
+      {
+        name: 'new-logo-32x32.png',
+        width: 32,
+        height: 32,
+        quality: 90
+      },
+      {
+        name: 'new-logo-64x64.png',
+        width: 64,
+        height: 64,
+        quality: 90
+      }
+    ]
+  }
+];
 
 async function optimizeImages() {
-  console.log('🚀 Début de l\'optimisation des images...\n');
+  const optimizedDir = 'public/optimized';
+  
+  // Créer le dossier optimized s'il n'existe pas
+  if (!fs.existsSync(optimizedDir)) {
+    fs.mkdirSync(optimizedDir, { recursive: true });
+  }
 
-  try {
-    // Optimiser l'image principale (JPG)
-    const mainImagePath = path.join(PUBLIC_DIR, 'technological-futuristic-holograms-logistics-means-transport.jpg');
-    if (fs.existsSync(mainImagePath)) {
-      console.log('📸 Optimisation de l\'image principale...');
+  for (const optimization of optimizations) {
+    if (!fs.existsSync(optimization.input)) {
+      console.log(`❌ Fichier source manquant: ${optimization.input}`);
+      continue;
+    }
+
+    console.log(`📸 Optimisation de ${optimization.input}:`);
+    
+    for (const output of optimization.outputs) {
+      const outputPath = path.join(optimizedDir, output.name);
       
-      // Créer plusieurs tailles responsives
-      const sizes = [
-        { width: 480, height: 320, suffix: '480w' },
-        { width: 960, height: 640, suffix: '960w' },
-        { width: 1440, height: 960, suffix: '1440w' }
-      ];
+      try {
+        await sharp(optimization.input)
+          .resize(output.width, output.height, {
+            fit: 'cover',
+            position: 'center'
+          })
+          .webp({ quality: output.quality })
+          .toFile(outputPath);
 
-      for (const size of sizes) {
-        const outputPath = path.join(OUTPUT_DIR, `hero-${size.suffix}.webp`);
-        await sharp(mainImagePath)
-          .resize(size.width, size.height, { fit: 'cover' })
+        const stats = fs.statSync(outputPath);
+        const originalStats = fs.statSync(optimization.input);
+        const savings = ((originalStats.size - stats.size) / originalStats.size * 100).toFixed(1);
+        
+        console.log(`  ✅ ${output.name} (${output.width}x${output.height}) - ${(stats.size / 1024).toFixed(1)}KB (${savings}% d'économie)`);
+      } catch (error) {
+        console.log(`  ❌ Erreur lors de l'optimisation de ${output.name}:`, error.message);
+      }
+    }
+  }
+}
+
+// Fonction pour créer des images responsives
+async function createResponsiveImages() {
+  console.log('\n📱 Création d\'images responsives:');
+  
+  const responsiveConfig = [
+    {
+      input: 'public/2152005452.webp',
+      sizes: [
+        { width: 480, suffix: 'mobile' },
+        { width: 768, suffix: 'tablet' },
+        { width: 1024, suffix: 'desktop' }
+      ]
+    },
+    {
+      input: 'public/2151663057.webp',
+      sizes: [
+        { width: 480, suffix: 'mobile' },
+        { width: 768, suffix: 'tablet' },
+        { width: 1024, suffix: 'desktop' }
+      ]
+    }
+  ];
+
+  for (const config of responsiveConfig) {
+    if (!fs.existsSync(config.input)) continue;
+    
+    const baseName = path.basename(config.input, path.extname(config.input));
+    
+    for (const size of config.sizes) {
+      const outputPath = `public/optimized/${baseName}-${size.suffix}.webp`;
+      
+      try {
+        await sharp(config.input)
+          .resize(size.width, null, { withoutEnlargement: true })
           .webp({ quality: 80 })
           .toFile(outputPath);
         
         const stats = fs.statSync(outputPath);
-        console.log(`  ✅ ${size.suffix}: ${(stats.size / 1024).toFixed(1)} KiB`);
+        console.log(`  ✅ ${path.basename(outputPath)} - ${(stats.size / 1024).toFixed(1)}KB`);
+      } catch (error) {
+        console.log(`  ❌ Erreur: ${error.message}`);
       }
-
-      // Version WebP originale
-      const webpPath = path.join(OUTPUT_DIR, 'hero-original.webp');
-      await sharp(mainImagePath)
-        .webp({ quality: 85 })
-        .toFile(webpPath);
-      
-      const stats = fs.statSync(webpPath);
-      console.log(`  ✅ Original WebP: ${(stats.size / 1024).toFixed(1)} KiB`);
     }
+  }
+}
 
-    // Optimiser le logo (PNG)
-    const logoPath = path.join(PUBLIC_DIR, 'new-logo.png');
-    if (fs.existsSync(logoPath)) {
-      console.log('\n🎨 Optimisation du logo...');
-      
-      // Créer plusieurs tailles
-      const logoSizes = [
-        { width: 56, height: 40, suffix: '56w' },
-        { width: 112, height: 80, suffix: '112w' },
-        { width: 224, height: 160, suffix: '224w' }
-      ];
-
-      for (const size of logoSizes) {
-        const outputPath = path.join(OUTPUT_DIR, `logo-${size.suffix}.png`);
-        await sharp(logoPath)
-          .resize(size.width, size.height, { fit: 'contain' })
-          .png({ quality: 90 })
-          .toFile(outputPath);
-        
-        const stats = fs.statSync(outputPath);
-        console.log(`  ✅ ${size.suffix}: ${(stats.size / 1024).toFixed(1)} KiB`);
-      }
-
-      // Version WebP
-      const webpPath = path.join(OUTPUT_DIR, 'logo.webp');
-      await sharp(logoPath)
-        .webp({ quality: 90 })
-        .toFile(webpPath);
-      
-      const stats = fs.statSync(webpPath);
-      console.log(`  ✅ WebP: ${(stats.size / 1024).toFixed(1)} KiB`);
-    }
-
-    console.log('\n🎉 Optimisation terminée !');
-    console.log(`📁 Images optimisées dans: ${OUTPUT_DIR}`);
+// Fonction pour générer un rapport d'optimisation
+function generateOptimizationReport() {
+  console.log('\n📊 Rapport d\'optimisation:');
+  
+  const originalSizes = {
+    '2152005452.webp': 927.3,
+    '2151663057.webp': 893.0,
+    'new-logo.png': 65.7
+  };
+  
+  const optimizedDir = 'public/optimized';
+  if (!fs.existsSync(optimizedDir)) return;
+  
+  const files = fs.readdirSync(optimizedDir);
+  let totalOriginalSize = 0;
+  let totalOptimizedSize = 0;
+  
+  for (const file of files) {
+    const filePath = path.join(optimizedDir, file);
+    const stats = fs.statSync(filePath);
+    const sizeKB = stats.size / 1024;
     
-    // Afficher les économies
-    const originalSize = 9870.9 + 65.7; // KiB
-    console.log(`💰 Taille originale: ${(originalSize / 1024).toFixed(1)} MB`);
-    console.log(`🚀 Économies potentielles: ${(9911.4 / 1024).toFixed(1)} MB`);
+    console.log(`  📄 ${file}: ${sizeKB.toFixed(1)}KB`);
+    totalOptimizedSize += sizeKB;
+  }
+  
+  for (const [name, size] of Object.entries(originalSizes)) {
+    totalOriginalSize += size;
+  }
+  
+  const totalSavings = ((totalOriginalSize - totalOptimizedSize) / totalOriginalSize * 100).toFixed(1);
+  console.log(`\n💰 Économies totales: ${(totalOriginalSize - totalOptimizedSize).toFixed(1)}KB (${totalSavings}%)`);
+}
 
+// Exécution des optimisations
+async function main() {
+  try {
+    await optimizeImages();
+    await createResponsiveImages();
+    generateOptimizationReport();
+    
+    console.log('\n✨ Optimisation terminée !');
+    console.log('\n💡 Prochaines étapes:');
+    console.log('1. Mettre à jour les composants pour utiliser les images optimisées');
+    console.log('2. Implémenter les images responsives avec <picture>');
+    console.log('3. Tester les performances avec Lighthouse');
   } catch (error) {
     console.error('❌ Erreur lors de l\'optimisation:', error);
   }
 }
 
-optimizeImages(); 
+main(); 

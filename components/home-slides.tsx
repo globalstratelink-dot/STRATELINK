@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Globe, TrendingUp, Palette, Zap } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
-import { HomePagePicture } from "@/components/picture-element"
+import { HeroImage, ServicesImage } from "@/components/optimized-image"
 
 export function HomeSlides() {
   const { t } = useLanguage()
@@ -87,8 +87,7 @@ export function HomeSlides() {
                     <div className="absolute inset-0 bg-gradient-to-br from-copper/20 via-transparent to-sand/20 z-10"></div>
                     
                     {/* Image with Fallback */}
-                    <HomePagePicture
-                      type="hero"
+                    <HeroImage
                       className="object-cover w-full h-full"
                     />
                     
@@ -201,8 +200,7 @@ export function HomeSlides() {
                 
                 {/* Image Container */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
-                  <HomePagePicture
-                    type="services"
+                  <ServicesImage
                     className="w-full h-auto object-cover"
                   />
                   

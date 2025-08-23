@@ -1,17 +1,20 @@
 "use client"
 
-import Image from "next/image"
 import { useState } from "react"
+import Image from "next/image"
 
 interface OptimizedImageProps {
   src: string
   alt: string
-  width: number
-  height: number
+  width?: number
+  height?: number
   className?: string
-  fallback?: string
   priority?: boolean
-  quality?: number
+  sizes?: string
+  responsive?: boolean
+  mobileSrc?: string
+  tabletSrc?: string
+  desktopSrc?: string
 }
 
 export function OptimizedImage({
@@ -20,112 +23,149 @@ export function OptimizedImage({
   width,
   height,
   className = "",
-  fallback,
   priority = false,
-  quality = 85
+  sizes = "100vw",
+  responsive = false,
+  mobileSrc,
+  tabletSrc,
+  desktopSrc
 }: OptimizedImageProps) {
-  const [imageError, setImageError] = useState(false)
-  const [imageLoaded, setImageLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [hasError, setHasError] = useState(false)
 
-  const handleError = () => {
-    setImageError(true)
-  }
-
-  const handleLoad = () => {
-    setImageLoaded(true)
-  }
-
-  if (imageError && fallback) {
+  if (responsive && mobileSrc && tabletSrc && desktopSrc) {
     return (
-      <div 
-        className={`flex items-center justify-center bg-copper/10 text-copper font-bold ${className}`}
-        style={{ width, height }}
-      >
-        {fallback}
-      </div>
+      <picture className={className}>
+        {/* Mobile */}
+        <source
+          media="(max-width: 640px)"
+          srcSet={mobileSrc}
+          type="image/webp"
+        />
+        
+        {/* Tablet */}
+        <source
+          media="(min-width: 641px) and (max-width: 1024px)"
+          srcSet={tabletSrc}
+          type="image/webp"
+        />
+        
+        {/* Desktop */}
+        <source
+          media="(min-width: 1025px)"
+          srcSet={desktopSrc}
+          type="image/webp"
+        />
+        
+        {/* Fallback */}
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          className={`transition-opacity duration-300 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          } ${className}`}
+          priority={priority}
+          sizes={sizes}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setHasError(true)}
+        />
+      </picture>
     )
   }
 
   return (
-    <div className={`relative ${className}`}>
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        className={`transition-opacity duration-300 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-        onError={handleError}
-        onLoad={handleLoad}
-        priority={priority}
-        quality={quality}
-        placeholder="blur"
-        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
-      />
-      {!imageLoaded && (
-        <div 
-          className="absolute inset-0 bg-copper/10 animate-pulse"
-          style={{ width, height }}
-        />
-      )}
-    </div>
-  )
-}
-
-// Composant spécialisé pour les avatars
-interface OptimizedAvatarProps {
-  src: string
-  alt: string
-  size: number
-  className?: string
-  fallback?: string
-}
-
-export function OptimizedAvatar({
-  src,
-  alt,
-  size,
-  className = "",
-  fallback
-}: OptimizedAvatarProps) {
-  return (
-    <OptimizedImage
-      src={src}
-      alt={alt}
-      width={size}
-      height={size}
-      className={`rounded-full object-cover ${className}`}
-      fallback={fallback}
-    />
-  )
-}
-
-// Composant pour les images avec lazy loading
-interface LazyImageProps {
-  src: string
-  alt: string
-  width: number
-  height: number
-  className?: string
-  fallback?: string
-}
-
-export function LazyImage({
-  src,
-  alt,
-  width,
-  height,
-  className = "",
-  fallback
-}: LazyImageProps) {
-  return (
-    <OptimizedImage
+    <Image
       src={src}
       alt={alt}
       width={width}
       height={height}
-      className={className}
-      fallback={fallback}
+      className={`transition-opacity duration-300 ${
+        isLoaded ? 'opacity-100' : 'opacity-0'
+      } ${className}`}
+      priority={priority}
+      sizes={sizes}
+      onLoad={() => setIsLoaded(true)}
+      onError={() => setHasError(true)}
+    />
+  )
+}
+
+// Composant spécialisé pour les images de la page d'accueil
+export function HeroImage({ className = "" }: { className?: string }) {
+  return (
+    <OptimizedImage
+      src="/optimized/2152005452-378x252.webp"
+      alt="Global Logistics Transportation Network - Stratelink Global"
+      width={378}
+      height={252}
+      className={`w-full h-full object-cover ${className}`}
+      priority={true}
+      sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 50vw, 400px"
+      responsive={true}
+      mobileSrc="/optimized/2152005452-mobile.webp"
+      tabletSrc="/optimized/2152005452-tablet.webp"
+      desktopSrc="/optimized/2152005452-desktop.webp"
+    />
+  )
+}
+
+// Composant spécialisé pour les images de services
+export function ServicesImage({ className = "" }: { className?: string }) {
+  return (
+    <OptimizedImage
+      src="/optimized/2151663057-330x471.webp"
+      alt="Technological Futuristic Holograms - Logistics and Transport"
+      width={330}
+      height={471}
+      className={`w-full h-full object-cover ${className}`}
       priority={false}
+      sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 800px"
+      responsive={true}
+      mobileSrc="/optimized/2151663057-mobile.webp"
+      tabletSrc="/optimized/2151663057-tablet.webp"
+      desktopSrc="/optimized/2151663057-desktop.webp"
+    />
+  )
+}
+
+// Composant spécialisé pour le logo
+export function OptimizedLogo({ 
+  size = "default",
+  className = "" 
+}: { 
+  size?: "small" | "default" | "large"
+  className?: string 
+}) {
+  const config = {
+    small: {
+      src: "/optimized/new-logo-16x16.png",
+      width: 16,
+      height: 16
+    },
+    default: {
+      src: "/optimized/new-logo-32x32.png",
+      width: 32,
+      height: 32
+    },
+    large: {
+      src: "/optimized/new-logo-64x64.png",
+      width: 64,
+      height: 64
+    }
+  }
+
+  const { src, width, height } = config[size]
+
+  return (
+    <OptimizedImage
+      src={src}
+      alt="STRATELINK GLOBAL"
+      width={width}
+      height={height}
+      className={`object-contain ${className}`}
+      priority={true}
     />
   )
 }
