@@ -1,10 +1,17 @@
 [build]
   command = "pnpm build"
-  publish = "out"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
 
+# Configuration pour les API routes Next.js
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/___netlify-handler"
+  status = 200
+
+# Redirection SPA pour les routes de l'application
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -17,3 +24,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Configuration des fonctions Netlify
+[functions]
+  directory = ".netlify/functions"
