@@ -26,8 +26,16 @@ const nextConfig = {
     minimumCacheTTL: 60,
   },
   experimental: {
-    optimizeCss: false,
+    optimizeCss: true,  // ✅ Optimisation CSS activée
     optimizePackageImports: ['lucide-react', 'framer-motion'],
+    turbo: {
+      rules: {
+        '*.css': {
+          loaders: ['css-loader'],
+          as: '*.css',
+        },
+      },
+    },
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
@@ -36,6 +44,24 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
+  
+  // Configuration d'optimisation des performances
+  webpack: (config, { dev, isServer }) => {
+    if (!dev && !isServer) {
+      // Optimisation CSS en production
+      config.optimization.splitChunks.cacheGroups.styles = {
+        name: 'styles',
+        test: /\.(css|scss)$/,
+        chunks: 'all',
+        enforce: true,
+      };
+      
+      // Minimisation CSS
+      config.optimization.minimize = true;
+    }
+    
+    return config;
+  },
   
   // Configuration spécifique pour Netlify
   async headers() {
@@ -54,6 +80,29 @@ const nextConfig = {
           {
             key: 'Access-Control-Allow-Headers',
             value: 'Content-Type, Authorization',
+          },
+        ],
+      },
+      // Headers d'optimisation des performances
+      {
+        source: '/_next/static/css/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'Content-Encoding',
+            value: 'gzip',
+          },
+        ],
+      },
+      {
+        source: '/_next/static/js/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },

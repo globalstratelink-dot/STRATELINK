@@ -5,6 +5,8 @@ import { LanguageProvider } from "@/contexts/language-context"
 import { PerformanceMonitor } from "@/components/performance-monitor"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navbar } from "@/components/navbar"
+import { GlobalCSSPreloader } from "@/components/css-preloader"
+import { PerformanceMetrics } from "@/components/performance-metrics"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -87,12 +89,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <GlobalCSSPreloader />
+      </head>
       <body className={inter.className}>
         <LanguageProvider>
           <PerformanceMonitor />
           <ScrollToTop />
           <Navbar />
           {children}
+          <PerformanceMetrics />
         </LanguageProvider>
       </body>
     </html>
