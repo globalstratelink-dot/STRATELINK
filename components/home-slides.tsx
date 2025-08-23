@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Globe, TrendingUp, Palette, Zap } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
-import Image from "next/image"
+import { HomePageImage } from "@/components/production-optimized-image"
 
 export function HomeSlides() {
   const { t } = useLanguage()
@@ -87,23 +87,12 @@ export function HomeSlides() {
                     <div className="absolute inset-0 bg-gradient-to-br from-copper/20 via-transparent to-sand/20 z-10"></div>
                     
                     {/* Image with Fallback */}
-                    <Image
+                    <HomePageImage
+                      type="hero"
                       src="/2152005452.webp"
                       alt="Global Logistics Transportation Network - Stratelink Global"
                       fill
                       className="object-cover"
-                      priority
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, (max-width: 1024px) 50vw, 400px"
-                      quality={85}
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                        // Fallback to background color
-                        const container = target.parentElement;
-                        if (container) {
-                          container.style.background = 'linear-gradient(135deg, #041331 0%, #A97968 50%, #DBAC8E 100%)';
-                        }
-                      }}
                     />
                     
                     {/* Fallback Background (shown if image fails) */}
@@ -215,17 +204,15 @@ export function HomeSlides() {
                 
                 {/* Image Container */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
-                  <Image
+                  <HomePageImage
+                    type="services"
                     src="/2151663057.webp"
                     alt="Technological Futuristic Holograms - Logistics and Transport"
                     width={800}
                     height={400}
                     className="w-full h-auto object-cover"
-                    priority
                     placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 800px"
-                    quality={85}
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXw=="
                   />
                   
                   {/* Overlay */}
