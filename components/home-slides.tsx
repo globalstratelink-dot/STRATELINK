@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Globe, TrendingUp, Palette, Zap } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
-import { HomePageImage } from "@/components/production-optimized-image"
+import { HomePagePicture } from "@/components/picture-element"
 
 export function HomeSlides() {
   const { t } = useLanguage()
@@ -87,12 +87,9 @@ export function HomeSlides() {
                     <div className="absolute inset-0 bg-gradient-to-br from-copper/20 via-transparent to-sand/20 z-10"></div>
                     
                     {/* Image with Fallback */}
-                    <HomePageImage
+                    <HomePagePicture
                       type="hero"
-                      src="/2152005452.webp"
-                      alt="Global Logistics Transportation Network - Stratelink Global"
-                      fill
-                      className="object-cover"
+                      className="object-cover w-full h-full"
                     />
                     
                     {/* Fallback Background (shown if image fails) */}
@@ -204,15 +201,9 @@ export function HomeSlides() {
                 
                 {/* Image Container */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
-                  <HomePageImage
+                  <HomePagePicture
                     type="services"
-                    src="/2151663057.webp"
-                    alt="Technological Futuristic Holograms - Logistics and Transport"
-                    width={800}
-                    height={400}
                     className="w-full h-auto object-cover"
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXw=="
                   />
                   
                   {/* Overlay */}

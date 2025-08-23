@@ -4,12 +4,12 @@ import { useState, useEffect, useCallback, useMemo, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Menu, X, Languages } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { useMobileDetection } from "@/hooks/use-mobile-detection"
+import { ResponsivePictureLogo } from "@/components/picture-element"
 
 export function Navbar() {
   const pathname = usePathname()
@@ -91,14 +91,7 @@ export function Navbar() {
           <div>
             <Link href="/" className="flex items-center space-x-4 lg:space-x-5">
               <div className="relative">
-                <Image
-                  src="/new-logo.png"
-                  alt="STRATELINK GLOBAL"
-                  width={120}
-                  height={48}
-                  className="w-14 h-10 sm:w-16 sm:h-12 lg:w-20 lg:h-16 filter brightness-125"
-                  priority
-                />
+                <ResponsivePictureLogo />
               </div>
               <div className="text-white">
                 <div className="text-lg sm:text-xl lg:text-2xl font-bold tracking-wider">
