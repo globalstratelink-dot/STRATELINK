@@ -86,16 +86,29 @@ export function HomeSlides() {
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-copper/20 via-transparent to-sand/20 z-10"></div>
                     
-                    {/* Optimized Image */}
+                    {/* Image with Fallback */}
                     <Image
-                      src="/global-logistics-transportation-network.jpg"
+                      src="/technological-futuristic-holograms-logistics-means-transport.jpg"
                       alt="Global Logistics Transportation Network - Stratelink Global"
                       fill
                       className="object-cover"
                       priority
-                      placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                       sizes="500px"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        // Fallback to background color
+                        const container = target.parentElement;
+                        if (container) {
+                          container.style.background = 'linear-gradient(135deg, #041331 0%, #A97968 50%, #DBAC8E 100%)';
+                        }
+                      }}
+                    />
+                    
+                    {/* Fallback Background (shown if image fails) */}
+                    <div 
+                      className="absolute inset-0 bg-gradient-to-br from-navy via-copper/30 to-sand/30 opacity-0 hover:opacity-100 transition-opacity duration-300"
+                      style={{ display: 'none' }}
                     />
                   </div>
                   
