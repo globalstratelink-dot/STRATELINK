@@ -13,7 +13,8 @@
     "generate-og": "node scripts/generate-og-image.js",
     "create-favicon": "node scripts/create-favicon.js",
     "generate-assets": "npm run generate-icons && npm run generate-og && npm run create-favicon",
-    "test-nodemailer": "node scripts/test-nodemailer.js"
+    "test-nodemailer": "node scripts/test-nodemailer.js",
+    "optimize-images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
@@ -78,7 +79,11 @@
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "imagemin": "^9.0.1",
+    "imagemin-pngquant": "^10.0.0",
+    "imagemin-webp": "^8.0.0",
     "postcss": "^8.5",
+    "sharp": "^0.34.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }
