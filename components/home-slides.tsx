@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Globe, TrendingUp, Palette, Zap } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { HeroImage, ServicesImage } from "@/components/optimized-image"
+import Link from "next/link"
 
 export function HomeSlides() {
   const { t } = useLanguage()
@@ -20,18 +21,18 @@ export function HomeSlides() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left Content */}
-            <div className="text-center lg:text-left">
+            <div className="text-center lg:text-left order-1 lg:order-1">
               {/* Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center px-6 py-3 bg-copper/10 border border-copper/20 rounded-full text-copper text-lg font-medium mb-8"
+                className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-copper/10 border border-copper/20 rounded-full text-copper text-sm sm:text-base md:text-lg font-medium mb-6 sm:mb-8"
               >
-                <Globe className="w-5 h-5 mr-2" />
-                {t('visionSynergiesDevelopment')}
+                <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                <span className="whitespace-nowrap">{t('visionSynergiesDevelopment')}</span>
               </motion.div>
 
               {/* Main Title */}
@@ -39,7 +40,7 @@ export function HomeSlides() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight"
               >
                 {t('accelerateInternationalExpansion')}
               </motion.h1>
@@ -49,7 +50,7 @@ export function HomeSlides() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed"
+                className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 leading-relaxed px-2 sm:px-0"
               >
                 {t('strategicPartnerDubaiEuropeAsia')}
               </motion.p>
@@ -62,10 +63,10 @@ export function HomeSlides() {
               >
                 <Button 
                   size="lg"
-                  className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-lg px-8 py-4 hover:scale-105 transition-transform duration-200"
+                  className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:scale-105 transition-transform duration-200 w-full sm:w-auto"
                 >
                   {t('discoverOurSolutions')}
-                  <ArrowRight className="w-5 h-5 ml-2" />
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                 </Button>
               </motion.div>
             </div>
@@ -75,14 +76,14 @@ export function HomeSlides() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.3 }}
-              className="flex justify-center lg:justify-end"
+              className="flex justify-center lg:justify-end order-2 lg:order-2"
             >
               {/* Image Container Block */}
-              <div className="relative w-full max-w-lg">
+              <div className="relative w-full max-w-sm sm:max-w-md lg:max-w-lg">
                 {/* Background Card */}
-                <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-3xl p-6 shadow-2xl">
+                <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl">
                   {/* Image Container with Fixed Dimensions */}
-                  <div className="relative w-full h-80 rounded-2xl overflow-hidden">
+                  <div className="relative w-full h-48 sm:h-64 lg:h-80 rounded-xl sm:rounded-2xl overflow-hidden">
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-br from-copper/20 via-transparent to-sand/20 z-10"></div>
                     
@@ -291,6 +292,73 @@ export function HomeSlides() {
                  <h3 className="text-xl font-bold text-white mb-4">{t('digitalSolutions')}</h3>
                  <p className="text-gray-300">{t('digitalSolutionsDescription')}</p>
                </div>
+            </motion.div>
+
+            {/* Call-to-Action Bilingue */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              viewport={{ once: true }}
+              className="mt-20 text-center"
+            >
+              {/* Section Française */}
+              <div className="mb-8">
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.9 }}
+                  viewport={{ once: true }}
+                  className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+                >
+                  {t('readyToTransformYourBusiness')}
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.0 }}
+                  viewport={{ once: true }}
+                  className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+                >
+                  {t('letsDiscussStrategicSolutions')}
+                </motion.p>
+              </div>
+
+              {/* Section Anglaise */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
+                viewport={{ once: true }}
+                className="bg-copper/10 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto"
+              >
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                  {t('readyToTransformYourBusiness')}
+                </h3>
+                <p className="text-lg text-white/80 mb-8">
+                  {t('letsDiscussStrategicSolutions')}
+                </p>
+                
+                {/* Bouton Contact */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Button 
+                    size="lg"
+                    className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-lg px-8 py-4 hover:shadow-lg transition-all duration-300"
+                    asChild
+                  >
+                    <Link href="/contact">
+                      {t('contactButton')}
+                    </Link>
+                  </Button>
+                </motion.div>
+              </motion.div>
             </motion.div>
           </div>
         </div>

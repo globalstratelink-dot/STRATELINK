@@ -2,48 +2,50 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
+import { useLanguage } from "@/contexts/language-context"
 
 export function ContactInfo() {
+  const { t } = useLanguage()
   const contactMethods = [
     {
       icon: <Mail className="w-6 h-6 text-copper" />,
-      title: "Email Us",
+      title: t('emailUs'),
       details: "globalstratelink@gmail.com",
-      description: "We'll respond within 24 hours"
+      description: t('weWillRespondWithin24Hours')
     },
     {
       icon: <Phone className="w-6 h-6 text-copper" />,
-      title: "Call Us",
+      title: t('callUs'),
       details: "+1 (555) 123-4567",
-      description: "Mon-Fri 9AM-6PM EST"
+      description: t('monFri9AM6PMEST')
     },
     {
       icon: <MapPin className="w-6 h-6 text-copper" />,
-      title: "Visit Us",
-      details: "New York • London • Singapore",
-      description: "Global offices worldwide"
+      title: t('visitUs'),
+      details: `${t('newYork')} • ${t('london')} • ${t('singapore')}`,
+      description: t('globalOfficesWorldwide')
     },
     {
       icon: <Clock className="w-6 h-6 text-copper" />,
-      title: "Business Hours",
-      details: "24/7 Support Available",
-      description: "We're here when you need us"
+      title: t('businessHours'),
+      details: t('support24HoursAvailable'),
+      description: t('weAreHereWhenYouNeedUs')
     }
   ]
 
   const offices = [
     {
-      city: "New York",
+      city: t('newYork'),
       address: "123 Business Ave, Suite 100\nNew York, NY 10001",
       phone: "+1 (555) 123-4567"
     },
     {
-      city: "London",
+      city: t('london'),
       address: "456 Strategic Lane\nLondon, UK EC1A 1BB",
       phone: "+44 20 1234 5678"
     },
     {
-      city: "Singapore",
+      city: t('singapore'),
       address: "789 Innovation Street\nSingapore 018956",
       phone: "+65 6123 4567"
     }
@@ -76,7 +78,7 @@ export function ContactInfo() {
       {/* Office Locations */}
       <Card className="bg-navy/50 border-copper/20">
         <CardContent className="p-6">
-          <h3 className="text-white font-semibold text-xl mb-6">Our Global Offices</h3>
+          <h3 className="text-white font-semibold text-xl mb-6">{t('ourGlobalOffices')}</h3>
           <div className="space-y-6">
             {offices.map((office, index) => (
               <div key={index} className="border-b border-copper/20 last:border-b-0 pb-4 last:pb-0">

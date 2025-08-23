@@ -9,7 +9,7 @@ import { Menu, X, Languages } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { useMobileDetection } from "@/hooks/use-mobile-detection"
-import { ResponsivePictureLogo } from "@/components/picture-element"
+import { ResponsiveOptimizedLogo } from "@/components/optimized-logo"
 
 export function Navbar() {
   const pathname = usePathname()
@@ -91,7 +91,7 @@ export function Navbar() {
           <div>
             <Link href="/" className="flex items-center space-x-4 lg:space-x-5">
               <div className="relative">
-                <ResponsivePictureLogo />
+                <ResponsiveOptimizedLogo />
               </div>
               <div className="text-white">
                 <div className="text-lg sm:text-xl lg:text-2xl font-bold tracking-wider">

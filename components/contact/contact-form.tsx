@@ -47,21 +47,21 @@ export function ContactForm() {
     const newErrors: Record<string, string> = {}
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = "Le prénom est requis"
+      newErrors.firstName = t('firstNameRequired')
     }
     if (!formData.lastName.trim()) {
-      newErrors.lastName = "Le nom est requis"
+      newErrors.lastName = t('lastNameRequired')
     }
     if (!formData.email.trim()) {
-      newErrors.email = "L'email est requis"
+      newErrors.email = t('emailRequired')
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Format d'email invalide"
+      newErrors.email = t('invalidEmailFormat')
     }
     if (!formData.subject.trim()) {
-      newErrors.subject = "Le sujet est requis"
+      newErrors.subject = t('subjectRequired')
     }
     if (!formData.message.trim()) {
-      newErrors.message = "Le message est requis"
+      newErrors.message = t('messageRequired')
     }
 
     setErrors(newErrors)
@@ -102,7 +102,7 @@ export function ContactForm() {
       <CardHeader>
         <CardTitle className="text-white text-2xl">{t('sendMessage')}</CardTitle>
         <CardDescription className="text-gray-300">
-          We'll get back to you within 24 hours
+          {t('weWillGetBackToYou')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -117,8 +117,8 @@ export function ContactForm() {
             >
               <CheckCircle className="w-5 h-5 text-green-400" />
               <div>
-                <p className="text-green-400 font-medium">Votre message a été envoyé !</p>
-                <p className="text-green-300 text-sm">Nous vous contacterons le plus tôt possible.</p>
+                <p className="text-green-400 font-medium">{t('messageSentSuccess')}</p>
+                <p className="text-green-300 text-sm">{t('weWillContactYouSoon')}</p>
               </div>
             </motion.div>
           )}
@@ -135,7 +135,7 @@ export function ContactForm() {
             >
               <AlertCircle className="w-5 h-5 text-red-400" />
               <div>
-                <p className="text-red-400 font-medium">Erreur lors de l'envoi</p>
+                <p className="text-red-400 font-medium">{t('errorSendingMessage')}</p>
                 <p className="text-red-300 text-sm">{emailState.errorMessage}</p>
               </div>
             </motion.div>
@@ -148,7 +148,7 @@ export function ContactForm() {
               <label className="text-sm font-medium text-gray-300">{t('firstName')}</label>
               <Input
                 type="text"
-                placeholder="John"
+                placeholder={t('johnPlaceholder')}
                 value={formData.firstName}
                 onChange={(e) => handleInputChange("firstName", e.target.value)}
                 className={getInputClassName("firstName")}
@@ -162,7 +162,7 @@ export function ContactForm() {
               <label className="text-sm font-medium text-gray-300">{t('lastName')}</label>
               <Input
                 type="text"
-                placeholder="Doe"
+                placeholder={t('doePlaceholder')}
                 value={formData.lastName}
                 onChange={(e) => handleInputChange("lastName", e.target.value)}
                 className={getInputClassName("lastName")}
@@ -178,7 +178,7 @@ export function ContactForm() {
             <label className="text-sm font-medium text-gray-300">{t('email')}</label>
             <Input
               type="email"
-              placeholder="john@company.com"
+              placeholder={t('emailPlaceholder')}
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
               className={getInputClassName("email")}
@@ -193,7 +193,7 @@ export function ContactForm() {
             <label className="text-sm font-medium text-gray-300">{t('company')}</label>
             <Input
               type="text"
-              placeholder="Your Company Name"
+              placeholder={t('companyPlaceholder')}
               value={formData.company}
               onChange={(e) => handleInputChange("company", e.target.value)}
               className={getInputClassName("company")}
@@ -204,7 +204,7 @@ export function ContactForm() {
             <label className="text-sm font-medium text-gray-300">{t('subject')}</label>
             <Input
               type="text"
-              placeholder="How can we help you?"
+              placeholder={t('subjectPlaceholder')}
               value={formData.subject}
               onChange={(e) => handleInputChange("subject", e.target.value)}
               className={getInputClassName("subject")}
@@ -218,7 +218,7 @@ export function ContactForm() {
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-300">{t('message')}</label>
             <Textarea
-              placeholder="Tell us about your project and goals..."
+              placeholder={t('messagePlaceholder')}
               rows={6}
               value={formData.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
@@ -238,7 +238,7 @@ export function ContactForm() {
             {emailState.isSending ? (
               <>
                 <Loader2 className="mr-2 w-5 h-5 animate-spin" />
-                Envoi en cours...
+                {t('sendingInProgress')}
               </>
             ) : (
               <>

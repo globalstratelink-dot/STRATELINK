@@ -14,7 +14,8 @@
     "create-favicon": "node scripts/create-favicon.js",
     "generate-assets": "npm run generate-icons && npm run generate-og && npm run create-favicon",
     "test-nodemailer": "node scripts/test-nodemailer.js",
-    "optimize-images": "node scripts/optimize-images.js"
+    "optimize-images": "node scripts/optimize-images.js",
+    "generate-logo": "node scripts/generate-logo-sizes.js"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
