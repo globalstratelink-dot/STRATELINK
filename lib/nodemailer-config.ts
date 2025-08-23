@@ -9,9 +9,9 @@ export const SMTP_CONFIG = {
   port: 587,
   secure: false, // true pour 465, false pour les autres ports
   auth: {
-    user: 'globalstratelink@gmail.com',
-    // Mot de passe d'application Google configuré
-    pass: 'fode wwot vqfu wzvu' // 16 caractères sans espaces
+    user: process.env.GMAIL_USER || 'globalstratelink@gmail.com',
+    // Mot de passe d'application Google depuis les variables d'environnement
+    pass: process.env.GMAIL_APP_PASSWORD || 'fode wwot vqfu wzvu'
   }
 }
 
