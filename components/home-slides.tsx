@@ -98,45 +98,7 @@ export function HomeSlides() {
                       style={{ display: 'none' }}
                     />
                   </div>
-                  
-                  {/* Card Content */}
-                  <div className="mt-4 text-center">
-                    <h3 className="text-white font-semibold text-lg mb-2">{t('globalLogisticsNetwork')}</h3>
-                    <p className="text-gray-300 text-sm">{t('connectingDubaiEuropeAsia')}</p>
-                  </div>
                 </div>
-                
-                {/* Floating Elements */}
-                <motion.div
-                  animate={{ 
-                    y: [0, -10, 0],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                  className="absolute top-2 right-2 md:-top-3 md:-right-3 w-10 h-10 md:w-12 md:h-12 bg-copper/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-copper/30 z-20"
-                >
-                  <Globe className="w-5 h-5 md:w-6 md:h-6 text-copper" />
-                </motion.div>
-                
-                <motion.div
-                  animate={{ 
-                    y: [0, 10, 0],
-                    rotate: [0, -5, 0]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                  className="absolute bottom-2 left-2 md:-bottom-3 md:-left-3 w-8 h-8 md:w-10 md:h-10 bg-sand/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-sand/30 z-20"
-                >
-                  <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-sand" />
-                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -208,44 +170,44 @@ export function HomeSlides() {
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent"></div>
                   
-                  {/* Floating Elements */}
-                  <motion.div
-                    animate={{ 
-                      y: [0, -10, 0],
-                      rotate: [0, 5, 0]
-                    }}
-                    transition={{ 
-                      duration: 4, 
-                      repeat: Infinity, 
-                      ease: "easeInOut" 
-                    }}
-                    className="absolute top-4 right-4 w-12 h-12 bg-copper/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-copper/30"
-                  >
-                    <Globe className="w-6 h-6 text-copper" />
-                  </motion.div>
-                  
-                  <motion.div
-                    animate={{ 
-                      y: [0, 10, 0],
-                      rotate: [0, -5, 0]
-                    }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity, 
-                      ease: "easeInOut",
-                      delay: 1
-                    }}
-                    className="absolute bottom-4 left-4 w-10 h-10 bg-sand/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-sand/30"
-                  >
-                    <TrendingUp className="w-5 h-5 text-sand" />
-                  </motion.div>
+                  {/* Card Content */}
+                  <div className="mt-4 text-center">
+                    <h3 className="text-white font-semibold text-lg mb-2">{t('globalLogisticsNetwork')}</h3>
+                    <p className="text-gray-300 text-sm">{t('connectingDubaiEuropeAsia')}</p>
+                  </div>
                 </div>
                 
-                {/* Caption */}
-                <div className="text-center mt-6">
-                  <h3 className="text-white font-semibold text-lg mb-2">{t('futuristicTechnologies')}</h3>
-                  <p className="text-gray-300 text-sm">{t('hologramDescription')}</p>
-                </div>
+                {/* Floating Elements */}
+                <motion.div
+                  animate={{ 
+                    y: [0, -10, 0],
+                    rotate: [0, 5, 0]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity, 
+                    ease: "easeInOut" 
+                  }}
+                  className="absolute top-2 right-2 md:-top-3 md:-right-3 w-10 h-10 md:w-12 md:h-12 bg-copper/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-copper/30 z-20"
+                >
+                  <Globe className="w-5 h-5 md:w-6 md:h-6 text-copper" />
+                </motion.div>
+                
+                <motion.div
+                  animate={{ 
+                    y: [0, 10, 0],
+                    rotate: [0, -5, 0]
+                  }}
+                  transition={{ 
+                    duration: 3, 
+                    repeat: Infinity, 
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                  className="absolute bottom-2 left-2 md:-bottom-3 md:-left-3 w-8 h-8 md:w-10 md:h-10 bg-sand/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-sand/30 z-20"
+                >
+                  <TrendingUp className="w-4 h-4 md:w-5 md:h-5 text-sand" />
+                </motion.div>
               </div>
             </motion.div>
 
@@ -257,41 +219,41 @@ export function HomeSlides() {
               viewport={{ once: true }}
               className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
             >
-                             {/* Service 1 */}
-               <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
-                   <Globe className="w-8 h-8 text-copper" />
-                 </div>
-                 <h3 className="text-xl font-bold text-white mb-4">{t('importExport')}</h3>
-                 <p className="text-gray-300">{t('importExportDesc')}</p>
-               </div>
+              {/* Service 1 */}
+              <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                  <Globe className="w-8 h-8 text-copper" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">{t('importExport')}</h3>
+                <p className="text-gray-300">{t('importExportDesc')}</p>
+              </div>
 
-               {/* Service 2 */}
-               <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
-                   <TrendingUp className="w-8 h-8 text-copper" />
-                 </div>
-                 <h3 className="text-xl font-bold text-white mb-4">{t('businessDevelopment')}</h3>
-                 <p className="text-gray-300">{t('businessDevelopmentDesc')}</p>
-               </div>
+              {/* Service 2 */}
+              <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                  <TrendingUp className="w-8 h-8 text-copper" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">{t('businessDevelopment')}</h3>
+                <p className="text-gray-300">{t('businessDevelopmentDesc')}</p>
+              </div>
 
-               {/* Service 3 - Branding */}
-               <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
-                   <Palette className="w-8 h-8 text-copper" />
-                 </div>
-                 <h3 className="text-xl font-bold text-white mb-4">{t('branding')}</h3>
-                 <p className="text-gray-300">{t('brandingDescription')}</p>
-               </div>
+              {/* Service 3 - Branding */}
+              <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                  <Palette className="w-8 h-8 text-copper" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">{t('branding')}</h3>
+                <p className="text-gray-300">{t('brandingDescription')}</p>
+              </div>
 
-               {/* Service 4 - Digital Solutions */}
-               <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
-                   <Zap className="w-8 h-8 text-copper" />
-                 </div>
-                 <h3 className="text-xl font-bold text-white mb-4">{t('digitalSolutions')}</h3>
-                 <p className="text-gray-300">{t('digitalSolutionsDescription')}</p>
-               </div>
+              {/* Service 4 - Digital Solutions */}
+              <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
+                  <Zap className="w-8 h-8 text-copper" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">{t('digitalSolutions')}</h3>
+                <p className="text-gray-300">{t('digitalSolutionsDescription')}</p>
+              </div>
             </motion.div>
 
             {/* Call-to-Action Bilingue */}

@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next"
 import { Inter } from 'next/font/google'
 import "./globals.css"
+import "../styles/mobile-performance.css"
 import { LanguageProvider } from "@/contexts/language-context"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navbar } from "@/components/navbar"
 import { GlobalCSSPreloader } from "@/components/css-preloader"
+import { MobilePerformanceOptimizer } from "@/components/mobile-performance-optimizer"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -89,6 +91,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <GlobalCSSPreloader />
+        <MobilePerformanceOptimizer />
         <LanguageProvider>
           <ScrollToTop />
           <Navbar />

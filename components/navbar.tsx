@@ -24,23 +24,33 @@ export function Navbar() {
     setIsMobileMenuOpen(prev => !prev)
   }
 
-  // Handle scroll effect
+  // Handle scroll effect with better mobile optimization
   const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 50)
-  }, [])
+    if (isMobile) {
+      // Sur mobile, réduire la fréquence des mises à jour
+      const scrollY = window.scrollY
+      const newIsScrolled = scrollY > 50
+      if (newIsScrolled !== isScrolled) {
+        setIsScrolled(newIsScrolled)
+      }
+    } else {
+      setIsScrolled(window.scrollY > 50)
+    }
+  }, [isMobile, isScrolled])
 
-  // Throttled scroll handler
+  // Optimized scroll handler for mobile
   const throttledScrollHandler = useCallback(() => {
     let timeoutId: NodeJS.Timeout
     return () => {
       clearTimeout(timeoutId)
-      timeoutId = setTimeout(handleScroll, 100)
+      // Sur mobile, augmenter le délai pour réduire les vibrations
+      timeoutId = setTimeout(handleScroll, isMobile ? 150 : 100)
     }
-  }, [handleScroll])
+  }, [handleScroll, isMobile])
 
   useEffect(() => {
     const scrollHandler = throttledScrollHandler()
-    window.addEventListener("scroll", scrollHandler)
+    window.addEventListener("scroll", scrollHandler, { passive: true })
     return () => window.removeEventListener("scroll", scrollHandler)
   }, [throttledScrollHandler])
 
@@ -79,7 +89,11 @@ export function Navbar() {
 
   return (
     <motion.nav 
-      className={`fixed w-full z-50 transition-all duration-500 pt-[7px] ${
+      className={`fixed w-full z-50 pt-[7px] ${
+        isMobile 
+          ? "transition-colors duration-200" // Transition réduite sur mobile
+          : "transition-all duration-500"     // Transition complète sur desktop
+      } ${
         isScrolled 
           ? "bg-navy/95 backdrop-blur-md shadow-2xl border-b border-copper/30" 
           : "bg-navy md:bg-transparent"
@@ -164,7 +178,10 @@ export function Navbar() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
+              transition={{ 
+                duration: isMobile ? 0.1 : 0.2, // Animation plus rapide sur mobile
+                ease: "easeOut" 
+              }}
             >
               <div className="px-4 pt-4 pb-6 space-y-1">
                 {navItems.map((item, index) => (

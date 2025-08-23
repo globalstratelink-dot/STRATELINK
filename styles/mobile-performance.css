@@ -1,0 +1,143 @@
+/* Optimisations de performance pour mobile - Réduction des vibrations */
+
+@media (max-width: 768px) {
+  /* Désactiver les animations continues qui causent la vibration */
+  * {
+    animation-play-state: paused !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+  }
+  
+  /* Réduire les transitions sur mobile */
+  * {
+    transition-duration: 0.1s !important;
+    transition-timing-function: ease-out !important;
+  }
+  
+  /* Désactiver les effets de parallaxe */
+  .parallax, 
+  [data-parallax],
+  [style*="transform"] {
+    transform: none !important;
+    will-change: auto !important;
+  }
+  
+  /* Optimiser le rendu 3D */
+  * {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: flat;
+    -webkit-transform-style: flat;
+    perspective: none;
+    -webkit-perspective: none;
+  }
+  
+  /* Réduire les effets de flou qui peuvent causer des problèmes */
+  .blur-3xl,
+  .backdrop-blur-sm,
+  .backdrop-blur-md {
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+  
+  /* Simplifier les ombres sur mobile */
+  .shadow-2xl,
+  .shadow-xl {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Désactiver les gradients complexes sur mobile */
+  .bg-gradient-to-br,
+  .bg-gradient-to-r,
+  .bg-gradient-to-t {
+    background: var(--tw-gradient-from) !important;
+  }
+  
+  /* Optimiser les images */
+  img {
+    image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
+  }
+  
+  /* Désactiver les effets de hover sur mobile */
+  .hover\:scale-105:hover,
+  .hover\:border-copper\/40:hover,
+  .hover\:shadow-lg:hover {
+    transform: none !important;
+    border-color: inherit !important;
+    box-shadow: inherit !important;
+  }
+  
+  /* Améliorer la réactivité tactile */
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Désactiver les animations de tap */
+  *:active {
+    transform: none !important;
+    scale: none !important;
+  }
+  
+  /* Optimiser le scroll */
+  html {
+    scroll-behavior: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Réduire les animations Framer Motion sur mobile */
+  [data-framer-motion] {
+    animation-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+  }
+}
+
+/* Désactiver complètement les animations si nécessaire */
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
+
+/* Optimisations spécifiques pour les appareils à faible puissance */
+@media (max-width: 768px) {
+  /* Réduire la complexité des bordures */
+  .border-copper\/20,
+  .border-copper\/30,
+  .border-copper\/40 {
+    border-color: rgba(169, 121, 104, 0.3) !important;
+  }
+  
+  /* Simplifier les arrière-plans */
+  .bg-navy\/50,
+  .bg-navy\/95 {
+    background-color: rgb(4, 19, 49) !important;
+  }
+  
+  /* Désactiver les effets de glassmorphism sur mobile */
+  .backdrop-blur-sm,
+  .backdrop-blur-md {
+    background-color: rgba(4, 19, 49, 0.95) !important;
+  }
+}
+
+/* Optimisations pour les appareils avec écran tactile */
+@media (max-width: 768px) and (pointer: coarse) {
+  /* Améliorer la réactivité tactile */
+  .transition-transform {
+    transition: none !important;
+  }
+  
+  /* Désactiver les transformations sur mobile */
+  .hover\:scale-105 {
+    transform: none !important;
+  }
+} 
