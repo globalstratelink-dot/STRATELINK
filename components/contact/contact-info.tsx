@@ -10,19 +10,19 @@ export function ContactInfo() {
     {
       icon: <Mail className="w-6 h-6 text-copper" />,
       title: t('emailUs'),
-      details: "globalstratelink@gmail.com",
+      details: "Contact@stratelink-global.com",
       description: t('weWillRespondWithin24Hours')
     },
     {
       icon: <Phone className="w-6 h-6 text-copper" />,
       title: t('callUs'),
-      details: "+1 (555) 123-4567",
+      details: "00971543192348",
       description: t('monFri9AM6PMEST')
     },
     {
       icon: <MapPin className="w-6 h-6 text-copper" />,
       title: t('visitUs'),
-      details: `${t('newYork')} • ${t('london')} • ${t('singapore')}`,
+      details: "Dubai, United Arab Emirates",
       description: t('globalOfficesWorldwide')
     },
     {
@@ -35,19 +35,9 @@ export function ContactInfo() {
 
   const offices = [
     {
-      city: t('newYork'),
-      address: "123 Business Ave, Suite 100\nNew York, NY 10001",
-      phone: "+1 (555) 123-4567"
-    },
-    {
-      city: t('london'),
-      address: "456 Strategic Lane\nLondon, UK EC1A 1BB",
-      phone: "+44 20 1234 5678"
-    },
-    {
-      city: t('singapore'),
-      address: "789 Innovation Street\nSingapore 018956",
-      phone: "+65 6123 4567"
+      city: "Dubai",
+      address: "Building A1, Dubai Digital Park\nDubai Silicon Oasis\nDubai, United Arab Emirates",
+      phone: "00971543192348"
     }
   ]
 

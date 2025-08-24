@@ -3,24 +3,22 @@
 
 import nodemailer from 'nodemailer'
 
-// Configuration SMTP Google
-export const SMTP_CONFIG = {
+// Configuration SMTP pour Gmail
+const SMTP_CONFIG = {
   host: 'smtp.gmail.com',
   port: 587,
   secure: false, // true pour 465, false pour les autres ports
   auth: {
-    user: 'globalstratelink@gmail.com',
-    // Remplacez par votre mot de passe d'application Google (16 caractères sans espaces)
-    pass: 'YOUR_APP_PASSWORD_HERE'
+    user: process.env.GMAIL_USER || 'globalstratelink@gmail.com',
+    pass: process.env.GMAIL_APP_PASSWORD || 'votre_mot_de_passe_d_application'
   }
 }
 
-// Configuration de l'email
+// Configuration des emails
 export const EMAIL_CONFIG = {
   from: '"Stratelink Global" <globalstratelink@gmail.com>',
-  to: 'globalstratelink@gmail.com',
-  subject: 'Nouveau message de contact - Stratelink Global',
-  companyName: 'Stratelink Global'
+  to: 'Contact@stratelink-global.com',
+  subject: 'Nouveau message de contact - Stratelink Global'
 }
 
 // Créer le transporteur Nodemailer
