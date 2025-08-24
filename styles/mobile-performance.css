@@ -1,143 +1,281 @@
-/* Optimisations de performance pour mobile - Réduction des vibrations */
+/* OPTIMISATIONS DE PERFORMANCE POUR MOBILE - ÉLIMINATION COMPLÈTE DES VIBRATIONS */
 
 @media (max-width: 768px) {
-  /* Désactiver les animations continues qui causent la vibration */
+  /* 1. DÉSACTIVER COMPLÈTEMENT TOUTES LES ANIMATIONS FRAMER MOTION */
+  [data-framer-motion],
+  [style*="animation"],
+  [style*="transition"] {
+    animation: none !important;
+    animation-duration: 0s !important;
+    animation-iteration-count: 1 !important;
+    animation-play-state: paused !important;
+    transition: none !important;
+    transition-duration: 0s !important;
+  }
+  
+  /* 2. DÉSACTIVER LES ANIMATIONS CSS CONTINUES */
   * {
     animation-play-state: paused !important;
     animation-duration: 0s !important;
     animation-iteration-count: 1 !important;
+    animation-name: none !important;
   }
   
-  /* Réduire les transitions sur mobile */
+  /* 3. RÉDUIRE DRASTIQUEMENT LES TRANSITIONS */
   * {
-    transition-duration: 0.1s !important;
+    transition-duration: 0.05s !important;
     transition-timing-function: ease-out !important;
+    transition-property: none !important;
   }
   
-  /* Désactiver les effets de parallaxe */
-  .parallax, 
-  [data-parallax],
-  [style*="transform"] {
-    transform: none !important;
-    will-change: auto !important;
-  }
-  
-  /* Optimiser le rendu 3D */
-  * {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    transform-style: flat;
-    -webkit-transform-style: flat;
-    perspective: none;
-    -webkit-perspective: none;
-  }
-  
-  /* Réduire les effets de flou qui peuvent causer des problèmes */
+  /* 4. DÉSACTIVER COMPLÈTEMENT LES EFFETS DE FLOU */
   .blur-3xl,
+  .blur-2xl,
+  .blur-xl,
+  .blur-lg,
+  .blur-md,
+  .blur-sm,
   .backdrop-blur-sm,
-  .backdrop-blur-md {
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl {
     filter: none !important;
     backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
   
-  /* Simplifier les ombres sur mobile */
+  /* 5. SIMPLIFIER DRASTIQUEMENT LES OMBRES */
   .shadow-2xl,
-  .shadow-xl {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  .shadow-xl,
+  .shadow-lg,
+  .shadow-md,
+  .shadow-sm {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
   }
   
-  /* Désactiver les gradients complexes sur mobile */
+  /* 6. DÉSACTIVER LES GRADIENTS COMPLEXES */
   .bg-gradient-to-br,
   .bg-gradient-to-r,
-  .bg-gradient-to-t {
+  .bg-gradient-to-t,
+  .bg-gradient-to-b,
+  .bg-gradient-to-l,
+  .bg-gradient-to-tr,
+  .bg-gradient-to-tl,
+  .bg-gradient-to-bl,
+  .bg-gradient-to-br {
     background: var(--tw-gradient-from) !important;
+    background-image: none !important;
   }
   
-  /* Optimiser les images */
-  img {
-    image-rendering: optimizeSpeed;
-    image-rendering: -webkit-optimize-contrast;
-  }
-  
-  /* Désactiver les effets de hover sur mobile */
-  .hover\:scale-105:hover,
-  .hover\:border-copper\/40:hover,
-  .hover\:shadow-lg:hover {
+  /* 7. OPTIMISER LE RENDU 3D ET TRANSFORMATIONS */
+  * {
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+    transform-style: flat !important;
+    -webkit-transform-style: flat !important;
+    perspective: none !important;
+    -webkit-perspective: none !important;
+    will-change: auto !important;
     transform: none !important;
-    border-color: inherit !important;
-    box-shadow: inherit !important;
   }
   
-  /* Améliorer la réactivité tactile */
-  button,
-  a,
-  [role="button"] {
-    min-height: 44px;
-    min-width: 44px;
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  /* Désactiver les animations de tap */
-  *:active {
+  /* 8. DÉSACTIVER TOUTES LES TRANSFORMATIONS */
+  [style*="transform"],
+  .parallax,
+  [data-parallax],
+  .transform,
+  .scale-105,
+  .scale-110,
+  .rotate-12,
+  .translate-x-1,
+  .translate-y-1 {
     transform: none !important;
-    scale: none !important;
+    scale: 1 !important;
+    rotate: 0deg !important;
+    translate: 0 0 !important;
   }
   
-  /* Optimiser le scroll */
+  /* 9. OPTIMISER LE SCROLL */
   html {
+    scroll-behavior: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: none !important;
+  }
+  
+  body {
     scroll-behavior: auto !important;
     -webkit-overflow-scrolling: touch;
   }
   
-  /* Réduire les animations Framer Motion sur mobile */
-  [data-framer-motion] {
-    animation-duration: 0.1s !important;
-    transition-duration: 0.1s !important;
+  /* 10. DÉSACTIVER TOUS LES EFFETS HOVER SUR MOBILE */
+  .hover\:scale-105:hover,
+  .hover\:border-copper\/40:hover,
+  .hover\:shadow-lg:hover,
+  .hover\:bg-copper\/20:hover,
+  .hover\:text-copper:hover {
+    transform: none !important;
+    border-color: inherit !important;
+    box-shadow: inherit !important;
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+  
+  /* 11. OPTIMISER LES IMAGES */
+  img {
+    image-rendering: optimizeSpeed;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+  }
+  
+  /* 12. AMÉLIORER LA RÉACTIVITÉ TACTILE */
+  button,
+  a,
+  [role="button"],
+  [tabindex] {
+    min-height: 44px;
+    min-width: 44px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  /* 13. DÉSACTIVER LES ANIMATIONS DE TAP ET ACTIVE */
+  *:active,
+  *:focus,
+  *:focus-visible {
+    transform: none !important;
+    scale: 1 !important;
+    outline: none !important;
+  }
+  
+  /* 14. SIMPLIFIER LES BORDURES ET ARRIÈRE-PLANS */
+  .border-copper\/20,
+  .border-copper\/30,
+  .border-copper\/40,
+  .border-copper\/50 {
+    border-color: rgba(169, 121, 104, 0.3) !important;
+  }
+  
+  .bg-navy\/50,
+  .bg-navy\/95,
+  .bg-navy\/90,
+  .bg-navy\/80 {
+    background-color: rgb(4, 19, 49) !important;
+  }
+  
+  /* 15. DÉSACTIVER LES ANIMATIONS DE SCROLL */
+  .scroll-reveal,
+  .fade-in,
+  .slide-in,
+  .animate-on-scroll {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  /* 16. OPTIMISER LES ÉLÉMENTS AVEC DES ANIMATIONS */
+  [class*="animate-"],
+  [class*="motion-"],
+  [class*="framer-"] {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  /* 17. DÉSACTIVER LES EFFETS DE GLASSMORPHISM */
+  .glass,
+  .glassmorphism,
+  .backdrop-blur {
+    background-color: rgba(4, 19, 49, 0.95) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  
+  /* 18. OPTIMISER LES ÉLÉMENTS FLOTTANTS */
+  .floating,
+  .float,
+  [class*="float-"] {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  /* 19. DÉSACTIVER LES EFFETS DE PARTICULES */
+  .particles,
+  .particle,
+  [class*="particle-"] {
+    display: none !important;
+  }
+  
+  /* 20. OPTIMISER LES LAYOUTS COMPLEXES */
+  .grid,
+  .flex {
+    contain: layout style paint;
   }
 }
 
-/* Désactiver complètement les animations si nécessaire */
+/* DÉSACTIVATION COMPLÈTE SI RÉDUCTION DE MOUVEMENT */
 @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation: none !important;
     transition: none !important;
     transform: none !important;
     animation-duration: 0s !important;
     transition-duration: 0s !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Optimisations spécifiques pour les appareils à faible puissance */
-@media (max-width: 768px) {
-  /* Réduire la complexité des bordures */
-  .border-copper\/20,
-  .border-copper\/30,
-  .border-copper\/40 {
-    border-color: rgba(169, 121, 104, 0.3) !important;
-  }
-  
-  /* Simplifier les arrière-plans */
-  .bg-navy\/50,
-  .bg-navy\/95 {
-    background-color: rgb(4, 19, 49) !important;
-  }
-  
-  /* Désactiver les effets de glassmorphism sur mobile */
-  .backdrop-blur-sm,
-  .backdrop-blur-md {
-    background-color: rgba(4, 19, 49, 0.95) !important;
-  }
-}
-
-/* Optimisations pour les appareils avec écran tactile */
+/* OPTIMISATIONS SPÉCIFIQUES POUR ÉCRANS TACTILES */
 @media (max-width: 768px) and (pointer: coarse) {
-  /* Améliorer la réactivité tactile */
-  .transition-transform {
+  .transition-transform,
+  .transition-all,
+  .transition-colors,
+  .transition-opacity {
     transition: none !important;
   }
   
-  /* Désactiver les transformations sur mobile */
-  .hover\:scale-105 {
+  .hover\:scale-105,
+  .hover\:scale-110,
+  .hover\:rotate-12 {
     transform: none !important;
+  }
+  
+  /* Améliorer la réactivité tactile */
+  * {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Permettre la sélection de texte sur les paragraphes */
+  p, h1, h2, h3, h4, h5, h6, span, div {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+}
+
+/* OPTIMISATIONS POUR APPAREILS À FAIBLE PUISSANCE */
+@media (max-width: 768px) {
+  /* Réduire la complexité des rendus */
+  * {
+    contain: layout style;
+  }
+  
+  /* Désactiver les effets de profondeur */
+  .depth,
+  .layered,
+  .stacked {
+    z-index: auto !important;
+  }
+  
+  /* Simplifier les arrière-plans */
+  .bg-pattern,
+  .bg-texture,
+  .bg-noise {
+    background-image: none !important;
   }
 } 
