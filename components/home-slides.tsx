@@ -64,9 +64,12 @@ export function HomeSlides() {
                 <Button 
                   size="lg"
                   className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:scale-105 transition-transform duration-200 w-full sm:w-auto"
+                  asChild
                 >
-                  {t('discoverOurSolutions')}
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+                  <Link href="https://calendly.com/net-stitou" target="_blank" rel="noopener noreferrer">
+                    {t('discoverOurSolutions')}
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+                  </Link>
                 </Button>
               </motion.div>
             </div>

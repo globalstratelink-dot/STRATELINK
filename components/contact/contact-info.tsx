@@ -6,6 +6,9 @@ import { useLanguage } from "@/contexts/language-context"
 
 export function ContactInfo() {
   const { t } = useLanguage()
+
+  const getMapsHref = (query: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
+
   const contactMethods = [
     {
       icon: <Mail className="w-6 h-6 text-copper" />,
@@ -23,7 +26,8 @@ export function ContactInfo() {
       icon: <MapPin className="w-6 h-6 text-copper" />,
       title: t('visitUs'),
       details: "Dubai, United Arab Emirates",
-      description: t('globalOfficesWorldwide')
+      description: t('globalOfficesWorldwide'),
+      mapsQuery: "Dubai, United Arab Emirates"
     },
     {
       icon: <Clock className="w-6 h-6 text-copper" />,
@@ -56,7 +60,18 @@ export function ContactInfo() {
                   <h3 className="text-white font-semibold mb-2 group-hover:text-copper transition-colors duration-300">
                     {method.title}
                   </h3>
-                  <p className="text-copper font-medium mb-2 break-words leading-tight">{method.details}</p>
+                  {"mapsQuery" in method && method.mapsQuery ? (
+                    <a
+                      href={getMapsHref(method.mapsQuery as string)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-copper font-medium mb-2 break-words leading-tight underline underline-offset-4"
+                    >
+                      {method.details}
+                    </a>
+                  ) : (
+                    <p className="text-copper font-medium mb-2 break-words leading-tight">{method.details}</p>
+                  )}
                   <p className="text-gray-300 text-sm leading-relaxed">{method.description}</p>
                 </div>
               </div>
@@ -73,7 +88,14 @@ export function ContactInfo() {
             {offices.map((office, index) => (
               <div key={index} className="border-b border-copper/20 last:border-b-0 pb-4 last:pb-0">
                 <h4 className="text-copper font-semibold mb-2">{office.city}</h4>
-                <p className="text-gray-300 text-sm whitespace-pre-line mb-2 leading-relaxed">{office.address}</p>
+                <a
+                  href={getMapsHref(office.address)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 text-sm whitespace-pre-line mb-2 leading-relaxed underline underline-offset-4"
+                >
+                  {office.address}
+                </a>
                 <p className="text-gray-300 text-sm">{office.phone}</p>
               </div>
             ))}

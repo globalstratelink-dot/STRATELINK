@@ -7,6 +7,7 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navbar } from "@/components/navbar"
 import { GlobalCSSPreloader } from "@/components/css-preloader"
 import { MobilePerformanceOptimizer } from "@/components/mobile-performance-optimizer"
+import { WhatsAppFloat } from "@/components/whatsapp-float"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -96,6 +97,7 @@ export default function RootLayout({
           <ScrollToTop />
           <Navbar />
           {children}
+          <WhatsAppFloat phoneNumber="00971543192348" />
         </LanguageProvider>
       </body>
     </html>
