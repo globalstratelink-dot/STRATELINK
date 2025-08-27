@@ -259,6 +259,112 @@ export function HomeSlides() {
               </div>
             </motion.div>
 
+            {/* Section "Pourquoi nous choisir" */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="mt-20 text-center"
+            >
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                viewport={{ once: true }}
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+              >
+                {t('whyChooseStratelinkGlobal')}
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                viewport={{ once: true }}
+                className="text-xl text-copper mb-8"
+              >
+                {t('excellenceAtServiceOfGrowth')}
+              </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                viewport={{ once: true }}
+                className="text-lg text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed"
+              >
+                {t('discoverWhatDistinguishesUs')}
+              </motion.p>
+
+              {/* Grille des avantages */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1.0 }}
+                viewport={{ once: true }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
+              >
+                {/* Avantage 1 */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.1 }}
+                  viewport={{ once: true }}
+                  className="bg-navy/30 backdrop-blur-sm border border-copper/20 rounded-xl p-6 hover:border-copper/40 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 bg-copper/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                    <span className="text-2xl font-bold text-copper">1</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">{t('rapidReliableDeployment')}</h3>
+                  <p className="text-gray-300 text-sm">{t('rapidReliableDeploymentDesc')}</p>
+                </motion.div>
+
+                {/* Avantage 2 */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.2 }}
+                  viewport={{ once: true }}
+                  className="bg-navy/30 backdrop-blur-sm border border-copper/20 rounded-xl p-6 hover:border-copper/40 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 bg-copper/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                    <span className="text-2xl font-bold text-copper">2</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">{t('turnkeySolutions')}</h3>
+                  <p className="text-gray-300 text-sm">{t('turnkeySolutionsDesc')}</p>
+                </motion.div>
+
+                {/* Avantage 3 */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.3 }}
+                  viewport={{ once: true }}
+                  className="bg-navy/30 backdrop-blur-sm border border-copper/20 rounded-xl p-6 hover:border-copper/40 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 bg-copper/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                    <span className="text-2xl font-bold text-copper">3</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">{t('privilegedMarketAccess')}</h3>
+                  <p className="text-gray-300 text-sm">{t('privilegedMarketAccessDesc')}</p>
+                </motion.div>
+
+                {/* Avantage 4 */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.4 }}
+                  viewport={{ once: true }}
+                  className="bg-navy/30 backdrop-blur-sm border border-copper/20 rounded-xl p-6 hover:border-copper/40 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 bg-copper/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                    <span className="text-2xl font-bold text-copper">4</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-white mb-3">{t('customerAcquisitionRetention')}</h3>
+                  <p className="text-gray-300 text-sm">{t('customerAcquisitionRetentionDesc')}</p>
+                </motion.div>
+              </motion.div>
+            </motion.div>
+
             {/* Call-to-Action Bilingue */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}

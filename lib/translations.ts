@@ -58,7 +58,7 @@ export const translations = {
     digitalSolutionsIntegration: "Digital Solutions Integration",
     dataAnalysisExploitation: "Data Analysis and Exploitation",
     digitalChangeAccompaniment: "Digital Change Accompaniment",
-    readyToStart: "Ready to Start?",
+    readyToStart: "Book Your Free Consultation",
     contactUsForConsultation: "Contact us for a personalized consultation and discover how we can help you achieve your goals",
     contactUs: "Contact Us",
     
@@ -136,9 +136,11 @@ export const translations = {
     messagePlaceholder: "Tell us about your project and goals...",
     
     // Call-to-Action Section
-    readyToTransformYourBusiness: "Ready to Transform Your Business?",
+    readyToTransformYourBusiness: "Book Your Free Consultation",
     letsDiscussStrategicSolutions: "Let's discuss how our strategic solutions can drive your success.",
     contactButton: "Contact",
+    
+
     
     // Contact Info
     emailUs: "Email Us",
@@ -282,7 +284,7 @@ export const translations = {
     digitalSolutionsIntegration: "Intégration de solutions digitales",
     dataAnalysisExploitation: "Analyse et exploitation des données",
     digitalChangeAccompaniment: "Accompagnement au changement digital",
-    readyToStart: "Prêt à commencer ?",
+    readyToStart: "Réservez votre consultation gratuite",
     contactUsForConsultation: "Contactez-nous pour une consultation personnalisée et découvrez comment nous pouvons vous aider à atteindre vos objectifs",
     contactUs: "Contactez-nous",
     
@@ -360,9 +362,11 @@ export const translations = {
     messagePlaceholder: "Parlez-nous de votre projet et de vos objectifs...",
     
     // Call-to-Action Section
-    readyToTransformYourBusiness: "Prêt à transformer votre entreprise ?",
+    readyToTransformYourBusiness: "Réservez votre consultation gratuite",
     letsDiscussStrategicSolutions: "Discutons de la façon dont nos solutions stratégiques peuvent contribuer à votre réussite.",
     contactButton: "Contacter",
+    
+
     
     // Contact Info
     emailUs: "Envoyez-nous un email",
