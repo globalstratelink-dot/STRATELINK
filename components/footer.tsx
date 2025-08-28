@@ -38,23 +38,6 @@ export function Footer() {
             
             {/* Credits */}
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm">
-              {/* Created by viviworks */}
-              <div className="flex items-center space-x-2">
-                <span className="text-gray-400">{t('createdBy')}</span>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <Link 
-                    href="https://viviworks.fr" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-copper hover:text-sand font-semibold transition-colors duration-300"
-                  >
-                    viviworks
-                  </Link>
-                </motion.div>
-              </div>
-              
               {/* Designed by STRATELINK */}
               <div className="flex items-center space-x-2">
                 <span className="text-gray-400">{t('designedBy')}</span>
