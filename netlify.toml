@@ -12,6 +12,15 @@
   directory = ".netlify/functions"
   node_bundler = "esbuild"
 
+# Redirection domaine .com -> .ae (301)
+[[redirects]]
+  from = "/*"
+  to = "https://stratelink-global.ae/:splat"
+  status = 301
+  force = true
+  conditions = { Host = ["stratelink-global.com", "www.stratelink-global.com"] }
+
+# SPA fallback (garde après la règle domaine)
 [[redirects]]
   from = "/*"
   to = "/index.html"
