@@ -11,6 +11,7 @@ import { MobilePerformanceOptimizer } from "@/components/mobile-performance-opti
 import { PerformanceOptimizer } from "@/components/performance-optimizer"
 import { WhatsAppFloat } from "@/components/whatsapp-float"
 import { AnimationInitializer } from "@/components/animation-initializer"
+import Script from "next/script"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -94,6 +95,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-2X983N4TEH"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);} 
+            gtag('js', new Date());
+            gtag('config', 'G-2X983N4TEH');
+          `}
+        </Script>
         <GlobalCSSPreloader />
         <MobilePerformanceOptimizer />
         <PerformanceOptimizer />
