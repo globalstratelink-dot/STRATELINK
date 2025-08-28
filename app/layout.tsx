@@ -2,12 +2,13 @@ import type { Metadata, Viewport } from "next"
 import { Inter } from 'next/font/google'
 import "./globals.css"
 import "../styles/mobile-performance.css"
-import "../styles/unified-animations.css"
+import "../styles/ultra-fast-loading.css"
 import { LanguageProvider } from "@/contexts/language-context"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navbar } from "@/components/navbar"
 import { GlobalCSSPreloader } from "@/components/css-preloader"
 import { MobilePerformanceOptimizer } from "@/components/mobile-performance-optimizer"
+import { PerformanceOptimizer } from "@/components/performance-optimizer"
 import { WhatsAppFloat } from "@/components/whatsapp-float"
 import { AnimationInitializer } from "@/components/animation-initializer"
 
@@ -95,6 +96,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <GlobalCSSPreloader />
         <MobilePerformanceOptimizer />
+        <PerformanceOptimizer />
         <AnimationInitializer />
         <LanguageProvider>
           <ScrollToTop />

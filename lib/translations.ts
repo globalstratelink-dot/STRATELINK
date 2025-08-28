@@ -7,6 +7,10 @@ export const translations = {
     contact: "Contact",
     getStarted: "Get Started",
     
+    // Company Name
+    companyName: "STRATELINK",
+    companyTagline: "GLOBAL",
+    
     // New Home Slides
     visionSynergiesDevelopment: "Vision - Synergies - Development",
     accelerateInternationalExpansion: "Accelerate your international expansion",
@@ -224,6 +228,21 @@ export const translations = {
     aboutStratelinkDescription1: "At Stratelink Global, we support companies in their expansion through integrated solutions in import/export, business development, branding and digital transformation.",
     aboutStratelinkDescription2: "Our mission: simplify your operations while generating measurable and sustainable growth.",
     aboutStratelinkDescription3: "Drawing on our experience with ambitious companies and established companies, we deploy a rigorous approach that produces concrete results and strengthens your international reach.",
+    
+    // Agency Services
+    commercialDevelopment: "Commercial Development",
+    commercialDevelopmentItems: ["Lead Generation", "Commercial Activity Development", "Customer Acquisition", "Commercial Training and Sales Force"],
+    brandCreationBranding: "Brand Creation and Branding",
+    brandCreationBrandingItems: ["Brand Development", "Personal Branding", "Offers and Positioning", "Distribution"],
+    internationalSourcingImportExport: "International Sourcing Import / Export",
+    internationalSourcingImportExportItems: ["Sourcing", "Quality Control", "Logistics and Transport", "Exclusive Catalog"],
+    digitalSolutionsApiSaaS: "Digital Solutions : API and SaaS",
+    digitalSolutionsApiSaaSItems: ["Enterprise Solutions", "Tracking", "Telecom"],
+    
+    // Accessibility
+    openWhatsApp: "Open WhatsApp",
+    closeMenu: "Close menu",
+    openMenu: "Open menu",
   },
   fr: {
     // Navigation
@@ -232,6 +251,10 @@ export const translations = {
     agency: "Notre Agence",
     contact: "Contact",
     getStarted: "Commencer",
+    
+    // Company Name
+    companyName: "STRATELINK",
+    companyTagline: "GLOBAL",
     
     // New Home Slides
     visionSynergiesDevelopment: "Vision - Synergies - Développement",
@@ -450,6 +473,21 @@ export const translations = {
     aboutStratelinkDescription1: "Chez Stratelink Global, nous accompagnons les entreprises dans leur expansion grâce à des solutions intégrées en import/export, développement commercial, branding et transformation digitale.",
     aboutStratelinkDescription2: "Notre mission : simplifier vos opérations tout en générant une croissance mesurable et durable.",
     aboutStratelinkDescription3: "Forts de notre expérience auprès d'entreprises ambitieuses et de sociétés établies, nous déployons une approche rigoureuse qui produit des résultats concrets et renforce votre rayonnement international.",
+    
+    // Agency Services
+    commercialDevelopment: "Développement Commercial",
+    commercialDevelopmentItems: ["Génération Leads", "Développement Activité commercial", "Acquisition Clients", "Formation Commercial et Force de vente"],
+    brandCreationBranding: "Création de Marque et Branding",
+    brandCreationBrandingItems: ["Développement Marque", "Personal Branding", "Offres et Positionnement", "Distribution"],
+    internationalSourcingImportExport: "International Sourcing Import / Export",
+    internationalSourcingImportExportItems: ["Sourcing", "Contrôle Qualité", "Logistique et Transport", "Catalogue Exclusif"],
+    digitalSolutionsApiSaaS: "Digital Solutions : API and SaaS",
+    digitalSolutionsApiSaaSItems: ["Solutions d'entreprise", "Tracking", "Télécom"],
+    
+    // Accessibility
+    openWhatsApp: "Ouvrir WhatsApp",
+    closeMenu: "Fermer le menu",
+    openMenu: "Ouvrir le menu",
   }
 }
 

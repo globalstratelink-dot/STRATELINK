@@ -201,26 +201,57 @@ export function AgencyContent() {
               viewport={{ once: true }}
               className="space-y-8"
             >
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { number: "500+", label: t('globalClients'), icon: Globe },
-                  { number: "50+", label: t('countries'), icon: TrendingUp },
-                  { number: "1200+", label: t('statsProjectsCompleted'), icon: CheckCircle },
-                  { number: "99%", label: t('statsClientSatisfaction'), icon: Crown }
-                ].map((stat, index) => (
+                  { 
+                    title: t('commercialDevelopment'), 
+                    items: t('commercialDevelopmentItems'),
+                    icon: TrendingUp,
+                    color: "from-copper to-sand"
+                  },
+                  { 
+                    title: t('brandCreationBranding'), 
+                    items: t('brandCreationBrandingItems'),
+                    icon: Crown,
+                    color: "from-sand to-copper"
+                  },
+                  { 
+                    title: t('internationalSourcingImportExport'), 
+                    items: t('internationalSourcingImportExportItems'),
+                    icon: Globe,
+                    color: "from-copper/80 to-sand/80"
+                  },
+                  { 
+                    title: t('digitalSolutionsApiSaaS'), 
+                    items: t('digitalSolutionsApiSaaSItems'),
+                    icon: Zap,
+                    color: "from-sand/80 to-copper/80"
+                  }
+                ].map((service, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-6 text-center hover:border-copper/40 transition-all duration-300"
+                    className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-6 hover:border-copper/40 transition-all duration-300 h-full"
                   >
-                    <div className="w-12 h-12 bg-copper/20 rounded-xl flex items-center justify-center mx-auto mb-4">
-                      <stat.icon className="w-6 h-6 text-copper" />
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-copper to-sand rounded-xl flex items-center justify-center">
+                        <service.icon className="w-6 h-6 text-navy" />
+                      </div>
+                      <h3 className="text-lg font-bold text-white leading-tight">
+                        {service.title}
+                      </h3>
                     </div>
-                    <div className="text-3xl font-bold text-copper mb-2">{stat.number}</div>
-                    <div className="text-gray-300 text-sm">{stat.label}</div>
+                    <div className="space-y-2">
+                      {service.items.map((item, itemIndex) => (
+                        <div key={itemIndex} className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-copper rounded-full flex-shrink-0"></div>
+                          <span className="text-gray-300 text-sm">{item}</span>
+                        </div>
+                      ))}
+                    </div>
                   </motion.div>
                 ))}
               </div>

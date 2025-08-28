@@ -1,0 +1,142 @@
+/* ULTRA FAST LOADING - STRATELINK GLOBAL */
+
+/* ===== AFFICHAGE IMMÉDIAT DE TOUT LE CONTENU ===== */
+* {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}
+
+/* ===== DÉSACTIVATION COMPLÈTE DES ANIMATIONS ===== */
+.scroll-reveal,
+.scroll-reveal-left,
+.scroll-reveal-right,
+.card-reveal,
+.text-reveal,
+.page-animation,
+.nav-animation,
+.animate-fade-in,
+.animate-slide-up,
+.animate-slide-down,
+.animate-slide-left,
+.animate-slide-right,
+.animate-scale-in,
+.stagger-container > *,
+[data-framer-motion],
+.motion-reduce,
+.animate-on-scroll,
+.fade-in,
+.slide-in {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}
+
+/* ===== OPTIMISATION DES IMAGES ===== */
+img {
+  opacity: 1 !important;
+  transition: none !important;
+  animation: none !important;
+  display: block !important;
+}
+
+/* ===== OPTIMISATION DES COMPOSANTS ===== */
+.navbar,
+.footer,
+.hero-section,
+.services-section,
+.about-section,
+.testimonials-section,
+main,
+section,
+article,
+aside,
+header,
+footer {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ===== DÉSACTIVATION DES EFFETS HOVER ===== */
+.hover-scale:hover,
+.hover-lift:hover,
+.hover-glow:hover,
+*:hover {
+  transform: none !important;
+  box-shadow: inherit !important;
+  transition: none !important;
+}
+
+/* ===== OPTIMISATION MOBILE ===== */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ===== OPTIMISATION DES POLICES ===== */
+* {
+  font-display: swap !important;
+  font-display: block !important;
+}
+
+/* ===== ACCÉLÉRATION DU RENDU ===== */
+* {
+  will-change: auto !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: flat !important;
+  perspective: none !important;
+}
+
+/* ===== DÉSACTIVATION DES ANIMATIONS CSS ===== */
+@keyframes * {
+  0%, 100% { opacity: 1; transform: none; }
+}
+
+/* ===== FORCER L'AFFICHAGE ===== */
+body {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+html {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ===== OPTIMISATION DES LIENS ===== */
+a {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* ===== OPTIMISATION DES BOUTONS ===== */
+button {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* ===== DÉSACTIVATION DES ANIMATIONS FRAMER MOTION ===== */
+[data-framer-motion],
+[style*="animation"],
+[style*="transition"] {
+  animation: none !important;
+  transition: none !important;
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}

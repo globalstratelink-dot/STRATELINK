@@ -33,7 +33,7 @@ export function Footer() {
               className="text-gray-400 text-sm mb-4 md:mb-0 text-center md:text-left"
               whileHover={{ color: "#A97968" }}
             >
-              © 2025 STRATELINK GLOBAL {t('allRightsReserved')}
+              © 2025 {t('companyName')} {t('companyTagline')} {t('allRightsReserved')}
             </motion.div>
             
             {/* Credits */}
@@ -69,7 +69,7 @@ export function Footer() {
                     height={16}
                     className="w-4 h-4 filter brightness-110"
                   />
-                  <span className="text-copper font-semibold">STRATELINK</span>
+                  <span className="text-copper font-semibold">{t('companyName')}</span>
                 </motion.div>
               </div>
             </div>

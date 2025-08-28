@@ -11,12 +11,17 @@ export function AnimationInitializer({ children }: AnimationInitializerProps) {
   const { initializeAnimations } = useUnifiedAnimations()
 
   useEffect(() => {
-    // Initialiser toutes les animations après le rendu
-    const timer = setTimeout(() => {
+    // Initialiser les animations immédiatement sans délai
+    if (document.readyState === 'complete') {
       initializeAnimations()
-    }, 100)
+    } else {
+      // Attendre seulement que le DOM soit prêt, pas le chargement complet
+      document.addEventListener('DOMContentLoaded', initializeAnimations, { once: true })
+    }
 
-    return () => clearTimeout(timer)
+    return () => {
+      document.removeEventListener('DOMContentLoaded', initializeAnimations)
+    }
   }, [initializeAnimations])
 
   // Ce composant ne rend rien visuellement, il initialise juste les animations

@@ -2,6 +2,7 @@
 
 import React, { MouseEvent, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useLanguage } from '@/contexts/language-context'
 
 interface WhatsAppFloatProps {
 	phoneNumber?: string
@@ -15,10 +16,11 @@ interface WhatsAppFloatProps {
 }
 
 export function WhatsAppFloat({ phoneNumber, position = 'bottom-right', mobileOffsetPx = 12, desktopOffsetPx = 24, mobileBottomPx = 80, mobileRightPx = 15, desktopBottomPx = 24, desktopRightPx = 24 }: WhatsAppFloatProps) {
-	const [mounted, setMounted] = useState(false)
-	const [isTouch, setIsTouch] = useState(false)
-	const [isMobile, setIsMobile] = useState(false)
-	const [isHovered, setIsHovered] = useState(false)
+  const { t } = useLanguage()
+  const [mounted, setMounted] = useState(false)
+  const [isTouch, setIsTouch] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
 
 	useEffect(() => {
 		setMounted(true)
@@ -30,6 +32,11 @@ export function WhatsAppFloat({ phoneNumber, position = 'bottom-right', mobileOf
 			window.removeEventListener('resize', onResize)
 		}
 	}, [])
+
+	// Ne pas afficher le bouton WhatsApp sur mobile
+	if (isMobile) {
+		return null
+	}
 
 	const envNumber = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER as string | undefined)
 	const rawNumber = (phoneNumber || envNumber || '').toString()
@@ -101,7 +108,7 @@ export function WhatsAppFloat({ phoneNumber, position = 'bottom-right', mobileOf
 					onMouseEnter={handleMouseEnter}
 					onMouseLeave={handleMouseLeave}
 					onMouseDown={() => !isTouch && setIsHovered(false)}
-					aria-label="Ouvrir WhatsApp"
+					              aria-label={t('openWhatsApp')}
 				>
 					<img
 						src="/icons8-whatsapp-48.png"

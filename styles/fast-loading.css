@@ -1,0 +1,140 @@
+/* OPTIMISATION DE CHARGEMENT RAPIDE - STRATELINK GLOBAL */
+
+/* ===== AFFICHAGE IMMÉDIAT DU CONTENU ===== */
+body {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* ===== DÉSACTIVATION TEMPORAIRE DES ANIMATIONS COMPLEXES ===== */
+.scroll-reveal,
+.scroll-reveal-left,
+.scroll-reveal-right,
+.card-reveal,
+.text-reveal,
+.page-animation,
+.nav-animation,
+.animate-fade-in,
+.animate-slide-up,
+.animate-slide-down,
+.animate-slide-left,
+.animate-slide-right,
+.animate-scale-in {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  animation-duration: 0s !important;
+  transition-duration: 0s !important;
+}
+
+/* ===== OPTIMISATION DES IMAGES ===== */
+img {
+  opacity: 1 !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* ===== ACCÉLÉRATION DES ANIMATIONS FRAMER MOTION ===== */
+[data-framer-motion],
+[style*="animation"],
+[style*="transition"] {
+  animation-duration: 0.1s !important;
+  transition-duration: 0.1s !important;
+}
+
+/* ===== DÉSACTIVATION DES ANIMATIONS DE SCROLL ===== */
+.animate-on-scroll,
+.fade-in,
+.slide-in,
+.stagger-container > * {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ===== OPTIMISATION DES COMPOSANTS UI ===== */
+.navbar,
+.footer,
+.hero-section,
+.services-section,
+.about-section,
+.testimonials-section {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ===== ACCÉLÉRATION DES HOVER EFFECTS ===== */
+.hover-scale,
+.hover-lift,
+.hover-glow {
+  transition: none !important;
+}
+
+.hover-scale:hover,
+.hover-lift:hover,
+.hover-glow:hover {
+  transform: none !important;
+  box-shadow: inherit !important;
+}
+
+/* ===== OPTIMISATION MOBILE ===== */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+  
+  .scroll-reveal,
+  .card-reveal,
+  .text-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ===== RESTAURATION PROGRESSIVE (après 1 seconde) ===== */
+@media (min-width: 769px) {
+  .fast-loading-complete .scroll-reveal,
+  .fast-loading-complete .card-reveal,
+  .fast-loading-complete .text-reveal {
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+  }
+}
+
+/* ===== UTILITAIRES DE CHARGEMENT RAPIDE ===== */
+.fast-load {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+.loading-optimized {
+  animation-duration: 0.1s !important;
+  transition-duration: 0.1s !important;
+}
+
+/* ===== DÉSACTIVATION DES ANIMATIONS DE CHARGEMENT ===== */
+.loading-fade,
+.loading-pulse {
+  animation: none !important;
+  opacity: 1 !important;
+}
+
+/* ===== OPTIMISATION DES POLICES ===== */
+* {
+  font-display: swap !important;
+}
+
+/* ===== ACCÉLÉRATION DU RENDU ===== */
+* {
+  will-change: auto !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
