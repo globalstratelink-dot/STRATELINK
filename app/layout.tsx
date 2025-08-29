@@ -28,14 +28,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://stratelinkglobal.com'),
+  metadataBase: new URL('https://stratelink-global.ae'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://stratelinkglobal.com',
+    url: 'https://stratelink-global.ae',
     title: 'Stratelink Global - International Trade Solutions',
     description: 'Connecting businesses worldwide through innovative import/export solutions, strategic partnerships, and comprehensive trade services to drive international growth and market expansion.',
     siteName: 'Stratelink Global',
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.ico', sizes: 'any', type: 'image/x-icon' },
       { url: '/icon-16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
@@ -67,6 +67,9 @@ export const metadata: Metadata = {
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
     shortcut: '/favicon.ico',
+    other: [
+      { rel: 'icon', url: '/favicon.ico', sizes: 'any' },
+    ],
   },
   manifest: '/site.webmanifest',
   appleWebApp: {
@@ -94,6 +97,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Additional favicon links for better browser and search engine support */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192x192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#041331" />
+        <meta name="msapplication-TileColor" content="#041331" />
+        <meta name="msapplication-TileImage" content="/icon-192x192.png" />
+      </head>
       <body className={inter.className}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-2X983N4TEH"

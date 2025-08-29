@@ -2,7 +2,23 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://stratelinkglobal.com/sitemap.xml
+Sitemap: https://stratelink-global.ae/sitemap.xml
+
+# Favicon and icons
+Allow: /favicon.ico
+Allow: /icon-*.png
+Allow: /apple-touch-icon.png
+Allow: /site.webmanifest
+
+# Images and assets
+Allow: /og-image.png
+Allow: /logo.png
+Allow: /new-logo.png
+
+# Disallow admin or private areas
+Disallow: /api/
+Disallow: /_next/
+Disallow: /.well-known/
 
 # Crawl-delay
 Crawl-delay: 1 
