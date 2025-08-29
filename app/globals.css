@@ -1,6 +1,14 @@
+/* stylelint-disable at-rule-no-unknown */
+/* stylelint-disable property-no-vendor-prefix */
+/* stylelint-disable value-no-vendor-prefix */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* stylelint-enable at-rule-no-unknown */
+/* stylelint-enable property-no-vendor-prefix */
+/* stylelint-enable value-no-vendor-prefix */
 
 /* Optimisations de performance */
 @layer utilities {
@@ -133,7 +141,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
   
   html {
@@ -142,13 +150,24 @@
   }
   
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
     /* Optimisations de performance */
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     width: 100%;
     overflow-x: hidden;
+  }
+  
+  /* Fix pour les dropdowns et popovers - ils ne doivent pas être affectés par overflow-x */
+  [data-radix-popper-content-wrapper],
+  [data-radix-dropdown-menu-content],
+  [data-radix-popover-content],
+  [data-radix-select-content],
+  [data-radix-tooltip-content] {
+    overflow: visible !important;
+    z-index: 9999 !important;
   }
   
   /* Correction pour empêcher le défilement horizontal sur mobile */
