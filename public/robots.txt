@@ -4,11 +4,14 @@ Allow: /
 # Sitemap
 Sitemap: https://stratelink-global.ae/sitemap.xml
 
-# Favicon and icons
+# Favicon and icons - Ensure search engines can access these
 Allow: /favicon.ico
 Allow: /icon-*.png
 Allow: /apple-touch-icon.png
+Allow: /apple-touch-icon.webp
 Allow: /site.webmanifest
+Allow: /browserconfig.xml
+Allow: /logo.svg
 
 # Images and assets
 Allow: /og-image.png
@@ -20,5 +23,5 @@ Disallow: /api/
 Disallow: /_next/
 Disallow: /.well-known/
 
-# Crawl-delay
+# Crawl-delay for better indexing
 Crawl-delay: 1 

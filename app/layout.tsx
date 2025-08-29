@@ -106,9 +106,20 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="512x512" href="/icon-512x512.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* Additional meta tags for better favicon recognition */}
         <meta name="theme-color" content="#041331" />
         <meta name="msapplication-TileColor" content="#041331" />
         <meta name="msapplication-TileImage" content="/icon-192x192.png" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        
+        {/* Force favicon recognition */}
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
+        
+        {/* Additional icon formats for maximum compatibility */}
+        <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+        <link rel="mask-icon" href="/logo.svg" color="#041331" />
       </head>
       <body className={inter.className}>
         <Script
