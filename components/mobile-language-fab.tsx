@@ -7,6 +7,7 @@ import { createPortal } from "react-dom"
 
 export function MobileLanguageFAB() {
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const { language, setLanguage } = useLanguage()
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -26,6 +27,16 @@ export function MobileLanguageFAB() {
   // Set mounted state to prevent hydration mismatch
   useEffect(() => {
     setMounted(true)
+    
+    const checkMobile = () => {
+      const mobile = window.innerWidth <= 768
+      setIsMobile(mobile)
+      console.log('Language Button - Mobile detected:', mobile, 'Width:', window.innerWidth)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   // Load saved position
@@ -155,11 +166,13 @@ export function MobileLanguageFAB() {
   const content = (
     <div
       ref={containerRef}
-      className="sm:hidden fixed z-[60] select-none touch-none pointer-events-none"
+      className="sm:hidden select-none touch-none pointer-events-none"
       style={{ 
+        position: 'fixed',
         left: position.x, 
         top: position.y,
-        // Styles robustes pour éviter le mouvement sur mobile
+        zIndex: 60,
+        // Styles robustes pour éviter le mouvement sur mobile - identiques à WhatsApp
         transform: 'translateZ(0)',
         WebkitTransform: 'translateZ(0)',
         backfaceVisibility: 'hidden',
@@ -174,12 +187,12 @@ export function MobileLanguageFAB() {
         ref={buttonRef}
         aria-label="Change language"
         onClick={() => setOpen(!open)}
-        className="rounded-full w-14 h-14 p-0 bg-copper text-navy hover:bg-copper/90 shadow-lg pointer-events-auto"
+        className="rounded-full w-14 h-14 p-0 bg-copper text-navy shadow-lg pointer-events-auto"
         style={{
           // Désactiver complètement le drag sur mobile
           touchAction: 'manipulation',
           userSelect: 'none',
-          // Styles robustes pour éviter le mouvement sur mobile
+          // Styles robustes pour éviter le mouvement sur mobile - identiques à WhatsApp
           transform: 'translateZ(0)',
           WebkitTransform: 'translateZ(0)',
           backfaceVisibility: 'hidden',
@@ -187,6 +200,22 @@ export function MobileLanguageFAB() {
           willChange: 'transform',
           transformStyle: 'preserve-3d',
           WebkitTransformStyle: 'preserve-3d',
+        }}
+        onMouseEnter={(e) => {
+          if (!isMobile) {
+            e.currentTarget.style.backgroundColor = '#d97706' // copper/90
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (!isMobile) {
+            e.currentTarget.style.backgroundColor = '#d97706' // copper
+          }
+        }}
+        onTouchStart={(e) => {
+          e.currentTarget.style.transform = 'translateZ(0) scale(0.95)'
+        }}
+        onTouchEnd={(e) => {
+          e.currentTarget.style.transform = 'translateZ(0) scale(1)'
         }}
       >
         <img
