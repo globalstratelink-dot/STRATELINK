@@ -4,48 +4,13 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, Globe, TrendingUp, Palette, Zap } from "lucide-react"
+import { ArrowRight, Globe, TrendingUp, Palette, Zap } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { HeroImage, ServicesImage } from "@/components/optimized-image"
 import Link from "next/link"
-import { useRef, useState } from "react"
 
 export function HomeSlides() {
   const { t } = useLanguage()
-  const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
-  const [currentMobileIndex, setCurrentMobileIndex] = useState(0)
-  const trustedLogos = [
-    { src: '/1.webp', alt: 'Partenaire de confiance 1' },
-    { src: '/2.webp', alt: 'Partenaire de confiance 2' },
-    { src: '/3.webp', alt: 'Partenaire de confiance 3' },
-    { src: '/4.webp', alt: 'Partenaire de confiance 4' },
-    { src: '/5.webp', alt: 'Partenaire de confiance 5' },
-    { src: '/6.webp', alt: 'Partenaire de confiance 6' },
-  ]
-  
-  const logosPerGroup = 3
-  const totalGroups = Math.ceil(trustedLogos.length / logosPerGroup)
-  
-  const nextGroup = () => {
-    setCurrentGroupIndex((prev) => (prev + 1) % totalGroups)
-  }
-  
-  const prevGroup = () => {
-    setCurrentGroupIndex((prev) => (prev - 1 + totalGroups) % totalGroups)
-  }
-  
-  const nextMobile = () => {
-    setCurrentMobileIndex((prev) => (prev + 1) % trustedLogos.length)
-  }
-  
-  const prevMobile = () => {
-    setCurrentMobileIndex((prev) => (prev - 1 + trustedLogos.length) % trustedLogos.length)
-  }
-  
-  const getCurrentLogos = () => {
-    const startIndex = currentGroupIndex * logosPerGroup
-    return trustedLogos.slice(startIndex, startIndex + logosPerGroup)
-  }
 
   return (
     <div className="min-h-screen bg-navy">
@@ -76,7 +41,7 @@ export function HomeSlides() {
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="title-hero text-white mb-6 sm:mb-8"
               >
                 {t('accelerateInternationalExpansion')}
@@ -86,7 +51,7 @@ export function HomeSlides() {
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.6 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 leading-relaxed px-2 sm:px-0"
               >
                 {t('strategicPartnerDubaiEuropeAsia')}
@@ -96,7 +61,7 @@ export function HomeSlides() {
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.9 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <Button 
                   size="lg"
@@ -115,7 +80,7 @@ export function HomeSlides() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.5, delay: 0.5 }}
+              transition={{ duration: 1, delay: 0.3 }}
               className="flex justify-center lg:justify-end order-2 lg:order-2"
             >
               {/* Static Logo - Avec les trois cercles de contour animés */}
@@ -189,7 +154,7 @@ export function HomeSlides() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.0 }}
+                transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
                 className="inline-flex items-center px-6 py-3 bg-copper/10 border border-copper/20 rounded-full text-copper text-lg font-medium mb-8"
               >
@@ -201,7 +166,7 @@ export function HomeSlides() {
               <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
                 className="title-section text-white mb-8"
               >
@@ -212,7 +177,7 @@ export function HomeSlides() {
               <motion.p
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.6 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
                 className="text-lg md:text-xl text-gray-300 leading-relaxed"
               >
@@ -224,7 +189,7 @@ export function HomeSlides() {
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.5, delay: 0.5 }}
+              transition={{ duration: 1, delay: 0.3 }}
               viewport={{ once: true }}
               className="flex justify-center lg:justify-end order-2 lg:order-2"
             >
@@ -288,7 +253,7 @@ export function HomeSlides() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
           >
@@ -338,7 +303,7 @@ export function HomeSlides() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -378,7 +343,7 @@ export function HomeSlides() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
             viewport={{ once: true }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
           >
@@ -532,7 +497,7 @@ export function HomeSlides() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -590,97 +555,121 @@ export function HomeSlides() {
             </motion.p>
           </motion.div>
 
-          {/* Logos avec navigation par flèches - 3 logos par groupe sur desktop, 1 sur mobile */}
+          {/* Grille des 6 images de confiance */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
             viewport={{ once: true }}
-            className="relative max-w-6xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-3 gap-6 lg:gap-8"
           >
-            {/* Container avec boutons flèches et logos centrés */}
-            <div className="flex items-center justify-center gap-4 md:gap-8">
-              {/* Bouton gauche */}
-              <Button
-                variant="ghost"
-                className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
-                onClick={() => {
-                  // Mobile: navigation logo par logo, Desktop: navigation par groupe
-                  if (window.innerWidth < 768) {
-                    prevMobile()
-                  } else {
-                    prevGroup()
-                  }
-                }}
-              >
-                <ArrowLeft className="w-6 h-6" />
-              </Button>
+            {/* Image 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div className="relative overflow-hidden rounded-2xl border border-copper/20 hover:border-copper/40 transition-all duration-300">
+                <img
+                  src="/1.webp"
+                  alt="Partenaire de confiance 1"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            </motion.div>
 
-              {/* Groupe de logos */}
-              <motion.div
-                key={window.innerWidth < 768 ? currentMobileIndex : currentGroupIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="flex-1 max-w-4xl"
-              >
-                {/* Mobile: 1 logo à la fois */}
-                <div className="md:hidden">
-                  <motion.div
-                    key={currentMobileIndex}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="flex justify-center"
-                  >
-                    <div className="w-64 h-40 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex items-center justify-center transition-all duration-300">
-                      <img
-                        src={trustedLogos[currentMobileIndex].src}
-                        alt={trustedLogos[currentMobileIndex].alt}
-                        className="max-h-24 w-auto object-contain"
-                      />
-                    </div>
-                  </motion.div>
-                </div>
+            {/* Image 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div className="relative overflow-hidden rounded-2xl border border-copper/20 hover:border-copper/40 transition-all duration-300">
+                <img
+                  src="/2.webp"
+                  alt="Partenaire de confiance 2"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            </motion.div>
 
-                {/* Desktop: 3 logos */}
-                <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8">
-                  {getCurrentLogos().map((logo, index) => (
-                    <motion.div
-                      key={logo.src}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex justify-center"
-                    >
-                      <div className="w-48 h-32 sm:w-56 sm:h-36 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex items-center justify-center transition-all duration-300">
-                        <img
-                          src={logo.src}
-                          alt={logo.alt}
-                          className="max-h-20 sm:max-h-24 w-auto object-contain"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+            {/* Image 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.1 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div className="relative overflow-hidden rounded-2xl border border-copper/20 hover:border-copper/40 transition-all duration-300">
+                <img
+                  src="/3.webp"
+                  alt="Partenaire de confiance 3"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            </motion.div>
 
-              {/* Bouton droite */}
-              <Button
-                variant="ghost"
-                className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
-                onClick={() => {
-                  // Mobile: navigation logo par logo, Desktop: navigation par groupe
-                  if (window.innerWidth < 768) {
-                    nextMobile()
-                  } else {
-                    nextGroup()
-                  }
-                }}
-              >
-                <ArrowRight className="w-6 h-6" />
-              </Button>
-            </div>
+            {/* Image 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div className="relative overflow-hidden rounded-2xl border border-copper/20 hover:border-copper/40 transition-all duration-300">
+                <img
+                  src="/4.webp"
+                  alt="Partenaire de confiance 4"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            </motion.div>
+
+            {/* Image 5 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.3 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div className="relative overflow-hidden rounded-2xl border border-copper/20 hover:border-copper/40 transition-all duration-300">
+                <img
+                  src="/5.webp"
+                  alt="Partenaire de confiance 5"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            </motion.div>
+
+            {/* Image 6 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.4 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div className="relative overflow-hidden rounded-2xl border border-copper/20 hover:border-copper/40 transition-all duration-300">
+                <img
+                  src="/6.webp"
+                  alt="Partenaire de confiance 6"
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -689,7 +678,7 @@ export function HomeSlides() {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 0.8 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
         viewport={{ once: true }}
         className="mt-20 text-center"
       >

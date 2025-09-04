@@ -138,11 +138,20 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-4">
             <LanguageSwitcher />
             <Button 
-              className="bg-gradient-to-r from-copper to-sand text-navy font-bold" 
+              variant="outline"
+              className="border-copper text-copper hover:bg-copper hover:text-navy font-semibold transition-all duration-200" 
               asChild
             >
               <Link href="/contact">
                 {t('contactUs')}
+              </Link>
+            </Button>
+            <Button 
+              className="bg-gradient-to-r from-copper to-sand text-navy font-bold hover:scale-105 transition-transform duration-200" 
+              asChild
+            >
+              <Link href="https://calendly.com/net-stitou" target="_blank" rel="noopener noreferrer">
+                Get Started
               </Link>
             </Button>
           </div>
@@ -200,14 +209,21 @@ export function Navbar() {
                 
                 {/* Bottom Section */}
                 <div className="pt-4 border-t border-copper/20 space-y-3">
-                  {/* Language Switcher */}
-                  <div className="flex justify-center">
-                    <LanguageSwitcher />
-                  </div>
+                  {/* Get Started Button */}
+                  <Button 
+                    className="bg-gradient-to-r from-copper to-sand text-navy font-bold w-full hover:scale-105 transition-transform duration-200" 
+                    asChild
+                    onClick={closeMobileMenu}
+                  >
+                    <Link href="https://calendly.com/net-stitou" target="_blank" rel="noopener noreferrer">
+                      Get Started
+                    </Link>
+                  </Button>
                   
                   {/* Contact Button */}
                   <Button 
-                    className="bg-gradient-to-r from-copper to-sand text-navy font-bold w-full" 
+                    variant="outline"
+                    className="border-copper text-copper hover:bg-copper hover:text-navy font-semibold w-full transition-all duration-200" 
                     asChild
                     onClick={closeMobileMenu}
                   >
@@ -216,25 +232,7 @@ export function Navbar() {
                     </Link>
                   </Button>
                   
-                  {/* WhatsApp Button */}
-                  <div className="flex justify-center pt-2">
-                    <a
-                      href="https://wa.me/00971543192348"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center w-12 h-12 bg-green-500 hover:bg-green-600 rounded-full transition-colors duration-200"
-                                              aria-label={t('openWhatsApp')}
-                      onClick={closeMobileMenu}
-                    >
-                      <img
-                        src="/icons8-whatsapp-48.png"
-                        alt="WhatsApp"
-                        width={24}
-                        height={24}
-                        className="w-6 h-6"
-                      />
-                    </a>
-                  </div>
+                  {/* WhatsApp Button moved to global floating component */}
                 </div>
               </div>
             </div>
