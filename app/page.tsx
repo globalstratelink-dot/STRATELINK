@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-navy">
+    <div className="min-h-screen bg-navy pt-12 md:pt-0">
       <HomeSlides />
       <div className="pt-16 md:pt-24">
         <Footer />
