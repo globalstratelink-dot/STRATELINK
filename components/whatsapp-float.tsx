@@ -56,6 +56,15 @@ export function WhatsAppFloat({ phoneNumber, message }: WhatsAppFloatProps) {
     transition: 'all 0.2s ease',
     WebkitTapHighlightColor: 'transparent',
     touchAction: 'manipulation',
+    // Styles robustes pour éviter le mouvement sur mobile
+    transform: 'translateZ(0)', // Force hardware acceleration
+    WebkitTransform: 'translateZ(0)',
+    backfaceVisibility: 'hidden',
+    WebkitBackfaceVisibility: 'hidden',
+    willChange: 'transform',
+    // Empêcher le repositionnement lors du scroll
+    transformStyle: 'preserve-3d',
+    WebkitTransformStyle: 'preserve-3d',
   }
 
   const content = (
@@ -66,18 +75,22 @@ export function WhatsAppFloat({ phoneNumber, message }: WhatsAppFloatProps) {
       style={buttonStyle}
       aria-label={t('openWhatsApp')}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'scale(1.1)'
-        e.currentTarget.style.boxShadow = '0 6px 16px rgba(37, 211, 102, 0.6)'
+        if (!isMobile) {
+          e.currentTarget.style.transform = 'translateZ(0) scale(1.1)'
+          e.currentTarget.style.boxShadow = '0 6px 16px rgba(37, 211, 102, 0.6)'
+        }
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'scale(1)'
-        e.currentTarget.style.boxShadow = '0 4px 12px rgba(37, 211, 102, 0.4)'
+        if (!isMobile) {
+          e.currentTarget.style.transform = 'translateZ(0) scale(1)'
+          e.currentTarget.style.boxShadow = '0 4px 12px rgba(37, 211, 102, 0.4)'
+        }
       }}
       onTouchStart={(e) => {
-        e.currentTarget.style.transform = 'scale(0.95)'
+        e.currentTarget.style.transform = 'translateZ(0) scale(0.95)'
       }}
       onTouchEnd={(e) => {
-        e.currentTarget.style.transform = 'scale(1)'
+        e.currentTarget.style.transform = 'translateZ(0) scale(1)'
       }}
     >
       <img
@@ -88,7 +101,10 @@ export function WhatsAppFloat({ phoneNumber, message }: WhatsAppFloatProps) {
         style={{ 
           display: 'block',
           width: '24px',
-          height: '24px'
+          height: '24px',
+          // Empêcher le mouvement de l'image
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
         }}
       />
     </a>

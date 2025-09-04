@@ -156,7 +156,18 @@ export function MobileLanguageFAB() {
     <div
       ref={containerRef}
       className="sm:hidden fixed z-[60] select-none touch-none pointer-events-none"
-      style={{ left: position.x, top: position.y }}
+      style={{ 
+        left: position.x, 
+        top: position.y,
+        // Styles robustes pour éviter le mouvement sur mobile
+        transform: 'translateZ(0)',
+        WebkitTransform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+        WebkitBackfaceVisibility: 'hidden',
+        willChange: 'transform',
+        transformStyle: 'preserve-3d',
+        WebkitTransformStyle: 'preserve-3d',
+      }}
     >
       {/* Bouton de langue - TOUJOURS VISIBLE ET FIXE */}
       <Button
@@ -168,6 +179,14 @@ export function MobileLanguageFAB() {
           // Désactiver complètement le drag sur mobile
           touchAction: 'manipulation',
           userSelect: 'none',
+          // Styles robustes pour éviter le mouvement sur mobile
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          willChange: 'transform',
+          transformStyle: 'preserve-3d',
+          WebkitTransformStyle: 'preserve-3d',
         }}
       >
         <img
@@ -175,7 +194,13 @@ export function MobileLanguageFAB() {
           alt={isEn ? flags.en.alt : flags.fr.alt}
           width={24}
           height={24}
-          style={{ display: 'inline-block', borderRadius: 3 }}
+          style={{ 
+            display: 'inline-block', 
+            borderRadius: 3,
+            // Empêcher le mouvement de l'image
+            transform: 'translateZ(0)',
+            WebkitTransform: 'translateZ(0)',
+          }}
         />
       </Button>
 
@@ -187,7 +212,15 @@ export function MobileLanguageFAB() {
             bottom: '100%', // Position au-dessus du bouton
             left: '0',
             marginBottom: '8px', // Espacement entre le menu et le bouton
-            minWidth: '120px' // Largeur minimale du menu
+            minWidth: '120px', // Largeur minimale du menu
+            // Styles robustes pour éviter le mouvement sur mobile
+            transform: 'translateZ(0)',
+            WebkitTransform: 'translateZ(0)',
+            backfaceVisibility: 'hidden',
+            WebkitBackfaceVisibility: 'hidden',
+            willChange: 'transform',
+            transformStyle: 'preserve-3d',
+            WebkitTransformStyle: 'preserve-3d',
           }}
         >
           <div className="flex flex-col gap-2">
@@ -199,9 +232,26 @@ export function MobileLanguageFAB() {
                 setOpen(false)
               }}
               className="px-3 py-2 bg-transparent hover:bg-white/10 text-white border border-white/10 w-full justify-start"
+              style={{
+                // Styles robustes pour éviter le mouvement sur mobile
+                transform: 'translateZ(0)',
+                WebkitTransform: 'translateZ(0)',
+              }}
             >
               <span className="inline-flex items-center gap-2">
-                <img src={flags.fr.src} alt={flags.fr.alt} width={18} height={18} style={{ display: 'inline-block', borderRadius: 2 }} />
+                <img 
+                  src={flags.fr.src} 
+                  alt={flags.fr.alt} 
+                  width={18} 
+                  height={18} 
+                  style={{ 
+                    display: 'inline-block', 
+                    borderRadius: 2,
+                    // Empêcher le mouvement de l'image
+                    transform: 'translateZ(0)',
+                    WebkitTransform: 'translateZ(0)',
+                  }} 
+                />
                 <span>Français</span>
               </span>
             </Button>
@@ -213,9 +263,26 @@ export function MobileLanguageFAB() {
                 setOpen(false)
               }}
               className="px-3 py-2 bg-transparent hover:bg-white/10 text-white border border-white/10 w-full justify-start"
+              style={{
+                // Styles robustes pour éviter le mouvement sur mobile
+                transform: 'translateZ(0)',
+                WebkitTransform: 'translateZ(0)',
+              }}
             >
               <span className="inline-flex items-center gap-2">
-                <img src={flags.en.src} alt={flags.en.alt} width={18} height={18} style={{ display: 'inline-block', borderRadius: 2 }} />
+                <img 
+                  src={flags.en.src} 
+                  alt={flags.en.alt} 
+                  width={18} 
+                  height={18} 
+                  style={{ 
+                    display: 'inline-block', 
+                    borderRadius: 2,
+                    // Empêcher le mouvement de l'image
+                    transform: 'translateZ(0)',
+                    WebkitTransform: 'translateZ(0)',
+                  }} 
+                />
                 <span>English</span>
               </span>
             </Button>
