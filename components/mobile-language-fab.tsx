@@ -13,9 +13,7 @@ export function MobileLanguageFAB() {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const buttonRef = useRef<HTMLButtonElement | null>(null)
 
-  // Draggable position (pixels from top-left) - Position par défaut en bas à gauche
-  const [position, setPosition] = useState<{ x: number; y: number }>({ x: 16, y: 200 })
-  const dragState = useRef<{ dragging: boolean; startX: number; startY: number; origX: number; origY: number }>({ dragging: false, startX: 0, startY: 0, origX: 0, origY: 0 })
+  // Plus besoin de position dynamique - utilisation de bottom/left fixes comme WhatsApp
 
   const isEn = language === "en"
 
@@ -39,117 +37,9 @@ export function MobileLanguageFAB() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
-  // Load saved position
-  useEffect(() => {
-    if (!mounted) return
-    try {
-      // Utiliser exactement la même logique que le bouton WhatsApp
-      const padding = 16
-      const bottom = isMobile ? 40 : 24 // Exactement la même hauteur que WhatsApp
-      const y = window.innerHeight - (56 + bottom) // 56px = taille du bouton
-      
-      console.log('🔄 Position du bouton de langue alignée avec WhatsApp:', { 
-        x: padding, 
-        y, 
-        bottom, 
-        isMobile,
-        windowHeight: window.innerHeight,
-        calculatedY: y
-      })
-      
-      setPosition({ x: padding, y })
-      localStorage.setItem("mobileLanguageFabPos", JSON.stringify({ x: padding, y }))
-    } catch {}
-  }, [mounted, isMobile])
+  // Plus besoin de gestion de position - utilisation de bottom/left fixes comme WhatsApp
 
-  // Clamp position on resize
-  useEffect(() => {
-    if (!mounted) return
-    const onResize = () => {
-      const size = 56
-      const padding = 16
-      const bottom = isMobile ? 40 : 24 // Exactement la même hauteur que WhatsApp
-      const y = window.innerHeight - (size + bottom)
-      
-      setPosition((pos) => ({
-        x: Math.min(Math.max(padding, pos.x), window.innerWidth - size - padding),
-        y: y, // Forcer la même hauteur que WhatsApp
-      }))
-    }
-    window.addEventListener("resize", onResize)
-    return () => window.removeEventListener("resize", onResize)
-  }, [mounted, isMobile])
-
-  // Drag handlers using pointer events (attach to button only so page scroll remains natural)
-  useEffect(() => {
-    if (!mounted) return
-    const el = buttonRef.current
-    if (!el) return
-
-    // Désactiver complètement le drag and drop sur mobile pour que le bouton reste fixe
-    const checkMobile = () => {
-      const isMobile = window.innerWidth <= 768
-      if (isMobile) {
-        console.log('📱 Mode mobile détecté - Bouton de langue fixe (pas de drag)')
-        return true
-      }
-      return false
-    }
-
-    // Vérifier si on est sur mobile
-    if (checkMobile()) {
-      return
-    }
-
-    const onPointerDown = (e: PointerEvent) => {
-      // Vérifier à nouveau si on est sur mobile avant de permettre le drag
-      if (checkMobile()) return
-      
-      el.setPointerCapture(e.pointerId)
-      dragState.current = {
-        dragging: true,
-        startX: e.clientX,
-        startY: e.clientY,
-        origX: position.x,
-        origY: position.y,
-      }
-    }
-
-    const onPointerMove = (e: PointerEvent) => {
-      if (!dragState.current.dragging) return
-      // Vérifier à nouveau si on est sur mobile
-      if (checkMobile()) return
-      
-      const dx = e.clientX - dragState.current.startX
-      const dy = e.clientY - dragState.current.startY
-      const size = 56
-      const padding = 8
-      const nextX = Math.min(Math.max(padding, dragState.current.origX + dx), window.innerWidth - size - padding)
-      const nextY = Math.min(Math.max(padding, dragState.current.origY + dy), window.innerHeight - size - padding)
-      setPosition({ x: nextX, y: nextY })
-    }
-
-    const onPointerUp = () => {
-      if (!dragState.current.dragging) return
-      // Vérifier à nouveau si on est sur mobile
-      if (checkMobile()) return
-      
-      dragState.current.dragging = false
-      try {
-        localStorage.setItem("mobileLanguageFabPos", JSON.stringify(position))
-      } catch {}
-    }
-
-    el.addEventListener("pointerdown", onPointerDown)
-    window.addEventListener("pointermove", onPointerMove)
-    window.addEventListener("pointerup", onPointerUp)
-
-    return () => {
-      el.removeEventListener("pointerdown", onPointerDown)
-      window.removeEventListener("pointermove", onPointerMove)
-      window.removeEventListener("pointerup", onPointerUp)
-    }
-  }, [position, mounted])
+  // Plus besoin de drag - bouton fixe comme WhatsApp
 
   const content = (
     <div
@@ -157,9 +47,10 @@ export function MobileLanguageFAB() {
       className="sm:hidden select-none touch-none pointer-events-none"
       style={{ 
         position: 'fixed',
-        left: position.x, 
-        top: position.y,
+        left: '16px', // Position fixe à gauche comme WhatsApp à droite
+        bottom: isMobile ? '40px' : '24px', // Même logique que WhatsApp
         zIndex: 60,
+        transition: 'all 0.2s ease', // Animation fluide comme WhatsApp
         // Styles robustes pour éviter le mouvement sur mobile - identiques à WhatsApp
         transform: 'translateZ(0)',
         WebkitTransform: 'translateZ(0)',
