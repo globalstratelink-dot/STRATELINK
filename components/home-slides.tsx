@@ -509,7 +509,7 @@ export function HomeSlides() {
               viewport={{ once: true }}
               className="title-section text-white mb-6"
             >
-              Ils nous ont fait confiance
+              {t('trustedByUsTitle')}
             </motion.h2>
             
             {/* 5 Étoiles */}
@@ -541,7 +541,7 @@ export function HomeSlides() {
               viewport={{ once: true }}
               className="text-xl text-gray-300 max-w-3xl mx-auto"
             >
-              Découvrez nos partenaires et clients qui nous font confiance pour leurs projets
+              {t('trustedByUsDescription')}
             </motion.p>
           </motion.div>
 
@@ -588,12 +588,22 @@ export function HomeSlides() {
                     transition={{ duration: 0.5 }}
                     className="flex justify-center"
                   >
-                    <div className="w-64 h-40 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex items-center justify-center transition-all duration-300">
+                    <div className="w-80 h-56 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 p-6">
+                      {/* Logo */}
                       <img
                         src={trustedLogos[currentMobileIndex].src}
                         alt={trustedLogos[currentMobileIndex].alt}
-                        className="max-h-24 w-auto object-contain"
+                        className="max-h-20 w-auto object-contain mb-4"
                       />
+                      {/* Texte et étoiles */}
+                      <div className="text-center">
+                        <p className="text-copper font-semibold text-sm mb-2">{t('trustedByUs')}</p>
+                        <div className="flex justify-center space-x-1">
+                          {[...Array(5)].map((_, starIndex) => (
+                            <span key={starIndex} className="text-copper text-lg">⭐</span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 </div>
@@ -608,12 +618,22 @@ export function HomeSlides() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex justify-center"
                     >
-                      <div className="w-48 h-32 sm:w-56 sm:h-36 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex items-center justify-center transition-all duration-300">
+                      <div className="w-64 h-48 lg:w-72 lg:h-52 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 p-4">
+                        {/* Logo */}
                         <img
                           src={logo.src}
                           alt={logo.alt}
-                          className="max-h-20 sm:max-h-24 w-auto object-contain"
+                          className="max-h-16 lg:max-h-20 w-auto object-contain mb-3"
                         />
+                        {/* Texte et étoiles */}
+                        <div className="text-center">
+                          <p className="text-copper font-semibold text-xs lg:text-sm mb-2">{t('trustedByUs')}</p>
+                          <div className="flex justify-center space-x-1">
+                            {[...Array(5)].map((_, starIndex) => (
+                              <span key={starIndex} className="text-copper text-sm lg:text-base">⭐</span>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </motion.div>
                   ))}

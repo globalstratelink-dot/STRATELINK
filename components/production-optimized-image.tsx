@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import { useLanguage } from "@/contexts/language-context"
 
 interface ProductionOptimizedImageProps {
   src: string
@@ -28,7 +29,7 @@ export function ProductionOptimizedImage({
   width,
   height,
   sizes,
-  quality = 85,
+  quality = 75,
   placeholder = "empty",
   blurDataURL,
   onError,
@@ -38,6 +39,7 @@ export function ProductionOptimizedImage({
   const [hasError, setHasError] = useState(false)
   const [currentSrc, setCurrentSrc] = useState(src)
   const [isMobile, setIsMobile] = useState(false)
+  const { t } = useLanguage()
 
   useEffect(() => {
     // Détecter si c'est un appareil mobile
@@ -81,7 +83,7 @@ export function ProductionOptimizedImage({
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
-          <p className="text-sm">Image non disponible</p>
+          <p className="text-sm">{t('imageNotAvailable')}</p>
         </div>
       </div>
     )
