@@ -373,18 +373,10 @@ export function HomeSlides() {
               viewport={{ once: true }}
               className="title-section text-white mb-6"
             >
-              VOICI LES DIFFÉRENTES CARRIÈRES À AVOIR
+              VOICI LES DIFFERENT CAREER A AVOIR
             </motion.h2>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="text-xl text-gray-300 max-w-3xl mx-auto"
-            >
-              Découvrez nos 4 domaines d'expertise pour votre développement professionnel
-            </motion.p>
+
           </motion.div>
 
           {/* Grille des 4 Carrières */}
@@ -409,24 +401,6 @@ export function HomeSlides() {
                 </div>
                 <div className="flex-1">
                   <h3 className="title-card text-white mb-4">Développement Commercial</h3>
-                  <ul className="space-y-2 text-gray-300">
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Génération Leads
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Développement Activité commerciale
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Acquisition Clients
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Formation Commercial et Force de vente
-                    </li>
-                  </ul>
                 </div>
               </div>
             </motion.div>
@@ -445,24 +419,6 @@ export function HomeSlides() {
                 </div>
                 <div className="flex-1">
                   <h3 className="title-card text-white mb-4">Création de Marque et Branding</h3>
-                  <ul className="space-y-2 text-gray-300">
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Développement Marque
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Personal Branding
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Offres et Positionnement
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Distribution
-                    </li>
-                  </ul>
                 </div>
               </div>
             </motion.div>
@@ -481,29 +437,11 @@ export function HomeSlides() {
                 </div>
                 <div className="flex-1">
                   <h3 className="title-card text-white mb-4">International Sourcing Import / Export</h3>
-                  <ul className="space-y-2 text-gray-300">
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Sourcing
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Contrôle Qualité
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Logistique et Transport
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Catalogue Exclusif
-                    </li>
-                  </ul>
                 </div>
               </div>
             </motion.div>
 
-            {/* Carrière 4: Digital Solutions : API and SaaS */}
+            {/* Carrière 4: Digital Solutions : API and SAas */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -516,21 +454,7 @@ export function HomeSlides() {
                   <Zap className="w-8 h-8 text-copper" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Digital Solutions : API and SaaS</h3>
-                  <ul className="space-y-2 text-gray-300">
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Solutions d'entreprise
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Tracking
-                    </li>
-                    <li className="flex items-center">
-                      <span className="w-2 h-2 bg-copper rounded-full mr-3"></span>
-                      Télécom
-                    </li>
-                  </ul>
+                  <h3 className="title-card text-white mb-4">Digital Solutions : API and SAas</h3>
                 </div>
               </div>
             </motion.div>
