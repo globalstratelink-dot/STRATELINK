@@ -43,54 +43,42 @@ export function MobileLanguageFAB() {
   useEffect(() => {
     if (!mounted) return
     try {
-      // FORCER LA NOUVELLE POSITION - Ignorer temporairement localStorage
-      // const saved = localStorage.getItem("mobileLanguageFabPos")
-      // if (saved) {
-      //   const parsed = JSON.parse(saved) as { x: number; y: number }
-      //   // Vérifier si la position sauvegardée est trop haute, si oui, utiliser la nouvelle position par défaut
-      //   const size = 56
-      //   const padding = 16
-      //   const isMobile = window.innerWidth <= 768
-      //   const bottom = isMobile ? 40 : 24 // Exactement la même hauteur que WhatsApp
-      //   const newDefaultY = window.innerHeight - (size + bottom)
-      //   
-      //   if (parsed.y < newDefaultY - 20) { // Si la position sauvegardée est plus haute que la nouvelle position par défaut
-      //     console.log('Position sauvegardée trop haute, utilisation de la nouvelle position par défaut')
-      //     setPosition({ x: padding, y: newDefaultY })
-      //     // Mettre à jour le localStorage avec la nouvelle position
-      //     localStorage.setItem("mobileLanguageFabPos", JSON.stringify({ x: padding, y: newDefaultY }))
-      //   } else {
-      //     setPosition(parsed)
-      //   }
-      // } else {
-        // Default: bottom-left, exactement au même niveau que WhatsApp
-        const size = 56
-        const padding = 16
-        const isMobile = window.innerWidth <= 768
-        const bottom = isMobile ? 40 : 24 // Exactement la même hauteur que WhatsApp
-        const y = window.innerHeight - (size + bottom)
-        console.log('🔄 Nouvelle position du bouton de langue:', { x: padding, y, bottom, isMobile })
-        setPosition({ x: padding, y }) // Position à gauche
-        // Mettre à jour le localStorage avec la nouvelle position
-        localStorage.setItem("mobileLanguageFabPos", JSON.stringify({ x: padding, y }))
-      // }
+      // Utiliser exactement la même logique que le bouton WhatsApp
+      const padding = 16
+      const bottom = isMobile ? 40 : 24 // Exactement la même hauteur que WhatsApp
+      const y = window.innerHeight - (56 + bottom) // 56px = taille du bouton
+      
+      console.log('🔄 Position du bouton de langue alignée avec WhatsApp:', { 
+        x: padding, 
+        y, 
+        bottom, 
+        isMobile,
+        windowHeight: window.innerHeight,
+        calculatedY: y
+      })
+      
+      setPosition({ x: padding, y })
+      localStorage.setItem("mobileLanguageFabPos", JSON.stringify({ x: padding, y }))
     } catch {}
-  }, [mounted])
+  }, [mounted, isMobile])
 
   // Clamp position on resize
   useEffect(() => {
     if (!mounted) return
     const onResize = () => {
       const size = 56
-      const padding = 8
+      const padding = 16
+      const bottom = isMobile ? 40 : 24 // Exactement la même hauteur que WhatsApp
+      const y = window.innerHeight - (size + bottom)
+      
       setPosition((pos) => ({
         x: Math.min(Math.max(padding, pos.x), window.innerWidth - size - padding),
-        y: Math.min(Math.max(padding, pos.y), window.innerHeight - size - padding),
+        y: y, // Forcer la même hauteur que WhatsApp
       }))
     }
     window.addEventListener("resize", onResize)
     return () => window.removeEventListener("resize", onResize)
-  }, [mounted])
+  }, [mounted, isMobile])
 
   // Drag handlers using pointer events (attach to button only so page scroll remains natural)
   useEffect(() => {
