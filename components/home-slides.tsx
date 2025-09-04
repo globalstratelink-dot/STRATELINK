@@ -8,12 +8,25 @@ import { ArrowRight, ArrowLeft, Globe, TrendingUp, Palette, Zap } from "lucide-r
 import { useLanguage } from "@/contexts/language-context"
 import { HeroImage, ServicesImage } from "@/components/optimized-image"
 import Link from "next/link"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 
 export function HomeSlides() {
   const { t } = useLanguage()
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const [currentMobileIndex, setCurrentMobileIndex] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
+  
+  // Détecter la taille de l'écran de manière sûre côté client
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   const trustedLogos = [
     { src: '/1.webp', alt: 'Partenaire de confiance 1' },
     { src: '/2.webp', alt: 'Partenaire de confiance 2' },
@@ -606,7 +619,7 @@ export function HomeSlides() {
                 className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
                 onClick={() => {
                   // Mobile: navigation logo par logo, Desktop: navigation par groupe
-                  if (window.innerWidth < 768) {
+                  if (isMobile) {
                     prevMobile()
                   } else {
                     prevGroup()
@@ -618,7 +631,7 @@ export function HomeSlides() {
 
               {/* Groupe de logos */}
               <motion.div
-                key={window.innerWidth < 768 ? currentMobileIndex : currentGroupIndex}
+                key={isMobile ? currentMobileIndex : currentGroupIndex}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -671,7 +684,7 @@ export function HomeSlides() {
                 className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
                 onClick={() => {
                   // Mobile: navigation logo par logo, Desktop: navigation par groupe
-                  if (window.innerWidth < 768) {
+                  if (isMobile) {
                     nextMobile()
                   } else {
                     nextGroup()
