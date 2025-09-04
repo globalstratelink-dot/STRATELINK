@@ -27,6 +27,22 @@ export function HomeSlides() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  // Composant conditionnel pour les animations
+  const AnimatedDiv = ({ children, ...props }: any) => {
+    if (isMobile) {
+      return <div {...props}>{children}</div>
+    }
+    return <motion.div {...props}>{children}</motion.div>
+  }
+
+  // Props d'animation conditionnelles
+  const getAnimationProps = (defaultProps: any) => {
+    if (isMobile) {
+      return {}
+    }
+    return defaultProps
+  }
+
   const trustedLogos = [
     { src: '/1.webp', alt: 'Partenaire de confiance 1' },
     { src: '/2.webp', alt: 'Partenaire de confiance 2' },
@@ -75,41 +91,49 @@ export function HomeSlides() {
             {/* Left Content */}
             <div className="text-center lg:text-left order-1 lg:order-1">
               {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+              <AnimatedDiv
+                {...getAnimationProps({
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { duration: 0.6 }
+                })}
                 className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-copper/10 border border-copper/20 rounded-full text-copper text-sm sm:text-base md:text-lg font-medium mb-6 sm:mb-8"
               >
                 <Globe className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                 <span className="whitespace-nowrap">{t('visionSynergiesDevelopment')}</span>
-              </motion.div>
+              </AnimatedDiv>
 
               {/* Main Title */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.3 }}
+              <AnimatedDiv
+                {...getAnimationProps({
+                  initial: { opacity: 0, y: 30 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { duration: 1.2, delay: 0.3 }
+                })}
                 className="title-hero text-white mb-6 sm:mb-8"
               >
                 {t('accelerateInternationalExpansion')}
-              </motion.h1>
+              </AnimatedDiv>
 
               {/* Subtitle */}
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.6 }}
+              <AnimatedDiv
+                {...getAnimationProps({
+                  initial: { opacity: 0, y: 30 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { duration: 1.2, delay: 0.6 }
+                })}
                 className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 leading-relaxed px-2 sm:px-0"
               >
                 {t('strategicPartnerDubaiEuropeAsia')}
-              </motion.p>
+              </AnimatedDiv>
 
               {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.9 }}
+              <AnimatedDiv
+                {...getAnimationProps({
+                  initial: { opacity: 0, y: 30 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { duration: 1.2, delay: 0.9 }
+                })}
               >
                 <Button 
                   size="lg"
@@ -121,51 +145,59 @@ export function HomeSlides() {
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                   </Link>
                 </Button>
-              </motion.div>
+              </AnimatedDiv>
             </div>
 
             {/* Right Logo Block */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.5, delay: 0.5 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, x: 50 },
+                animate: { opacity: 1, x: 0 },
+                transition: { duration: 1.5, delay: 0.5 }
+              })}
               className="flex justify-center lg:justify-end order-2 lg:order-2"
             >
               {/* Static Logo - Avec les trois cercles de contour animés */}
               <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[420px] lg:h-[420px] flex items-center justify-center">
                 {/* Concentric rotating borders - Trois cercles de contour avec animations */}
-                <motion.div 
+                <AnimatedDiv 
+                  {...getAnimationProps({
+                    animate: { rotate: 360 },
+                    transition: { 
+                      duration: 10, 
+                      repeat: Infinity, 
+                      ease: "linear" 
+                    }
+                  })}
                   className="absolute inset-0 border-2 border-white/20 rounded-full"
-                  animate={{ rotate: 360 }}
-                  transition={{ 
-                    duration: 10, 
-                    repeat: Infinity, 
-                    ease: "linear" 
-                  }}
                   style={{ transformOrigin: "center" }}
-                ></motion.div>
+                ></AnimatedDiv>
                 
-                <motion.div 
+                <AnimatedDiv 
+                  {...getAnimationProps({
+                    animate: { rotate: -360 },
+                    transition: { 
+                      duration: 15, 
+                      repeat: Infinity, 
+                      ease: "linear" 
+                    }
+                  })}
                   className="absolute inset-4 border-2 border-white/15 rounded-full"
-                  animate={{ rotate: -360 }}
-                  transition={{ 
-                    duration: 15, 
-                    repeat: Infinity, 
-                    ease: "linear" 
-                  }}
                   style={{ transformOrigin: "center" }}
-                ></motion.div>
+                ></AnimatedDiv>
                 
-                <motion.div 
+                <AnimatedDiv 
+                  {...getAnimationProps({
+                    animate: { rotate: 360 },
+                    transition: { 
+                      duration: 20, 
+                      repeat: Infinity, 
+                      ease: "linear" 
+                    }
+                  })}
                   className="absolute inset-8 border-2 border-white/10 rounded-full"
-                  animate={{ rotate: 360 }}
-                  transition={{ 
-                    duration: 20, 
-                    repeat: Infinity, 
-                    ease: "linear" 
-                  }}
                   style={{ transformOrigin: "center" }}
-                ></motion.div>
+                ></AnimatedDiv>
                 
                 {/* Central logo */}
                 <div className="relative w-48 h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 flex items-center justify-center">
@@ -180,7 +212,7 @@ export function HomeSlides() {
                   />
                 </div>
               </div>
-            </motion.div>
+            </AnimatedDiv>
           </div>
         </div>
       </section>
@@ -199,45 +231,53 @@ export function HomeSlides() {
             {/* Left Content - Titre et description */}
             <div className="text-center lg:text-left order-1 lg:order-1">
               {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.0 }}
+              <AnimatedDiv
+                {...getAnimationProps({
+                  initial: { opacity: 0, y: 20 },
+                  whileInView: { opacity: 1, y: 0 },
+                  transition: { duration: 1.0 }
+                })}
                 viewport={{ once: true }}
                 className="inline-flex items-center px-6 py-3 bg-copper/10 border border-copper/20 rounded-full text-copper text-lg font-medium mb-8"
               >
                 <TrendingUp className="w-5 h-5 mr-2" />
                 {t('services')}
-              </motion.div>
+              </AnimatedDiv>
 
               {/* Main Title */}
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.3 }}
+              <AnimatedDiv
+                {...getAnimationProps({
+                  initial: { opacity: 0, y: 30 },
+                  whileInView: { opacity: 1, y: 0 },
+                  transition: { duration: 1.2, delay: 0.3 }
+                })}
                 viewport={{ once: true }}
                 className="title-section text-white mb-8"
               >
                 {t('globalSolutionsInternationalTrade')}
-              </motion.h2>
+              </AnimatedDiv>
 
               {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.6 }}
+              <AnimatedDiv
+                {...getAnimationProps({
+                  initial: { opacity: 0, y: 30 },
+                  whileInView: { opacity: 1, y: 0 },
+                  transition: { duration: 1.2, delay: 0.6 }
+                })}
                 viewport={{ once: true }}
                 className="text-lg md:text-xl text-gray-300 leading-relaxed"
               >
                 {t('sourcingToDeliveryDescription')}
-              </motion.p>
+              </AnimatedDiv>
             </div>
 
             {/* Right Image Block */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.5, delay: 0.5 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, x: 50 },
+                whileInView: { opacity: 1, x: 0 },
+                transition: { duration: 1.5, delay: 0.5 }
+              })}
               viewport={{ once: true }}
               className="flex justify-center lg:justify-end order-2 lg:order-2"
             >
@@ -263,45 +303,51 @@ export function HomeSlides() {
                 </div>
                 
                 {/* Floating Elements */}
-                <motion.div
-                  animate={{ 
-                    y: [0, -10, 0],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
+                <AnimatedDiv
+                  {...getAnimationProps({
+                    animate: { 
+                      y: [0, -10, 0],
+                      rotate: [0, 5, 0]
+                    },
+                    transition: { 
+                      duration: 4, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }
+                  })}
                   className="absolute top-2 right-2 w-10 h-10 bg-copper/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-copper/30 z-20"
                 >
                   <Globe className="w-5 h-5 text-copper" />
-                </motion.div>
+                </AnimatedDiv>
                 
-                <motion.div
-                  animate={{ 
-                    y: [0, 10, 0],
-                    rotate: [0, -5, 0]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
+                <AnimatedDiv
+                  {...getAnimationProps({
+                    animate: { 
+                      y: [0, 10, 0],
+                      rotate: [0, -5, 0]
+                    },
+                    transition: { 
+                      duration: 3, 
+                      repeat: Infinity, 
+                      ease: "easeInOut",
+                      delay: 1
+                    }
+                  })}
                   className="absolute bottom-2 left-2 w-8 h-8 bg-sand/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-sand/30 z-20"
                 >
                   <TrendingUp className="w-4 h-4 text-sand" />
-                </motion.div>
+                </AnimatedDiv>
               </div>
-            </motion.div>
+            </AnimatedDiv>
           </div>
 
           {/* Services Grid - Reste comme avant */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
+          <AnimatedDiv
+            {...getAnimationProps({
+              initial: { opacity: 0, y: 30 },
+              whileInView: { opacity: 1, y: 0 },
+              transition: { duration: 1.2, delay: 0.8 }
+            })}
             viewport={{ once: true }}
             className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
           >
@@ -340,7 +386,7 @@ export function HomeSlides() {
               <h3 className="title-card text-white mb-4">{t('digitalSolutions')}</h3>
               <p className="text-gray-300">{t('digitalSolutionsDescription')}</p>
             </div>
-          </motion.div>
+          </AnimatedDiv>
         </div>
       </section>
 
@@ -348,50 +394,60 @@ export function HomeSlides() {
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header du Slide 3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
+          <AnimatedDiv
+            {...getAnimationProps({
+              initial: { opacity: 0, y: 30 },
+              whileInView: { opacity: 1, y: 0 },
+              transition: { duration: 1.2, delay: 0.3 }
+            })}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, scale: 0.9 },
+                whileInView: { opacity: 1, scale: 1 },
+                transition: { duration: 0.6, delay: 0.4 }
+              })}
               viewport={{ once: true }}
               className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
             >
               <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
               Carrières
-            </motion.div>
+            </AnimatedDiv>
             
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, y: 20 },
+                whileInView: { opacity: 1, y: 0 },
+                transition: { duration: 0.6, delay: 0.5 }
+              })}
               viewport={{ once: true }}
               className="title-section text-white mb-6"
             >
               VOICI LES DIFFERENT CAREER A AVOIR
-            </motion.h2>
+            </AnimatedDiv>
             
 
-          </motion.div>
+          </AnimatedDiv>
 
           {/* Grille des 4 Carrières */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
+          <AnimatedDiv
+            {...getAnimationProps({
+              initial: { opacity: 0, y: 30 },
+              whileInView: { opacity: 1, y: 0 },
+              transition: { duration: 1.2, delay: 0.8 }
+            })}
             viewport={{ once: true }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
           >
             {/* Carrière 1: Développement Commercial */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, x: -30 },
+                whileInView: { opacity: 1, x: 0 },
+                transition: { duration: 0.8, delay: 0.8 }
+              })}
               viewport={{ once: true }}
               className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
             >
@@ -403,13 +459,15 @@ export function HomeSlides() {
                   <h3 className="title-card text-white mb-4">Développement Commercial</h3>
                 </div>
               </div>
-            </motion.div>
+            </AnimatedDiv>
 
             {/* Carrière 2: Création de Marque et Branding */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, x: 30 },
+                whileInView: { opacity: 1, x: 0 },
+                transition: { duration: 0.8, delay: 0.9 }
+              })}
               viewport={{ once: true }}
               className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
             >
@@ -421,13 +479,15 @@ export function HomeSlides() {
                   <h3 className="title-card text-white mb-4">Création de Marque et Branding</h3>
                 </div>
               </div>
-            </motion.div>
+            </AnimatedDiv>
 
             {/* Carrière 3: International Sourcing Import / Export */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, x: -30 },
+                whileInView: { opacity: 1, x: 0 },
+                transition: { duration: 0.8, delay: 1.0 }
+              })}
               viewport={{ once: true }}
               className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
             >
@@ -439,13 +499,15 @@ export function HomeSlides() {
                   <h3 className="title-card text-white mb-4">International Sourcing Import / Export</h3>
                 </div>
               </div>
-            </motion.div>
+            </AnimatedDiv>
 
             {/* Carrière 4: Digital Solutions : API and SAas */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.1 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, x: 30 },
+                whileInView: { opacity: 1, x: 0 },
+                transition: { duration: 0.8, delay: 1.1 }
+              })}
               viewport={{ once: true }}
               className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
             >
@@ -457,8 +519,8 @@ export function HomeSlides() {
                   <h3 className="title-card text-white mb-4">Digital Solutions : API and SAas</h3>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </AnimatedDiv>
+          </AnimatedDiv>
         </div>
       </section>
 
@@ -466,72 +528,86 @@ export function HomeSlides() {
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header du Slide 4 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
+          <AnimatedDiv
+            {...getAnimationProps({
+              initial: { opacity: 0, y: 30 },
+              whileInView: { opacity: 1, y: 0 },
+              transition: { duration: 1.2, delay: 0.3 }
+            })}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, scale: 0.9 },
+                whileInView: { opacity: 1, scale: 1 },
+                transition: { duration: 0.6, delay: 0.4 }
+              })}
               viewport={{ once: true }}
               className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
             >
               <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
               Confiance
-            </motion.div>
+            </AnimatedDiv>
             
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, y: 20 },
+                whileInView: { opacity: 1, y: 0 },
+                transition: { duration: 0.6, delay: 0.5 }
+              })}
               viewport={{ once: true }}
               className="title-section text-white mb-6"
             >
               Ils nous ont fait confiance
-            </motion.h2>
+            </AnimatedDiv>
             
             {/* 5 Étoiles */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, scale: 0.8 },
+                whileInView: { opacity: 1, scale: 1 },
+                transition: { duration: 0.6, delay: 0.7 }
+              })}
               viewport={{ once: true }}
               className="flex justify-center items-center space-x-2 mb-8"
             >
               {[...Array(5)].map((_, index) => (
-                <motion.div
+                <AnimatedDiv
                   key={index}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
+                  {...getAnimationProps({
+                    initial: { opacity: 0, scale: 0 },
+                    whileInView: { opacity: 1, scale: 1 },
+                    transition: { duration: 0.4, delay: 0.8 + index * 0.1 }
+                  })}
                   viewport={{ once: true }}
                   className="text-3xl text-copper"
                 >
                   ⭐
-                </motion.div>
+                </AnimatedDiv>
               ))}
-            </motion.div>
+            </AnimatedDiv>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+            <AnimatedDiv
+              {...getAnimationProps({
+                initial: { opacity: 0, y: 20 },
+                whileInView: { opacity: 1, y: 0 },
+                transition: { duration: 0.6, delay: 0.6 }
+              })}
               viewport={{ once: true }}
               className="text-xl text-gray-300 max-w-3xl mx-auto"
             >
               Découvrez nos partenaires et clients qui nous font confiance pour leurs projets
-            </motion.p>
-          </motion.div>
+            </AnimatedDiv>
+          </AnimatedDiv>
 
           {/* Logos avec navigation par flèches - 3 logos par groupe sur desktop, 1 sur mobile */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
+          <AnimatedDiv
+            {...getAnimationProps({
+              initial: { opacity: 0, y: 30 },
+              whileInView: { opacity: 1, y: 0 },
+              transition: { duration: 1.2, delay: 0.8 }
+            })}
             viewport={{ once: true }}
             className="relative max-w-6xl mx-auto"
           >
@@ -554,20 +630,24 @@ export function HomeSlides() {
               </Button>
 
               {/* Groupe de logos */}
-              <motion.div
-                key={isMobile ? currentMobileIndex : currentGroupIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+              <AnimatedDiv
+                {...getAnimationProps({
+                  key: isMobile ? currentMobileIndex : currentGroupIndex,
+                  initial: { opacity: 0, y: 20 },
+                  animate: { opacity: 1, y: 0 },
+                  transition: { duration: 0.5 }
+                })}
                 className="flex-1 max-w-4xl"
               >
                 {/* Mobile: 1 logo à la fois */}
                 <div className="md:hidden">
-                  <motion.div
+                  <AnimatedDiv
                     key={currentMobileIndex}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
+                    {...getAnimationProps({
+                      initial: { opacity: 0, scale: 0.8 },
+                      animate: { opacity: 1, scale: 1 },
+                      transition: { duration: 0.5 }
+                    })}
                     className="flex justify-center"
                   >
                     <div className="w-64 h-40 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex items-center justify-center transition-all duration-300">
@@ -577,17 +657,19 @@ export function HomeSlides() {
                         className="max-h-24 w-auto object-contain"
                       />
                     </div>
-                  </motion.div>
+                  </AnimatedDiv>
                 </div>
 
                 {/* Desktop: 3 logos */}
                 <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8">
                   {getCurrentLogos().map((logo, index) => (
-                    <motion.div
+                    <AnimatedDiv
                       key={logo.src}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      {...getAnimationProps({
+                        initial: { opacity: 0, scale: 0.8 },
+                        animate: { opacity: 1, scale: 1 },
+                        transition: { duration: 0.5, delay: index * 0.1 }
+                      })}
                       className="flex justify-center"
                     >
                       <div className="w-48 h-32 sm:w-56 sm:h-36 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex items-center justify-center transition-all duration-300">
@@ -597,10 +679,10 @@ export function HomeSlides() {
                           className="max-h-20 sm:max-h-24 w-auto object-contain"
                         />
                       </div>
-                    </motion.div>
+                    </AnimatedDiv>
                   ))}
                 </div>
-              </motion.div>
+              </AnimatedDiv>
 
               {/* Bouton droite */}
               <Button
@@ -618,45 +700,53 @@ export function HomeSlides() {
                 <ArrowRight className="w-6 h-6" />
               </Button>
             </div>
-          </motion.div>
+          </AnimatedDiv>
         </div>
       </section>
 
       {/* Call-to-Action Bilingue */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 0.8 }}
+      <AnimatedDiv
+        {...getAnimationProps({
+          initial: { opacity: 0, y: 30 },
+          whileInView: { opacity: 1, y: 0 },
+          transition: { duration: 1.2, delay: 0.8 }
+        })}
         viewport={{ once: true }}
         className="mt-20 text-center"
       >
         {/* Section Française */}
         <div className="mb-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
+          <AnimatedDiv
+            {...getAnimationProps({
+              initial: { opacity: 0, y: 20 },
+              whileInView: { opacity: 1, y: 0 },
+              transition: { duration: 0.6, delay: 0.9 }
+            })}
             viewport={{ once: true }}
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
           >
             {t('readyToTransformYourBusiness')}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
+          </AnimatedDiv>
+          <AnimatedDiv
+            {...getAnimationProps({
+              initial: { opacity: 0, y: 20 },
+              whileInView: { opacity: 1, y: 0 },
+              transition: { duration: 0.6, delay: 1.0 }
+            })}
             viewport={{ once: true }}
             className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
             {t('letsDiscussStrategicSolutions')}
-          </motion.p>
+          </AnimatedDiv>
         </div>
 
         {/* Section Anglaise */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
+        <AnimatedDiv
+          {...getAnimationProps({
+            initial: { opacity: 0, y: 20 },
+            whileInView: { opacity: 1, y: 0 },
+            transition: { duration: 0.6, delay: 1.1 }
+          })}
           viewport={{ once: true }}
           className="bg-copper/10 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto"
         >
@@ -668,10 +758,12 @@ export function HomeSlides() {
           </p>
           
           {/* Bouton Contact */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
+          <AnimatedDiv
+            {...getAnimationProps({
+              initial: { opacity: 0, scale: 0.9 },
+              whileInView: { opacity: 1, scale: 1 },
+              transition: { duration: 0.6, delay: 1.2 }
+            })}
             viewport={{ once: true }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -685,9 +777,9 @@ export function HomeSlides() {
                 {t('contactButton')}
               </Link>
             </Button>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+          </AnimatedDiv>
+        </AnimatedDiv>
+      </AnimatedDiv>
     </div>
   )
 } 
