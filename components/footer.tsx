@@ -27,34 +27,24 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Footer Content */}
         <div className="py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            {/* Copyright */}
-            <motion.div 
-              className="text-gray-400 text-sm mb-4 md:mb-0 text-center md:text-left"
-              whileHover={{ color: "#A97968" }}
-            >
-              © 2025 {t('companyName')} {t('companyTagline')} {t('allRightsReserved')}
-            </motion.div>
-            
-            {/* Credits */}
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm">
+          <div className="flex justify-center items-center">
+            {/* Credits - Centré */}
+            <div className="flex items-center space-x-2 text-sm">
               {/* Designed by STRATELINK */}
-              <div className="flex items-center space-x-2">
-                <span className="text-gray-400">{t('designedBy')}</span>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="flex items-center space-x-1"
-                >
-                  <Image
-                    src="/optimized/new-logo-16x16.png"
-                    alt="STRATELINK"
-                    width={16}
-                    height={16}
-                    className="w-4 h-4 filter brightness-110"
-                  />
-                  <span className="text-copper font-semibold">{t('companyName')}</span>
-                </motion.div>
-              </div>
+              <span className="text-gray-400">{t('designedBy')}</span>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center space-x-1"
+              >
+                <Image
+                  src="/optimized/new-logo-16x16.png"
+                  alt="STRATELINK"
+                  width={16}
+                  height={16}
+                  className="w-4 h-4 filter brightness-110"
+                />
+                <span className="text-copper font-semibold">{t('companyName')}</span>
+              </motion.div>
             </div>
           </div>
         </div>
