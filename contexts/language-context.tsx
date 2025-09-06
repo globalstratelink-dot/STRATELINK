@@ -6,7 +6,7 @@ import { translations, Language, TranslationKey } from '@/lib/translations'
 interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
-  t: (key: TranslationKey) => string
+  t: (key: TranslationKey) => string | string[]
   isLoaded: boolean
 }
 
@@ -34,7 +34,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const t = (key: TranslationKey): string => {
+  const t = (key: TranslationKey): string | string[] => {
     // Fallback sécurisé pour éviter les erreurs
     try {
       return translations[language]?.[key] || translations.en[key] || key
