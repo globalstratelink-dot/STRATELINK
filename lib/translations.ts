@@ -171,6 +171,10 @@ export const translations = {
     cookiePolicy: "Cookie Policy",
     createdBy: "Created by",
     designedBy: "Designed by",
+    trustedByUs: "They trusted us",
+    trustedByUsTitle: "They trusted us",
+    trustedByUsDescription: "Discover our partners and clients who trust us for their projects",
+    imageNotAvailable: "Image not available",
     
     // Testimonials
     whatOurPartnersSay: "What Our Partners",
@@ -416,6 +420,10 @@ export const translations = {
     cookiePolicy: "Politique des Cookies",
     createdBy: "Créé par",
     designedBy: "Conçu par",
+    trustedByUs: "Ils nous ont fait confiance",
+    trustedByUsTitle: "Ils nous ont fait confiance",
+    trustedByUsDescription: "Découvrez nos partenaires et clients qui nous font confiance pour leurs projets",
+    imageNotAvailable: "Image non disponible",
     
     // Testimonials
     whatOurPartnersSay: "Qu'en disent nos partenaires",

@@ -11,20 +11,23 @@ import Link from "next/link"
 import { useRef, useState, useEffect } from "react"
 
 export function HomeSlides() {
-  const { t } = useLanguage()
+  const { t, isLoaded } = useLanguage()
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const [currentMobileIndex, setCurrentMobileIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
   
   // Détecter la taille de l'écran de manière sûre côté client
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
+    if (typeof window !== 'undefined') {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768)
+      }
+      
+      checkMobile()
+      window.addEventListener('resize', checkMobile)
+      
+      return () => window.removeEventListener('resize', checkMobile)
     }
-    
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   // Props d'animation conditionnelles
@@ -76,6 +79,15 @@ export function HomeSlides() {
   const getCurrentLogos = () => {
     const startIndex = currentGroupIndex * logosPerGroup
     return trustedLogos.slice(startIndex, startIndex + logosPerGroup)
+  }
+
+  // Afficher un loader si les traductions ne sont pas encore chargées
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen bg-navy flex items-center justify-center">
+        <div className="text-white">Loading...</div>
+      </div>
+    )
   }
 
   return (

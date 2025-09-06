@@ -7,31 +7,45 @@ interface LanguageContextType {
   language: Language
   setLanguage: (lang: Language) => void
   t: (key: TranslationKey) => string
+  isLoaded: boolean
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('en')
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('language') as Language
-    if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
-      setLanguage(savedLanguage)
+    // Vérifier si nous sommes côté client
+    if (typeof window !== 'undefined') {
+      const savedLanguage = localStorage.getItem('language') as Language
+      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'fr')) {
+        setLanguage(savedLanguage)
+      }
+      setIsLoaded(true)
     }
   }, [])
 
   const handleSetLanguage = (lang: Language) => {
     setLanguage(lang)
-    localStorage.setItem('language', lang)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('language', lang)
+    }
   }
 
   const t = (key: TranslationKey): string => {
-    return translations[language][key] || translations.en[key] || key
+    // Fallback sécurisé pour éviter les erreurs
+    try {
+      return translations[language]?.[key] || translations.en[key] || key
+    } catch (error) {
+      console.warn(`Translation key "${key}" not found for language "${language}"`)
+      return key
+    }
   }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t, isLoaded }}>
       {children}
     </LanguageContext.Provider>
   )
