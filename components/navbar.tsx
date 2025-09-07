@@ -16,6 +16,8 @@ export function Navbar() {
   const [isMobile, setIsMobile] = useState(false)
   const { t } = useLanguage()
 
+  const stringify = (value: string | string[]) => Array.isArray(value) ? value.join(' ') : value
+
   // Détecter si c'est mobile
   useEffect(() => {
     const checkMobile = () => {
@@ -85,10 +87,10 @@ export function Navbar() {
   }, [pathname, closeMobileMenu])
 
   const navItems = useMemo(() => [
-    { name: t('home'), href: "/" },
-    { name: t('services'), href: "/services" },
-    { name: t('agency'), href: "/agency" },
-    { name: t('contact'), href: "/contact" },
+    { name: stringify(t('home')), href: "/" },
+    { name: stringify(t('services')), href: "/services" },
+    { name: stringify(t('agency')), href: "/agency" },
+    { name: stringify(t('contact')), href: "/contact" },
   ], [t])
 
   return (
@@ -100,15 +102,15 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-20 md:h-24 pt-2 md:pt-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <ResponsiveOptimizedLogo />
-                          <div className="text-white">
-                <div className="text-lg font-bold tracking-wider">
+          <Link href="/" className="flex items-center space-x-4">
+            <ResponsiveOptimizedLogo className="w-16 h-12 sm:w-20 sm:h-14 lg:w-24 lg:h-16 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
+                          <div className="text-white h-12 sm:h-14 lg:h-16 flex flex-col justify-center">
+                <div className="h-full flex items-center text-lg sm:text-xl lg:text-2xl font-bold tracking-wider leading-none whitespace-nowrap">
                   {t('companyName')}
                 </div>
-                <div className="text-sm text-copper tracking-widest font-semibold">
+                <div className="hidden md:block text-xs sm:text-sm text-copper tracking-widest font-semibold mt-1">
                   {t('companyTagline')}
                 </div>
               </div>
@@ -118,7 +120,7 @@ export function Navbar() {
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
-                key={item.name}
+                key={String(item.name)}
                 href={item.href}
                 className={`relative px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
                   pathname === item.href
@@ -163,7 +165,7 @@ export function Navbar() {
               data-menu-button
               className="text-white p-2 hover:bg-copper/10 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-copper/50"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? t('closeMenu') : t('openMenu')}
+              aria-label={isMobileMenuOpen ? stringify(t('closeMenu')) : stringify(t('openMenu'))}
               aria-expanded={isMobileMenuOpen}
               type="button"
             >
@@ -194,7 +196,7 @@ export function Navbar() {
                 {/* Navigation Links */}
                 {navItems.map((item) => (
                   <Link
-                    key={item.name}
+                    key={String(item.name)}
                     href={item.href}
                     className={`block px-4 py-3 rounded-lg transition-colors duration-200 font-semibold text-base ${
                       pathname === item.href

@@ -4,7 +4,8 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, Globe, TrendingUp, Palette, Zap } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { ArrowRight, ArrowLeft, Globe, TrendingUp, Palette, Zap, Crown, Shield, Users } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { HeroImage, ServicesImage } from "@/components/optimized-image"
 import Link from "next/link"
@@ -374,124 +375,131 @@ export function HomeSlides() {
         </div>
       </section>
 
-      {/* Slide 3 - Les 4 Carrières */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Header du Slide 3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+      {/* Slide 3 - Notre Agence - Hero Section */}
+      <section className="pt-24 md:pt-32 pb-16 bg-gradient-to-br from-navy via-navy to-navy/90">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
-            >
-              <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
-              Carrières
-            </motion.div>
-            
-            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="title-section text-white mb-6"
+              className="inline-flex items-center px-6 py-3 bg-copper/10 border border-copper/20 rounded-full text-copper text-lg font-medium mb-8"
             >
-              VOICI LES DIFFERENT CAREER A AVOIR
-            </motion.h2>
-            
-
-          </motion.div>
-
-          {/* Grille des 4 Carrières */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
-          >
-            {/* Carrière 1: Développement Commercial */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
-            >
-              <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <TrendingUp className="w-8 h-8 text-copper" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Développement Commercial</h3>
-                </div>
-              </div>
+              <Crown className="w-5 h-5 mr-2" />
+              {t('agency')}
             </motion.div>
 
-            {/* Carrière 2: Création de Marque et Branding */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
+            {/* Main Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
-              className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
             >
-              <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <Palette className="w-8 h-8 text-copper" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Création de Marque et Branding</h3>
-                </div>
-              </div>
-            </motion.div>
+              {t('whyChooseStratelinkGlobal')}
+            </motion.h1>
 
-            {/* Carrière 3: International Sourcing Import / Export */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
-              className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
+              className="text-xl md:text-2xl text-copper font-semibold mb-4"
             >
-              <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <Globe className="w-8 h-8 text-copper" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">International Sourcing Import / Export</h3>
-                </div>
-              </div>
-            </motion.div>
+              {t('excellenceAtServiceOfGrowth')}
+            </motion.p>
 
-            {/* Carrière 4: Digital Solutions : API and SAas */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.1 }}
+            {/* Description */}
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
               viewport={{ once: true }}
-              className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
+              className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
             >
-              <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <Zap className="w-8 h-8 text-copper" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Digital Solutions : API and SAas</h3>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+              {t('discoverWhatDistinguishesUs')}
+            </motion.p>
+          </div>
+        </div>
+
+      {/* Features Grid */}
+      <section className="py-16 bg-gradient-to-b from-navy/95 to-navy">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                id: 1,
+                icon: Zap,
+                title: t('rapidReliableDeployment'),
+                description: t('rapidReliableDeploymentDesc'),
+                color: "from-copper to-sand"
+              },
+              {
+                id: 2,
+                icon: Shield,
+                title: t('turnkeySolutions'),
+                description: t('turnkeySolutionsDesc'),
+                color: "from-sand to-copper"
+              },
+              {
+                id: 3,
+                icon: Globe,
+                title: t('privilegedMarketAccess'),
+                description: t('privilegedMarketAccessDesc'),
+                color: "from-copper/80 to-sand/80"
+              },
+              {
+                id: 4,
+                icon: Users,
+                title: t('customerAcquisitionRetention'),
+                description: t('customerAcquisitionRetentionDesc'),
+                color: "from-sand/80 to-copper/80"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Card className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-3xl p-8 hover:border-copper/40 transition-all duration-300 h-full">
+                  <CardContent className="p-0">
+                    <div className="flex items-start space-x-6">
+                      {/* Number Badge */}
+                      <div className="flex-shrink-0">
+                        <div className="w-16 h-16 bg-gradient-to-br from-copper to-sand rounded-2xl flex items-center justify-center text-navy font-bold text-xl">
+                          {feature.id}
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <div className="w-12 h-12 bg-copper/20 rounded-xl flex items-center justify-center">
+                            <feature.icon className="w-6 h-6 text-copper" />
+                          </div>
+                          <h3 className="text-2xl font-bold text-white">
+                            {feature.title}
+                          </h3>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed text-lg">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
-
+      </section>
       {/* Slide 4 - Ils nous ont fait confiance */}
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -741,3 +749,6 @@ export function HomeSlides() {
     </div>
   )
 } 
+
+
+

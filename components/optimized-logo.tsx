@@ -63,39 +63,42 @@ export function OptimizedLogo({ className = "", priority = true }: OptimizedLogo
 export function ResponsiveOptimizedLogo({ className = "" }: { className?: string }) {
   return (
     <picture className={className}>
-      {/* Mobile - w-14 h-10 (56x40) */}
+      {/* Mobile - provide 1x and 2x for DPR */}
       <source
         media="(max-width: 640px)"
-        srcSet="/optimized/navbar-mobile.webp"
+        srcSet="/optimized/logo-96x96.webp 1x, /optimized/logo-128x128.webp 2x"
         type="image/webp"
       />
       
-      {/* Tablet - w-16 h-12 (64x48) */}
+      {/* Tablet - higher base with 2x */}
       <source
         media="(min-width: 641px) and (max-width: 1024px)"
-        srcSet="/optimized/navbar-tablet.webp"
+        srcSet="/optimized/logo-128x128.webp 1x, /optimized/logo-180x180.webp 2x"
         type="image/webp"
       />
       
-      {/* Desktop - w-20 h-16 (80x64) */}
+      {/* Desktop - sharp source with 2x */}
       <source
         media="(min-width: 1025px)"
-        srcSet="/optimized/navbar-desktop.webp"
+        srcSet="/optimized/logo-180x180.webp 1x, /optimized/logo.webp 2x"
         type="image/webp"
       />
       
-      {/* Fallback PNG si WebP n'est pas supporté */}
+      {/* Fallback PNG if WebP unsupported */}
       <source
-        srcSet="/apple-touch-icon.png"
+        srcSet="/optimized/new-logo-64w.png 1x, /optimized/logo-224w.png 2x"
         type="image/png"
       />
       
-      {/* Image par défaut optimisée */}
+      {/* Default image with explicit sizes and srcSet for sharper rendering */}
       <img
-        src="/optimized/navbar-tablet.webp"
+        src="/optimized/logo-128x128.webp"
+        srcSet="/optimized/logo-96x96.webp 56w, /optimized/logo-128x128.webp 80w, /optimized/logo-180x180.webp 120w, /optimized/logo.webp 160w"
+        sizes="(min-width: 1025px) 80px, (min-width: 641px) 64px, 56px"
         alt="STRATELINK GLOBAL"
-        className="w-14 h-10 sm:w-16 sm:h-12 lg:w-20 lg:h-16 object-contain transition-opacity duration-300"
+        className="w-16 h-12 sm:w-20 sm:h-14 lg:w-24 lg:h-16 object-contain transition-opacity duration-300"
         loading="eager"
+        decoding="async"
         style={{
           objectFit: 'contain',
           objectPosition: 'center'
