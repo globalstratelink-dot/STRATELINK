@@ -111,7 +111,6 @@ export function ServicesContent() {
               {t('servicesPageDescription1')}
             </p>
             <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              {t('servicesPageDescription2')}
             </p>
           </motion.div>
         </div>
