@@ -287,9 +287,9 @@ export const translations = {
     // Services Page
     servicesPageDescription: "Comprehensive solutions to accelerate your international growth and business development",
     servicesPageTitle: "Nos Services",
-    servicesPageSubtitle: "Solutions Complètes pour Votre Croissance Internationale",
-    servicesPageDescription1: "Découvrez notre gamme complète de services spécialisés conçus pour accélérer votre expansion internationale et optimiser vos opérations commerciales.",
-    servicesPageDescription2: "De l'import/export à la transformation digitale, nous vous accompagnons à chaque étape de votre développement avec des solutions sur mesure et une expertise reconnue.",
+    servicesPageSubtitle: "Solutions globales pour le commerce international et le développement commercial.",
+    servicesPageDescription1: "De l'approvisionnement à la livraison, nous orchestrons vos opérations d'import/export et accélérons votre croissance grâce à des stratégies de développement commercial sur mesure.",
+    servicesPageDescription2: "",
     importExportDescription: "Optimisez votre Sourcing avec nos solutions intégrées d'approvisionnement et de logistique",
     sourcing: "Sourcing",
     qualityControl: "Contrôle Qualité",
@@ -501,3 +501,4 @@ export const translations = {
 
 export type Language = keyof typeof translations
 export type TranslationKey = keyof typeof translations.en
+
