@@ -15,6 +15,14 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Stratelink Global",
   description: "International Import/Export Services",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/FAVICON.png", type: "image/png" }
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/FAVICON.png",
+  },
 }
 
 export default function RootLayout({
