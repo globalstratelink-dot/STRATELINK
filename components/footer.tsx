@@ -5,6 +5,7 @@ import Image from "next/image"
 import { motion } from 'framer-motion'
 import { useLanguage } from "@/contexts/language-context"
 import { Mail, Phone, MapPin, Linkedin } from "lucide-react"
+import { ResponsiveOptimizedLogo } from "@/components/optimized-logo"
 
 export function Footer() {
   const { t } = useLanguage()
@@ -32,13 +33,7 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <Image
-                src="/optimized/new-logo-32x32.png"
-                alt="STRATELINK"
-                width={32}
-                height={32}
-                className="w-8 h-8 filter brightness-110"
-              />
+              <ResponsiveOptimizedLogo className="w-16 h-12 sm:w-20 sm:h-14 lg:w-24 lg:h-16 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
               <div className="text-white text-xl font-bold tracking-wide">
                 <span>{t('companyName')}</span>{' '}
                 <span className="text-copper">{t('companyTagline')}</span>
