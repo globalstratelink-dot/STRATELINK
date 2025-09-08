@@ -408,7 +408,7 @@ export function HomeSlides() {
         </div>
       </section>
 
-      {/* Slide 3 - Les 4 Carrières */}
+      {/* Slide 3 - Pourquoi choisir Stratelink Global */}
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header du Slide 3 */}
@@ -427,7 +427,7 @@ export function HomeSlides() {
               className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
             >
               <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
-              Carrières
+              {t('excellence')}
             </motion.div>
             
             <motion.h2
@@ -437,13 +437,32 @@ export function HomeSlides() {
               viewport={{ once: true }}
               className="title-section text-white mb-6"
             >
-              VOICI LES DIFFERENT CAREER A AVOIR
+              {t('whyChooseStratelinkGlobal')}
             </motion.h2>
             
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="text-xl text-gray-300 max-w-4xl mx-auto mb-4"
+            >
+              {t('excellenceAtServiceOfGrowth')}
+            </motion.p>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              viewport={{ once: true }}
+              className="text-lg text-gray-400 max-w-3xl mx-auto"
+            >
+              {t('discoverWhatDistinguishesUs')}
+            </motion.p>
 
           </motion.div>
 
-          {/* Grille des 4 Carrières */}
+          {/* Grille des 4 Avantages */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -451,7 +470,7 @@ export function HomeSlides() {
             viewport={{ once: true }}
             className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
           >
-            {/* Carrière 1: Développement Commercial */}
+            {/* Avantage 1: Déploiement rapide et fiable */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -461,15 +480,18 @@ export function HomeSlides() {
             >
               <div className="flex items-start space-x-4">
                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <TrendingUp className="w-8 h-8 text-copper" />
+                  <span className="text-2xl font-bold text-copper">1</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Développement Commercial</h3>
+                  <h3 className="title-card text-white mb-4">{t('rapidReliableDeployment')}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {t('rapidReliableDeploymentDesc')}
+                  </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Carrière 2: Création de Marque et Branding */}
+            {/* Avantage 2: Solutions clés en main */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -479,15 +501,18 @@ export function HomeSlides() {
             >
               <div className="flex items-start space-x-4">
                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <Palette className="w-8 h-8 text-copper" />
+                  <span className="text-2xl font-bold text-copper">2</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Création de Marque et Branding</h3>
+                  <h3 className="title-card text-white mb-4">{t('turnkeySolutions')}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {t('turnkeySolutionsDesc')}
+                  </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Carrière 3: International Sourcing Import / Export */}
+            {/* Avantage 3: Accès privilégié aux marchés et produits */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -497,15 +522,18 @@ export function HomeSlides() {
             >
               <div className="flex items-start space-x-4">
                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <Globe className="w-8 h-8 text-copper" />
+                  <span className="text-2xl font-bold text-copper">3</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">International Sourcing Import / Export</h3>
+                  <h3 className="title-card text-white mb-4">{t('privilegedMarketAccess')}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {t('privilegedMarketAccessDesc')}
+                  </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Carrière 4: Digital Solutions : API and SAas */}
+            {/* Avantage 4: Acquisition et fidélisation clients */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -515,10 +543,13 @@ export function HomeSlides() {
             >
               <div className="flex items-start space-x-4">
                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <Zap className="w-8 h-8 text-copper" />
+                  <span className="text-2xl font-bold text-copper">4</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Digital Solutions : API and SAas</h3>
+                  <h3 className="title-card text-white mb-4">{t('customerAcquisitionRetention')}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {t('customerAcquisitionRetentionDesc')}
+                  </p>
                 </div>
               </div>
             </motion.div>

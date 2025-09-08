@@ -214,6 +214,7 @@ export const translations = {
     
     // Agency Page
     whyChooseStratelinkGlobal: "Why Choose Stratelink Global",
+    excellence: "Excellence",
     excellenceAtServiceOfGrowth: "Excellence at the service of your growth.",
     discoverWhatDistinguishesUs: "Discover what distinguishes us in the world of commercial and strategic development",
     
@@ -464,6 +465,7 @@ export const translations = {
     
     // Agency Page
     whyChooseStratelinkGlobal: "Pourquoi choisir Stratelink Global",
+    excellence: "Excellence",
     excellenceAtServiceOfGrowth: "L'excellence au service de votre croissance.",
     discoverWhatDistinguishesUs: "Découvrez ce qui nous distingue dans l'univers du développement commercial et stratégique",
     
