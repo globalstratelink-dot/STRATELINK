@@ -93,22 +93,22 @@ return (
 
           {/* Process Steps */}
           <div className="relative">
-            {/* Central Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-copper via-sand to-copper opacity-30"></div>
+            {/* Central Line - Hidden on mobile */}
+            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-copper via-sand to-copper opacity-30"></div>
             
             {/* Steps */}
-            <div className="space-y-16">
+            <div className="space-y-8 md:space-y-16">
               {/* Step 1 */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="relative flex items-center"
+                className="relative flex flex-col md:flex-row md:items-center"
               >
-                <div className="w-1/2 pr-8 text-right">
-                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-                    <div className="flex items-center justify-end space-x-3 mb-4">
+                <div className="w-full md:w-1/2 md:pr-8 md:text-right">
+                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-6 md:p-8 hover:border-copper/40 transition-all duration-300">
+                    <div className="flex items-center space-x-3 mb-4 md:justify-end">
                       <div className="w-12 h-12 bg-gradient-to-br from-copper to-sand rounded-full flex items-center justify-center">
                         <Lightbulb className="w-6 h-6 text-navy" />
                       </div>
@@ -123,10 +123,10 @@ return (
                   </div>
                 </div>
                 
-                {/* Central Node */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-copper rounded-full border-4 border-navy z-10"></div>
+                {/* Central Node - Hidden on mobile */}
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-copper rounded-full border-4 border-navy z-10"></div>
                 
-                <div className="w-1/2 pl-8"></div>
+                <div className="hidden md:block w-1/2 pl-8"></div>
               </motion.div>
 
               {/* Step 2 */}
@@ -135,15 +135,15 @@ return (
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="relative flex items-center"
+                className="relative flex flex-col md:flex-row md:items-center"
               >
-                <div className="w-1/2 pr-8"></div>
+                <div className="hidden md:block w-1/2 pr-8"></div>
                 
-                {/* Central Node */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-sand rounded-full border-4 border-navy z-10"></div>
+                {/* Central Node - Hidden on mobile */}
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-sand rounded-full border-4 border-navy z-10"></div>
                 
-                <div className="w-1/2 pl-8">
-                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                <div className="w-full md:w-1/2 md:pl-8">
+                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-6 md:p-8 hover:border-copper/40 transition-all duration-300">
                     <div className="flex items-center space-x-3 mb-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-sand to-copper rounded-full flex items-center justify-center">
                         <Map className="w-6 h-6 text-navy" />
@@ -166,11 +166,11 @@ return (
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
-                className="relative flex items-center"
+                className="relative flex flex-col md:flex-row md:items-center"
               >
-                <div className="w-1/2 pr-8 text-right">
-                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-                    <div className="flex items-center justify-end space-x-3 mb-4">
+                <div className="w-full md:w-1/2 md:pr-8 md:text-right">
+                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-6 md:p-8 hover:border-copper/40 transition-all duration-300">
+                    <div className="flex items-center space-x-3 mb-4 md:justify-end">
                       <div className="w-12 h-12 bg-gradient-to-br from-copper to-sand rounded-full flex items-center justify-center">
                         <Play className="w-6 h-6 text-navy" />
                       </div>
@@ -185,10 +185,10 @@ return (
                   </div>
                 </div>
                 
-                {/* Central Node */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-copper rounded-full border-4 border-navy z-10"></div>
+                {/* Central Node - Hidden on mobile */}
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-copper rounded-full border-4 border-navy z-10"></div>
                 
-                <div className="w-1/2 pl-8"></div>
+                <div className="hidden md:block w-1/2 pl-8"></div>
               </motion.div>
 
               {/* Step 4 */}
@@ -197,15 +197,15 @@ return (
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="relative flex items-center"
+                className="relative flex flex-col md:flex-row md:items-center"
               >
-                <div className="w-1/2 pr-8"></div>
+                <div className="hidden md:block w-1/2 pr-8"></div>
                 
-                {/* Central Node */}
-                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-sand rounded-full border-4 border-navy z-10"></div>
+                {/* Central Node - Hidden on mobile */}
+                <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-sand rounded-full border-4 border-navy z-10"></div>
                 
-                <div className="w-1/2 pl-8">
-                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                <div className="w-full md:w-1/2 md:pl-8">
+                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-6 md:p-8 hover:border-copper/40 transition-all duration-300">
                     <div className="flex items-center space-x-3 mb-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-sand to-copper rounded-full flex items-center justify-center">
                         <CheckCircle className="w-6 h-6 text-navy" />

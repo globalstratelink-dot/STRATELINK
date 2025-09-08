@@ -468,7 +468,7 @@ export function HomeSlides() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
           >
             {/* Avantage 1: Déploiement rapide et fiable */}
             <motion.div
