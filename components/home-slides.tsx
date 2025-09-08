@@ -15,6 +15,7 @@ export function HomeSlides() {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const [currentMobileIndex, setCurrentMobileIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const touchStartXRef = useRef(0)
   
   // Détecter la taille de l'écran de manière sûre côté client
   useEffect(() => {
@@ -699,35 +700,30 @@ export function HomeSlides() {
                 </Button>
               </div>
 
-              {/* Mobile: 1 card with swipe */}
-              <div className="md:hidden">
-                <motion.div
+              {/* Mobile: 1 card; swipe tactile sans drag pour éviter les vibrations */}
+              <div className="md:hidden overflow-hidden">
+                <div
                   key={currentMobileIndex}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.3 }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  onDragEnd={(_, info) => {
-                    if (info.offset.x < -50) nextMobile();
-                    if (info.offset.x > 50) prevMobile();
+                  className="bg-white/5 border border-copper/20 rounded-2xl p-6 flex flex-col h-full"
+                  onTouchStart={(e) => { touchStartXRef.current = e.changedTouches[0]?.clientX || 0 }}
+                  onTouchEnd={(e) => {
+                    const dx = (e.changedTouches[0]?.clientX || 0) - touchStartXRef.current
+                    if (dx < -40) nextMobile()
+                    if (dx > 40) prevMobile()
                   }}
                 >
-                  <div className="bg-white/5 border border-copper/20 rounded-2xl p-6 flex flex-col h-full">
-                    <div className="flex items-center space-x-1 mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <span key={i} className="text-yellow-400">⭐</span>
-                      ))}
-                    </div>
-                    <p className="text-white/90 italic leading-relaxed mb-6">“{testimonialItems[currentMobileIndex].text}”</p>
-                    <div className="mt-auto">
-                      <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentMobileIndex === 0) ? 'p-0.5' : 'p-2')} overflow-hidden`}>
-                        <img src={testimonialItems[currentMobileIndex].image} alt={testimonialItems[currentMobileIndex].name} className={`h-full w-auto object-contain ${((currentMobileIndex === 0) ? 'scale-125 md:scale-110' : '')}`} />
-                      </div>
+                  <div className="flex items-center space-x-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400">⭐</span>
+                    ))}
+                  </div>
+                  <p className="text-white/90 italic leading-relaxed mb-6">“{testimonialItems[currentMobileIndex].text}”</p>
+                  <div className="mt-auto">
+                    <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentMobileIndex === 0) ? 'p-0.5' : 'p-2')} overflow-hidden`}>
+                      <img src={testimonialItems[currentMobileIndex].image} alt={testimonialItems[currentMobileIndex].name} className={`h-full w-auto object-contain ${((currentMobileIndex === 0) ? 'scale-125 md:scale-110' : '')}`} />
                     </div>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>
