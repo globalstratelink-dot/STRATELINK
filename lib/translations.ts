@@ -245,6 +245,21 @@ export const translations = {
     digitalSolutionsApiSaaS: "Digital Solutions : API and SaaS",
     digitalSolutionsApiSaaSItems: ["Enterprise Solutions", "Tracking", "Telecom"],
     
+    // Our Process
+    ourProcess: "Our Process",
+    step01: "Step 01",
+    brainstorming: "Brainstorming",
+    brainstormingDescription: "The first step consists of exchanging on your needs or projects, this allows us to understand your exact expectations, to propose the best existing solutions on the market according to the budget allocated to this mission.",
+    step02: "Step 02",
+    roadmap: "Roadmap",
+    roadmapDescription: "The creation of a roadmap aims to describe all phases of the action plan one by one, this is given to you after validation, the interest being for the sake of clarity to allow progress tracking, respecting the agreed deadlines.",
+    step03: "Step 03",
+    actions: "Actions",
+    actionsDescription: "Each of our clients has a dedicated contact person assigned to them to guarantee quality support as well as availability throughout the operations.",
+    step04: "Step 04",
+    result: "Result",
+    resultDescription: "At the end, an assessment of the operations is carried out, this crucial step allows the analysis of performance and deliverables, the constant improvement of our processes is necessary to guarantee new approaches that are always more innovative.",
+    
     // Accessibility
     openWhatsApp: "Open WhatsApp",
     closeMenu: "Close menu",
@@ -495,6 +510,21 @@ export const translations = {
     internationalSourcingImportExportItems: ["Sourcing", "Contrôle Qualité", "Logistique et Transport", "Catalogue Exclusif"],
     digitalSolutionsApiSaaS: "Digital Solutions : API and SaaS",
     digitalSolutionsApiSaaSItems: ["Solutions d'entreprise", "Tracking", "Télécom"],
+    
+    // Notre Démarche
+    ourProcess: "Notre Démarche",
+    step01: "Étape 01",
+    brainstorming: "Brainstorming",
+    brainstormingDescription: "La première étape consiste à échanger sur vos besoins ou vos projets, cela nous permet ainsi de comprendre vos attentes exactes, pour vous proposer les meilleures solutions existantes sur le marché en fonction du budget alloué à cette mission.",
+    step02: "Étape 02",
+    roadmap: "Feuille de route",
+    roadmapDescription: "La création d'une feuille de route a pour objectif de décrire toutes les phases du plan d'action une à une, celle-ci vous est remise après validation, l'intérêt étant par souci de clarté de permettre un suivi d'avancement, dans le respect des délais convenus.",
+    step03: "Étape 03",
+    actions: "Actions",
+    actionsDescription: "Chacun de nos clients possède un interlocuteur dédié qui lui est attribué pour garantir un accompagnement de qualité ainsi qu'une disponibilité tout au long des opérations.",
+    step04: "Étape 04",
+    result: "Résultat",
+    resultDescription: "Arrivés à terme un bilan des opérations est effectué, cette étape cruciale permet l'analyse de la performance et du livrable, l'amélioration constante de nos process est nécessaire pour garantir de nouvelles approches toujours plus innovantes.",
     
     // Accessibility
     openWhatsApp: "Ouvrir WhatsApp",

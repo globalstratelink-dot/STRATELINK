@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
-import { ArrowRight, Crown, TrendingUp, CheckCircle, Globe, Zap } from "lucide-react"
+import { ArrowRight, Lightbulb, Map, Play, CheckCircle } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -15,8 +15,8 @@ return (
       {/* About Section */}
       <section className="py-20 bg-gradient-to-br from-navy via-navy to-navy/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
+          <div className="max-w-4xl">
+            {/* Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -64,70 +64,164 @@ return (
                 </Button>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
 
-            {/* Right Content - Stats */}
+      {/* Process Section */}
+      <section className="py-20 bg-gradient-to-br from-navy/95 to-navy relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {[
-                  { 
-                    title: t('commercialDevelopment'), 
-                    items: t('commercialDevelopmentItems'),
-                    icon: TrendingUp,
-                    color: "from-copper to-sand"
-                  },
-                  { 
-                    title: t('brandCreationBranding'), 
-                    items: t('brandCreationBrandingItems'),
-                    icon: Crown,
-                    color: "from-sand to-copper"
-                  },
-                  { 
-                    title: t('internationalSourcingImportExport'), 
-                    items: t('internationalSourcingImportExportItems'),
-                    icon: Globe,
-                    color: "from-copper/80 to-sand/80"
-                  },
-                  { 
-                    title: t('digitalSolutionsApiSaaS'), 
-                    items: t('digitalSolutionsApiSaaSItems'),
-                    icon: Zap,
-                    color: "from-sand/80 to-copper/80"
-                  }
-                ].map((service, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-6 hover:border-copper/40 transition-all duration-300 h-full"
-                  >
-                    <div className="flex items-center space-x-3 mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-copper to-sand rounded-xl flex items-center justify-center">
-                        <service.icon className="w-6 h-6 text-navy" />
-                      </div>
-                      <h3 className="text-lg font-bold text-white leading-tight">
-                        {service.title}
-                      </h3>
-                    </div>
-                    <div className="space-y-2">
-                      {service.items.map((item, itemIndex) => (
-                        <div key={itemIndex} className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-copper rounded-full flex-shrink-0"></div>
-                          <span className="text-gray-300 text-sm">{item}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
+              {t('ourProcess')}
             </motion.div>
+          </motion.div>
+
+          {/* Process Steps */}
+          <div className="relative">
+            {/* Central Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-copper via-sand to-copper opacity-30"></div>
+            
+            {/* Steps */}
+            <div className="space-y-16">
+              {/* Step 1 */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="relative flex items-center"
+              >
+                <div className="w-1/2 pr-8 text-right">
+                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                    <div className="flex items-center justify-end space-x-3 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-copper to-sand rounded-full flex items-center justify-center">
+                        <Lightbulb className="w-6 h-6 text-navy" />
+                      </div>
+                      <div>
+                        <div className="text-copper text-sm font-semibold">{t('step01')}</div>
+                        <h3 className="text-xl font-bold text-white">{t('brainstorming')}</h3>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      {t('brainstormingDescription')}
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Central Node */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-copper rounded-full border-4 border-navy z-10"></div>
+                
+                <div className="w-1/2 pl-8"></div>
+              </motion.div>
+
+              {/* Step 2 */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="relative flex items-center"
+              >
+                <div className="w-1/2 pr-8"></div>
+                
+                {/* Central Node */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-sand rounded-full border-4 border-navy z-10"></div>
+                
+                <div className="w-1/2 pl-8">
+                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-sand to-copper rounded-full flex items-center justify-center">
+                        <Map className="w-6 h-6 text-navy" />
+                      </div>
+                      <div>
+                        <div className="text-copper text-sm font-semibold">{t('step02')}</div>
+                        <h3 className="text-xl font-bold text-white">{t('roadmap')}</h3>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      {t('roadmapDescription')}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Step 3 */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                viewport={{ once: true }}
+                className="relative flex items-center"
+              >
+                <div className="w-1/2 pr-8 text-right">
+                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                    <div className="flex items-center justify-end space-x-3 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-copper to-sand rounded-full flex items-center justify-center">
+                        <Play className="w-6 h-6 text-navy" />
+                      </div>
+                      <div>
+                        <div className="text-copper text-sm font-semibold">{t('step03')}</div>
+                        <h3 className="text-xl font-bold text-white">{t('actions')}</h3>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      {t('actionsDescription')}
+                    </p>
+                  </div>
+                </div>
+                
+                {/* Central Node */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-copper rounded-full border-4 border-navy z-10"></div>
+                
+                <div className="w-1/2 pl-8"></div>
+              </motion.div>
+
+              {/* Step 4 */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="relative flex items-center"
+              >
+                <div className="w-1/2 pr-8"></div>
+                
+                {/* Central Node */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-sand rounded-full border-4 border-navy z-10"></div>
+                
+                <div className="w-1/2 pl-8">
+                  <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-sand to-copper rounded-full flex items-center justify-center">
+                        <CheckCircle className="w-6 h-6 text-navy" />
+                      </div>
+                      <div>
+                        <div className="text-copper text-sm font-semibold">{t('step04')}</div>
+                        <h3 className="text-xl font-bold text-white">{t('result')}</h3>
+                      </div>
+                    </div>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      {t('resultDescription')}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>
