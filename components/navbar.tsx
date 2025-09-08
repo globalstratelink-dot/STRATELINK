@@ -152,7 +152,7 @@ export function Navbar() {
               className="bg-gradient-to-r from-copper to-sand text-navy font-bold hover:scale-105 transition-transform duration-200" 
               asChild
             >
-              <Link href="https://calendly.com/net-stitou" target="_blank" rel="noopener noreferrer">
+              <Link href="/calendly">
                 Get Started
               </Link>
             </Button>
@@ -217,7 +217,7 @@ export function Navbar() {
                     asChild
                     onClick={closeMobileMenu}
                   >
-                    <Link href="https://calendly.com/net-stitou" target="_blank" rel="noopener noreferrer">
+                    <Link href="/calendly">
                       Get Started
                     </Link>
                   </Button>

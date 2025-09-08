@@ -64,6 +64,8 @@ export const translations = {
     readyToStart: "Book Your Free Consultation",
     contactUsForConsultation: "Contact us for a personalized consultation and discover how we can help you achieve your goals",
     contactUs: "Contact Us",
+    scheduleTime: "Schedule time with me",
+    or: "or",
     
     // Hero Section
     heroTitle: "Global",
@@ -312,6 +314,8 @@ export const translations = {
     readyToStart: "Réservez votre consultation gratuite",
     contactUsForConsultation: "Contactez-nous pour une consultation personnalisée et découvrez comment nous pouvons vous aider à atteindre vos objectifs",
     contactUs: "Contactez-nous",
+    scheduleTime: "Planifier du temps avec moi",
+    or: "ou",
     
     // Hero Section
     heroTitle: "Solutions",
