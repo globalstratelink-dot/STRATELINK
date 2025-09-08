@@ -30,6 +30,36 @@ export function HomeSlides() {
     }
   }, [])
 
+  // Charger le script Calendly pour le widget
+  useEffect(() => {
+    // Vérifier si le script est déjà chargé
+    const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')
+    
+    if (!existingScript) {
+      const script = document.createElement('script')
+      script.src = 'https://assets.calendly.com/assets/external/widget.js'
+      script.async = true
+      document.head.appendChild(script)
+    }
+
+    // Initialiser le widget Calendly après un délai
+    const initCalendly = setTimeout(() => {
+      if (typeof window !== 'undefined' && (window as any).Calendly) {
+        const widgets = document.querySelectorAll('.calendly-inline-widget')
+        widgets.forEach(widget => {
+          if (!widget.hasAttribute('data-calendly-initialized')) {
+            (window as any).Calendly.initInlineWidget(widget)
+            widget.setAttribute('data-calendly-initialized', 'true')
+          }
+        })
+      }
+    }, 1000)
+
+    return () => {
+      clearTimeout(initCalendly)
+    }
+  }, [])
+
   // Props d'animation conditionnelles
   const getAnimationProps = (defaultProps: any) => {
     if (isMobile) {
@@ -680,27 +710,6 @@ export function HomeSlides() {
         viewport={{ once: true }}
         className="mt-20 text-center"
       >
-        {/* Section Française */}
-        <div className="mb-8">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-            viewport={{ once: true }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
-          >
-            {t('readyToTransformYourBusiness')}
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-            viewport={{ once: true }}
-            className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-          >
-            {t('letsDiscussStrategicSolutions')}
-          </motion.p>
-        </div>
 
         {/* Section Anglaise */}
         <motion.div
@@ -735,6 +744,21 @@ export function HomeSlides() {
                 {t('contactButton')}
               </Link>
             </Button>
+          </motion.div>
+          
+          {/* Widget Calendly */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+            viewport={{ once: true }}
+            className="mt-8"
+          >
+            <div 
+              className="calendly-inline-widget" 
+              data-url="https://calendly.com/stratelink?background_color=041331&text_color=ffffff&primary_color=a97968" 
+              style={{ minWidth: '320px', height: '500px' }}
+            />
           </motion.div>
           
         </motion.div>
