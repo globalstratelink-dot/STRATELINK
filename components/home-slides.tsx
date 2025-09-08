@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowLeft, Globe, TrendingUp, Palette, Zap } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
-import { HeroImage, ServicesImage } from "@/components/optimized-image"
+import { HeroImage, ServicesImage, OptimizedAvatar } from "@/components/optimized-image"
 import Link from "next/link"
 import { useRef, useState, useEffect } from "react"
 
@@ -630,108 +630,39 @@ export function HomeSlides() {
             viewport={{ once: true }}
             className="relative max-w-6xl mx-auto"
           >
-            {/* Container avec boutons flèches et logos centrés */}
-            <div className="flex items-center justify-center gap-4 md:gap-8">
-              {/* Bouton gauche */}
-              <Button
-                variant="ghost"
-                className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
-                onClick={() => {
-                  // Mobile: navigation logo par logo, Desktop: navigation par groupe
-                  if (isMobile) {
-                    prevMobile()
-                  } else {
-                    prevGroup()
-                  }
-                }}
-              >
-                <ArrowLeft className="w-6 h-6" />
-              </Button>
-
-              {/* Groupe de logos */}
-              <motion.div
-                key={isMobile ? currentMobileIndex : currentGroupIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="flex-1 max-w-4xl"
-              >
-                {/* Mobile: 1 logo à la fois */}
-                <div className="md:hidden">
-                  <motion.div
-                    key={currentMobileIndex}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="flex justify-center"
-                  >
-                    <div className="w-80 h-56 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 p-6">
-                      {/* Logo */}
-                      <img
-                        src={trustedLogos[currentMobileIndex].src}
-                        alt={trustedLogos[currentMobileIndex].alt}
-                        className="max-h-20 w-auto object-contain mb-4"
-                      />
-                      {/* Texte et étoiles */}
-                      <div className="text-center">
-                        <p className="text-copper font-semibold text-sm mb-2">{t('trustedByUs')}</p>
-                        <div className="flex justify-center space-x-1">
-                          {[...Array(5)].map((_, starIndex) => (
-                            <span key={starIndex} className="text-copper text-lg">⭐</span>
-                          ))}
-                        </div>
-                      </div>
+            {/* Grille de témoignages (6 boxes) */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                { name: 'Sarah Johnson', role: t('globalClients'), company: 'PhotoBox', image: '/1.webp', text: t('trustedByUsDescription') },
+                { name: 'Michael Chen', role: t('globalClients'), company: 'TechCorp', image: '/2.webp', text: t('trustedByUsDescription') },
+                { name: 'Lisa Rodriguez', role: t('globalClients'), company: 'Sustainable Homes', image: '/3.webp', text: t('trustedByUsDescription') },
+                { name: 'David Kim', role: t('globalClients'), company: 'EcoLogix', image: '/4.webp', text: t('trustedByUsDescription') },
+                { name: 'Emma Rodriguez', role: t('globalClients'), company: 'Manufacturing', image: '/5.webp', text: t('trustedByUsDescription') },
+                { name: 'Daniel Smith', role: t('globalClients'), company: 'GlobalTrade', image: '/6.webp', text: t('trustedByUsDescription') },
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white/5 border border-copper/20 hover:border-copper/40 rounded-2xl p-6 transition-all duration-300">
+                  {/* Stars */}
+                  <div className="flex items-center space-x-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400">⭐</span>
+                    ))}
+                  </div>
+                  {/* Quote */}
+                  <p className="text-white/90 italic leading-relaxed mb-6">
+                    “{item.text}”
+                  </p>
+                  {/* Avatar and info */}
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-full overflow-hidden border border-copper/30 bg-copper/10">
+                      <OptimizedAvatar src={item.image} alt={item.name} size={48} fallback={item.name.slice(0,2).toUpperCase()} />
                     </div>
-                  </motion.div>
+                    <div>
+                      <div className="text-white font-semibold text-sm">{item.name}</div>
+                      <div className="text-gray-300 text-xs">{item.company}</div>
+                    </div>
+                  </div>
                 </div>
-
-                {/* Desktop: 3 logos */}
-                <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8">
-                  {getCurrentLogos().map((logo, index) => (
-                    <motion.div
-                      key={logo.src}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex justify-center"
-                    >
-                      <div className="w-64 h-48 lg:w-72 lg:h-52 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 p-4">
-                        {/* Logo */}
-                        <img
-                          src={logo.src}
-                          alt={logo.alt}
-                          className="max-h-16 lg:max-h-20 w-auto object-contain mb-3"
-                        />
-                        {/* Texte et étoiles */}
-                        <div className="text-center">
-                          <p className="text-copper font-semibold text-xs lg:text-sm mb-2">{t('trustedByUs')}</p>
-                          <div className="flex justify-center space-x-1">
-                            {[...Array(5)].map((_, starIndex) => (
-                              <span key={starIndex} className="text-copper text-sm lg:text-base">⭐</span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Bouton droite */}
-              <Button
-                variant="ghost"
-                className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
-                onClick={() => {
-                  // Mobile: navigation logo par logo, Desktop: navigation par groupe
-                  if (isMobile) {
-                    nextMobile()
-                  } else {
-                    nextGroup()
-                  }
-                }}
-              >
-                <ArrowRight className="w-6 h-6" />
-              </Button>
+              ))}
             </div>
           </motion.div>
         </div>
