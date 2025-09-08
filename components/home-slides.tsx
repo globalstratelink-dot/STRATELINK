@@ -42,21 +42,25 @@ export function HomeSlides() {
       document.head.appendChild(script)
     }
 
-    // Initialiser le widget Calendly après un délai
-    const initCalendly = setTimeout(() => {
+    // Initialiser le widget après un délai
+    const initWidget = setTimeout(() => {
       if (typeof window !== 'undefined' && (window as any).Calendly) {
         const widgets = document.querySelectorAll('.calendly-inline-widget')
         widgets.forEach(widget => {
           if (!widget.hasAttribute('data-calendly-initialized')) {
-            (window as any).Calendly.initInlineWidget(widget)
-            widget.setAttribute('data-calendly-initialized', 'true')
+            try {
+              (window as any).Calendly.initInlineWidget(widget)
+              widget.setAttribute('data-calendly-initialized', 'true')
+            } catch (error) {
+              console.log('Erreur initialisation Calendly:', error)
+            }
           }
         })
       }
-    }, 1000)
+    }, 2000)
 
     return () => {
-      clearTimeout(initCalendly)
+      clearTimeout(initWidget)
     }
   }, [])
 
