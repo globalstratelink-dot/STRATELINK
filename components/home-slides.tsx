@@ -94,6 +94,34 @@ export function HomeSlides() {
   const logosPerGroup = 3
   const totalGroups = Math.ceil(trustedLogos.length / logosPerGroup)
   
+  // Témoignages (6 cards)
+  const testimonialItems = [
+    { 
+      name: 'Sarah Johnson', company: 'PhotoBox', image: '/1.webp',
+      text: 'Nous avons eu l’opportunité de bénéficier du soutien logistique de STRATELINK GLOBAL dans un contexte d’urgence. Leur réactivité et leur professionnalisme nous ont permis de relever un défi critique et d’assurer la continuité de nos opérations. C’est toujours un véritable plaisir de collaborer avec une équipe aussi fiable et engagée.'
+    },
+    { 
+      name: 'Michael Chen', company: 'TechCorp', image: '/2.webp',
+      text: 'L’accompagnement a été déterminant pour structurer mes process, optimiser la gestion clients et renforcer mon approche commerciale. Son expertise et sa disponibilité m’ont permis de gagner en efficacité et en clarté. Une vraie valeur ajoutée que je recommande.'
+    },
+    { 
+      name: 'Lisa Rodriguez', company: 'Sustainable Homes', image: '/3.webp',
+      text: 'Travailler avec STRATELINK GLOBAL sur nos missions communes a été un véritable atout stratégique. Leur professionnalisme, leur réactivité et la complémentarité de nos expertises ont créé une confiance immédiate et durable. C’est un plaisir de collaborer avec une équipe aussi compétente, engagée et orientée résultats.'
+    },
+    { 
+      name: 'David Kim', company: 'EcoLogix', image: '/4.webp',
+      text: 'Nous avons sollicité STRATELINK GLOBAL pour nous accompagner dans notre stratégie de développement. Leur approche a été à la fois claire, structurée et visionnaire. Grâce à leurs conseils, nous avons pu redéfinir nos priorités et mettre en place un plan concret pour nos objectifs.'
+    },
+    { 
+      name: 'Emma Rodriguez', company: 'Manufacturing', image: '/5.webp',
+      text: 'Grâce à vous, nous avons pu sourcer rapidement un produit technologique clé, avec un accompagnement de grande qualité. Au-delà du résultat concret, cette collaboration a donné naissance à une belle amitié, rendant chaque échange à la fois efficace et sincèrement agréable.'
+    },
+    { 
+      name: 'Daniel Smith', company: 'GlobalTrade', image: '/6.webp',
+      text: 'Nous collaborons avec STRATELINK GLOBAL et son dirigeant depuis des années. Sa compétence et son professionnalisme font l’unanimité. Nous lui confions naturellement le développement commercial de nos solutions en toute confiance.'
+    },
+  ]
+  
   const nextGroup = () => {
     setCurrentGroupIndex((prev) => (prev + 1) % totalGroups)
   }
@@ -631,38 +659,76 @@ export function HomeSlides() {
             className="relative max-w-6xl mx-auto"
           >
             {/* Grille de témoignages (6 boxes) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { name: 'Sarah Johnson', role: t('globalClients'), company: 'PhotoBox', image: '/1.webp', text: t('trustedByUsDescription') },
-                { name: 'Michael Chen', role: t('globalClients'), company: 'TechCorp', image: '/2.webp', text: t('trustedByUsDescription') },
-                { name: 'Lisa Rodriguez', role: t('globalClients'), company: 'Sustainable Homes', image: '/3.webp', text: t('trustedByUsDescription') },
-                { name: 'David Kim', role: t('globalClients'), company: 'EcoLogix', image: '/4.webp', text: t('trustedByUsDescription') },
-                { name: 'Emma Rodriguez', role: t('globalClients'), company: 'Manufacturing', image: '/5.webp', text: t('trustedByUsDescription') },
-                { name: 'Daniel Smith', role: t('globalClients'), company: 'GlobalTrade', image: '/6.webp', text: t('trustedByUsDescription') },
-              ].map((item, idx) => (
-                <div key={idx} className="bg-white/5 border border-copper/20 hover:border-copper/40 rounded-2xl p-6 transition-all duration-300">
-                  {/* Stars */}
-                  <div className="flex items-center space-x-1 mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400">⭐</span>
-                    ))}
-                  </div>
-                  {/* Quote */}
-                  <p className="text-white/90 italic leading-relaxed mb-6">
-                    “{item.text}”
-                  </p>
-                  {/* Avatar and info */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full overflow-hidden border border-copper/30 bg-copper/10">
-                      <OptimizedAvatar src={item.image} alt={item.name} size={48} fallback={item.name.slice(0,2).toUpperCase()} />
-                    </div>
-                    <div>
-                      <div className="text-white font-semibold text-sm">{item.name}</div>
-                      <div className="text-gray-300 text-xs">{item.company}</div>
-                    </div>
-                  </div>
+            <div>
+              {/* Desktop: 3 cards with arrows */}
+              <div className="hidden md:flex items-center gap-4">
+                <Button
+                  variant="ghost"
+                  className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
+                  onClick={prevGroup}
+                >
+                  <ArrowLeft className="w-6 h-6" />
+                </Button>
+
+                <div className="grid md:grid-cols-3 gap-6 flex-1">
+                  {testimonialItems
+                    .slice(currentGroupIndex * logosPerGroup, currentGroupIndex * logosPerGroup + logosPerGroup)
+                    .map((item, idx) => (
+                      <div key={`${item.name}-${idx}`} className="bg-white/5 border border-copper/20 hover:border-copper/40 rounded-2xl p-6 transition-all duration-300 flex flex-col h-full">
+                        <div className="flex items-center space-x-1 mb-4">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className="text-yellow-400">⭐</span>
+                          ))}
+                        </div>
+                        <p className="text-white/90 italic leading-relaxed mb-6">“{item.text}”</p>
+                        <div className="mt-auto">
+                          <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentGroupIndex * logosPerGroup + idx) === 0 ? 'p-0.5' : 'p-2')} overflow-hidden`}>
+                            <img src={item.image} alt={item.name} className={`h-full w-auto object-contain ${((currentGroupIndex * logosPerGroup + idx) === 0 ? 'scale-125 md:scale-110' : '')}`} />
+                          </div>
+                        </div>
+                      </div>
+                  ))}
                 </div>
-              ))}
+
+                <Button
+                  variant="ghost"
+                  className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
+                  onClick={nextGroup}
+                >
+                  <ArrowRight className="w-6 h-6" />
+                </Button>
+              </div>
+
+              {/* Mobile: 1 card with swipe */}
+              <div className="md:hidden">
+                <motion.div
+                  key={currentMobileIndex}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.3 }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(_, info) => {
+                    if (info.offset.x < -50) nextMobile();
+                    if (info.offset.x > 50) prevMobile();
+                  }}
+                >
+                  <div className="bg-white/5 border border-copper/20 rounded-2xl p-6 flex flex-col h-full">
+                    <div className="flex items-center space-x-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-yellow-400">⭐</span>
+                      ))}
+                    </div>
+                    <p className="text-white/90 italic leading-relaxed mb-6">“{testimonialItems[currentMobileIndex].text}”</p>
+                    <div className="mt-auto">
+                      <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentMobileIndex === 0) ? 'p-0.5' : 'p-2')} overflow-hidden`}>
+                        <img src={testimonialItems[currentMobileIndex].image} alt={testimonialItems[currentMobileIndex].name} className={`h-full w-auto object-contain ${((currentMobileIndex === 0) ? 'scale-125 md:scale-110' : '')}`} />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
