@@ -18,6 +18,16 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Désactivation globale des animations sur mobile */
+  :root .disable-animations *,
+  body.disable-animations *,
+  body.disable-animations *::before,
+  body.disable-animations *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
   
   /* Classes de titres harmonisées */
   .title-hero {

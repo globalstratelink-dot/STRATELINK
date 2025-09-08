@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/contexts/language-context"
 import { Navbar } from "@/components/navbar"
 import { WhatsAppFloat } from "@/components/whatsapp-float"
 import { MobileLanguageFAB } from "@/components/mobile-language-fab"
+import { MotionProvider } from "@/components/motion-provider"
 
 const poppins = Poppins({ 
   subsets: ["latin"],
@@ -33,15 +34,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} font-sans`}>
-        <LanguageProvider>
-          <Navbar />
-          {children}
-          <WhatsAppFloat 
-            phoneNumber="00971543192348"
-            message="Bonjour, j'aimerais avoir plus d'informations"
-          />
-          <MobileLanguageFAB />
-        </LanguageProvider>
+        <MotionProvider>
+          <LanguageProvider>
+            <Navbar />
+            {children}
+            <WhatsAppFloat 
+              phoneNumber="00971543192348"
+              message="Bonjour, j'aimerais avoir plus d'informations"
+            />
+            <MobileLanguageFAB />
+          </LanguageProvider>
+        </MotionProvider>
       </body>
     </html>
   )
