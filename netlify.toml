@@ -15,28 +15,28 @@
 # Redirection domaine .ae -> .com (301)
 [[redirects]]
   from = "/*"
-  to = "https://stratelink-globale.com/:splat"
+  to = "https://stratelink-global.com/:splat"
   status = 301
   force = true
   conditions = { Host = ["stratelink-global.ae", "www.stratelink-global.ae"] }
 
 # Redirection HTTP vers HTTPS (301)
 [[redirects]]
-  from = "http://stratelink-globale.com/*"
-  to = "https://stratelink-globale.com/:splat"
+  from = "http://stratelink-global.com/*"
+  to = "https://stratelink-global.com/:splat"
   status = 301
   force = true
 
 [[redirects]]
-  from = "http://www.stratelink-globale.com/*"
-  to = "https://stratelink-globale.com/:splat"
+  from = "http://www.stratelink-global.com/*"
+  to = "https://stratelink-global.com/:splat"
   status = 301
   force = true
 
 # Redirection www vers non-www (301)
 [[redirects]]
-  from = "https://www.stratelink-globale.com/*"
-  to = "https://stratelink-globale.com/:splat"
+  from = "https://www.stratelink-global.com/*"
+  to = "https://stratelink-global.com/:splat"
   status = 301
   force = true
 
