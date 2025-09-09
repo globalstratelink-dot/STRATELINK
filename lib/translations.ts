@@ -291,7 +291,7 @@ export const translations = {
     // New Home Slides
     visionSynergiesDevelopment: "Stratégies - Réseaux - Croissance",
     accelerateInternationalExpansion: "Accélérez votre expansion internationale",
-    strategicPartnerDubaiEuropeAsia: "Stratelink Global est le partenaire stratégique qui relie Dubaï, l’Europe et l’Asie",
+    strategicPartnerDubaiEuropeAsia: "Stratelink Global est le partenaire stratégique qui relie Dubaï, l'Europe et l'Asie",
     discoverOurSolutions: "Découvrir nos solutions",
     globalSolutionsInternationalTrade: "Solutions globales pour le commerce international et le développement commercial",
     sourcingToDeliveryDescription: "De l'approvisionnement à la livraison, nous orchestrons vos opérations d'import/export et accélérons votre croissance grâce à des stratégies de développement commercial sur mesure",
