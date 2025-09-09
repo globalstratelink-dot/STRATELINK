@@ -12,29 +12,56 @@
   directory = ".netlify/functions"
   node_bundler = "esbuild"
 
-# Redirection domaine .com -> .ae (301)
+# Redirection domaine .ae -> .com (301)
 [[redirects]]
   from = "/*"
-  to = "https://stratelink-global.ae/:splat"
+  to = "https://stratelink-globale.com/:splat"
   status = 301
   force = true
-  conditions = { Host = ["stratelink-global.com", "www.stratelink-global.com"] }
+  conditions = { Host = ["stratelink-global.ae", "www.stratelink-global.ae"] }
 
-# SPA fallback (garde après la règle domaine)
+# Redirection HTTP vers HTTPS (301)
+[[redirects]]
+  from = "http://stratelink-globale.com/*"
+  to = "https://stratelink-globale.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.stratelink-globale.com/*"
+  to = "https://stratelink-globale.com/:splat"
+  status = 301
+  force = true
+
+# Redirection www vers non-www (301)
+[[redirects]]
+  from = "https://www.stratelink-globale.com/*"
+  to = "https://stratelink-globale.com/:splat"
+  status = 301
+  force = true
+
+# SPA fallback (garde après les redirections)
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
+# Headers de sécurité
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
+    X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
-# Headers spécifiques pour les icônes et favicons
+# Headers pour les assets statiques
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
 [[headers]]
   for = "/favicon.ico"
   [headers.values]
@@ -58,3 +85,16 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
     Content-Type = "image/png"
+
+# Headers pour les images optimisées
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "image/webp"
+
+[[headers]]
+  for = "*.avif"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "image/avif"
