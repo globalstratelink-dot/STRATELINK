@@ -63,11 +63,6 @@ export function Footer() {
                   {t('agency')}
                 </Link>
               </li>
-              <li>
-                <Link className="hover:text-copper transition-colors" href="/partners/">
-                  {t('globalClients')}
-                </Link>
-              </li>
             </ul>
           </div>
 
