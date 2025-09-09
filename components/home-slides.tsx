@@ -102,8 +102,8 @@ export function HomeSlides() {
       text: 'Nous avons eu l\'opportunité de bénéficier du soutien logistique de STRATELINK GLOBAL dans un contexte d\'urgence. Leur réactivité et leur professionnalisme nous ont permis de relever un défi critique et d\'assurer la continuité de nos opérations. C\'est toujours un véritable plaisir de collaborer avec une équipe aussi fiable et engagée.'
     },
     { 
-      name: 'Michael Chen', company: 'TechCorp', image: '/2.webp',
-      text: 'L\'accompagnement a été déterminant pour structurer mes process, optimiser la gestion clients et renforcer mon approche commerciale. Son expertise et sa disponibilité m\'ont permis de gagner en efficacité et en clarté. Une vraie valeur ajoutée que je recommande.'
+      name: 'Daniel Smith', company: 'GlobalTrade', image: '/6.webp',
+      text: 'Nous collaborons avec STRATELINK GLOBAL et son dirigeant depuis des années. Sa compétence et son professionnalisme font l\'unanimité. Nous lui confions naturellement le développement commercial de nos solutions en toute confiance.'
     },
     { 
       name: 'Lisa Rodriguez', company: 'Sustainable Homes', image: '/3.webp',
@@ -118,8 +118,8 @@ export function HomeSlides() {
       text: 'Grâce à vous, nous avons pu sourcer rapidement un produit technologique clé, avec un accompagnement de grande qualité. Au-delà du résultat concret, cette collaboration a donné naissance à une belle amitié, rendant chaque échange à la fois efficace et sincèrement agréable.'
     },
     { 
-      name: 'Daniel Smith', company: 'GlobalTrade', image: '/6.webp',
-      text: 'Nous collaborons avec STRATELINK GLOBAL et son dirigeant depuis des années. Sa compétence et son professionnalisme font l\'unanimité. Nous lui confions naturellement le développement commercial de nos solutions en toute confiance.'
+      name: 'Michael Chen', company: 'TechCorp', image: '/2.webp',
+      text: 'L\'accompagnement a été déterminant pour structurer mes process, optimiser la gestion clients et renforcer mon approche commerciale. Son expertise et sa disponibilité m\'ont permis de gagner en efficacité et en clarté. Une vraie valeur ajoutée que je recommande.'
     },
   ]
   
@@ -674,8 +674,8 @@ export function HomeSlides() {
                         </div>
                         <p className="text-white/90 italic leading-relaxed mb-6">“{item.text}”</p>
                         <div className="mt-auto">
-                          <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 3 || (currentGroupIndex * logosPerGroup + idx) === 4 || (currentGroupIndex * logosPerGroup + idx) === 5 ? 'p-0' : 'p-2')} overflow-hidden`}>
-                            <img src={item.image} alt={item.name} className={`${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 3 || (currentGroupIndex * logosPerGroup + idx) === 4 || (currentGroupIndex * logosPerGroup + idx) === 5 ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
+                          <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 1 || (currentGroupIndex * logosPerGroup + idx) === 3 || (currentGroupIndex * logosPerGroup + idx) === 4 ? 'p-0' : 'p-2')} overflow-hidden`}>
+                            <img src={item.image} alt={item.name} className={`${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 1 || (currentGroupIndex * logosPerGroup + idx) === 3 || (currentGroupIndex * logosPerGroup + idx) === 4 ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
                           </div>
                         </div>
                       </div>
@@ -710,8 +710,8 @@ export function HomeSlides() {
                   </div>
                   <p className="text-white/90 italic leading-relaxed mb-6">“{testimonialItems[currentMobileIndex].text}”</p>
                   <div className="mt-auto">
-                    <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentMobileIndex === 0) || (currentMobileIndex === 3) || (currentMobileIndex === 4) || (currentMobileIndex === 5) ? 'p-0' : 'p-2')} overflow-hidden`}>
-                      <img src={testimonialItems[currentMobileIndex].image} alt={testimonialItems[currentMobileIndex].name} className={`${((currentMobileIndex === 0) || (currentMobileIndex === 3) || (currentMobileIndex === 4) || (currentMobileIndex === 5) ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
+                    <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentMobileIndex === 0) || (currentMobileIndex === 1) || (currentMobileIndex === 3) || (currentMobileIndex === 4) ? 'p-0' : 'p-2')} overflow-hidden`}>
+                      <img src={testimonialItems[currentMobileIndex].image} alt={testimonialItems[currentMobileIndex].name} className={`${((currentMobileIndex === 0) || (currentMobileIndex === 1) || (currentMobileIndex === 3) || (currentMobileIndex === 4) ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
                     </div>
                   </div>
                 </div>

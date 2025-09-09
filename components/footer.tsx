@@ -116,7 +116,7 @@ export function Footer() {
               </li>
               <li className="flex items-start space-x-3">
                 <Linkedin className="w-4 h-4 mt-0.5 text-copper" />
-                <a className="hover:text-copper transition-colors" href="https://www.linkedin.com/company/stratelink-global" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a className="hover:text-copper transition-colors" href="https://linkedin.com/company/stratelink-global" target="_blank" rel="noopener noreferrer">LinkedIn</a>
               </li>
             </ul>
           </div>
