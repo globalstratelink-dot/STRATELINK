@@ -347,12 +347,6 @@ export function HomeSlides() {
                   
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent"></div>
-                  
-                  {/* Card Content */}
-                  <div className="absolute bottom-4 left-4 right-4 text-center">
-                    <h3 className="text-white font-semibold text-lg mb-2">{t('globalLogisticsNetwork')}</h3>
-                    <p className="text-gray-300 text-sm">{t('connectingDubaiEuropeAsia')}</p>
-                  </div>
                 </div>
                 
                 {/* Floating Elements */}
@@ -672,7 +666,7 @@ export function HomeSlides() {
                             <span key={i} className="text-yellow-400">⭐</span>
                           ))}
                         </div>
-                        <p className="text-white/90 italic leading-relaxed mb-6">“{item.text}”</p>
+                        <p className="text-white/90 italic leading-relaxed mb-6">"{item.text}"</p>
                         <div className="mt-auto">
                           <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 1 || (currentGroupIndex * logosPerGroup + idx) === 3 || (currentGroupIndex * logosPerGroup + idx) === 4 ? 'p-0' : 'p-2')} overflow-hidden`}>
                             <img src={item.image} alt={item.name} className={`${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 1 || (currentGroupIndex * logosPerGroup + idx) === 3 || (currentGroupIndex * logosPerGroup + idx) === 4 ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
@@ -708,7 +702,7 @@ export function HomeSlides() {
                       <span key={i} className="text-yellow-400">⭐</span>
                     ))}
                   </div>
-                  <p className="text-white/90 italic leading-relaxed mb-6">“{testimonialItems[currentMobileIndex].text}”</p>
+                  <p className="text-white/90 italic leading-relaxed mb-6">"{testimonialItems[currentMobileIndex].text}"</p>
                   <div className="mt-auto">
                     <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentMobileIndex === 0) || (currentMobileIndex === 1) || (currentMobileIndex === 3) || (currentMobileIndex === 4) ? 'p-0' : 'p-2')} overflow-hidden`}>
                       <img src={testimonialItems[currentMobileIndex].image} alt={testimonialItems[currentMobileIndex].name} className={`${((currentMobileIndex === 0) || (currentMobileIndex === 1) || (currentMobileIndex === 3) || (currentMobileIndex === 4) ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
