@@ -257,7 +257,7 @@ export const translations = {
     actionsDescription: "Each of our clients is assigned a dedicated contact person to ensure high-quality support and availability throughout the operations.",
     step04: "Step 04",
     result: "Result",
-    resultDescription: "At the end, an assessment of the operations is carried out, this crucial step allows the analysis of performance and deliverables, the constant improvement of our processes is necessary to guarantee new approaches that are always more innovative.",
+    resultDescription: "At the end of the project, an operational review is presented with an analysis of the mission's KPIs. This crucial step allows us to evaluate performance and deliverables. It is also an opportunity to gather customer feedback for the continuous improvement of our processes and to guarantee ever more innovative approaches.",
     
     // Accessibility
     openWhatsApp: "Open WhatsApp",
@@ -534,7 +534,7 @@ export const translations = {
     actionsDescription: "Chacun de nos clients possède un interlocuteur dédié qui lui est attribué pour garantir un accompagnement de qualité ainsi qu'une disponibilité tout au long des opérations.",
     step04: "Étape 04",
     result: "Résultat",
-    resultDescription: "Arrivés à terme un bilan des opérations est effectué, cette étape cruciale permet l'analyse de la performance et du livrable, l'amélioration constante de nos process est nécessaire pour garantir de nouvelles approches toujours plus innovantes.",
+    resultDescription: "Au terme du projet, un bilan des opérations est présenté avec une analyse des KPI de la mission, cette étape cruciale permet l'évaluation de la performance et du livrable. C'est aussi l'occasion d'un retour d'expérience client pour l'amélioration constante de nos process et la garantie d'approches toujours plus innovantes.",
     
     // Accessibility
     openWhatsApp: "Ouvrir WhatsApp",
