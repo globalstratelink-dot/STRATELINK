@@ -232,7 +232,7 @@ export const translations = {
     orchestratorOfInternationalGrowth: "Orchestrator of your international growth",
     aboutStratelinkDescription1: "At Stratelink Global, we support companies in their expansion through integrated solutions in import/export, business development, branding and digital transformation.",
     aboutStratelinkDescription2: "Our mission: simplify your operations while generating measurable and sustainable growth.",
-    aboutStratelinkDescription3: "Drawing on our experience with ambitious companies and established companies, we deploy a rigorous approach that produces concrete results and strengthens your international reach.",
+    aboutStratelinkDescription3: "With our experience working with ambitious and well-established companies, we take a rigorous approach that produces concrete results and strengthens your international reach.",
     
     // Agency Services
     commercialDevelopment: "Commercial Development",
