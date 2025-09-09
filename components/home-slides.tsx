@@ -99,15 +99,15 @@ export function HomeSlides() {
   const testimonialItems = [
     { 
       name: 'Sarah Johnson', company: 'PhotoBox', image: '/1.webp',
-      text: 'Nous avons eu l’opportunité de bénéficier du soutien logistique de STRATELINK GLOBAL dans un contexte d’urgence. Leur réactivité et leur professionnalisme nous ont permis de relever un défi critique et d’assurer la continuité de nos opérations. C’est toujours un véritable plaisir de collaborer avec une équipe aussi fiable et engagée.'
+      text: 'Nous avons eu l\'opportunité de bénéficier du soutien logistique de STRATELINK GLOBAL dans un contexte d\'urgence. Leur réactivité et leur professionnalisme nous ont permis de relever un défi critique et d\'assurer la continuité de nos opérations. C\'est toujours un véritable plaisir de collaborer avec une équipe aussi fiable et engagée.'
     },
     { 
       name: 'Michael Chen', company: 'TechCorp', image: '/2.webp',
-      text: 'L’accompagnement a été déterminant pour structurer mes process, optimiser la gestion clients et renforcer mon approche commerciale. Son expertise et sa disponibilité m’ont permis de gagner en efficacité et en clarté. Une vraie valeur ajoutée que je recommande.'
+      text: 'L\'accompagnement a été déterminant pour structurer mes process, optimiser la gestion clients et renforcer mon approche commerciale. Son expertise et sa disponibilité m\'ont permis de gagner en efficacité et en clarté. Une vraie valeur ajoutée que je recommande.'
     },
     { 
       name: 'Lisa Rodriguez', company: 'Sustainable Homes', image: '/3.webp',
-      text: 'Travailler avec STRATELINK GLOBAL sur nos missions communes a été un véritable atout stratégique. Leur professionnalisme, leur réactivité et la complémentarité de nos expertises ont créé une confiance immédiate et durable. C’est un plaisir de collaborer avec une équipe aussi compétente, engagée et orientée résultats.'
+      text: 'Travailler avec STRATELINK GLOBAL sur nos missions communes a été un véritable atout stratégique. Leur professionnalisme, leur réactivité et la complémentarité de nos expertises ont créé une confiance immédiate et durable. C\'est un plaisir de collaborer avec une équipe aussi compétente, engagée et orientée résultats.'
     },
     { 
       name: 'David Kim', company: 'EcoLogix', image: '/4.webp',
@@ -119,7 +119,7 @@ export function HomeSlides() {
     },
     { 
       name: 'Daniel Smith', company: 'GlobalTrade', image: '/6.webp',
-      text: 'Nous collaborons avec STRATELINK GLOBAL et son dirigeant depuis des années. Sa compétence et son professionnalisme font l’unanimité. Nous lui confions naturellement le développement commercial de nos solutions en toute confiance.'
+      text: 'Nous collaborons avec STRATELINK GLOBAL et son dirigeant depuis des années. Sa compétence et son professionnalisme font l\'unanimité. Nous lui confions naturellement le développement commercial de nos solutions en toute confiance.'
     },
   ]
   
@@ -209,7 +209,7 @@ export function HomeSlides() {
                   className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:scale-105 transition-transform duration-200 w-full sm:w-auto"
                   asChild
                 >
-                  <Link href="/calendly">
+                  <Link href="/services">
                     {t('discoverOurSolutions')}
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                   </Link>
@@ -605,7 +605,7 @@ export function HomeSlides() {
               className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
             >
               <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
-              Confiance
+              Avis
             </motion.div>
             
             <motion.h2
@@ -640,15 +640,6 @@ export function HomeSlides() {
               ))}
             </motion.div>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="text-xl text-gray-300 max-w-3xl mx-auto"
-            >
-              {t('trustedByUsDescription')}
-            </motion.p>
           </motion.div>
 
           {/* Logos avec navigation par flèches - 3 logos par groupe sur desktop, 1 sur mobile */}
@@ -683,8 +674,8 @@ export function HomeSlides() {
                         </div>
                         <p className="text-white/90 italic leading-relaxed mb-6">“{item.text}”</p>
                         <div className="mt-auto">
-                          <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentGroupIndex * logosPerGroup + idx) === 0 ? 'p-0.5' : 'p-2')} overflow-hidden`}>
-                            <img src={item.image} alt={item.name} className={`h-full w-auto object-contain ${((currentGroupIndex * logosPerGroup + idx) === 0 ? 'scale-125 md:scale-110' : '')}`} />
+                          <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 3 || (currentGroupIndex * logosPerGroup + idx) === 4 || (currentGroupIndex * logosPerGroup + idx) === 5 ? 'p-0' : 'p-2')} overflow-hidden`}>
+                            <img src={item.image} alt={item.name} className={`${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 3 || (currentGroupIndex * logosPerGroup + idx) === 4 || (currentGroupIndex * logosPerGroup + idx) === 5 ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
                           </div>
                         </div>
                       </div>
@@ -719,8 +710,8 @@ export function HomeSlides() {
                   </div>
                   <p className="text-white/90 italic leading-relaxed mb-6">“{testimonialItems[currentMobileIndex].text}”</p>
                   <div className="mt-auto">
-                    <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentMobileIndex === 0) ? 'p-0.5' : 'p-2')} overflow-hidden`}>
-                      <img src={testimonialItems[currentMobileIndex].image} alt={testimonialItems[currentMobileIndex].name} className={`h-full w-auto object-contain ${((currentMobileIndex === 0) ? 'scale-125 md:scale-110' : '')}`} />
+                    <div className={`w-full h-20 md:h-16 bg-white/10 rounded-md flex items-center justify-center ${((currentMobileIndex === 0) || (currentMobileIndex === 3) || (currentMobileIndex === 4) || (currentMobileIndex === 5) ? 'p-0' : 'p-2')} overflow-hidden`}>
+                      <img src={testimonialItems[currentMobileIndex].image} alt={testimonialItems[currentMobileIndex].name} className={`${((currentMobileIndex === 0) || (currentMobileIndex === 3) || (currentMobileIndex === 4) || (currentMobileIndex === 5) ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
                     </div>
                   </div>
                 </div>

@@ -2,7 +2,7 @@ export const translations = {
   en: {
     // Navigation
     home: "Home",
-    services: "Our Services",
+    services: "Our Solutions",
     agency: "Our Agency",
     contact: "Contact",
     getStarted: "Get Started",
@@ -12,7 +12,7 @@ export const translations = {
     companyTagline: "GLOBAL",
     
     // New Home Slides
-    visionSynergiesDevelopment: "Vision - Synergies - Development",
+    visionSynergiesDevelopment: "Strategies - Networks - Growth",
     accelerateInternationalExpansion: "Accelerate your international expansion",
     strategicPartnerDubaiEuropeAsia: "Stratelink Global is the strategic partner connecting Dubai, Europe and Asia",
     discoverOurSolutions: "Discover our solutions",
@@ -37,7 +37,7 @@ export const translations = {
     
     // Services Page
     servicesPageDescription: "Comprehensive solutions to accelerate your international growth and business development",
-    servicesPageTitle: "Our Services",
+    servicesPageTitle: "Our Solutions",
     servicesPageSubtitle: "Complete Solutions for Your International Growth",
     servicesPageDescription1: "Discover our comprehensive range of specialized services designed to accelerate your international expansion and optimize your business operations.",
     importExportDescription: "Optimize your sourcing with our integrated procurement and logistics solutions",
@@ -174,7 +174,6 @@ export const translations = {
     designedBy: "Designed by",
     trustedByUs: "They trusted us",
     trustedByUsTitle: "They trusted us",
-    trustedByUsDescription: "Discover our partners and clients who trust us for their projects",
     imageNotAvailable: "Image not available",
     
     // Testimonials
@@ -268,7 +267,7 @@ export const translations = {
   fr: {
     // Navigation
     home: "Accueil",
-    services: "Nos Services",
+    services: "Nos Solutions",
     agency: "Notre Agence",
     contact: "Contact",
     getStarted: "Commencer",
@@ -278,7 +277,7 @@ export const translations = {
     companyTagline: "GLOBAL",
     
     // New Home Slides
-    visionSynergiesDevelopment: "Vision - Synergies - Développement",
+    visionSynergiesDevelopment: "Stratégies - Réseaux - Croissance",
     accelerateInternationalExpansion: "Accélérez votre expansion internationale",
     strategicPartnerDubaiEuropeAsia: "Stratelink Global est le partenaire stratégique qui relie Dubaï, L'Europe et L'Asie",
     discoverOurSolutions: "Découvrir nos solutions",
@@ -303,7 +302,7 @@ export const translations = {
     
     // Services Page
     servicesPageDescription: "Comprehensive solutions to accelerate your international growth and business development",
-    servicesPageTitle: "Nos Services",
+    servicesPageTitle: "Nos Solutions",
     servicesPageSubtitle: "Solutions globales pour le commerce international et le développement commercial.",
     servicesPageDescription1: "De l'approvisionnement à la livraison, nous orchestrons vos opérations d'import/export et accélérons votre croissance grâce à des stratégies de développement commercial sur mesure.",
     importExportDescription: "Optimisez votre Sourcing avec nos solutions intégrées d'approvisionnement et de logistique",
@@ -438,9 +437,8 @@ export const translations = {
     cookiePolicy: "Politique des Cookies",
     createdBy: "Créé par",
     designedBy: "Conçu par",
-    trustedByUs: "Ils nous ont fait confiance",
-    trustedByUsTitle: "Ils nous ont fait confiance",
-    trustedByUsDescription: "Découvrez nos partenaires et clients qui nous font confiance pour leurs projets",
+    trustedByUs: "Ils nous font confiance",
+    trustedByUsTitle: "Ils nous font confiance",
     imageNotAvailable: "Image non disponible",
     
     // Testimonials

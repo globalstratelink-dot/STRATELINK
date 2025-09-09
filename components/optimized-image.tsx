@@ -169,3 +169,47 @@ export function OptimizedLogo({
     />
   )
 }
+
+// Avatar optimisé avec fallback d'initiales
+export function OptimizedAvatar({
+  src,
+  alt,
+  size = 80,
+  className = "",
+  fallback = "?",
+}: {
+  src: string
+  alt: string
+  size?: number
+  className?: string
+  fallback?: string
+}) {
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [hasError, setHasError] = useState(false)
+
+  return (
+    <div
+      className={`relative overflow-hidden rounded-full bg-copper/10 flex items-center justify-center ${className}`}
+      style={{ width: size, height: size }}
+    >
+      {!hasError && (
+        <Image
+          src={src}
+          alt={alt}
+          width={size}
+          height={size}
+          className={`object-cover w-full h-full transition-opacity duration-300 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoad={() => setIsLoaded(true)}
+          onError={() => setHasError(true)}
+        />
+      )}
+      {(hasError || !isLoaded) && (
+        <div className="absolute inset-0 flex items-center justify-center text-copper font-semibold">
+          {fallback}
+        </div>
+      )}
+    </div>
+  )
+}
