@@ -776,7 +776,7 @@ export function HomeSlides() {
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/stratelink?background_color=041331&text_color=ffffff&primary_color=a97968" 
-              style={{ minWidth: '320px', height: '500px' }}
+              style={{ minWidth: "320px", height: "500px" }}
             />
           </motion.div>
           
