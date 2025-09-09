@@ -506,7 +506,7 @@ export const translations = {
     
     // About Stratelink Global
     aboutStratelinkGlobal: "À propos de Stratelink Global",
-    orchestratorOfInternationalGrowth: "Orchestrateur de votre croissance internationale",
+    orchestratorOfInternationalGrowth: "Orchestrateur de votre croissance à l'international",
     aboutStratelinkDescription1: "Chez Stratelink Global, nous accompagnons les entreprises dans leur expansion grâce à des solutions intégrées en import/export, développement commercial, branding et transformation digitale.",
     aboutStratelinkDescription2: "Notre mission : simplifier vos opérations tout en générant une croissance mesurable et durable.",
     aboutStratelinkDescription3: "Forts de notre expérience auprès d'entreprises ambitieuses et de sociétés établies, nous déployons une approche rigoureuse qui produit des résultats concrets et renforce votre rayonnement international.",
