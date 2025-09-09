@@ -172,8 +172,8 @@ export const translations = {
     cookiePolicy: "Cookie Policy",
     createdBy: "Created by",
     designedBy: "Designed by",
-    trustedByUs: "They trusted us",
-    trustedByUsTitle: "They trusted us",
+    trustedByUs: "They Trust Us",
+    trustedByUsTitle: "They Trust Us",
     imageNotAvailable: "Image not available",
     
     // Testimonials
@@ -219,7 +219,7 @@ export const translations = {
     
     // Agency Features
     rapidReliableDeployment: "Rapid and Reliable Deployment",
-    rapidReliableDeploymentDesc: "Real-time service with 24/7 support",
+    rapidReliableDeploymentDesc: "Real-time service solutions with 24/7 support",
     turnkeySolutions: "Turnkey Solutions",
     turnkeySolutionsDesc: "Simplified and faster management of your trade flows",
     privilegedMarketAccess: "Privileged Access to Markets and Products",
