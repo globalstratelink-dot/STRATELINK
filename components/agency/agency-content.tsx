@@ -80,7 +80,7 @@ return (
                 {/* Image Container */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
                   <img
-                    src="/acceuil (2).webp"
+                    src="/workss.webp"
                     alt="STRATELINK GLOBAL Agency"
                     className="w-full h-auto object-cover"
                   />
