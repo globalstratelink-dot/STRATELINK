@@ -254,7 +254,7 @@ export const translations = {
     roadmapDescription: "The purpose of creating a roadmap is to describe the phases of the action plan and set important milestones. It is provided to you after the assignment has been validated in order to present a clear overview of expectations and delivery deadlines.",
     step03: "Step 03",
     actions: "Actions",
-    actionsDescription: "Each of our clients has a dedicated contact person assigned to them to guarantee quality support as well as availability throughout the operations.",
+    actionsDescription: "Each of our clients is assigned a dedicated contact person to ensure high-quality support and availability throughout the operations.",
     step04: "Step 04",
     result: "Result",
     resultDescription: "At the end, an assessment of the operations is carried out, this crucial step allows the analysis of performance and deliverables, the constant improvement of our processes is necessary to guarantee new approaches that are always more innovative.",
