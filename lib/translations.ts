@@ -16,7 +16,7 @@ export const translations = {
     accelerateInternationalExpansion: "Accelerate your international expansion",
     strategicPartnerDubaiEuropeAsia: "Stratelink Global is the strategic partner connecting Dubai, Europe and Asia",
     discoverOurSolutions: "Discover our solutions",
-    globalSolutionsInternationalTrade: "Global solutions for international trade and business development",
+    globalSolutionsInternationalTrade: "Comprehensive solutions for international trade and business development",
     sourcingToDeliveryDescription: "From sourcing to delivery, we orchestrate your import/export operations and accelerate your growth through customized business development strategies",
     
     // Services Grid
