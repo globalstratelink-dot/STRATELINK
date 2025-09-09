@@ -370,7 +370,7 @@ export const translations = {
     supplyChain: "Gestion de la Chaîne d'Approvisionnement",
     supplyChainDesc: "Gérez votre chaîne d'approvisionnement mondiale efficacement avec nos solutions intégrées et notre suivi en temps réel.",
     learnMore: "En Savoir Plus",
-    viewAllServices: "Voir Tous les Services",
+    viewAllServices: "Voir tous les services",
     
     // Agency
     agencyTitle: "Leader du Commerce",
@@ -521,8 +521,8 @@ export const translations = {
     digitalSolutionsApiSaaS: "Digital Solutions : API and SaaS",
     digitalSolutionsApiSaaSItems: ["Solutions d'entreprise", "Tracking", "Télécom"],
     
-    // Notre Démarche
-    ourProcess: "Notre Démarche",
+    // Notre démarche
+    ourProcess: "Notre démarche",
     step01: "Étape 01",
     brainstorming: "Brainstorming",
     brainstormingDescription: "La première étape consiste à échanger sur vos besoins ou vos projets, cela nous permet ainsi de comprendre vos attentes exactes, pour vous proposer les meilleures solutions existantes sur le marché en fonction du budget alloué à cette mission.",
