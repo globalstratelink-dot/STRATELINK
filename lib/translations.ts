@@ -50,7 +50,7 @@ export const translations = {
     customerAcquisition: "Customer Acquisition",
     salesForce: "Sales Force",
     branding: "Branding",
-    brandingDescription: "Strengthen your impact with our strategic branding solutions",
+    brandingDescription: "Strengthen your impact with our branding solutions",
     brandIdentity: "Brand Identity",
     brandStrategy: "Brand Strategy",
     designVisualCommunication: "Design and Visual Communication",
