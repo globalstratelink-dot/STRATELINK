@@ -1,2 +1,6 @@
-https://stratelink-global.com/* https://stratelink-global.ae/:splat 301!
-https://www.stratelink-global.com/* https://stratelink-global.ae/:splat 301! 
+# Redirection .ae vers .com (301)
+https://stratelink-global.ae/* https://stratelink-global.com/:splat 301!
+https://www.stratelink-global.ae/* https://stratelink-global.com/:splat 301!
+
+# Redirection www vers non-www pour .com
+https://www.stratelink-global.com/* https://stratelink-global.com/:splat 301!
