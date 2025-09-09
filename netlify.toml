@@ -12,7 +12,7 @@
   directory = ".netlify/functions"
   node_bundler = "esbuild"
 
-# Redirection domaine .ae -> .com (301)
+# Redirection .ae vers .com (301)
 [[redirects]]
   from = "/*"
   to = "https://stratelink-global.com/:splat"
@@ -20,7 +20,7 @@
   force = true
   conditions = { Host = ["stratelink-global.ae", "www.stratelink-global.ae"] }
 
-# Redirection HTTP vers HTTPS (301)
+# Redirection HTTP vers HTTPS pour .com
 [[redirects]]
   from = "http://stratelink-global.com/*"
   to = "https://stratelink-global.com/:splat"
@@ -33,7 +33,7 @@
   status = 301
   force = true
 
-# Redirection www vers non-www (301)
+# Redirection www vers non-www pour .com
 [[redirects]]
   from = "https://www.stratelink-global.com/*"
   to = "https://stratelink-global.com/:splat"
