@@ -370,7 +370,7 @@ export const translations = {
     supplyChain: "Gestion de la Chaîne d'Approvisionnement",
     supplyChainDesc: "Gérez votre chaîne d'approvisionnement mondiale efficacement avec nos solutions intégrées et notre suivi en temps réel.",
     learnMore: "En Savoir Plus",
-    viewAllServices: "Voir tous les services",
+    viewAllServices: "Tous nos services",
     
     // Agency
     agencyTitle: "Leader du Commerce",
