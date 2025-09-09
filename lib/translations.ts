@@ -119,6 +119,8 @@ export const translations = {
     lastName: "Last Name",
     email: "Email Address",
     company: "Company",
+    country: "Country",
+    phoneNumber: "Phone Number",
     subject: "Subject",
     message: "Your Message",
     sendMessageBtn: "Send Message",
@@ -155,7 +157,7 @@ export const translations = {
     weWillRespondWithin24Hours: "We will respond within 24 hours",
     monFri9AM6PMEST: "Mon-Fri 9AM-6PM GST (Dubai)",
     globalOfficesWorldwide: "Main office in Dubai",
-    support24HoursAvailable: "24/7 support available",
+    support24HoursAvailable: "Mon-Fri 9AM-6PM GST (Dubai) - 24/7 support available",
     weAreHereWhenYouNeedUs: "We are here when you need us",
     ourGlobalOffices: "Our Main Office",
     newYork: "New York",
@@ -175,6 +177,7 @@ export const translations = {
     trustedByUs: "They Trust Us",
     trustedByUsTitle: "They Trust Us",
     imageNotAvailable: "Image not available",
+    contactDubaiEuropeAsia: "Contact : Dubai / Europe / Asia",
     
     // Testimonials
     whatOurPartnersSay: "What Our Partners",
@@ -396,7 +399,9 @@ export const translations = {
     lastName: "Nom",
     email: "Adresse Email",
     company: "Entreprise",
-    subject: "Sujet",
+    country: "Pays",
+    phoneNumber: "Numéro de téléphone",
+    subject: "Objet",
     message: "Votre Message",
     sendMessageBtn: "Envoyer le Message",
     weWillGetBackToYou: "Nous vous répondrons dans les 24 heures",
@@ -425,14 +430,14 @@ export const translations = {
 
     
     // Contact Info
-    emailUs: "Envoyez-nous un email",
+    emailUs: "Écrivez-nous",
     callUs: "Appelez-nous",
-    visitUs: "Visitez-nous",
+    visitUs: "Rendez-nous visite",
     businessHours: "Heures d'ouverture",
     weWillRespondWithin24Hours: "Nous répondrons dans les 24 heures",
     monFri9AM6PMEST: "Lun-Ven 9h-18h GST (Dubai)",
     globalOfficesWorldwide: "Bureau principal à Dubai",
-    support24HoursAvailable: "Support 24/7 disponible",
+    support24HoursAvailable: "Lun-Ven 9h-18h GST (Dubai) - Support 24/7 disponible",
     weAreHereWhenYouNeedUs: "Nous sommes là quand vous avez besoin de nous",
     ourGlobalOffices: "Notre Bureau Principal",
     newYork: "New York",
@@ -449,9 +454,10 @@ export const translations = {
     cookiePolicy: "Politique des Cookies",
     createdBy: "Créé par",
     designedBy: "Conçu par",
-    trustedByUs: "Ils nous font confiance",
-    trustedByUsTitle: "Ils nous font confiance",
+    trustedByUs: "Ils Nous Font Confiance",
+    trustedByUsTitle: "Ils Nous Font Confiance",
     imageNotAvailable: "Image non disponible",
+    contactDubaiEuropeAsia: "Contact : Dubai / Europe / Asie",
     
     // Testimonials
     whatOurPartnersSay: "Qu'en disent nos partenaires",

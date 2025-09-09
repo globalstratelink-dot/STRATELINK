@@ -107,7 +107,7 @@ export function Footer() {
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-copper" />
-                <span>Dubai • Europe • Asia</span>
+                <span>{t('contactDubaiEuropeAsia')}</span>
               </li>
               <li className="flex items-start space-x-3">
                 <Linkedin className="w-4 h-4 mt-0.5 text-copper" />
