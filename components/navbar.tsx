@@ -153,7 +153,7 @@ export function Navbar() {
               asChild
             >
               <Link href="/calendly">
-                Get Started
+                {t('getStarted')}
               </Link>
             </Button>
           </div>
@@ -218,7 +218,7 @@ export function Navbar() {
                     onClick={closeMobileMenu}
                   >
                     <Link href="/calendly">
-                      Get Started
+                      {t('getStarted')}
                     </Link>
                   </Button>
                   

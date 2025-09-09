@@ -263,6 +263,19 @@ export const translations = {
     openWhatsApp: "Open WhatsApp",
     closeMenu: "Close menu",
     openMenu: "Open menu",
+    
+    // Home Page Additional
+    loading: "Loading...",
+    testimonials: "Testimonials",
+    getStarted: "Get Started",
+    
+    // Testimonials
+    testimonial1: "We had the opportunity to benefit from STRATELINK GLOBAL's logistical support in an emergency context. Their responsiveness and professionalism allowed us to overcome a critical challenge and ensure the continuity of our operations. It's always a real pleasure to collaborate with such a reliable and committed team.",
+    testimonial2: "We have been collaborating with STRATELINK GLOBAL and its leader for years. His competence and professionalism are unanimous. We naturally entrust him with the commercial development of our solutions with complete confidence.",
+    testimonial3: "Working with STRATELINK GLOBAL on our common missions has been a real strategic asset. Their professionalism, responsiveness and the complementarity of our expertise created immediate and lasting trust. It's a pleasure to collaborate with such a competent, committed and results-oriented team.",
+    testimonial4: "We solicited STRATELINK GLOBAL to accompany us in our development strategy. Their approach was both clear, structured and visionary. Thanks to their advice, we were able to redefine our priorities and implement a concrete plan for our objectives.",
+    testimonial5: "Thanks to you, we were able to quickly source a key technological product, with high-quality support. Beyond the concrete result, this collaboration gave birth to a beautiful friendship, making each exchange both effective and sincerely pleasant.",
+    testimonial6: "The support was decisive in structuring my processes, optimizing customer management and strengthening my commercial approach. His expertise and availability allowed me to gain efficiency and clarity. A real added value that I recommend.",
   },
   fr: {
     // Navigation
@@ -528,6 +541,19 @@ export const translations = {
     openWhatsApp: "Ouvrir WhatsApp",
     closeMenu: "Fermer le menu",
     openMenu: "Ouvrir le menu",
+    
+    // Home Page Additional
+    loading: "Chargement...",
+    testimonials: "Avis",
+    getStarted: "Commencer",
+    
+    // Testimonials
+    testimonial1: "Nous avons eu l'opportunité de bénéficier du soutien logistique de STRATELINK GLOBAL dans un contexte d'urgence. Leur réactivité et leur professionnalisme nous ont permis de relever un défi critique et d'assurer la continuité de nos opérations. C'est toujours un véritable plaisir de collaborer avec une équipe aussi fiable et engagée.",
+    testimonial2: "Nous collaborons avec STRATELINK GLOBAL et son dirigeant depuis des années. Sa compétence et son professionnalisme font l'unanimité. Nous lui confions naturellement le développement commercial de nos solutions en toute confiance.",
+    testimonial3: "Travailler avec STRATELINK GLOBAL sur nos missions communes a été un véritable atout stratégique. Leur professionnalisme, leur réactivité et la complémentarité de nos expertises ont créé une confiance immédiate et durable. C'est un plaisir de collaborer avec une équipe aussi compétente, engagée et orientée résultats.",
+    testimonial4: "Nous avons sollicité STRATELINK GLOBAL pour nous accompagner dans notre stratégie de développement. Leur approche a été à la fois claire, structurée et visionnaire. Grâce à leurs conseils, nous avons pu redéfinir nos priorités et mettre en place un plan concret pour nos objectifs.",
+    testimonial5: "Grâce à vous, nous avons pu sourcer rapidement un produit technologique clé, avec un accompagnement de grande qualité. Au-delà du résultat concret, cette collaboration a donné naissance à une belle amitié, rendant chaque échange à la fois efficace et sincèrement agréable.",
+    testimonial6: "L'accompagnement a été déterminant pour structurer mes process, optimiser la gestion clients et renforcer mon approche commerciale. Son expertise et sa disponibilité m'ont permis de gagner en efficacité et en clarté. Une vraie valeur ajoutée que je recommande.",
   }
 }
 

@@ -95,31 +95,31 @@ export function HomeSlides() {
   const logosPerGroup = 3
   const totalGroups = Math.ceil(trustedLogos.length / logosPerGroup)
   
-  // Témoignages (6 cards)
+  // Témoignages (6 cards) - Utilisation des traductions
   const testimonialItems = [
     { 
       name: 'Sarah Johnson', company: 'PhotoBox', image: '/1.webp',
-      text: 'Nous avons eu l\'opportunité de bénéficier du soutien logistique de STRATELINK GLOBAL dans un contexte d\'urgence. Leur réactivité et leur professionnalisme nous ont permis de relever un défi critique et d\'assurer la continuité de nos opérations. C\'est toujours un véritable plaisir de collaborer avec une équipe aussi fiable et engagée.'
+      text: t('testimonial1')
     },
     { 
       name: 'Daniel Smith', company: 'GlobalTrade', image: '/6.webp',
-      text: 'Nous collaborons avec STRATELINK GLOBAL et son dirigeant depuis des années. Sa compétence et son professionnalisme font l\'unanimité. Nous lui confions naturellement le développement commercial de nos solutions en toute confiance.'
+      text: t('testimonial2')
     },
     { 
       name: 'Lisa Rodriguez', company: 'Sustainable Homes', image: '/3.webp',
-      text: 'Travailler avec STRATELINK GLOBAL sur nos missions communes a été un véritable atout stratégique. Leur professionnalisme, leur réactivité et la complémentarité de nos expertises ont créé une confiance immédiate et durable. C\'est un plaisir de collaborer avec une équipe aussi compétente, engagée et orientée résultats.'
+      text: t('testimonial3')
     },
     { 
       name: 'David Kim', company: 'EcoLogix', image: '/4.webp',
-      text: 'Nous avons sollicité STRATELINK GLOBAL pour nous accompagner dans notre stratégie de développement. Leur approche a été à la fois claire, structurée et visionnaire. Grâce à leurs conseils, nous avons pu redéfinir nos priorités et mettre en place un plan concret pour nos objectifs.'
+      text: t('testimonial4')
     },
     { 
       name: 'Emma Rodriguez', company: 'Manufacturing', image: '/5.webp',
-      text: 'Grâce à vous, nous avons pu sourcer rapidement un produit technologique clé, avec un accompagnement de grande qualité. Au-delà du résultat concret, cette collaboration a donné naissance à une belle amitié, rendant chaque échange à la fois efficace et sincèrement agréable.'
+      text: t('testimonial5')
     },
     { 
       name: 'Michael Chen', company: 'TechCorp', image: '/2.webp',
-      text: 'L\'accompagnement a été déterminant pour structurer mes process, optimiser la gestion clients et renforcer mon approche commerciale. Son expertise et sa disponibilité m\'ont permis de gagner en efficacité et en clarté. Une vraie valeur ajoutée que je recommande.'
+      text: t('testimonial6')
     },
   ]
   
@@ -148,7 +148,7 @@ export function HomeSlides() {
   if (!isLoaded) {
     return (
       <div className="min-h-screen bg-navy flex items-center justify-center">
-        <div className="text-white">Loading...</div>
+        <div className="text-white">{t('loading')}</div>
       </div>
     )
   }
@@ -599,7 +599,7 @@ export function HomeSlides() {
               className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
             >
               <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
-              Avis
+              {t('testimonials')}
             </motion.div>
             
             <motion.h2
