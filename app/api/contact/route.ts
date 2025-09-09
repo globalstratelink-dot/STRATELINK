@@ -7,6 +7,8 @@ interface ContactData {
   lastName: string
   email: string
   company: string
+  country: string
+  phoneNumber: string
   subject: string
   message: string
 }
@@ -116,6 +118,8 @@ export async function POST(request: NextRequest) {
       lastName: body.lastName.trim(),
       email: body.email.trim().toLowerCase(),
       company: body.company?.trim() || '',
+      country: body.country?.trim() || '',
+      phoneNumber: body.phoneNumber?.trim() || '',
       subject: body.subject.trim(),
       message: body.message.trim()
     }

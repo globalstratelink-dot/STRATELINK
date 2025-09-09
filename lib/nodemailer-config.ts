@@ -32,6 +32,8 @@ export function createEmailTemplate(data: {
   lastName: string
   email: string
   company: string
+  country: string
+  phoneNumber: string
   subject: string
   message: string
 }) {
@@ -79,6 +81,16 @@ export function createEmailTemplate(data: {
                 </div>
                 
                 <div class="field">
+                    <span class="label">Pays :</span>
+                    <span class="value">${data.country || 'Non spécifié'}</span>
+                </div>
+                
+                <div class="field">
+                    <span class="label">Téléphone :</span>
+                    <span class="value">${data.phoneNumber || 'Non spécifié'}</span>
+                </div>
+                
+                <div class="field">
                     <span class="label">Sujet :</span>
                     <span class="value">${data.subject}</span>
                 </div>
@@ -105,6 +117,8 @@ export function createTextTemplate(data: {
   lastName: string
   email: string
   company: string
+  country: string
+  phoneNumber: string
   subject: string
   message: string
 }) {
@@ -115,6 +129,8 @@ Informations du contact :
 - Nom complet : ${data.firstName} ${data.lastName}
 - Email : ${data.email}
 - Entreprise : ${data.company || 'Non spécifié'}
+- Pays : ${data.country || 'Non spécifié'}
+- Téléphone : ${data.phoneNumber || 'Non spécifié'}
 - Sujet : ${data.subject}
 
 Message :
