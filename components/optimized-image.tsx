@@ -115,7 +115,7 @@ export function HeroImage({ className = "" }: { className?: string }) {
 export function ServicesImage({ className = "" }: { className?: string }) {
   return (
     <OptimizedImage
-      src="/optimized/2151663057-330x471.webp"
+      src="/acceuil (1).webp"
       alt="Technological Futuristic Holograms - Logistics and Transport"
       width={330}
       height={471}
@@ -123,9 +123,9 @@ export function ServicesImage({ className = "" }: { className?: string }) {
       priority={false}
       sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 800px"
       responsive={true}
-      mobileSrc="/optimized/2151663057-mobile.webp"
-      tabletSrc="/optimized/2151663057-tablet.webp"
-      desktopSrc="/optimized/2151663057-desktop.webp"
+      mobileSrc="/acceuil (1).webp"
+      tabletSrc="/acceuil (1).webp"
+      desktopSrc="/acceuil (1).webp"
     />
   )
 }

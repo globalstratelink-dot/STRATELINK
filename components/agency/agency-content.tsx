@@ -15,7 +15,7 @@ return (
       {/* About Section */}
       <section className="py-20 bg-gradient-to-br from-navy via-navy to-navy/90">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -62,6 +62,32 @@ return (
                     {t('viewAllServices')}
                   </Link>
                 </Button>
+              </div>
+            </motion.div>
+
+            {/* Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex justify-center lg:justify-end"
+            >
+              <div className="relative max-w-lg mx-auto lg:mx-0">
+                {/* Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-copper/20 via-transparent to-sand/20 rounded-3xl blur-2xl"></div>
+                
+                {/* Image Container */}
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
+                  <img
+                    src="/acceuil (2).webp"
+                    alt="STRATELINK GLOBAL Agency"
+                    className="w-full h-auto object-cover"
+                  />
+                  
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent"></div>
+                </div>
               </div>
             </motion.div>
           </div>
