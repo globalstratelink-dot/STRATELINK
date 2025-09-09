@@ -267,7 +267,6 @@ export const translations = {
     // Home Page Additional
     loading: "Loading...",
     testimonials: "Testimonials",
-    getStarted: "Get Started",
     
     // Testimonials
     testimonial1: "We had the opportunity to benefit from STRATELINK GLOBAL's logistical support in an emergency context. Their responsiveness and professionalism allowed us to overcome a critical challenge and ensure the continuity of our operations. It's always a real pleasure to collaborate with such a reliable and committed team.",
@@ -292,7 +291,7 @@ export const translations = {
     // New Home Slides
     visionSynergiesDevelopment: "Stratégies - Réseaux - Croissance",
     accelerateInternationalExpansion: "Accélérez votre expansion internationale",
-    strategicPartnerDubaiEuropeAsia: "Stratelink Global est le partenaire stratégique qui relie Dubaï, L'Europe et L'Asie",
+    strategicPartnerDubaiEuropeAsia: "Stratelink Global est le partenaire stratégique qui relie Dubaï, l’Europe et l’Asie",
     discoverOurSolutions: "Découvrir nos solutions",
     globalSolutionsInternationalTrade: "Solutions globales pour le commerce international et le développement commercial",
     sourcingToDeliveryDescription: "De l'approvisionnement à la livraison, nous orchestrons vos opérations d'import/export et accélérons votre croissance grâce à des stratégies de développement commercial sur mesure",
@@ -545,7 +544,6 @@ export const translations = {
     // Home Page Additional
     loading: "Chargement...",
     testimonials: "Avis",
-    getStarted: "Commencer",
     
     // Testimonials
     testimonial1: "Nous avons eu l'opportunité de bénéficier du soutien logistique de STRATELINK GLOBAL dans un contexte d'urgence. Leur réactivité et leur professionnalisme nous ont permis de relever un défi critique et d'assurer la continuité de nos opérations. C'est toujours un véritable plaisir de collaborer avec une équipe aussi fiable et engagée.",
