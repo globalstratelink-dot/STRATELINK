@@ -333,7 +333,7 @@ export const translations = {
     designVisualCommunication: "Design et communication visuelle",
     positioningStorytelling: "Positionnement et storytelling",
     digitalSolutions: "Digital Solutions",
-    digitalSolutionsDescription: "Accélérez la transformation digitale de votre entreprise grâce à nos solutions digitales intégrées et stratégiques",
+    digitalSolutionsDescription: "Accélérez la transformation digitale de votre entreprise grâce à nos solutions digitales stratégiques et intégrées",
     processAutomation: "Automatisation des processus",
     digitalSolutionsIntegration: "Intégration de solutions digitales",
     dataAnalysisExploitation: "Analyse et exploitation des données",
