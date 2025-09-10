@@ -1,5 +1,3 @@
-
-
 "use client"
 
 import { motion } from "framer-motion"
@@ -156,7 +154,7 @@ export function HomeSlides() {
   return (
     <div className="min-h-screen bg-navy">
       {/* Slide 1: Vision - Synergies - Développement */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy via-navy to-navy/90 relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy via-navy to-navy/90 relative overflow-hidden pt-20 md:pt-24 lg:pt-28 xl:pt-32">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-72 h-72 bg-copper/10 rounded-full blur-3xl"></div>
