@@ -106,14 +106,14 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-4">
             <ResponsiveOptimizedLogo className="w-16 h-12 sm:w-20 sm:h-14 lg:w-24 lg:h-16 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
-                          <div className="text-white h-12 sm:h-14 lg:h-16 flex flex-col justify-center">
-                <div className="h-full flex items-center text-lg sm:text-xl lg:text-2xl font-bold tracking-wider leading-none whitespace-nowrap">
-                  {t('companyName')}
-                </div>
-                <div className="hidden md:block text-xs sm:text-sm text-copper tracking-widest font-semibold mt-1">
-                  {t('companyTagline')}
-                </div>
+            <div className="text-white h-12 sm:h-14 lg:h-16 flex flex-col justify-center">
+              <div className="h-full flex items-center text-lg sm:text-xl md:text-2xl font-bold tracking-wider leading-none whitespace-nowrap">
+                {t('companyName')}
               </div>
+              <div className="hidden md:block text-xs sm:text-sm text-copper tracking-widest font-semibold mt-1">
+                {t('companyTagline')}
+              </div>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -122,7 +122,7 @@ export function Navbar() {
               <Link
                 key={String(item.name)}
                 href={item.href}
-                className={`relative px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
+                className={`relative px-4 py-2 text-base font-semibold transition-colors duration-200 ${
                   pathname === item.href
                     ? "text-copper"
                     : "text-gray-300 hover:text-copper"

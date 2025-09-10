@@ -320,7 +320,7 @@ export function HomeSlides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, delay: 0.6 }}
                 viewport={{ once: true }}
-                className="text-lg md:text-xl text-gray-300 leading-relaxed"
+                className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed"
               >
                 {t('sourcingToDeliveryDescription')}
               </motion.p>
@@ -685,8 +685,32 @@ export function HomeSlides() {
                 </Button>
               </div>
 
-              {/* Mobile: 1 card; swipe tactile sans drag pour éviter les vibrations */}
-              <div className="md:hidden overflow-hidden">
+              {/* Mobile: 1 card with navigation buttons */}
+              <div className="md:hidden">
+                <div className="flex items-center gap-4 mb-4">
+                  <Button
+                    variant="ghost"
+                    className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-2 text-white flex-shrink-0"
+                    onClick={prevMobile}
+                  >
+                    <ArrowLeft className="w-5 h-5" />
+                  </Button>
+                  
+                  <div className="flex-1 text-center">
+                    <span className="text-white/60 text-sm">
+                      {currentMobileIndex + 1} / {testimonialItems.length}
+                    </span>
+                  </div>
+                  
+                  <Button
+                    variant="ghost"
+                    className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-2 text-white flex-shrink-0"
+                    onClick={nextMobile}
+                  >
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </div>
+                
                 <div
                   key={currentMobileIndex}
                   className="bg-white/5 border border-copper/20 rounded-2xl p-6 flex flex-col h-full"
