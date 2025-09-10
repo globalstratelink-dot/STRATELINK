@@ -19,8 +19,8 @@ export function ContactInfo() {
     {
       icon: <Phone className="w-6 h-6 text-copper" />,
       title: t('callUs'),
-      details: "00971543192348",
-      description: t('monFri9AM6PMEST')
+      details: "(+971) 009-715-431-9234-8",
+      description: ""
     },
     {
       icon: <MapPin className="w-6 h-6 text-copper" />,
@@ -40,8 +40,7 @@ export function ContactInfo() {
   const offices = [
     {
       city: "Dubai",
-      address: "Building A1, Dubai Digital Park\nDubai Silicon Oasis\nDubai, United Arab Emirates",
-      phone: "00971543192348"
+      address: "Building A1, Dubai Digital Park\nDubai Silicon Oasis\nDubai, United Arab Emirates"
     }
   ]
 
@@ -72,7 +71,9 @@ export function ContactInfo() {
                   ) : (
                     <p className="text-copper font-medium mb-2 break-words leading-tight">{method.details}</p>
                   )}
-                  <p className="text-gray-300 text-sm leading-relaxed">{method.description}</p>
+                  {method.description && (
+                    <p className="text-gray-300 text-sm leading-relaxed">{method.description}</p>
+                  )}
                 </div>
               </div>
             </CardContent>
@@ -96,7 +97,6 @@ export function ContactInfo() {
                 >
                   {office.address}
                 </a>
-                <p className="text-gray-300 text-sm">{office.phone}</p>
               </div>
             ))}
           </div>
