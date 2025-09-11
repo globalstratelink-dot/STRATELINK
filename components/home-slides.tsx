@@ -473,7 +473,7 @@ export function HomeSlides() {
             viewport={{ once: true }}
             className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
           >
-            {/* Avantage 1: Déploiement rapide et fiable */}
+            {/* Avantage 1: Accès direct aux marchés stratégiques */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -486,15 +486,15 @@ export function HomeSlides() {
                   <span className="text-2xl font-bold text-copper">1</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">{t('rapidReliableDeployment')}</h3>
+                  <h3 className="title-card text-white mb-4">{t('privilegedMarketAccess')}</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    {t('rapidReliableDeploymentDesc')}
+                    {t('privilegedMarketAccessDesc')}
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Avantage 2: Solutions clés en main */}
+            {/* Avantage 2: Croissance commerciale accélérée */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -507,15 +507,15 @@ export function HomeSlides() {
                   <span className="text-2xl font-bold text-copper">2</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">{t('turnkeySolutions')}</h3>
+                  <h3 className="title-card text-white mb-4">{t('customerAcquisitionRetention')}</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    {t('turnkeySolutionsDesc')}
+                    {t('customerAcquisitionRetentionDesc')}
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Avantage 3: Accès privilégié aux marchés et produits */}
+            {/* Avantage 3: Solutions sur mesure, clé en main */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -528,15 +528,15 @@ export function HomeSlides() {
                   <span className="text-2xl font-bold text-copper">3</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">{t('privilegedMarketAccess')}</h3>
+                  <h3 className="title-card text-white mb-4">{t('turnkeySolutions')}</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    {t('privilegedMarketAccessDesc')}
+                    {t('turnkeySolutionsDesc')}
                   </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Avantage 4: Acquisition et fidélisation clients */}
+            {/* Avantage 4: Exécution rapide et sécurisée */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -549,9 +549,9 @@ export function HomeSlides() {
                   <span className="text-2xl font-bold text-copper">4</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">{t('customerAcquisitionRetention')}</h3>
+                  <h3 className="title-card text-white mb-4">{t('rapidReliableDeployment')}</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">
-                    {t('customerAcquisitionRetentionDesc')}
+                    {t('rapidReliableDeploymentDesc')}
                   </p>
                 </div>
               </div>
