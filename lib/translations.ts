@@ -220,15 +220,15 @@ export const translations = {
     excellenceAtServiceOfGrowth: "Excellence at the service of your growth.",
     discoverWhatDistinguishesUs: "Discover what distinguishes us in the world of commercial and strategic development",
     
-    // Agency Features
-    rapidReliableDeployment: "Rapid and Reliable Deployment",
-    rapidReliableDeploymentDesc: "Real-time service solutions with 24/7 support",
-    turnkeySolutions: "Turnkey Solutions",
-    turnkeySolutionsDesc: "Simplified and faster management of your trade flows",
-    privilegedMarketAccess: "Privileged Access to Markets and Products",
-    privilegedMarketAccessDesc: "Exclusive catalog and reliable partners to secure your operations.",
-    customerAcquisitionRetention: "Customer Acquisition and Retention",
-    customerAcquisitionRetentionDesc: "Qualified lead generation and effective acquisition strategies.",
+    // Agency Features - Version anglaise
+    rapidReliableDeployment: "Fast and Secure Execution",
+    rapidReliableDeploymentDesc: "Agile implementation, 24/7 support, and end-to-end quality control.",
+    turnkeySolutions: "Tailor-Made, Turnkey Solutions",
+    turnkeySolutionsDesc: "Personalized support from market research to full operational deployment.",
+    privilegedMarketAccess: "Direct Access to Strategic Markets",
+    privilegedMarketAccessDesc: "Exclusive catalogs and trusted partners to secure your international operations.",
+    customerAcquisitionRetention: "Accelerated Business Growth",
+    customerAcquisitionRetentionDesc: "Proven B2B lead generation and client acquisition methodologies.",
     
     // About Stratelink Global
     aboutStratelinkGlobal: "About Stratelink Global",
@@ -500,15 +500,15 @@ export const translations = {
     excellenceAtServiceOfGrowth: "L'excellence au service de votre croissance.",
     discoverWhatDistinguishesUs: "Découvrez ce qui nous distingue dans l'univers du développement commercial et stratégique",
     
-    // Agency Features
-    rapidReliableDeployment: "Déploiement rapide et fiable",
-    rapidReliableDeploymentDesc: "Service déployées en temps réel avec support 24/7",
-    turnkeySolutions: "Solutions clés en main",
-    turnkeySolutionsDesc: "Gestion simplifiée et plus rapide de vos flux commerciaux",
-    privilegedMarketAccess: "Accès privilégié aux marchés et produits",
-    privilegedMarketAccessDesc: "Catalogue exclusif et partenaires fiables pour sécuriser vos opérations.",
-    customerAcquisitionRetention: "Acquisition et fidélisation clients",
-    customerAcquisitionRetentionDesc: "Génération de leads qualifiés et stratégies d'acquisition performantes.",
+    // Agency Features - Version française
+    rapidReliableDeployment: "Exécution rapide et sécurisée",
+    rapidReliableDeploymentDesc: "Mise en œuvre agile, support 24/7 et contrôle qualité de bout en bout.",
+    turnkeySolutions: "Solutions sur mesure, clé en main",
+    turnkeySolutionsDesc: "Accompagnement personnalisé de l'étude de marché jusqu'à la mise en place opérationnelle.",
+    privilegedMarketAccess: "Accès direct aux marchés stratégiques",
+    privilegedMarketAccessDesc: "Catalogues exclusifs et partenaires fiables pour sécuriser vos opérations internationales.",
+    customerAcquisitionRetention: "Croissance commerciale accélérée",
+    customerAcquisitionRetentionDesc: "Méthodologies éprouvées pour générer des leads B2B et conquérir de nouveaux clients.",
     
     // About Stratelink Global
     aboutStratelinkGlobal: "À propos de Stratelink Global",
