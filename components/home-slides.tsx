@@ -382,48 +382,30 @@ export function HomeSlides() {
             </motion.div>
           </div>
 
-          {/* Services Grid - Reste comme avant */}
+          {/* Services Grid - Modifié pour 2 cartes seulement */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8 }}
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-16 max-w-4xl mx-auto"
           >
-            {/* Service 1 */}
-            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+            {/* Service 1 - Import/Export */}
+            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 lg:p-10 hover:border-copper/40 transition-all duration-300">
               <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
                 <Globe className="w-8 h-8 text-copper" />
               </div>
-              <h3 className="title-card text-white mb-4">{t('importExport')}</h3>
-              <p className="text-gray-300">{t('importExportDesc')}</p>
+              <h3 className="title-card text-white mb-4 text-center">{t('importExport')}</h3>
+              <p className="text-gray-300 text-center">{t('importExportDesc')}</p>
             </div>
 
-            {/* Service 2 */}
-            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+            {/* Service 2 - Business Development */}
+            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 lg:p-10 hover:border-copper/40 transition-all duration-300">
               <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
                 <TrendingUp className="w-8 h-8 text-copper" />
               </div>
-              <h3 className="title-card text-white mb-4">{t('businessDevelopment')}</h3>
-              <p className="text-gray-300">{t('businessDevelopmentDesc')}</p>
-            </div>
-
-            {/* Service 3 - Branding */}
-            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-              <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
-                <Palette className="w-8 h-8 text-copper" />
-              </div>
-              <h3 className="title-card text-white mb-4">{t('branding')}</h3>
-              <p className="text-gray-300">{t('brandingDescription')}</p>
-            </div>
-
-            {/* Service 4 - Digital Solutions */}
-            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-              <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
-                <Zap className="w-8 h-8 text-copper" />
-              </div>
-              <h3 className="title-card text-white mb-4">{t('digitalSolutions')}</h3>
-              <p className="text-gray-300">{t('digitalSolutionsDescription')}</p>
+              <h3 className="title-card text-white mb-4 text-center">{t('businessDevelopment')}</h3>
+              <p className="text-gray-300 text-center">{t('businessDevelopmentDesc')}</p>
             </div>
           </motion.div>
         </div>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
-import { Globe, TrendingUp, Palette, Zap, CheckCircle } from "lucide-react"
+import { Globe, TrendingUp, CheckCircle } from "lucide-react"
 import Link from "next/link"
 
 export function ServicesContent() {
@@ -31,30 +31,6 @@ export function ServicesContent() {
         t('businessDevelopment'),
         t('customerAcquisition'),
         t('salesForce')
-      ]
-    },
-    {
-      id: "branding",
-      icon: Palette,
-      title: t('branding'),
-      description: t('brandingDescription'),
-      features: [
-        t('brandIdentity'),
-        t('brandStrategy'),
-        t('designVisualCommunication'),
-        t('positioningStorytelling')
-      ]
-    },
-    {
-      id: "digital-solutions",
-      icon: Zap,
-      title: t('digitalSolutions'),
-      description: t('digitalSolutionsDescription'),
-      features: [
-        t('processAutomation'),
-        t('digitalSolutionsIntegration'),
-        t('dataAnalysisExploitation'),
-        t('digitalChangeAccompaniment')
       ]
     }
   ]
