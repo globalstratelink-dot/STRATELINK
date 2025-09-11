@@ -43,7 +43,7 @@ export const translations = {
     importExportDescription: "Complete import and export solutions for your international trade needs",
     sourcing: "Sourcing",
     qualityControl: "Quality Control",
-    logisticsTransport: "Logistics & Transport",
+    logisticsTransport: "Logistics and Transportation",
     exclusiveCatalog: "Customs Clearance",
     businessDevelopmentDescription: "Accelerate your growth with our customized business development solutions",
     leadGeneration: "Market research & competitive intelligence",
@@ -218,7 +218,7 @@ export const translations = {
     whyChooseStratelinkGlobal: "Why Choose Stratelink Global",
     excellence: "Excellence",
     excellenceAtServiceOfGrowth: "Excellence at the service of your growth.",
-    discoverWhatDistinguishesUs: "Discover what distinguishes us in the world of commercial and strategic development",
+    discoverWhatDistinguishesUs: "Discover what sets us apart in the world of business and strategic development",
     
     // Agency Features - Version anglaise (réorganisé selon la permutation)
     privilegedMarketAccess: "Direct Access to Strategic Markets",
@@ -324,7 +324,7 @@ export const translations = {
     sourcing: "Sourcing",
     qualityControl: "Contrôle Qualité",
     logisticsTransport: "Logistique & Transport",
-    exclusiveCatalog: "Dédouanement",
+    exclusiveCatalog: "Catalogue Exclusif",
     businessDevelopmentDescription: "Accélérez votre croissance avec nos solutions sur mesure de développement commercial",
     leadGeneration: "Études de marché & veille concurrentielle",
     customerAcquisition: "Stratégies d'acquisition B2B",
@@ -498,7 +498,7 @@ export const translations = {
     whyChooseStratelinkGlobal: "Pourquoi choisir Stratelink Global",
     excellence: "Excellence",
     excellenceAtServiceOfGrowth: "L'excellence au service de votre croissance.",
-    discoverWhatDistinguishesUs: "Découvrez ce qui nous distingue dans l'univers du développement commercial et stratégique",
+    discoverWhatDistinguishesUs: "Découvrez ce qui nous démarque dans l'univers du business et du développement stratégique",
     
     // Agency Features - Version française (réorganisé selon la permutation)
     privilegedMarketAccess: "Accès direct aux marchés stratégiques",
@@ -563,4 +563,5 @@ export const translations = {
 
 export type Language = keyof typeof translations
 export type TranslationKey = keyof typeof translations.en
+
 
