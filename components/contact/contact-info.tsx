@@ -19,7 +19,7 @@ export function ContactInfo() {
     {
       icon: <Phone className="w-6 h-6 text-copper" />,
       title: t('callUs'),
-      details: "(+971) 009-715-431-9234-8",
+      details: "+971 54 319 2348",
       description: ""
     },
     {

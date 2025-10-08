@@ -33,7 +33,7 @@ export function WhatsAppFloat({ phoneNumber, message }: WhatsAppFloatProps) {
     return phone.replace(/\s|\+/g, '').replace(/^00/, '')
   }
 
-  const phoneNumberFormatted = formatPhoneNumber(phoneNumber || '00971543192348')
+  const phoneNumberFormatted = formatPhoneNumber(phoneNumber || '971543192348')
   const whatsappUrl = `https://wa.me/${phoneNumberFormatted}${message ? `?text=${encodeURIComponent(message)}` : ''}`
 
   console.log('WhatsApp Button - URL:', whatsappUrl, 'Mobile:', isMobile)

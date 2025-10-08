@@ -39,7 +39,7 @@ export default function RootLayout({
             <Navbar />
             {children}
             <WhatsAppFloat 
-              phoneNumber="00971543192348"
+              phoneNumber="+971 54 319 2348"
               message="Bonjour, j'aimerais avoir plus d'informations"
             />
             <MobileLanguageFAB />
