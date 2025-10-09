@@ -10,7 +10,7 @@ const SMTP_CONFIG = {
   secure: false, // true pour 465, false pour les autres ports
   auth: {
     user: process.env.GMAIL_USER || 'globalstratelink@gmail.com',
-    pass: process.env.GMAIL_APP_PASSWORD || 'fode wwot vqfu wzvu'
+    pass: process.env.GMAIL_APP_PASSWORD || 'nkpj kcdb vtew eetw'
   }
 }
 
