@@ -10,7 +10,7 @@ const SMTP_CONFIG = {
   secure: false, // true pour 465, false pour les autres ports
   auth: {
     user: process.env.GMAIL_USER || 'globalstratelink@gmail.com',
-    pass: process.env.GMAIL_APP_PASSWORD || 'nkpj kcdb vtew eetw'
+    pass: process.env.GMAIL_APP_PASSWORD || 'nkpjkcdbvteweetw'
   }
 }
 
@@ -23,6 +23,13 @@ export const EMAIL_CONFIG = {
 
 // Créer le transporteur Nodemailer
 export function createTransporter() {
+  console.log('SMTP Config:', {
+    host: SMTP_CONFIG.host,
+    port: SMTP_CONFIG.port,
+    user: SMTP_CONFIG.auth.user,
+    passLength: SMTP_CONFIG.auth.pass?.length || 0,
+    passPreview: SMTP_CONFIG.auth.pass?.substring(0, 4) + '...'
+  })
   return nodemailer.createTransport(SMTP_CONFIG)
 }
 
