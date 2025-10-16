@@ -110,28 +110,55 @@ export function Footer() {
         <div className="border-t border-copper/20" />
 
         {/* Bottom bar */}
-        <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          {/* Credits */}
-          <div className="flex items-center space-x-2 text-sm">
-            <span className="text-gray-400">{t('designedBy')}</span>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-1"
+        <div className="py-6">
+          {/* Legal Links */}
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 mb-4 text-sm">
+            <Link 
+              href="/legal-notice/" 
+              className="text-gray-400 hover:text-copper transition-colors"
             >
-              <Image
-                src="/optimized/new-logo-16x16.png"
-                alt="STRATELINK"
-                width={16}
-                height={16}
-                className="w-4 h-4 filter brightness-110"
-              />
-              <span className="text-copper font-semibold">{t('companyName')}</span>
-            </motion.div>
+              {t('legalNotice')}
+            </Link>
+            <span className="text-gray-600">•</span>
+            <Link 
+              href="/privacy-policy/" 
+              className="text-gray-400 hover:text-copper transition-colors"
+            >
+              {t('privacyPolicy')}
+            </Link>
+            <span className="text-gray-600">•</span>
+            <Link 
+              href="/terms-of-use/" 
+              className="text-gray-400 hover:text-copper transition-colors"
+            >
+              {t('termsOfService')}
+            </Link>
           </div>
 
-          {/* Copyright */}
-          <div className="text-gray-400 text-xs sm:text-sm">
-            © {currentYear} STRATELINK GLOBAL. All rights reserved.
+          {/* Credits and Copyright */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            {/* Credits */}
+            <div className="flex items-center space-x-2 text-sm">
+              <span className="text-gray-400">{t('designedBy')}</span>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center space-x-1"
+              >
+                <Image
+                  src="/optimized/new-logo-16x16.png"
+                  alt="STRATELINK"
+                  width={16}
+                  height={16}
+                  className="w-4 h-4 filter brightness-110"
+                />
+                <span className="text-copper font-semibold">{t('companyName')}</span>
+              </motion.div>
+            </div>
+
+            {/* Copyright */}
+            <div className="text-gray-400 text-xs sm:text-sm">
+              © {currentYear} STRATELINK GLOBAL. All rights reserved.
+            </div>
           </div>
         </div>
       </div>

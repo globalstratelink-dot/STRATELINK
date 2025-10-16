@@ -170,7 +170,8 @@ export const translations = {
     subscribe: "Subscribe",
     allRightsReserved: "All rights reserved.",
     privacyPolicy: "Privacy Policy",
-    termsOfService: "Terms of Service",
+    termsOfService: "Terms of Use",
+    legalNotice: "Legal Notice",
     cookiePolicy: "Cookie Policy",
     createdBy: "Created by",
     designedBy: "Designed by",
@@ -178,6 +179,23 @@ export const translations = {
     trustedByUsTitle: "They Trust Us",
     imageNotAvailable: "Image not available",
     contactDubaiEuropeAsia: "Contact : Dubai / Europe / Asia",
+    
+    // Legal Pages
+    legalNoticeTitle: "Legal Notice",
+    privacyPolicyTitle: "Privacy Policy",
+    termsOfUseTitle: "Terms of Use",
+    
+    // Legal Notice Content
+    sitePublisher: "Site Publisher",
+    companyLegalName: "STRATELINK GLOBAL FZCO",
+    businessLicense: "Business License",
+    businessLicenseNumber: "No. 65284 – Issued by Dubai Integrated Economic Zones Authority (DIEZA)",
+    headquarters: "Headquarters",
+    headquartersAddress: "IFZA Properties, Dubai Silicon Oasis, DSO-IFZA, Dubai, United Arab Emirates",
+    legalRepresentative: "Legal Representative",
+    legalRepName: "Abdelhamid STITTOU – CEO",
+    activities: "Activities",
+    activitiesList: "E-commerce | Management Consultancies | General Trading",
     
     // Testimonials
     whatOurPartnersSay: "What Our Partners",
@@ -451,6 +469,7 @@ export const translations = {
     allRightsReserved: "Tous droits réservés.",
     privacyPolicy: "Politique de Confidentialité",
     termsOfService: "Conditions d'Utilisation",
+    legalNotice: "Mentions Légales",
     cookiePolicy: "Politique des Cookies",
     createdBy: "Créé par",
     designedBy: "Conçu par",
@@ -458,6 +477,23 @@ export const translations = {
     trustedByUsTitle: "Ils Nous Font Confiance",
     imageNotAvailable: "Image non disponible",
     contactDubaiEuropeAsia: "Contact : Dubai / Europe / Asie",
+    
+    // Legal Pages
+    legalNoticeTitle: "Mentions Légales",
+    privacyPolicyTitle: "Politique de Confidentialité",
+    termsOfUseTitle: "Conditions d'Utilisation",
+    
+    // Legal Notice Content
+    sitePublisher: "Éditeur du site",
+    companyLegalName: "STRATELINK GLOBAL FZCO",
+    businessLicense: "Licence commerciale",
+    businessLicenseNumber: "No. 65284 – délivrée par Dubai Integrated Economic Zones Authority (DIEZA)",
+    headquarters: "Siège",
+    headquartersAddress: "IFZA Properties, Dubai Silicon Oasis, DSO-IFZA, Dubaï, Émirats arabes unis",
+    legalRepresentative: "Représentant légal",
+    legalRepName: "Abdelhamid STITTOU – CEO",
+    activities: "Activités",
+    activitiesList: "E-commerce | Management Consultancies | General Trading",
     
     // Testimonials
     whatOurPartnersSay: "Qu'en disent nos partenaires",
