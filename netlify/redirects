@@ -1,0 +1,8 @@
+# Redirections pour les images
+/public/* /public/:splat 200
+
+# Redirections pour les composants Next.js
+/_next/static/* /_next/static/:splat 200
+
+# Redirection SPA pour les routes dynamiques
+/* /index.html 200 

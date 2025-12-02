@@ -1,0 +1,1 @@
+const fs = require("fs"); const content = fs.readFileSync("components/home-slides.tsx", "utf8"); const corrected = content.replace(/\}\s*$/, "          </motion.div>\n        </motion.div>\n      </motion.div>\n    </div>\n  )\n}"); fs.writeFileSync("components/home-slides.tsx", corrected); console.log("Structure corrigée");

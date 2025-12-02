@@ -1,0 +1,74 @@
+
+      {/* Features Grid */}
+      <section className="py-16 bg-gradient-to-b from-navy/95 to-navy">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                id: 1,
+                icon: Zap,
+                title: t('rapidReliableDeployment'),
+                description: t('rapidReliableDeploymentDesc'),
+                color: "from-copper to-sand"
+              },
+              {
+                id: 2,
+                icon: Shield,
+                title: t('turnkeySolutions'),
+                description: t('turnkeySolutionsDesc'),
+                color: "from-sand to-copper"
+              },
+              {
+                id: 3,
+                icon: Globe,
+                title: t('privilegedMarketAccess'),
+                description: t('privilegedMarketAccessDesc'),
+                color: "from-copper/80 to-sand/80"
+              },
+              {
+                id: 4,
+                icon: Users,
+                title: t('customerAcquisitionRetention'),
+                description: t('customerAcquisitionRetentionDesc'),
+                color: "from-sand/80 to-copper/80"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <Card className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-3xl p-8 hover:border-copper/40 transition-all duration-300 h-full">
+                  <CardContent className="p-0">
+                    <div className="flex items-start space-x-6">
+                      {/* Number Badge */}
+                      <div className="flex-shrink-0">
+                        <div className="w-16 h-16 bg-gradient-to-br from-copper to-sand rounded-2xl flex items-center justify-center text-navy font-bold text-xl">
+                          {feature.id}
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="flex-1">
+                        <div className="flex items-center space-x-3 mb-4">
+                          <div className="w-12 h-12 bg-copper/20 rounded-xl flex items-center justify-center">
+                            <feature.icon className="w-6 h-6 text-copper" />
+                          </div>
+                          <h3 className="text-2xl font-bold text-white">
+                            {feature.title}
+                          </h3>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed text-lg">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
