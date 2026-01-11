@@ -10,17 +10,6 @@ declare global {
 
 export function ZohoChatbot() {
   useEffect(() => {
-    // Supprimer l'ancien script Zoho s'il existe
-    const existingScript = document.querySelector('script[src*="zohoim"]')
-    if (existingScript) {
-      existingScript.remove()
-    }
-
-    // Reset le flag pour permettre le rechargement
-    if (window.ZOHOIM) {
-      window.ZOHOIM.loaded = false
-    }
-
     // Configuration Zoho
     window.ZOHOIM = window.ZOHOIM || {}
     window.ZOHOIM.staticServerPathInfo = {
@@ -70,16 +59,27 @@ export function ZohoChatbot() {
     // Charger le script Zoho
     const script = document.createElement('script')
     script.type = 'text/javascript'
+    script.id = 'zoho-im-script'
     if (window.ZOHOIM.nonce) {
       script.setAttribute('nonce', window.ZOHOIM.nonce)
     }
     script.src = 'https://static.zohocdn.com/zohoim/zohoim-visitor-sdk-1.4.0.js'
     document.head.appendChild(script)
 
-    window.ZOHOIM.loaded = true
-
+    // Cleanup quand on quitte la page contact
     return () => {
-      // Cleanup si nécessaire
+      // Supprimer le script
+      const zohoScript = document.getElementById('zoho-im-script')
+      if (zohoScript) zohoScript.remove()
+      
+      // Supprimer tous les éléments Zoho du DOM
+      const zohoElements = document.querySelectorAll('[id*="zoho"], [class*="zoho"], iframe[src*="zoho"]')
+      zohoElements.forEach(el => el.remove())
+      
+      // Reset la config
+      if (window.ZOHOIM) {
+        window.ZOHOIM = {}
+      }
     }
   }, [])
 
