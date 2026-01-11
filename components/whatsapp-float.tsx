@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useLanguage } from '@/contexts/language-context'
+import { usePathname } from 'next/navigation'
 
 interface WhatsAppFloatProps {
   phoneNumber?: string
@@ -13,6 +14,10 @@ export function WhatsAppFloat({ phoneNumber, message }: WhatsAppFloatProps) {
   const { t } = useLanguage()
   const [mounted, setMounted] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const pathname = usePathname()
+
+  // Ne pas afficher sur la page contact
+  const isContactPage = pathname?.startsWith('/contact')
 
   useEffect(() => {
     setMounted(true)
@@ -36,7 +41,7 @@ export function WhatsAppFloat({ phoneNumber, message }: WhatsAppFloatProps) {
   const phoneNumberFormatted = formatPhoneNumber(phoneNumber || '971543192348')
   const whatsappUrl = `https://wa.me/${phoneNumberFormatted}${message ? `?text=${encodeURIComponent(message)}` : ''}`
 
-  console.log('WhatsApp Button - URL:', whatsappUrl, 'Mobile:', isMobile)
+  console.log('WhatsApp Button - URL:', whatsappUrl, 'Mobile:', isMobile, 'Pathname:', pathname, 'isContactPage:', isContactPage)
 
   const buttonStyle: React.CSSProperties = {
     position: 'fixed',
@@ -110,6 +115,6 @@ export function WhatsAppFloat({ phoneNumber, message }: WhatsAppFloatProps) {
     </a>
   )
 
-  if (!mounted || typeof document === 'undefined') return null
+  if (!mounted || typeof document === 'undefined' || isContactPage) return null
   return createPortal(content, document.body)
 } 

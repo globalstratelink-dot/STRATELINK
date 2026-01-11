@@ -4,13 +4,25 @@
 import nodemailer from 'nodemailer'
 
 // Configuration SMTP pour Gmail
+// ⚠️ SÉCURITÉ : Les credentials doivent être définis via les variables d'environnement Netlify
+// Ne jamais hardcoder les mots de passe dans le code source
+
+// Vérifier que les variables d'environnement sont définies
+if (!process.env.GMAIL_USER) {
+  throw new Error('GMAIL_USER environment variable is required. Configure it in Netlify Environment Variables.')
+}
+
+if (!process.env.GMAIL_APP_PASSWORD) {
+  throw new Error('GMAIL_APP_PASSWORD environment variable is required. Configure it in Netlify Environment Variables.')
+}
+
 const SMTP_CONFIG = {
   host: 'smtp.gmail.com',
   port: 587,
   secure: false, // true pour 465, false pour les autres ports
   auth: {
-    user: process.env.GMAIL_USER || 'globalstratelink@gmail.com',
-    pass: process.env.GMAIL_APP_PASSWORD || 'nkpjkcdbvteweetw'
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD
   }
 }
 
