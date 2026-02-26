@@ -1,0 +1,27 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://stratelink-global.ae/sitemap.xml
+
+# Favicon and icons - Ensure search engines can access these
+Allow: /favicon.ico
+Allow: /icon-*.png
+Allow: /apple-touch-icon.png
+Allow: /apple-touch-icon.webp
+Allow: /site.webmanifest
+Allow: /browserconfig.xml
+Allow: /logo.svg
+
+# Images and assets
+Allow: /og-image.png
+Allow: /logo.png
+Allow: /new-logo.png
+
+# Disallow admin or private areas
+Disallow: /api/
+Disallow: /_next/
+Disallow: /.well-known/
+
+# Crawl-delay for better indexing
+Crawl-delay: 1 
