@@ -1,9 +1,3 @@
-# Redirection www vers non-www
-https://www.stratelink-global.com/*  https://stratelink-global.com/:splat  301!
-
 # Redirection .ae vers .com
-https://stratelink-global.ae/*  https://stratelink-global.com/:splat  301!
-https://www.stratelink-global.ae/*  https://stratelink-global.com/:splat  301!
-
-# SPA fallback pour Next.js (doit être en dernier)
-/*  /index.html  200
+https://stratelink-global.ae/*  https://www.stratelink-global.com/:splat  301!
+https://www.stratelink-global.ae/*  https://www.stratelink-global.com/:splat  301!
