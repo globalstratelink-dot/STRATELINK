@@ -12,27 +12,7 @@
   directory = ".netlify/functions"
   node_bundler = "esbuild"
 
-# Redirection www vers non-www pour .com (HTTPS uniquement)
-[[redirects]]
-  from = "/*"
-  to = "https://stratelink-global.com/:splat"
-  status = 301
-  force = true
-  conditions = { Host = ["www.stratelink-global.com"] }
-
-# Redirection .ae vers .com (301)
-[[redirects]]
-  from = "/*"
-  to = "https://stratelink-global.com/:splat"
-  status = 301
-  force = true
-  conditions = { Host = ["stratelink-global.ae", "www.stratelink-global.ae"] }
-
-# SPA fallback pour Next.js (doit être en dernier)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Les redirections sont gérées par public/_redirects
 
 # Headers de sécurité
 [[headers]]
