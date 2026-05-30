@@ -2,7 +2,7 @@ export const translations = {
   en: {
     // Navigation
     home: "Home",
-    services: "Our Services",
+    services: "Our Solutions",
     agency: "Our Agency",
     contact: "Contact",
     getStarted: "Get Started",
@@ -12,11 +12,11 @@ export const translations = {
     companyTagline: "GLOBAL",
     
     // New Home Slides
-    visionSynergiesDevelopment: "Vision - Synergies - Development",
+    visionSynergiesDevelopment: "Strategies - Networks - Growth",
     accelerateInternationalExpansion: "Accelerate your international expansion",
     strategicPartnerDubaiEuropeAsia: "Stratelink Global is the strategic partner connecting Dubai, Europe and Asia",
     discoverOurSolutions: "Discover our solutions",
-    globalSolutionsInternationalTrade: "Global solutions for international trade and business development",
+    globalSolutionsInternationalTrade: "Comprehensive solutions for international trade and business development",
     sourcingToDeliveryDescription: "From sourcing to delivery, we orchestrate your import/export operations and accelerate your growth through customized business development strategies",
     
     // Services Grid
@@ -37,20 +37,20 @@ export const translations = {
     
     // Services Page
     servicesPageDescription: "Comprehensive solutions to accelerate your international growth and business development",
-    servicesPageTitle: "Our Services",
+    servicesPageTitle: "Our Solutions",
     servicesPageSubtitle: "Complete Solutions for Your International Growth",
     servicesPageDescription1: "Discover our comprehensive range of specialized services designed to accelerate your international expansion and optimize your business operations.",
-    importExportDescription: "Optimize your sourcing with our integrated procurement and logistics solutions",
+    importExportDescription: "Complete import and export solutions for your international trade needs",
     sourcing: "Sourcing",
     qualityControl: "Quality Control",
-    logisticsTransport: "Logistics and Transport",
-    exclusiveCatalog: "Exclusive Catalog",
+    logisticsTransport: "Logistics and Transportation",
+    exclusiveCatalog: "Customs Clearance",
     businessDevelopmentDescription: "Accelerate your growth with our customized business development solutions",
-    leadGeneration: "Lead Generation",
-    customerAcquisition: "Customer Acquisition",
-    salesForce: "Sales Force",
-    branding: "Branding",
-    brandingDescription: "Strengthen your impact with our strategic branding solutions",
+    leadGeneration: "Market research & competitive intelligence",
+    customerAcquisition: "B2B client acquisition strategies",
+    salesForce: "International market entry",
+    branding: "Strategic partnerships & distribution networks",
+    brandingDescription: "Strengthen your impact with our branding solutions",
     brandIdentity: "Brand Identity",
     brandStrategy: "Brand Strategy",
     designVisualCommunication: "Design and Visual Communication",
@@ -59,8 +59,8 @@ export const translations = {
     digitalSolutionsDescription: "Accelerate your company's digital transformation with our integrated and strategic digital solutions",
     processAutomation: "Process Automation",
     digitalSolutionsIntegration: "Digital Solutions Integration",
-    dataAnalysisExploitation: "Data Analysis and Exploitation",
-    digitalChangeAccompaniment: "Digital Change Accompaniment",
+    dataAnalysisExploitation: "Data Analysis and Utilization",
+    digitalChangeAccompaniment: "Change Support",
     readyToStart: "Book Your Free Consultation",
     contactUsForConsultation: "Contact us for a personalized consultation and discover how we can help you achieve your goals",
     contactUs: "Contact Us",
@@ -119,6 +119,8 @@ export const translations = {
     lastName: "Last Name",
     email: "Email Address",
     company: "Company",
+    country: "Country",
+    phoneNumber: "Phone Number",
     subject: "Subject",
     message: "Your Message",
     sendMessageBtn: "Send Message",
@@ -155,9 +157,9 @@ export const translations = {
     weWillRespondWithin24Hours: "We will respond within 24 hours",
     monFri9AM6PMEST: "Mon-Fri 9AM-6PM GST (Dubai)",
     globalOfficesWorldwide: "Main office in Dubai",
-    support24HoursAvailable: "24/7 support available",
+    support24HoursAvailable: "Mon-Fri 9AM-6PM GST (Dubai) - 24/7 support available",
     weAreHereWhenYouNeedUs: "We are here when you need us",
-    ourGlobalOffices: "Our Main Office",
+    ourGlobalOffices: "Agency",
     newYork: "New York",
     london: "London",
     singapore: "Singapore",
@@ -168,14 +170,32 @@ export const translations = {
     subscribe: "Subscribe",
     allRightsReserved: "All rights reserved.",
     privacyPolicy: "Privacy Policy",
-    termsOfService: "Terms of Service",
+    termsOfService: "Terms of Use",
+    legalNotice: "Legal Notice",
     cookiePolicy: "Cookie Policy",
     createdBy: "Created by",
     designedBy: "Designed by",
-    trustedByUs: "They trusted us",
-    trustedByUsTitle: "They trusted us",
-    trustedByUsDescription: "Discover our partners and clients who trust us for their projects",
+    trustedByUs: "They Trust Us",
+    trustedByUsTitle: "They Trust Us",
     imageNotAvailable: "Image not available",
+    contactDubaiEuropeAsia: "Contact : Dubai / Europe / Asia",
+    
+    // Legal Pages
+    legalNoticeTitle: "Legal Notice",
+    privacyPolicyTitle: "Privacy Policy",
+    termsOfUseTitle: "Terms of Use",
+    
+    // Legal Notice Content
+    sitePublisher: "Site Publisher",
+    companyLegalName: "STRATELINK GLOBAL FZCO",
+    businessLicense: "Business License",
+    businessLicenseNumber: "No. 65284 – Issued by Dubai Integrated Economic Zones Authority (DIEZA)",
+    headquarters: "Headquarters",
+    headquartersAddress: "IFZA Properties, Dubai Silicon Oasis, DSO-IFZA, Dubai, United Arab Emirates",
+    legalRepresentative: "Legal Representative",
+    legalRepName: "Abdelhamid STITTOU – CEO",
+    activities: "Activities",
+    activitiesList: "E-commerce | Management Consultancies | General Trading",
     
     // Testimonials
     whatOurPartnersSay: "What Our Partners",
@@ -214,25 +234,26 @@ export const translations = {
     
     // Agency Page
     whyChooseStratelinkGlobal: "Why Choose Stratelink Global",
+    excellence: "Excellence",
     excellenceAtServiceOfGrowth: "Excellence at the service of your growth.",
-    discoverWhatDistinguishesUs: "Discover what distinguishes us in the world of commercial and strategic development",
+    discoverWhatDistinguishesUs: "Discover what sets us apart in the world of business and strategic development",
     
-    // Agency Features
-    rapidReliableDeployment: "Rapid and Reliable Deployment",
-    rapidReliableDeploymentDesc: "Services deployed in record time with 24/7 support",
-    turnkeySolutions: "Turnkey Solutions",
-    turnkeySolutionsDesc: "Complete management of your commercial and digital flows, without complexity for you",
-    privilegedMarketAccess: "Privileged Access to Markets and Products",
-    privilegedMarketAccessDesc: "Exclusive catalog and reliable partners to secure your operations.",
-    customerAcquisitionRetention: "Customer Acquisition and Retention",
-    customerAcquisitionRetentionDesc: "Qualified lead generation and high-performance acquisition strategies.",
+    // Agency Features - Version anglaise (réorganisé selon la permutation)
+    privilegedMarketAccess: "Direct Access to Strategic Markets",
+    privilegedMarketAccessDesc: "Exclusive catalogs and trusted partners to secure your international operations.",
+    customerAcquisitionRetention: "Accelerated Business Growth", 
+    customerAcquisitionRetentionDesc: "Proven B2B lead generation and client acquisition methodologies.",
+    turnkeySolutions: "Tailor-Made, Turnkey Solutions",
+    turnkeySolutionsDesc: "Personalized support from market research to full operational deployment.",
+    rapidReliableDeployment: "Fast and Secure Execution",
+    rapidReliableDeploymentDesc: "Agile implementation, 24/7 support, and end-to-end quality control.",
     
     // About Stratelink Global
     aboutStratelinkGlobal: "About Stratelink Global",
     orchestratorOfInternationalGrowth: "Orchestrator of your international growth",
     aboutStratelinkDescription1: "At Stratelink Global, we support companies in their expansion through integrated solutions in import/export, business development, branding and digital transformation.",
     aboutStratelinkDescription2: "Our mission: simplify your operations while generating measurable and sustainable growth.",
-    aboutStratelinkDescription3: "Drawing on our experience with ambitious companies and established companies, we deploy a rigorous approach that produces concrete results and strengthens your international reach.",
+    aboutStratelinkDescription3: "With our experience working with ambitious and well-established companies, we take a rigorous approach that produces concrete results and strengthens your international reach.",
     
     // Agency Services
     commercialDevelopment: "Commercial Development",
@@ -244,15 +265,42 @@ export const translations = {
     digitalSolutionsApiSaaS: "Digital Solutions : API and SaaS",
     digitalSolutionsApiSaaSItems: ["Enterprise Solutions", "Tracking", "Telecom"],
     
+    // Our Process
+    ourProcess: "Our Process",
+    step01: "Step 01",
+    brainstorming: "Brainstorming",
+    brainstormingDescription: "The first step is to discuss your project and your needs in order to understand your specific expectations and offer you the best existing solutions on the market within your budget.",
+    step02: "Step 02",
+    roadmap: "Roadmap",
+    roadmapDescription: "The purpose of creating a roadmap is to describe the phases of the action plan and set important milestones. It is provided to you after the assignment has been validated in order to present a clear overview of expectations and delivery deadlines.",
+    step03: "Step 03",
+    actions: "Actions",
+    actionsDescription: "Each of our clients is assigned a dedicated contact person to ensure high-quality support and availability throughout the operations.",
+    step04: "Step 04",
+    result: "Result",
+    resultDescription: "At the end of the project, an operational review is presented with an analysis of the mission's KPIs. This crucial step allows us to evaluate performance and deliverables. It is also an opportunity to gather customer feedback for the continuous improvement of our processes and to guarantee ever more innovative approaches.",
+    
     // Accessibility
     openWhatsApp: "Open WhatsApp",
     closeMenu: "Close menu",
     openMenu: "Open menu",
+    
+    // Home Page Additional
+    loading: "Loading...",
+    testimonials: "Testimonials",
+    
+    // Testimonials
+    testimonial1: "We had the opportunity to benefit from STRATELINK GLOBAL's logistical support in an emergency context. Their responsiveness and professionalism allowed us to overcome a critical challenge and ensure the continuity of our operations. It's always a real pleasure to collaborate with such a reliable and committed team.",
+    testimonial2: "We have been collaborating with STRATELINK GLOBAL and its leader for years. His competence and professionalism are unanimous. We naturally entrust him with the commercial development of our solutions with complete confidence.",
+    testimonial3: "Working with STRATELINK GLOBAL on our common missions has been a real strategic asset. Their professionalism, responsiveness and the complementarity of our expertise created immediate and lasting trust. It's a pleasure to collaborate with such a competent, committed and results-oriented team.",
+    testimonial4: "We solicited STRATELINK GLOBAL to accompany us in our development strategy. Their approach was both clear, structured and visionary. Thanks to their advice, we were able to redefine our priorities and implement a concrete plan for our objectives.",
+    testimonial5: "Thanks to you, we were able to quickly source a key technological product, with high-quality support. Beyond the concrete result, this collaboration gave birth to a beautiful friendship, making each exchange both effective and sincerely pleasant.",
+    testimonial6: "The support was decisive in structuring my processes, optimizing customer management and strengthening my commercial approach. His expertise and availability allowed me to gain efficiency and clarity. A real added value that I recommend.",
   },
   fr: {
     // Navigation
     home: "Accueil",
-    services: "Nos Services",
+    services: "Nos Solutions",
     agency: "Notre Agence",
     contact: "Contact",
     getStarted: "Commencer",
@@ -262,9 +310,9 @@ export const translations = {
     companyTagline: "GLOBAL",
     
     // New Home Slides
-    visionSynergiesDevelopment: "Vision - Synergies - Développement",
+    visionSynergiesDevelopment: "Stratégies - Réseaux - Croissance",
     accelerateInternationalExpansion: "Accélérez votre expansion internationale",
-    strategicPartnerDubaiEuropeAsia: "Stratelink Global est le partenaire stratégique qui relie Dubaï, L'Europe et L'Asie",
+    strategicPartnerDubaiEuropeAsia: "Stratelink Global est le partenaire stratégique qui relie Dubaï, l'Europe et l'Asie",
     discoverOurSolutions: "Découvrir nos solutions",
     globalSolutionsInternationalTrade: "Solutions globales pour le commerce international et le développement commercial",
     sourcingToDeliveryDescription: "De l'approvisionnement à la livraison, nous orchestrons vos opérations d'import/export et accélérons votre croissance grâce à des stratégies de développement commercial sur mesure",
@@ -287,26 +335,26 @@ export const translations = {
     
     // Services Page
     servicesPageDescription: "Comprehensive solutions to accelerate your international growth and business development",
-    servicesPageTitle: "Nos Services",
+    servicesPageTitle: "Nos Solutions",
     servicesPageSubtitle: "Solutions globales pour le commerce international et le développement commercial.",
     servicesPageDescription1: "De l'approvisionnement à la livraison, nous orchestrons vos opérations d'import/export et accélérons votre croissance grâce à des stratégies de développement commercial sur mesure.",
-    importExportDescription: "Optimisez votre Sourcing avec nos solutions intégrées d'approvisionnement et de logistique",
+    importExportDescription: "Solutions complètes d'import et d'export pour vos besoins commerciaux internationaux",
     sourcing: "Sourcing",
     qualityControl: "Contrôle Qualité",
-    logisticsTransport: "Logistique et Transport",
+    logisticsTransport: "Logistique & Transport",
     exclusiveCatalog: "Catalogue Exclusif",
     businessDevelopmentDescription: "Accélérez votre croissance avec nos solutions sur mesure de développement commercial",
-    leadGeneration: "Génération de leads",
-    customerAcquisition: "Acquisition clients",
-    salesForce: "Force de ventes",
-    branding: "Branding",
-    brandingDescription: "Renforcez votre impact avec nos solutions de branding stratégiques",
+    leadGeneration: "Études de marché & veille concurrentielle",
+    customerAcquisition: "Stratégies d'acquisition B2B",
+    salesForce: "Ouverture de marchés internationaux",
+    branding: "Partenariats stratégiques & distribution",
+    brandingDescription: "Renforcez votre impact avec nos solutions de branding",
     brandIdentity: "Identité de marque",
     brandStrategy: "Stratégie de marque",
     designVisualCommunication: "Design et communication visuelle",
     positioningStorytelling: "Positionnement et storytelling",
     digitalSolutions: "Digital Solutions",
-    digitalSolutionsDescription: "Accélérez la transformation digitale de votre entreprise grâce à nos solutions digitales intégrées et stratégiques",
+    digitalSolutionsDescription: "Accélérez la transformation digitale de votre entreprise grâce à nos solutions digitales intégrées",
     processAutomation: "Automatisation des processus",
     digitalSolutionsIntegration: "Intégration de solutions digitales",
     dataAnalysisExploitation: "Analyse et exploitation des données",
@@ -343,7 +391,7 @@ export const translations = {
     supplyChain: "Gestion de la Chaîne d'Approvisionnement",
     supplyChainDesc: "Gérez votre chaîne d'approvisionnement mondiale efficacement avec nos solutions intégrées et notre suivi en temps réel.",
     learnMore: "En Savoir Plus",
-    viewAllServices: "Voir Tous les Services",
+    viewAllServices: "Tous nos services",
     
     // Agency
     agencyTitle: "Leader du Commerce",
@@ -369,7 +417,9 @@ export const translations = {
     lastName: "Nom",
     email: "Adresse Email",
     company: "Entreprise",
-    subject: "Sujet",
+    country: "Pays",
+    phoneNumber: "Numéro de téléphone",
+    subject: "Objet",
     message: "Votre Message",
     sendMessageBtn: "Envoyer le Message",
     weWillGetBackToYou: "Nous vous répondrons dans les 24 heures",
@@ -398,16 +448,16 @@ export const translations = {
 
     
     // Contact Info
-    emailUs: "Envoyez-nous un email",
+    emailUs: "Écrivez-nous",
     callUs: "Appelez-nous",
-    visitUs: "Visitez-nous",
+    visitUs: "Rendez-nous visite",
     businessHours: "Heures d'ouverture",
     weWillRespondWithin24Hours: "Nous répondrons dans les 24 heures",
     monFri9AM6PMEST: "Lun-Ven 9h-18h GST (Dubai)",
     globalOfficesWorldwide: "Bureau principal à Dubai",
-    support24HoursAvailable: "Support 24/7 disponible",
+    support24HoursAvailable: "Lun-Ven 9h-18h GST (Dubai) - Support 24/7 disponible",
     weAreHereWhenYouNeedUs: "Nous sommes là quand vous avez besoin de nous",
-    ourGlobalOffices: "Notre Bureau Principal",
+    ourGlobalOffices: "Agence",
     newYork: "New York",
     london: "Londres",
     singapore: "Singapour",
@@ -419,13 +469,31 @@ export const translations = {
     allRightsReserved: "Tous droits réservés.",
     privacyPolicy: "Politique de Confidentialité",
     termsOfService: "Conditions d'Utilisation",
+    legalNotice: "Mentions Légales",
     cookiePolicy: "Politique des Cookies",
     createdBy: "Créé par",
     designedBy: "Conçu par",
-    trustedByUs: "Ils nous ont fait confiance",
-    trustedByUsTitle: "Ils nous ont fait confiance",
-    trustedByUsDescription: "Découvrez nos partenaires et clients qui nous font confiance pour leurs projets",
+    trustedByUs: "Ils Nous Font Confiance",
+    trustedByUsTitle: "Ils Nous Font Confiance",
     imageNotAvailable: "Image non disponible",
+    contactDubaiEuropeAsia: "Contact : Dubai / Europe / Asie",
+    
+    // Legal Pages
+    legalNoticeTitle: "Mentions Légales",
+    privacyPolicyTitle: "Politique de Confidentialité",
+    termsOfUseTitle: "Conditions d'Utilisation",
+    
+    // Legal Notice Content
+    sitePublisher: "Éditeur du site",
+    companyLegalName: "STRATELINK GLOBAL FZCO",
+    businessLicense: "Licence commerciale",
+    businessLicenseNumber: "No. 65284 – délivrée par Dubai Integrated Economic Zones Authority (DIEZA)",
+    headquarters: "Siège",
+    headquartersAddress: "IFZA Properties, Dubai Silicon Oasis, DSO-IFZA, Dubaï, Émirats arabes unis",
+    legalRepresentative: "Représentant légal",
+    legalRepName: "Abdelhamid STITTOU – CEO",
+    activities: "Activités",
+    activitiesList: "E-commerce | Management Consultancies | General Trading",
     
     // Testimonials
     whatOurPartnersSay: "Qu'en disent nos partenaires",
@@ -464,22 +532,23 @@ export const translations = {
     
     // Agency Page
     whyChooseStratelinkGlobal: "Pourquoi choisir Stratelink Global",
+    excellence: "Excellence",
     excellenceAtServiceOfGrowth: "L'excellence au service de votre croissance.",
-    discoverWhatDistinguishesUs: "Découvrez ce qui nous distingue dans l'univers du développement commercial et stratégique",
+    discoverWhatDistinguishesUs: "Découvrez ce qui nous démarque dans l'univers du business et du développement stratégique",
     
-    // Agency Features
-    rapidReliableDeployment: "Déploiement rapide et fiable",
-    rapidReliableDeploymentDesc: "Service déployées en temps record avec support 24/7",
-    turnkeySolutions: "Solutions clés en main",
-    turnkeySolutionsDesc: "Gestion complète de vos flux commerciaux et digitaux, sans complexité pour vous",
-    privilegedMarketAccess: "Accès privilégié aux marchés et produits",
-    privilegedMarketAccessDesc: "Catalogue exclusif et partenaires fiables pour sécuriser vos opérations.",
-    customerAcquisitionRetention: "Acquisition et fidélisation clients",
-    customerAcquisitionRetentionDesc: "Génération de leads qualifiés et stratégies d'acquisition performantes.",
+    // Agency Features - Version française (réorganisé selon la permutation)
+    privilegedMarketAccess: "Accès direct aux marchés stratégiques",
+    privilegedMarketAccessDesc: "Catalogues exclusifs et partenaires fiables pour sécuriser vos opérations internationales.",
+    customerAcquisitionRetention: "Croissance commerciale accélérée",
+    customerAcquisitionRetentionDesc: "Méthodologies éprouvées pour générer des leads B2B et conquérir de nouveaux clients.",
+    turnkeySolutions: "Solutions sur mesure, clé en main",
+    turnkeySolutionsDesc: "Accompagnement personnalisé de l'étude de marché jusqu'à la mise en place opérationnelle.",
+    rapidReliableDeployment: "Exécution rapide et sécurisée",
+    rapidReliableDeploymentDesc: "Mise en œuvre agile, support 24/7 et contrôle qualité de bout en bout.",
     
     // About Stratelink Global
     aboutStratelinkGlobal: "À propos de Stratelink Global",
-    orchestratorOfInternationalGrowth: "Orchestrateur de votre croissance internationale",
+    orchestratorOfInternationalGrowth: "Orchestrateur de votre croissance à l'international",
     aboutStratelinkDescription1: "Chez Stratelink Global, nous accompagnons les entreprises dans leur expansion grâce à des solutions intégrées en import/export, développement commercial, branding et transformation digitale.",
     aboutStratelinkDescription2: "Notre mission : simplifier vos opérations tout en générant une croissance mesurable et durable.",
     aboutStratelinkDescription3: "Forts de notre expérience auprès d'entreprises ambitieuses et de sociétés établies, nous déployons une approche rigoureuse qui produit des résultats concrets et renforce votre rayonnement international.",
@@ -494,13 +563,41 @@ export const translations = {
     digitalSolutionsApiSaaS: "Digital Solutions : API and SaaS",
     digitalSolutionsApiSaaSItems: ["Solutions d'entreprise", "Tracking", "Télécom"],
     
+    // Notre démarche
+    ourProcess: "Notre démarche",
+    step01: "Étape 01",
+    brainstorming: "Brainstorming",
+    brainstormingDescription: "La première étape consiste à échanger ensemble pour comprendre votre projet et vos besoins précis afin de vous proposer les meilleures solutions existantes sur le marché selon le budget que vous souhaitez allouer à cette mission.",
+    step02: "Étape 02",
+    roadmap: "Feuille de route",
+    roadmapDescription: "La création d'une feuille de route vise à décrire les phases du plan d'action et à fixer des jalons importants. celle-ci vous est remise après validation de la mission afin de présenter une vision claire des attendus et des délais de livraison.",
+    step03: "Étape 03",
+    actions: "Actions",
+    actionsDescription: "Chacun de nos clients possède un interlocuteur dédié qui lui est attribué pour garantir un accompagnement de qualité ainsi qu'une disponibilité tout au long des opérations.",
+    step04: "Étape 04",
+    result: "Résultat",
+    resultDescription: "Au terme du projet, un bilan des opérations est présenté avec une analyse des KPI de la mission, cette étape cruciale permet l'évaluation de la performance et du livrable. C'est aussi l'occasion d'un retour d'expérience client pour l'amélioration constante de nos process et la garantie d'approches toujours plus innovantes.",
+    
     // Accessibility
     openWhatsApp: "Ouvrir WhatsApp",
     closeMenu: "Fermer le menu",
     openMenu: "Ouvrir le menu",
+    
+    // Home Page Additional
+    loading: "Chargement...",
+    testimonials: "Avis",
+    
+    // Testimonials
+    testimonial1: "Nous avons eu l'opportunité de bénéficier du soutien logistique de STRATELINK GLOBAL dans un contexte d'urgence. Leur réactivité et leur professionnalisme nous ont permis de relever un défi critique et d'assurer la continuité de nos opérations. C'est toujours un véritable plaisir de collaborer avec une équipe aussi fiable et engagée.",
+    testimonial2: "Nous collaborons avec STRATELINK GLOBAL et son dirigeant depuis des années. Sa compétence et son professionnalisme font l'unanimité. Nous lui confions naturellement le développement commercial de nos solutions en toute confiance.",
+    testimonial3: "Travailler avec STRATELINK GLOBAL sur nos missions communes a été un véritable atout stratégique. Leur professionnalisme, leur réactivité et la complémentarité de nos expertises ont créé une confiance immédiate et durable. C'est un plaisir de collaborer avec une équipe aussi compétente, engagée et orientée résultats.",
+    testimonial4: "Nous avons sollicité STRATELINK GLOBAL pour nous accompagner dans notre stratégie de développement. Leur approche a été à la fois claire, structurée et visionnaire. Grâce à leurs conseils, nous avons pu redéfinir nos priorités et mettre en place un plan concret pour nos objectifs.",
+    testimonial5: "Grâce à vous, nous avons pu sourcer rapidement un produit technologique clé, avec un accompagnement de grande qualité. Au-delà du résultat concret, cette collaboration a donné naissance à une belle amitié, rendant chaque échange à la fois efficace et sincèrement agréable.",
+    testimonial6: "L'accompagnement a été déterminant pour structurer mes process, optimiser la gestion clients et renforcer mon approche commerciale. Son expertise et sa disponibilité m'ont permis de gagner en efficacité et en clarté. Une vraie valeur ajoutée que je recommande.",
   }
 }
 
 export type Language = keyof typeof translations
 export type TranslationKey = keyof typeof translations.en
+
 

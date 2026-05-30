@@ -2,10 +2,12 @@ import { Footer } from "@/components/footer"
 import { ContactHero } from "@/components/contact/contact-hero"
 import { ContactForm } from "@/components/contact/contact-form"
 import { ContactInfo } from "@/components/contact/contact-info"
+import { ZohoChatbot } from "@/components/zoho-chatbot"
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-navy">
+      <ZohoChatbot />
       <ContactHero />
       
       {/* Contact Section */}

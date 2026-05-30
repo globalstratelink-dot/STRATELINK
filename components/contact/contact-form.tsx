@@ -4,11 +4,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState, useEffect } from "react"
 import { useLanguage } from "@/contexts/language-context"
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import { useNodemailerSender } from "@/hooks/use-nodemailer-sender"
 import { motion, AnimatePresence } from "framer-motion"
+import { countries, getPhoneCode } from "@/lib/utils"
 
 export function ContactForm() {
   const { t } = useLanguage()
@@ -18,9 +20,14 @@ export function ContactForm() {
     lastName: "",
     email: "",
     company: "",
+    country: "",
+    phoneNumber: "",
     subject: "",
     message: ""
   })
+
+  const [selectedCountry, setSelectedCountry] = useState("")
+  const [phoneCode, setPhoneCode] = useState("")
 
   const [errors, setErrors] = useState<Record<string, string>>({})
 
@@ -34,34 +41,78 @@ export function ContactForm() {
           lastName: "",
           email: "",
           company: "",
+          country: "",
+          phoneNumber: "",
           subject: "",
           message: ""
         })
+        setSelectedCountry("")
+        setPhoneCode("")
         setErrors({})
       }, 3000)
       return () => clearTimeout(timer)
     }
   }, [emailState.isSuccess, resetState])
 
+  // Fonction pour gérer le changement de pays
+  const handleCountryChange = (countryCode: string) => {
+    setSelectedCountry(countryCode)
+    const code = getPhoneCode(countryCode)
+    setPhoneCode(code)
+    
+    // Mettre à jour le formData avec le nom du pays
+    const country = countries.find(c => c.code === countryCode)
+    setFormData(prev => ({ 
+      ...prev, 
+      country: country ? country.name : "" 
+    }))
+    
+    // Si le numéro de téléphone commence déjà par un code, le remplacer
+    if (formData.phoneNumber && formData.phoneNumber.startsWith("+")) {
+      const phoneWithoutCode = formData.phoneNumber.replace(/^\+\d+\s*/, "")
+      setFormData(prev => ({ 
+        ...prev, 
+        phoneNumber: code + " " + phoneWithoutCode 
+      }))
+    } else if (formData.phoneNumber) {
+      setFormData(prev => ({ 
+        ...prev, 
+        phoneNumber: code + " " + formData.phoneNumber 
+      }))
+    }
+  }
+
+  // Fonction pour gérer le changement du numéro de téléphone
+  const handlePhoneChange = (value: string) => {
+    // Si l'utilisateur tape un code, ne pas l'ajouter automatiquement
+    if (value.startsWith("+")) {
+      setFormData(prev => ({ ...prev, phoneNumber: value }))
+    } else {
+      // Ajouter le code du pays sélectionné
+      const fullNumber = phoneCode ? `${phoneCode} ${value}` : value
+      setFormData(prev => ({ ...prev, phoneNumber: fullNumber }))
+    }
+  }
+
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {}
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = t('firstNameRequired')
+      newErrors.firstName = String(t('firstNameRequired'))
     }
     if (!formData.lastName.trim()) {
-      newErrors.lastName = t('lastNameRequired')
+      newErrors.lastName = String(t('lastNameRequired'))
     }
     if (!formData.email.trim()) {
-      newErrors.email = t('emailRequired')
+      newErrors.email = String(t('emailRequired'))
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = t('invalidEmailFormat')
+      newErrors.email = String(t('invalidEmailFormat'))
     }
     if (!formData.subject.trim()) {
-      newErrors.subject = t('subjectRequired')
+      newErrors.subject = String(t('subjectRequired'))
     }
     if (!formData.message.trim()) {
-      newErrors.message = t('messageRequired')
+      newErrors.message = String(t('messageRequired'))
     }
 
     setErrors(newErrors)
@@ -97,12 +148,21 @@ export function ContactForm() {
     return baseClass
   }
 
+  // Fonction helper pour les traductions avec fallback
+  const getTranslation = (key: string, fallback: string = "") => {
+    try {
+      return String(t(key as any)) || fallback
+    } catch {
+      return fallback
+    }
+  }
+
   return (
     <Card className="bg-navy/50 border-copper/20 shadow-2xl">
       <CardHeader>
-        <CardTitle className="text-white text-2xl">{t('sendMessage')}</CardTitle>
+        <CardTitle className="text-white text-2xl">{String(t('sendMessage'))}</CardTitle>
         <CardDescription className="text-gray-300">
-          {t('weWillGetBackToYou')}
+          {String(t('weWillGetBackToYou'))}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -117,8 +177,8 @@ export function ContactForm() {
             >
               <CheckCircle className="w-5 h-5 text-green-400" />
               <div>
-                <p className="text-green-400 font-medium">{t('messageSentSuccess')}</p>
-                <p className="text-green-300 text-sm">{t('weWillContactYouSoon')}</p>
+                <p className="text-green-400 font-medium">{String(t('messageSentSuccess'))}</p>
+                <p className="text-green-300 text-sm">{String(t('weWillContactYouSoon'))}</p>
               </div>
             </motion.div>
           )}
@@ -135,7 +195,7 @@ export function ContactForm() {
             >
               <AlertCircle className="w-5 h-5 text-red-400" />
               <div>
-                <p className="text-red-400 font-medium">{t('errorSendingMessage')}</p>
+                <p className="text-red-400 font-medium">{String(t('errorSendingMessage'))}</p>
                 <p className="text-red-300 text-sm">{emailState.errorMessage}</p>
               </div>
             </motion.div>
@@ -145,10 +205,10 @@ export function ContactForm() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-300">{t('firstName')}</label>
+              <label className="text-sm font-medium text-gray-300">{String(t('firstName'))}</label>
               <Input
                 type="text"
-                placeholder={t('johnPlaceholder')}
+                placeholder={String(t('johnPlaceholder'))}
                 value={formData.firstName}
                 onChange={(e) => handleInputChange("firstName", e.target.value)}
                 className={getInputClassName("firstName")}
@@ -159,10 +219,10 @@ export function ContactForm() {
               )}
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-300">{t('lastName')}</label>
+              <label className="text-sm font-medium text-gray-300">{String(t('lastName'))}</label>
               <Input
                 type="text"
-                placeholder={t('doePlaceholder')}
+                placeholder={String(t('doePlaceholder'))}
                 value={formData.lastName}
                 onChange={(e) => handleInputChange("lastName", e.target.value)}
                 className={getInputClassName("lastName")}
@@ -175,10 +235,10 @@ export function ContactForm() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-300">{t('email')}</label>
+            <label className="text-sm font-medium text-gray-300">{String(t('email'))}</label>
             <Input
               type="email"
-              placeholder={t('emailPlaceholder')}
+              placeholder={String(t('emailPlaceholder'))}
               value={formData.email}
               onChange={(e) => handleInputChange("email", e.target.value)}
               className={getInputClassName("email")}
@@ -190,21 +250,58 @@ export function ContactForm() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-300">{t('company')}</label>
+            <label className="text-sm font-medium text-gray-300">{String(t('company'))}</label>
             <Input
               type="text"
-              placeholder={t('companyPlaceholder')}
+              placeholder={String(t('companyPlaceholder'))}
               value={formData.company}
               onChange={(e) => handleInputChange("company", e.target.value)}
               className={getInputClassName("company")}
             />
           </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-300">{getTranslation('country', 'Pays')}</label>
+              <Select value={selectedCountry} onValueChange={handleCountryChange}>
+                <SelectTrigger className={getInputClassName("country")}>
+                  <SelectValue placeholder={getTranslation('selectCountry', 'Sélectionnez votre pays')} />
+                </SelectTrigger>
+                <SelectContent className="bg-navy border-copper/30">
+                  {countries.map((country) => (
+                    <SelectItem 
+                      key={country.code} 
+                      value={country.code}
+                      className="text-white hover:bg-copper/20 focus:bg-copper/20"
+                    >
+                      <div className="flex items-center space-x-2">
+                        <span className="text-copper font-mono text-sm">{country.phoneCode}</span>
+                        <span>{country.name}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-300">
+                {getTranslation('phoneNumber', 'Numéro de téléphone')} {phoneCode && <span className="text-copper">({phoneCode})</span>}
+              </label>
+              <Input
+                type="tel"
+                placeholder={phoneCode ? `${phoneCode} 123 456 789` : getTranslation('phoneNumberPlaceholder', 'Entrez votre numéro de téléphone')}
+                value={formData.phoneNumber}
+                onChange={(e) => handlePhoneChange(e.target.value)}
+                className={getInputClassName("phoneNumber")}
+              />
+            </div>
+          </div>
+
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-300">{t('subject')}</label>
+            <label className="text-sm font-medium text-gray-300">{String(t('subject'))}</label>
             <Input
               type="text"
-              placeholder={t('subjectPlaceholder')}
+              placeholder={String(t('subjectPlaceholder'))}
               value={formData.subject}
               onChange={(e) => handleInputChange("subject", e.target.value)}
               className={getInputClassName("subject")}
@@ -216,9 +313,9 @@ export function ContactForm() {
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-300">{t('message')}</label>
+            <label className="text-sm font-medium text-gray-300">{String(t('message'))}</label>
             <Textarea
-              placeholder={t('messagePlaceholder')}
+              placeholder={String(t('messagePlaceholder'))}
               rows={6}
               value={formData.message}
               onChange={(e) => handleInputChange("message", e.target.value)}
@@ -238,12 +335,12 @@ export function ContactForm() {
             {emailState.isSending ? (
               <>
                 <Loader2 className="mr-2 w-5 h-5 animate-spin" />
-                {t('sendingInProgress')}
+                {String(t('sendingInProgress'))}
               </>
             ) : (
               <>
                 <Send className="mr-2 w-5 h-5" />
-                {t('sendMessageBtn')}
+                {String(t('sendMessageBtn'))}
               </>
             )}
           </Button>

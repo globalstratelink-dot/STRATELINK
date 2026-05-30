@@ -1,12 +1,10 @@
-
-
 "use client"
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, ArrowLeft, Globe, TrendingUp, Palette, Zap } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
-import { HeroImage, ServicesImage } from "@/components/optimized-image"
+import { HeroImage, ServicesImage, OptimizedAvatar } from "@/components/optimized-image"
 import Link from "next/link"
 import { useRef, useState, useEffect } from "react"
 
@@ -15,6 +13,7 @@ export function HomeSlides() {
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0)
   const [currentMobileIndex, setCurrentMobileIndex] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const touchStartXRef = useRef(0)
   
   // Détecter la taille de l'écran de manière sûre côté client
   useEffect(() => {
@@ -94,6 +93,22 @@ export function HomeSlides() {
   const logosPerGroup = 3
   const totalGroups = Math.ceil(trustedLogos.length / logosPerGroup)
   
+  // Témoignages (3 cards) - UFC GYM, Singularity Digital, A Company retirés
+  const testimonialItems = [
+    { 
+      name: 'Sarah Johnson', company: 'PhotoBox', image: '/1.webp',
+      text: t('testimonial1')
+    },
+    { 
+      name: 'Daniel Smith', company: 'GlobalTrade', image: '/6.webp',
+      text: t('testimonial2')
+    },
+    { 
+      name: 'Emma Rodriguez', company: 'Manufacturing', image: '/5.webp',
+      text: t('testimonial5')
+    },
+  ]
+  
   const nextGroup = () => {
     setCurrentGroupIndex((prev) => (prev + 1) % totalGroups)
   }
@@ -103,11 +118,11 @@ export function HomeSlides() {
   }
   
   const nextMobile = () => {
-    setCurrentMobileIndex((prev) => (prev + 1) % trustedLogos.length)
+    setCurrentMobileIndex((prev) => (prev + 1) % testimonialItems.length)
   }
   
   const prevMobile = () => {
-    setCurrentMobileIndex((prev) => (prev - 1 + trustedLogos.length) % trustedLogos.length)
+    setCurrentMobileIndex((prev) => (prev - 1 + testimonialItems.length) % testimonialItems.length)
   }
   
   const getCurrentLogos = () => {
@@ -119,7 +134,7 @@ export function HomeSlides() {
   if (!isLoaded) {
     return (
       <div className="min-h-screen bg-navy flex items-center justify-center">
-        <div className="text-white">Loading...</div>
+        <div className="text-white">{t('loading')}</div>
       </div>
     )
   }
@@ -127,7 +142,7 @@ export function HomeSlides() {
   return (
     <div className="min-h-screen bg-navy">
       {/* Slide 1: Vision - Synergies - Développement */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy via-navy to-navy/90 relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy via-navy to-navy/90 relative overflow-hidden pt-20 md:pt-24 lg:pt-28 xl:pt-32">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-72 h-72 bg-copper/10 rounded-full blur-3xl"></div>
@@ -180,7 +195,7 @@ export function HomeSlides() {
                   className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:scale-105 transition-transform duration-200 w-full sm:w-auto"
                   asChild
                 >
-                  <Link href="/calendly">
+                  <Link href="/services">
                     {t('discoverOurSolutions')}
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                   </Link>
@@ -291,7 +306,7 @@ export function HomeSlides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, delay: 0.6 }}
                 viewport={{ once: true }}
-                className="text-lg md:text-xl text-gray-300 leading-relaxed"
+                className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed"
               >
                 {t('sourcingToDeliveryDescription')}
               </motion.p>
@@ -318,12 +333,6 @@ export function HomeSlides() {
                   
                   {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent"></div>
-                  
-                  {/* Card Content */}
-                  <div className="absolute bottom-4 left-4 right-4 text-center">
-                    <h3 className="text-white font-semibold text-lg mb-2">{t('globalLogisticsNetwork')}</h3>
-                    <p className="text-gray-300 text-sm">{t('connectingDubaiEuropeAsia')}</p>
-                  </div>
                 </div>
                 
                 {/* Floating Elements */}
@@ -361,54 +370,36 @@ export function HomeSlides() {
             </motion.div>
           </div>
 
-          {/* Services Grid - Reste comme avant */}
+          {/* Services Grid - Modifié pour 2 cartes seulement */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8 }}
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-16 max-w-4xl mx-auto"
           >
-            {/* Service 1 */}
-            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+            {/* Service 1 - Import/Export */}
+            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 lg:p-10 hover:border-copper/40 transition-all duration-300">
               <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
                 <Globe className="w-8 h-8 text-copper" />
               </div>
-              <h3 className="title-card text-white mb-4">{t('importExport')}</h3>
-              <p className="text-gray-300">{t('importExportDesc')}</p>
+              <h3 className="title-card text-white mb-4 text-center">{t('importExport')}</h3>
+              <p className="text-gray-300 text-center">{t('importExportDesc')}</p>
             </div>
 
-            {/* Service 2 */}
-            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
+            {/* Service 2 - Business Development */}
+            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 lg:p-10 hover:border-copper/40 transition-all duration-300">
               <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
                 <TrendingUp className="w-8 h-8 text-copper" />
               </div>
-              <h3 className="title-card text-white mb-4">{t('businessDevelopment')}</h3>
-              <p className="text-gray-300">{t('businessDevelopmentDesc')}</p>
-            </div>
-
-            {/* Service 3 - Branding */}
-            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-              <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
-                <Palette className="w-8 h-8 text-copper" />
-              </div>
-              <h3 className="title-card text-white mb-4">{t('branding')}</h3>
-              <p className="text-gray-300">{t('brandingDescription')}</p>
-            </div>
-
-            {/* Service 4 - Digital Solutions */}
-            <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300">
-              <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
-                <Zap className="w-8 h-8 text-copper" />
-              </div>
-              <h3 className="title-card text-white mb-4">{t('digitalSolutions')}</h3>
-              <p className="text-gray-300">{t('digitalSolutionsDescription')}</p>
+              <h3 className="title-card text-white mb-4 text-center">{t('businessDevelopment')}</h3>
+              <p className="text-gray-300 text-center">{t('businessDevelopmentDesc')}</p>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Slide 3 - Les 4 Carrières */}
+      {/* Slide 3 - Pourquoi choisir Stratelink Global */}
       <section className="py-20 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header du Slide 3 */}
@@ -427,7 +418,7 @@ export function HomeSlides() {
               className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
             >
               <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
-              Carrières
+              {t('excellence')}
             </motion.div>
             
             <motion.h2
@@ -437,21 +428,40 @@ export function HomeSlides() {
               viewport={{ once: true }}
               className="title-section text-white mb-6"
             >
-              VOICI LES DIFFERENT CAREER A AVOIR
+              {t('whyChooseStratelinkGlobal')}
             </motion.h2>
             
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="text-xl text-gray-300 max-w-4xl mx-auto mb-4"
+            >
+              {t('excellenceAtServiceOfGrowth')}
+            </motion.p>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              viewport={{ once: true }}
+              className="text-lg text-gray-400 max-w-3xl mx-auto"
+            >
+              {t('discoverWhatDistinguishesUs')}
+            </motion.p>
 
           </motion.div>
 
-          {/* Grille des 4 Carrières */}
+          {/* Grille des 4 Avantages */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.8 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
           >
-            {/* Carrière 1: Développement Commercial */}
+            {/* Avantage 1: Accès direct aux marchés stratégiques */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -461,15 +471,18 @@ export function HomeSlides() {
             >
               <div className="flex items-start space-x-4">
                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <TrendingUp className="w-8 h-8 text-copper" />
+                  <span className="text-2xl font-bold text-copper">1</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Développement Commercial</h3>
+                  <h3 className="title-card text-white mb-4">{t('privilegedMarketAccess')}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {t('privilegedMarketAccessDesc')}
+                  </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Carrière 2: Création de Marque et Branding */}
+            {/* Avantage 2: Croissance commerciale accélérée */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -479,15 +492,18 @@ export function HomeSlides() {
             >
               <div className="flex items-start space-x-4">
                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <Palette className="w-8 h-8 text-copper" />
+                  <span className="text-2xl font-bold text-copper">2</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Création de Marque et Branding</h3>
+                  <h3 className="title-card text-white mb-4">{t('customerAcquisitionRetention')}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {t('customerAcquisitionRetentionDesc')}
+                  </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Carrière 3: International Sourcing Import / Export */}
+            {/* Avantage 3: Solutions sur mesure, clé en main */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -497,15 +513,18 @@ export function HomeSlides() {
             >
               <div className="flex items-start space-x-4">
                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <Globe className="w-8 h-8 text-copper" />
+                  <span className="text-2xl font-bold text-copper">3</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">International Sourcing Import / Export</h3>
+                  <h3 className="title-card text-white mb-4">{t('turnkeySolutions')}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {t('turnkeySolutionsDesc')}
+                  </p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Carrière 4: Digital Solutions : API and SAas */}
+            {/* Avantage 4: Exécution rapide et sécurisée */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -515,10 +534,13 @@ export function HomeSlides() {
             >
               <div className="flex items-start space-x-4">
                 <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <Zap className="w-8 h-8 text-copper" />
+                  <span className="text-2xl font-bold text-copper">4</span>
                 </div>
                 <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">Digital Solutions : API and SAas</h3>
+                  <h3 className="title-card text-white mb-4">{t('rapidReliableDeployment')}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    {t('rapidReliableDeploymentDesc')}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -527,7 +549,7 @@ export function HomeSlides() {
       </section>
 
       {/* Slide 4 - Ils nous ont fait confiance */}
-      <section className="py-20 relative">
+      <section className="py-20 relative overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header du Slide 4 */}
           <motion.div
@@ -545,7 +567,7 @@ export function HomeSlides() {
               className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
             >
               <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
-              Confiance
+              {t('testimonials')}
             </motion.div>
             
             <motion.h2
@@ -580,15 +602,6 @@ export function HomeSlides() {
               ))}
             </motion.div>
             
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="text-xl text-gray-300 max-w-3xl mx-auto"
-            >
-              {t('trustedByUsDescription')}
-            </motion.p>
           </motion.div>
 
           {/* Logos avec navigation par flèches - 3 logos par groupe sur desktop, 1 sur mobile */}
@@ -599,108 +612,80 @@ export function HomeSlides() {
             viewport={{ once: true }}
             className="relative max-w-6xl mx-auto"
           >
-            {/* Container avec boutons flèches et logos centrés */}
-            <div className="flex items-center justify-center gap-4 md:gap-8">
-              {/* Bouton gauche */}
-              <Button
-                variant="ghost"
-                className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
-                onClick={() => {
-                  // Mobile: navigation logo par logo, Desktop: navigation par groupe
-                  if (isMobile) {
-                    prevMobile()
-                  } else {
-                    prevGroup()
-                  }
-                }}
-              >
-                <ArrowLeft className="w-6 h-6" />
-              </Button>
-
-              {/* Groupe de logos */}
-              <motion.div
-                key={isMobile ? currentMobileIndex : currentGroupIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="flex-1 max-w-4xl"
-              >
-                {/* Mobile: 1 logo à la fois */}
-                <div className="md:hidden">
-                  <motion.div
-                    key={currentMobileIndex}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="flex justify-center"
-                  >
-                    <div className="w-80 h-56 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 p-6">
-                      {/* Logo */}
-                      <img
-                        src={trustedLogos[currentMobileIndex].src}
-                        alt={trustedLogos[currentMobileIndex].alt}
-                        className="max-h-20 w-auto object-contain mb-4"
-                      />
-                      {/* Texte et étoiles */}
-                      <div className="text-center">
-                        <p className="text-copper font-semibold text-sm mb-2">{t('trustedByUs')}</p>
-                        <div className="flex justify-center space-x-1">
-                          {[...Array(5)].map((_, starIndex) => (
-                            <span key={starIndex} className="text-copper text-lg">⭐</span>
+            {/* Grille de témoignages (6 boxes) */}
+            <div>
+              {/* Desktop: 3 cards sans flèches de navigation */}
+              <div className="hidden md:block overflow-hidden scrollbar-hide">
+                <div className="grid md:grid-cols-3 gap-6">
+                  {testimonialItems
+                    .slice(currentGroupIndex * logosPerGroup, currentGroupIndex * logosPerGroup + logosPerGroup)
+                    .map((item, idx) => (
+                      <div key={`${item.name}-${idx}`} className="bg-white/5 border border-copper/20 hover:border-copper/40 rounded-2xl p-6 transition-all duration-300 flex flex-col h-full">
+                        <div className="flex items-center space-x-1 mb-4">
+                          {[...Array(5)].map((_, i) => (
+                            <span key={i} className="text-yellow-400">⭐</span>
                           ))}
                         </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-
-                {/* Desktop: 3 logos */}
-                <div className="hidden md:grid md:grid-cols-3 gap-6 lg:gap-8">
-                  {getCurrentLogos().map((logo, index) => (
-                    <motion.div
-                      key={logo.src}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className="flex justify-center"
-                    >
-                      <div className="w-64 h-48 lg:w-72 lg:h-52 bg-navy/50 backdrop-blur-sm border border-copper/20 hover:border-copper/40 rounded-2xl flex flex-col items-center justify-center transition-all duration-300 p-4">
-                        {/* Logo */}
-                        <img
-                          src={logo.src}
-                          alt={logo.alt}
-                          className="max-h-16 lg:max-h-20 w-auto object-contain mb-3"
-                        />
-                        {/* Texte et étoiles */}
-                        <div className="text-center">
-                          <p className="text-copper font-semibold text-xs lg:text-sm mb-2">{t('trustedByUs')}</p>
-                          <div className="flex justify-center space-x-1">
-                            {[...Array(5)].map((_, starIndex) => (
-                              <span key={starIndex} className="text-copper text-sm lg:text-base">⭐</span>
-                            ))}
+                        <p className="text-white/90 italic leading-relaxed mb-6">"{item.text}"</p>
+                        <div className="mt-auto">
+                          <div className={`w-full h-20 md:h-24 bg-white/10 rounded-md flex items-center justify-center ${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 1 || (currentGroupIndex * logosPerGroup + idx) === 2 ? 'p-0' : 'p-2')} overflow-hidden`}>
+                            <img src={item.image} alt={item.name} className={`${((currentGroupIndex * logosPerGroup + idx) === 0 || (currentGroupIndex * logosPerGroup + idx) === 1 || (currentGroupIndex * logosPerGroup + idx) === 2 ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
                           </div>
                         </div>
                       </div>
-                    </motion.div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
 
-              {/* Bouton droite */}
-              <Button
-                variant="ghost"
-                className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-3 text-white flex-shrink-0"
-                onClick={() => {
-                  // Mobile: navigation logo par logo, Desktop: navigation par groupe
-                  if (isMobile) {
-                    nextMobile()
-                  } else {
-                    nextGroup()
-                  }
-                }}
-              >
-                <ArrowRight className="w-6 h-6" />
-              </Button>
+              {/* Mobile: 1 card with navigation buttons */}
+              <div className="md:hidden">
+                <div className="flex items-center gap-4 mb-4">
+                  <Button
+                    variant="ghost"
+                    className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-2 text-white flex-shrink-0"
+                    onClick={prevMobile}
+                  >
+                    <ArrowLeft className="w-5 h-5" />
+                  </Button>
+                  
+                  <div className="flex-1 text-center">
+                    <span className="text-white/60 text-sm">
+                      {currentMobileIndex + 1} / {testimonialItems.length}
+                    </span>
+                  </div>
+                  
+                  <Button
+                    variant="ghost"
+                    className="bg-copper/20 hover:bg-copper/30 border border-copper/30 rounded-full p-2 text-white flex-shrink-0"
+                    onClick={nextMobile}
+                  >
+                    <ArrowRight className="w-5 h-5" />
+                  </Button>
+                </div>
+                
+                <div
+                  key={currentMobileIndex}
+                  className="bg-white/5 border border-copper/20 rounded-2xl p-6 flex flex-col h-full"
+                  onTouchStart={(e) => { touchStartXRef.current = e.changedTouches[0]?.clientX || 0 }}
+                  onTouchEnd={(e) => {
+                    const dx = (e.changedTouches[0]?.clientX || 0) - touchStartXRef.current
+                    if (dx < -40) nextMobile()
+                    if (dx > 40) prevMobile()
+                  }}
+                >
+                  <div className="flex items-center space-x-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-yellow-400">⭐</span>
+                    ))}
+                  </div>
+                  <p className="text-white/90 italic leading-relaxed mb-6">"{testimonialItems[currentMobileIndex].text}"</p>
+                  <div className="mt-auto">
+                    <div className={`w-full h-20 md:h-24 bg-white/10 rounded-md flex items-center justify-center ${((currentMobileIndex === 0) || (currentMobileIndex === 1) || (currentMobileIndex === 2) ? 'p-0' : 'p-2')} overflow-hidden`}>
+                      <img src={testimonialItems[currentMobileIndex].image} alt={testimonialItems[currentMobileIndex].name} className={`${((currentMobileIndex === 0) || (currentMobileIndex === 1) || (currentMobileIndex === 2) ? 'h-full w-auto object-contain scale-[3]' : 'h-full w-auto object-contain')}`} />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -761,7 +746,7 @@ export function HomeSlides() {
             <div 
               className="calendly-inline-widget" 
               data-url="https://calendly.com/stratelink?background_color=041331&text_color=ffffff&primary_color=a97968" 
-              style={{ minWidth: '320px', height: '500px' }}
+              style={{ minWidth: "320px", height: "500px" }}
             />
           </motion.div>
           

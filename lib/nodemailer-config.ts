@@ -4,13 +4,25 @@
 import nodemailer from 'nodemailer'
 
 // Configuration SMTP pour Gmail
+// ⚠️ SÉCURITÉ : Les credentials doivent être définis via les variables d'environnement Netlify
+// Ne jamais hardcoder les mots de passe dans le code source
+
+// Vérifier que les variables d'environnement sont définies
+if (!process.env.GMAIL_USER) {
+  throw new Error('GMAIL_USER environment variable is required. Configure it in Netlify Environment Variables.')
+}
+
+if (!process.env.GMAIL_APP_PASSWORD) {
+  throw new Error('GMAIL_APP_PASSWORD environment variable is required. Configure it in Netlify Environment Variables.')
+}
+
 const SMTP_CONFIG = {
   host: 'smtp.gmail.com',
   port: 587,
   secure: false, // true pour 465, false pour les autres ports
   auth: {
-    user: process.env.GMAIL_USER || 'globalstratelink@gmail.com',
-    pass: process.env.GMAIL_APP_PASSWORD || 'fode wwot vqfu wzvu'
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD
   }
 }
 
@@ -23,6 +35,13 @@ export const EMAIL_CONFIG = {
 
 // Créer le transporteur Nodemailer
 export function createTransporter() {
+  console.log('SMTP Config:', {
+    host: SMTP_CONFIG.host,
+    port: SMTP_CONFIG.port,
+    user: SMTP_CONFIG.auth.user,
+    passLength: SMTP_CONFIG.auth.pass?.length || 0,
+    passPreview: SMTP_CONFIG.auth.pass?.substring(0, 4) + '...'
+  })
   return nodemailer.createTransport(SMTP_CONFIG)
 }
 
@@ -32,6 +51,8 @@ export function createEmailTemplate(data: {
   lastName: string
   email: string
   company: string
+  country: string
+  phoneNumber: string
   subject: string
   message: string
 }) {
@@ -79,6 +100,16 @@ export function createEmailTemplate(data: {
                 </div>
                 
                 <div class="field">
+                    <span class="label">Pays :</span>
+                    <span class="value">${data.country || 'Non spécifié'}</span>
+                </div>
+                
+                <div class="field">
+                    <span class="label">Téléphone :</span>
+                    <span class="value">${data.phoneNumber || 'Non spécifié'}</span>
+                </div>
+                
+                <div class="field">
                     <span class="label">Sujet :</span>
                     <span class="value">${data.subject}</span>
                 </div>
@@ -105,6 +136,8 @@ export function createTextTemplate(data: {
   lastName: string
   email: string
   company: string
+  country: string
+  phoneNumber: string
   subject: string
   message: string
 }) {
@@ -115,6 +148,8 @@ Informations du contact :
 - Nom complet : ${data.firstName} ${data.lastName}
 - Email : ${data.email}
 - Entreprise : ${data.company || 'Non spécifié'}
+- Pays : ${data.country || 'Non spécifié'}
+- Téléphone : ${data.phoneNumber || 'Non spécifié'}
 - Sujet : ${data.subject}
 
 Message :
