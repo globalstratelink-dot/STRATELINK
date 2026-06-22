@@ -3,6 +3,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Mail, Phone, MapPin, Clock } from 'lucide-react'
 import { useLanguage } from "@/contexts/language-context"
+import { CONTACT_EMAIL } from "@/lib/site-contact"
 
 export function ContactInfo() {
   const { t } = useLanguage()
@@ -13,7 +14,7 @@ export function ContactInfo() {
     {
       icon: <Mail className="w-6 h-6 text-copper" />,
       title: t('emailUs'),
-      details: "Contact@stratelink-global.com",
+      details: CONTACT_EMAIL,
       description: t('weWillRespondWithin24Hours')
     },
     {

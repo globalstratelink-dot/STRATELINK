@@ -82,6 +82,29 @@
     display: none;
   }
 
+  .scrollbar-form {
+    scrollbar-width: thin;
+    scrollbar-color: #a97968 rgba(255, 255, 255, 0.1);
+  }
+
+  .scrollbar-form::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-form::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-form::-webkit-scrollbar-thumb {
+    background: #a97968;
+    border-radius: 9999px;
+  }
+
+  .scrollbar-form::-webkit-scrollbar-thumb:hover {
+    background: #c08f7d;
+  }
+
   /* Optimisations de layout */
   .contain-layout {
     contain: layout;

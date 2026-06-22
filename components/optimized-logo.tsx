@@ -62,7 +62,7 @@ export function OptimizedLogo({ className = "", priority = true }: OptimizedLogo
 // Version alternative avec picture element pour plus de compatibilité
 export function ResponsiveOptimizedLogo({ className = "" }: { className?: string }) {
   return (
-    <picture className={className}>
+    <picture className="block shrink-0">
       {/* Mobile - provide 1x and 2x for DPR */}
       <source
         media="(max-width: 640px)"
@@ -94,14 +94,14 @@ export function ResponsiveOptimizedLogo({ className = "" }: { className?: string
       <img
         src="/optimized/logo-128x128.webp"
         srcSet="/optimized/logo-96x96.webp 56w, /optimized/logo-128x128.webp 80w, /optimized/logo-180x180.webp 120w, /optimized/logo.webp 160w"
-        sizes="(min-width: 1025px) 80px, (min-width: 641px) 64px, 56px"
+        sizes="(min-width: 1025px) 96px, (min-width: 641px) 64px, 48px"
         alt="STRATELINK GLOBAL"
-        className="w-16 h-12 sm:w-20 sm:h-14 lg:w-24 lg:h-16 object-contain transition-opacity duration-300"
+        className={`object-contain transition-opacity duration-300 ${className}`}
         loading="eager"
         decoding="async"
         style={{
           objectFit: 'contain',
-          objectPosition: 'center'
+          objectPosition: 'center',
         }}
       />
     </picture>

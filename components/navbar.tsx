@@ -90,6 +90,7 @@ export function Navbar() {
     { name: stringify(t('home')), href: "/" },
     { name: stringify(t('services')), href: "/services" },
     { name: stringify(t('agency')), href: "/agency" },
+    { name: stringify(t('process')), href: "/process" },
     { name: stringify(t('contact')), href: "/contact" },
   ], [t])
 
@@ -101,13 +102,13 @@ export function Navbar() {
           : "bg-navy md:bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center h-20 md:h-24 pt-2 md:pt-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="flex justify-between items-center h-20 md:h-24 pt-2 md:pt-4 gap-3">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-4">
-            <ResponsiveOptimizedLogo className="w-16 h-12 sm:w-20 sm:h-14 lg:w-24 lg:h-16 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
-            <div className="text-white h-12 sm:h-14 lg:h-16 flex flex-col justify-center">
-              <div className="h-full flex items-center text-lg sm:text-xl md:text-2xl font-bold tracking-wider leading-none whitespace-nowrap">
+          <Link href="/" className="flex items-center gap-2 sm:gap-4 min-w-0 shrink md:-ml-24">
+            <ResponsiveOptimizedLogo className="w-12 h-10 sm:w-16 sm:h-12 lg:w-24 lg:h-16 shrink-0 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
+            <div className="text-white min-w-0 flex flex-col justify-center">
+              <div className="text-sm sm:text-xl md:text-2xl font-bold tracking-wide sm:tracking-wider leading-tight sm:leading-none md:whitespace-nowrap">
                 {t('companyName')}
               </div>
               <div className="hidden md:block text-xs sm:text-sm text-copper tracking-widest font-semibold mt-1">
@@ -159,7 +160,7 @@ export function Navbar() {
           </div>
 
           {/* Mobile Buttons */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center shrink-0">
             {/* Menu Button */}
             <button
               data-menu-button
