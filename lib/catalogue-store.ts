@@ -152,7 +152,7 @@ export async function saveCatalogueServices(services: CatalogueService[]) {
     const blobSaved = await writeToBlob(sorted)
     if (!blobSaved) {
       throw new CataloguePersistenceError(
-        "Impossible de sauvegarder le catalogue en ligne. Ajoutez SITE_ID et NETLIFY_AUTH_TOKEN dans les variables Netlify."
+        "Impossible de sauvegarder le catalogue en ligne. Ajoutez NETLIFY_AUTH_TOKEN dans les variables Netlify."
       )
     }
     return sorted
