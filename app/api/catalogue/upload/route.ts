@@ -7,7 +7,7 @@ import {
   CATALOGUE_MAX_IMAGE_BYTES,
 } from "@/lib/catalogue-types"
 import { detectImageMime, extensionForImageMime } from "@/lib/image-magic"
-import { catalogueMediaUrl, getCatalogueImagesStore } from "@/lib/catalogue-blobs"
+import { catalogueMediaUrl, getCatalogueImagesStore, useNetlifyBlobStorage } from "@/lib/catalogue-blobs"
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "catalogue")
 
@@ -57,6 +57,19 @@ export async function POST(request: NextRequest) {
     const filename = `${Date.now()}-${sanitizeFilename(file.name.replace(/\.[^.]+$/, "") || "image")}.${extension}`
 
     const imageStore = getCatalogueImagesStore()
+    if (useNetlifyBlobStorage()) {
+      if (!imageStore) {
+        return NextResponse.json(
+          { error: "Stockage images non configuré. Ajoutez NETLIFY_AUTH_TOKEN sur Netlify." },
+          { status: 503 }
+        )
+      }
+      await imageStore.set(filename, buffer, {
+        metadata: { contentType: detectedMime },
+      })
+      return NextResponse.json({ url: catalogueMediaUrl(filename) })
+    }
+
     if (imageStore) {
       await imageStore.set(filename, buffer, {
         metadata: { contentType: detectedMime },

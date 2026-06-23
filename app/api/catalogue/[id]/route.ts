@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { isAdminAuthenticated } from "@/lib/catalogue-auth"
-import { listCatalogueServices, saveCatalogueServices } from "@/lib/catalogue-store"
+import { listCatalogueServices, saveCatalogueServices, CataloguePersistenceError } from "@/lib/catalogue-store"
 
 type RouteContext = { params: { id: string } }
 
@@ -18,7 +18,10 @@ export async function DELETE(_request: NextRequest, { params }: RouteContext) {
 
     const updated = await saveCatalogueServices(next)
     return NextResponse.json({ success: true, services: updated })
-  } catch {
+  } catch (error) {
+    if (error instanceof CataloguePersistenceError) {
+      return NextResponse.json({ error: error.message }, { status: 503 })
+    }
     return NextResponse.json({ error: "Unable to delete service" }, { status: 500 })
   }
 }

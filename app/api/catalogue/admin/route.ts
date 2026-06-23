@@ -6,7 +6,7 @@ import {
   isAdminConfigured,
   verifyAdminPassword,
 } from "@/lib/catalogue-auth"
-import { buildService, listCatalogueServices, saveCatalogueServices } from "@/lib/catalogue-store"
+import { buildService, listCatalogueServices, saveCatalogueServices, CataloguePersistenceError } from "@/lib/catalogue-store"
 import type { CatalogueServiceInput } from "@/lib/catalogue-types"
 import { getClientIp } from "@/lib/request-ip"
 import { rateLimit, rateLimitResponse } from "@/lib/rate-limit"
@@ -52,7 +52,10 @@ export async function POST(request: NextRequest) {
 
     const updated = await saveCatalogueServices([...services, service])
     return NextResponse.json({ service, services: updated }, { status: 201 })
-  } catch {
+  } catch (error) {
+    if (error instanceof CataloguePersistenceError) {
+      return NextResponse.json({ error: error.message }, { status: 503 })
+    }
     return NextResponse.json({ error: "Unable to create service" }, { status: 500 })
   }
 }
@@ -93,7 +96,10 @@ export async function PUT(request: NextRequest) {
     next[index] = service
     const updated = await saveCatalogueServices(next)
     return NextResponse.json({ service, services: updated })
-  } catch {
+  } catch (error) {
+    if (error instanceof CataloguePersistenceError) {
+      return NextResponse.json({ error: error.message }, { status: 503 })
+    }
     return NextResponse.json({ error: "Unable to update service" }, { status: 500 })
   }
 }
