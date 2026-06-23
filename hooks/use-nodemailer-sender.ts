@@ -5,8 +5,12 @@ interface ContactData {
   lastName: string
   email: string
   company: string
+  country?: string
+  phoneNumber?: string
   subject: string
   message: string
+  website?: string
+  turnstileToken?: string
 }
 
 interface EmailState {

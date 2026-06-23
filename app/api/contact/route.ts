@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createTransporter, createEmailTemplate, createTextTemplate, EMAIL_CONFIG } from '@/lib/nodemailer-config'
+import { getClientIp } from '@/lib/request-ip'
+import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
+import { isHoneypotTriggered, verifyTurnstileToken } from '@/lib/turnstile'
 
 // Types pour la validation
 interface ContactData {
@@ -102,6 +105,22 @@ export async function POST(request: NextRequest) {
         { error: 'Données JSON invalides' },
         { status: 400 }
       )
+    }
+
+    const ip = getClientIp(request)
+
+    if (isHoneypotTriggered(body.website)) {
+      return NextResponse.json({ success: true, message: 'Message envoyé avec succès !' })
+    }
+
+    const limit = rateLimit(`contact:${ip}`, 5, 15 * 60 * 1000)
+    if (!limit.ok) {
+      return NextResponse.json(rateLimitResponse(limit.retryAfterSec), { status: 429 })
+    }
+
+    const captchaOk = await verifyTurnstileToken(body.turnstileToken, ip)
+    if (!captchaOk) {
+      return NextResponse.json({ error: 'Vérification anti-spam échouée. Réessayez.' }, { status: 400 })
     }
 
     // Valider les données

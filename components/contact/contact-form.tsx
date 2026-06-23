@@ -12,6 +12,7 @@ import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import { useNodemailerSender } from "@/hooks/use-nodemailer-sender"
 import { motion, AnimatePresence } from "framer-motion"
 import { countries, getPhoneCode } from "@/lib/utils"
+import { TurnstileWidget, isTurnstileEnabled } from "@/components/turnstile-widget"
 
 export function ContactForm() {
   const { t } = useLanguage()
@@ -32,6 +33,8 @@ export function ContactForm() {
   const [phoneCode, setPhoneCode] = useState("")
 
   const [errors, setErrors] = useState<Record<string, string>>({})
+  const [turnstileToken, setTurnstileToken] = useState("")
+  const [honeypot, setHoneypot] = useState("")
 
   useEffect(() => {
     const subject = searchParams.get("subject")
@@ -123,6 +126,9 @@ export function ContactForm() {
     if (!formData.message.trim()) {
       newErrors.message = String(t('messageRequired'))
     }
+    if (isTurnstileEnabled() && !turnstileToken) {
+      newErrors.captcha = "Veuillez compléter la vérification anti-spam."
+    }
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -135,7 +141,11 @@ export function ContactForm() {
       return
     }
 
-    const success = await sendEmail(formData)
+    const success = await sendEmail({
+      ...formData,
+      website: honeypot,
+      turnstileToken,
+    })
     if (success) {
       console.log("Email envoyé avec succès via Nodemailer!")
     }
@@ -335,6 +345,28 @@ export function ContactForm() {
               <p className="text-red-400 text-xs">{errors.message}</p>
             )}
           </div>
+
+          <div className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden" aria-hidden="true">
+            <label htmlFor="contact-website">Website</label>
+            <input
+              id="contact-website"
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+          </div>
+
+          <TurnstileWidget
+            className="flex justify-center"
+            onVerify={setTurnstileToken}
+            onExpire={() => setTurnstileToken("")}
+          />
+          {errors.captcha && (
+            <p className="text-red-400 text-xs text-center">{errors.captcha}</p>
+          )}
 
           <Button
             type="submit"

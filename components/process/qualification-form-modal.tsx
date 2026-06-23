@@ -30,6 +30,7 @@ import {
 } from "@/lib/qualification-form-data"
 import { ALL_COUNTRIES } from "@/lib/all-countries"
 import { CONTACT_EMAIL } from "@/lib/site-contact"
+import { TurnstileWidget, isTurnstileEnabled } from "@/components/turnstile-widget"
 import { cn } from "@/lib/utils"
 import {
   Select,
@@ -61,9 +62,17 @@ export function QualificationFormModal() {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
   const [volumeTouched, setVolumeTouched] = useState(false)
+  const [turnstileToken, setTurnstileToken] = useState("")
+  const [honeypot, setHoneypot] = useState("")
+  const [submitError, setSubmitError] = useState("")
 
   useEffect(() => {
-    if (isOpen) setVolumeTouched(false)
+    if (isOpen) {
+      setVolumeTouched(false)
+      setTurnstileToken("")
+      setHoneypot("")
+      setSubmitError("")
+    }
   }, [isOpen])
 
   const stepLabels = useMemo(
@@ -139,18 +148,26 @@ export function QualificationFormModal() {
 
   const handleSubmit = async () => {
     if (!form.consent) return
+    if (isTurnstileEnabled() && !turnstileToken) {
+      setSubmitError("Veuillez compléter la vérification anti-spam.")
+      return
+    }
     setSubmitting(true)
+    setSubmitError("")
     try {
       const res = await fetch("/api/qualification", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, website: honeypot, turnstileToken }),
       })
       if (res.ok) {
         setSubmitted(true)
+      } else {
+        const data = await res.json().catch(() => ({}))
+        setSubmitError(data.error || "Échec de l'envoi. Réessayez.")
       }
     } catch {
-      // user can retry
+      setSubmitError("Échec de l'envoi. Réessayez.")
     } finally {
       setSubmitting(false)
     }
@@ -523,6 +540,24 @@ export function QualificationFormModal() {
                       </div>
                     ))}
                   </div>
+                  <div className="absolute left-[-9999px] top-auto h-0 w-0 overflow-hidden" aria-hidden="true">
+                    <label htmlFor="qual-website">Website</label>
+                    <input
+                      id="qual-website"
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </div>
+                  <TurnstileWidget
+                    className="flex justify-center py-2"
+                    onVerify={setTurnstileToken}
+                    onExpire={() => setTurnstileToken("")}
+                  />
+                  {submitError && <p className="text-sm text-red-400 text-center">{submitError}</p>}
                   <div className="flex gap-3 items-start border border-white/15 p-3 sm:p-4 rounded-sm">
                     <Checkbox id="consent" checked={form.consent} onCheckedChange={(v) => updateForm({ consent: v === true })} className="mt-0.5 border-copper data-[state=checked]:bg-copper data-[state=checked]:border-copper" />
                     <label htmlFor="consent" className="text-xs text-gray-300 leading-relaxed cursor-pointer">

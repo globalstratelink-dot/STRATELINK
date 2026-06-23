@@ -1,8 +1,26 @@
 import { NextRequest, NextResponse } from "next/server"
+import { getClientIp } from "@/lib/request-ip"
+import { rateLimit, rateLimitResponse } from "@/lib/rate-limit"
+import { isHoneypotTriggered, verifyTurnstileToken } from "@/lib/turnstile"
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
+    const ip = getClientIp(request)
+
+    if (isHoneypotTriggered(body.website)) {
+      return NextResponse.json({ success: true, message: "Qualification submitted" })
+    }
+
+    const limit = rateLimit(`qualification:${ip}`, 3, 15 * 60 * 1000)
+    if (!limit.ok) {
+      return NextResponse.json(rateLimitResponse(limit.retryAfterSec), { status: 429 })
+    }
+
+    const captchaOk = await verifyTurnstileToken(body.turnstileToken, ip)
+    if (!captchaOk) {
+      return NextResponse.json({ error: "Vérification anti-spam échouée. Réessayez." }, { status: 400 })
+    }
 
     if (!body.email || !body.firstName || !body.lastName || !body.companyName) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })

@@ -6,6 +6,7 @@ import {
   CATALOGUE_ALLOWED_IMAGE_TYPES,
   CATALOGUE_MAX_IMAGE_BYTES,
 } from "@/lib/catalogue-types"
+import { detectImageMime, extensionForImageMime } from "@/lib/image-magic"
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "catalogue")
 
@@ -41,9 +42,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Image trop volumineuse (max 5 Mo)" }, { status: 400 })
     }
 
-    const extension = file.name.includes(".") ? file.name.split(".").pop() : "jpg"
-    const filename = `${Date.now()}-${sanitizeFilename(file.name.replace(/\.[^.]+$/, ""))}.${extension}`
     const buffer = Buffer.from(await file.arrayBuffer())
+    const detectedMime = detectImageMime(buffer)
+
+    if (!detectedMime) {
+      return NextResponse.json(
+        { error: "Fichier image invalide ou corrompu." },
+        { status: 400 }
+      )
+    }
+
+    const extension = extensionForImageMime(detectedMime)
+    const filename = `${Date.now()}-${sanitizeFilename(file.name.replace(/\.[^.]+$/, "") || "image")}.${extension}`
 
     await fs.mkdir(UPLOAD_DIR, { recursive: true })
     await fs.writeFile(path.join(UPLOAD_DIR, filename), buffer)

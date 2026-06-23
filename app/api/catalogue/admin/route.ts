@@ -8,6 +8,8 @@ import {
 } from "@/lib/catalogue-auth"
 import { buildService, listCatalogueServices, saveCatalogueServices } from "@/lib/catalogue-store"
 import type { CatalogueServiceInput } from "@/lib/catalogue-types"
+import { getClientIp } from "@/lib/request-ip"
+import { rateLimit, rateLimitResponse } from "@/lib/rate-limit"
 
 function validateInput(body: Partial<CatalogueServiceInput>) {
   if (!body.nameFr?.trim() || !body.nameEn?.trim()) return "Name is required in both languages"
@@ -100,6 +102,12 @@ export async function PATCH(request: NextRequest) {
   const body = await request.json().catch(() => null)
 
   if (body?.action === "login") {
+    const ip = getClientIp(request)
+    const limit = rateLimit(`admin-login:${ip}`, 5, 15 * 60 * 1000)
+    if (!limit.ok) {
+      return NextResponse.json(rateLimitResponse(limit.retryAfterSec), { status: 429 })
+    }
+
     if (!isAdminConfigured()) {
       return NextResponse.json({ error: "Admin password is not configured" }, { status: 503 })
     }
