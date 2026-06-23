@@ -56,6 +56,17 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
+# Page catalogue (données dynamiques)
+[[headers]]
+  for = "/catalogue"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+[[headers]]
+  for = "/catalogue/*"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
 # Headers API catalogue (pas de cache CDN — auth par cookie)
 [[headers]]
   for = "/api/catalogue/*"

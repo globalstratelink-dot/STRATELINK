@@ -2,6 +2,8 @@ import { Footer } from "@/components/footer"
 import { CatalogueContent } from "@/components/catalogue/catalogue-content"
 import { pageMetadata } from "@/lib/seo"
 
+export const dynamic = "force-dynamic"
+
 export const metadata = pageMetadata({
   title: "B2B Services Catalogue — Sourcing, Compliance & Logistics",
   description:

@@ -15,11 +15,34 @@ export function CatalogueContent() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch("/api/catalogue")
-      .then((res) => res.json())
-      .then((data) => setServices(data.services || []))
-      .catch(() => setServices([]))
-      .finally(() => setLoading(false))
+    let cancelled = false
+
+    const loadServices = () => {
+      setLoading(true)
+      fetch("/api/catalogue/", { cache: "no-store" })
+        .then((res) => res.json())
+        .then((data) => {
+          if (!cancelled) setServices(data.services || [])
+        })
+        .catch(() => {
+          if (!cancelled) setServices([])
+        })
+        .finally(() => {
+          if (!cancelled) setLoading(false)
+        })
+    }
+
+    loadServices()
+
+    const onVisible = () => {
+      if (document.visibilityState === "visible") loadServices()
+    }
+    document.addEventListener("visibilitychange", onVisible)
+
+    return () => {
+      cancelled = true
+      document.removeEventListener("visibilitychange", onVisible)
+    }
   }, [])
 
   const label = (service: CatalogueService, field: "name" | "description" | "audience") => {
