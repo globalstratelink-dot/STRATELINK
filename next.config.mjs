@@ -29,7 +29,7 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === "production",
   },
   swcMinify: true,
-  compress: false,
+  compress: true,
   poweredByHeader: false,
   generateEtags: false,
   
@@ -65,11 +65,20 @@ const nextConfig = {
         ],
       },
       {
-        source: "/(.*)",
+        source: "/adminAbdelhamid/:path*",
         headers: [
           {
             key: "Cache-Control",
             value: "no-cache, no-store, must-revalidate",
+          },
+        ],
+      },
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=3600, stale-while-revalidate=86400",
           },
         ],
       },

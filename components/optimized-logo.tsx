@@ -62,47 +62,49 @@ export function OptimizedLogo({ className = "", priority = true }: OptimizedLogo
 // Version alternative avec picture element pour plus de compatibilité
 export function ResponsiveOptimizedLogo({ className = "" }: { className?: string }) {
   return (
-    <picture className="block shrink-0">
-      {/* Mobile - provide 1x and 2x for DPR */}
+    <picture className={`block shrink-0 leading-none ${className}`}>
+      {/* Mobile */}
       <source
         media="(max-width: 640px)"
         srcSet="/optimized/logo-96x96.webp 1x, /optimized/logo-128x128.webp 2x"
         type="image/webp"
       />
-      
-      {/* Tablet - higher base with 2x */}
+
+      {/* Tablette */}
       <source
-        media="(min-width: 641px) and (max-width: 1024px)"
+        media="(min-width: 641px) and (max-width: 1023px)"
         srcSet="/optimized/logo-128x128.webp 1x, /optimized/logo-180x180.webp 2x"
         type="image/webp"
       />
-      
-      {/* Desktop - sharp source with 2x */}
+
+      {/* Petit écran PC (1024–1279px) */}
       <source
-        media="(min-width: 1025px)"
+        media="(min-width: 1024px) and (max-width: 1279px)"
+        srcSet="/optimized/logo-128x128.webp 1x, /optimized/logo-180x180.webp 2x"
+        type="image/webp"
+      />
+
+      {/* Grand écran */}
+      <source
+        media="(min-width: 1280px)"
         srcSet="/optimized/logo-180x180.webp 1x, /optimized/logo.webp 2x"
         type="image/webp"
       />
-      
-      {/* Fallback PNG if WebP unsupported */}
+
+      {/* Fallback PNG */}
       <source
         srcSet="/optimized/new-logo-64w.png 1x, /optimized/logo-224w.png 2x"
         type="image/png"
       />
-      
-      {/* Default image with explicit sizes and srcSet for sharper rendering */}
+
       <img
         src="/optimized/logo-128x128.webp"
         srcSet="/optimized/logo-96x96.webp 56w, /optimized/logo-128x128.webp 80w, /optimized/logo-180x180.webp 120w, /optimized/logo.webp 160w"
-        sizes="(min-width: 1025px) 96px, (min-width: 641px) 64px, 48px"
+        sizes="(min-width: 1280px) 80px, (min-width: 1024px) 56px, (min-width: 641px) 64px, 48px"
         alt="STRATELINK GLOBAL"
-        className={`object-contain transition-opacity duration-300 ${className}`}
+        className="h-full w-full object-contain object-left transition-opacity duration-300"
         loading="eager"
         decoding="async"
-        style={{
-          objectFit: 'contain',
-          objectPosition: 'center',
-        }}
       />
     </picture>
   )

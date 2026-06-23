@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { useLanguage } from "@/contexts/language-context"
 import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
 import { useNodemailerSender } from "@/hooks/use-nodemailer-sender"
@@ -14,6 +15,7 @@ import { countries, getPhoneCode } from "@/lib/utils"
 
 export function ContactForm() {
   const { t } = useLanguage()
+  const searchParams = useSearchParams()
   const { emailState, sendEmail, resetState } = useNodemailerSender()
   const [formData, setFormData] = useState({
     firstName: "",
@@ -30,6 +32,13 @@ export function ContactForm() {
   const [phoneCode, setPhoneCode] = useState("")
 
   const [errors, setErrors] = useState<Record<string, string>>({})
+
+  useEffect(() => {
+    const subject = searchParams.get("subject")
+    if (subject) {
+      setFormData((prev) => ({ ...prev, subject: decodeURIComponent(subject) }))
+    }
+  }, [searchParams])
 
   // Reset form after successful submission
   useEffect(() => {

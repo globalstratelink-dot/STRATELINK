@@ -5,6 +5,7 @@ export const translations = {
     services: "Our Solutions",
     agency: "Our Agency",
     process: "Process",
+    catalogue: "Catalogue",
     contact: "Contact",
     getStarted: "Get Started",
     
@@ -486,6 +487,15 @@ export const translations = {
     qualSubmitSuccessTitle: "FILE SUBMITTED",
     qualSubmitSuccessDesc: "Our team will review your qualification file and respond within 48 business hours.",
     qualClose: "CLOSE",
+
+    // Catalogue
+    catalogueBadge: "B2B SERVICES",
+    catalogueTitle: "Services Catalogue",
+    catalogueSubtitle: "Premium B2B solutions for international trade — no public pricing, tailored quotes for qualified partners.",
+    catalogueIncludes: "What's included",
+    catalogueAudience: "For whom",
+    catalogueCta: "Request a quote",
+    catalogueEmpty: "No services available at the moment.",
     
     // Our Process
     ourProcess: "Our Process",
@@ -525,6 +535,7 @@ export const translations = {
     services: "Nos Solutions",
     agency: "Notre Agence",
     process: "Processus",
+    catalogue: "Catalogue",
     contact: "Contact",
     getStarted: "Commencer",
     
@@ -1006,6 +1017,15 @@ export const translations = {
     qualSubmitSuccessTitle: "DOSSIER ENVOYÉ",
     qualSubmitSuccessDesc: "Notre équipe examinera votre dossier et répondra sous 48 heures ouvrées.",
     qualClose: "FERMER",
+
+    // Catalogue
+    catalogueBadge: "SERVICES B2B",
+    catalogueTitle: "Catalogue des services",
+    catalogueSubtitle: "Solutions B2B premium pour le commerce international — sans prix public, devis sur mesure pour partenaires qualifiés.",
+    catalogueIncludes: "Ce qui est inclus",
+    catalogueAudience: "Pour qui",
+    catalogueCta: "Demander un devis",
+    catalogueEmpty: "Aucun service disponible pour le moment.",
     
     // Notre démarche
     ourProcess: "Notre démarche",

@@ -2,10 +2,10 @@ import type { Metadata } from "next"
 import { Poppins } from 'next/font/google'
 import "./globals.css"
 import { LanguageProvider } from "@/contexts/language-context"
-import { Navbar } from "@/components/navbar"
-import { WhatsAppFloat } from "@/components/whatsapp-float"
-import { MobileLanguageFAB } from "@/components/mobile-language-fab"
+import { LayoutShell } from "@/components/layout-shell"
 import { MotionProvider } from "@/components/motion-provider"
+import { OrganizationJsonLd } from "@/components/seo/organization-json-ld"
+import { DEFAULT_DESCRIPTION, DEFAULT_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo"
 
 const poppins = Poppins({ 
   subsets: ["latin"],
@@ -14,8 +14,44 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Stratelink Global",
-  description: "International Import/Export Services",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} | International Import Export Dubai`,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: DEFAULT_DESCRIPTION,
+  keywords: DEFAULT_KEYWORDS,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  robots: { index: true, follow: true },
+  alternates: { canonical: SITE_URL },
+  verification: {
+    google: "Op8Z_4qIe0eB8qZvIrfQVnjapNUeEyewg6DZE7SBRC0",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    alternateLocale: ["fr_FR"],
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | International Import Export Dubai`,
+    description: DEFAULT_DESCRIPTION,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} — International Import Export`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} | International Import Export Dubai`,
+    description: DEFAULT_DESCRIPTION,
+    images: ["/og-image.png"],
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -34,15 +70,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} font-sans`}>
+        <OrganizationJsonLd />
         <MotionProvider>
           <LanguageProvider>
-            <Navbar />
-            {children}
-            <WhatsAppFloat 
-              phoneNumber="+971 54 319 2348"
-              message="Bonjour, j'aimerais avoir plus d'informations"
-            />
-            <MobileLanguageFAB />
+            <LayoutShell>{children}</LayoutShell>
           </LanguageProvider>
         </MotionProvider>
       </body>

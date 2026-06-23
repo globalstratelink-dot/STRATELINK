@@ -1,5 +1,13 @@
 import { HomeSlides } from "@/components/home-slides"
 import { Footer } from "@/components/footer"
+import { pageMetadata } from "@/lib/seo"
+
+export const metadata = pageMetadata({
+  title: "International Import Export Dubai & B2B Trade Corridors",
+  description:
+    "STRATELINK GLOBAL connects businesses worldwide through import-export, sourcing, customs compliance and logistics across China, UAE, Europe and Africa.",
+  path: "/",
+})
 
 export default function HomePage() {
   return (

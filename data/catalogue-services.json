@@ -1,0 +1,77 @@
+[
+  {
+    "id": "sourcing-procurement",
+    "imageUrl": "https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=800&q=80",
+    "nameFr": "Sourcing & Approvisionnement",
+    "nameEn": "Sourcing & Procurement",
+    "descriptionFr": "Identification de fournisseurs qualifiés et gestion des achats internationaux pour vos projets B2B.",
+    "descriptionEn": "Qualified supplier identification and international procurement management for your B2B projects.",
+    "includesFr": [
+      "Recherche fournisseurs",
+      "Négociation commerciale",
+      "Contrôle qualité",
+      "Coordination logistique"
+    ],
+    "includesEn": [
+      "Supplier research",
+      "Commercial negotiation",
+      "Quality control",
+      "Logistics coordination"
+    ],
+    "audienceFr": "Importateurs, distributeurs et EPC",
+    "audienceEn": "Importers, distributors and EPC contractors",
+    "order": 1,
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "customs-compliance",
+    "imageUrl": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+    "nameFr": "Douanes & Conformité",
+    "nameEn": "Customs & Compliance",
+    "descriptionFr": "Accompagnement réglementaire et facilitation des flux transfrontaliers sans friction.",
+    "descriptionEn": "Regulatory support and frictionless cross-border flow facilitation.",
+    "includesFr": [
+      "Classification douanière",
+      "Documentation export/import",
+      "Conformité produit",
+      "Suivi clearance"
+    ],
+    "includesEn": [
+      "Customs classification",
+      "Export/import documentation",
+      "Product compliance",
+      "Clearance tracking"
+    ],
+    "audienceFr": "Trading houses et industriels",
+    "audienceEn": "Trading houses and industrial companies",
+    "order": 2,
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "logistics-corridors",
+    "imageUrl": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+    "nameFr": "Logistique & Corridors",
+    "nameEn": "Logistics & Corridors",
+    "descriptionFr": "Orchestration des corridors Chine, EAU, Europe et Afrique selon vos incoterms.",
+    "descriptionEn": "Orchestration of China, UAE, Europe and Africa corridors based on your incoterms.",
+    "includesFr": [
+      "Planification transport",
+      "Fret maritime/aérien",
+      "Assurance cargo",
+      "Suivi bout-en-bout"
+    ],
+    "includesEn": [
+      "Transport planning",
+      "Sea/air freight",
+      "Cargo insurance",
+      "End-to-end tracking"
+    ],
+    "audienceFr": "Projets multi-pays et grossistes",
+    "audienceEn": "Multi-country projects and wholesalers",
+    "order": 3,
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+]

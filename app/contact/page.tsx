@@ -1,8 +1,17 @@
+import { Suspense } from "react"
 import { Footer } from "@/components/footer"
 import { ContactHero } from "@/components/contact/contact-hero"
 import { ContactForm } from "@/components/contact/contact-form"
 import { ContactInfo } from "@/components/contact/contact-info"
 import { ZohoChatbot } from "@/components/zoho-chatbot"
+import { pageMetadata } from "@/lib/seo"
+
+export const metadata = pageMetadata({
+  title: "Contact — Import Export Quote & B2B Inquiry",
+  description:
+    "Request a quote for import-export, sourcing or logistics. STRATELINK GLOBAL — Dubai-based international trade partner. Response within 24 hours.",
+  path: "/contact",
+})
 
 export default function ContactPage() {
   return (
@@ -16,7 +25,9 @@ export default function ContactPage() {
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <ContactForm />
+              <Suspense fallback={<div className="h-96 rounded-lg bg-white/5 animate-pulse" />}>
+                <ContactForm />
+              </Suspense>
             </div>
             
             {/* Contact Information */}
