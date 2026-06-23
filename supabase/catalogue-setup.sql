@@ -18,6 +18,16 @@ create table if not exists public.catalogue_services (
 
 alter table public.catalogue_services enable row level security;
 
+-- Accès complet via la clé service_role (backend Netlify)
+drop policy if exists "catalogue services service role" on public.catalogue_services;
+
+create policy "catalogue services service role"
+on public.catalogue_services
+for all
+to service_role
+using (true)
+with check (true);
+
 insert into storage.buckets (id, name, public)
 values ('catalogue-images', 'catalogue-images', true)
 on conflict (id) do update set public = true;

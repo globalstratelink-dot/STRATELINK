@@ -43,7 +43,10 @@ export function CatalogueAdminPanel() {
   const loadServices = useCallback(async () => {
     setLoading(true)
     try {
-      const res = await fetch("/api/catalogue/", { cache: "no-store" })
+      const res = await fetch(`/api/catalogue/?_=${Date.now()}`, {
+        cache: "no-store",
+        credentials: "same-origin",
+      })
       const data = await res.json()
       setServices(data.services || [])
     } finally {
@@ -140,8 +143,8 @@ export function CatalogueAdminPanel() {
         setError(data.error || "Save failed")
         return
       }
-      setServices(data.services || [])
       setDialogOpen(false)
+      await loadServices()
     } finally {
       setSaving(false)
     }
@@ -161,7 +164,7 @@ export function CatalogueAdminPanel() {
         setError(data.error || "Impossible de supprimer ce service")
         return
       }
-      setServices(data.services || [])
+      await loadServices()
     } catch {
       setError("Impossible de supprimer ce service")
     }

@@ -149,7 +149,10 @@ async function writeToBlob(services: CatalogueService[]) {
 export async function listCatalogueServices(): Promise<CatalogueService[]> {
   if (isSupabaseConfigured()) {
     const fromSupabase = await readCatalogueFromSupabase()
-    return fromSupabase
+    if (fromSupabase.length > 0) return fromSupabase
+
+    await saveCatalogueToSupabase(DEFAULT_CATALOGUE_SERVICES)
+    return DEFAULT_CATALOGUE_SERVICES
   }
 
   if (useNetlifyBlobStorage()) {

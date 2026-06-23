@@ -107,6 +107,13 @@ export async function saveCatalogueToSupabase(services: CatalogueService[]) {
     console.error("[catalogue-supabase] prune failed", pruneError)
     throw pruneError
   }
+
+  const saved = await readCatalogueFromSupabase()
+  if (saved.length !== services.length) {
+    throw new Error(
+      `Vérification échouée : ${services.length} service(s) attendu(s), ${saved.length} en base`
+    )
+  }
 }
 
 export async function uploadCatalogueImageToSupabase(

@@ -19,7 +19,7 @@ export function CatalogueContent() {
 
     const loadServices = () => {
       setLoading(true)
-      fetch("/api/catalogue/", { cache: "no-store" })
+      fetch(`/api/catalogue/?_=${Date.now()}`, { cache: "no-store" })
         .then((res) => res.json())
         .then((data) => {
           if (!cancelled) setServices(data.services || [])
