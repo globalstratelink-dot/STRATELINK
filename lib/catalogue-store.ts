@@ -1,6 +1,10 @@
 import { promises as fs } from "fs"
 import path from "path"
 import type { CatalogueService, CatalogueServiceInput } from "@/lib/catalogue-types"
+import {
+  CATALOGUE_SERVICES_KEY,
+  getCatalogueDataStore,
+} from "@/lib/catalogue-blobs"
 
 const DATA_DIR = path.join(process.cwd(), "data")
 const DATA_FILE = path.join(DATA_DIR, "catalogue-services.json")
@@ -95,25 +99,44 @@ async function writeToFile(services: CatalogueService[]) {
 }
 
 async function readFromBlob(): Promise<CatalogueService[] | null> {
-  return null
+  const store = getCatalogueDataStore()
+  if (!store) return null
+
+  try {
+    const raw = await store.get(CATALOGUE_SERVICES_KEY, { type: "text" })
+    if (raw === null) return null
+    const parsed = JSON.parse(raw) as LegacyCatalogueService[]
+    if (!Array.isArray(parsed)) return null
+    return parsed.map(normalizeService).sort((a, b) => a.order - b.order)
+  } catch {
+    return null
+  }
 }
 
-async function writeToBlob(_services: CatalogueService[]) {
-  return false
+async function writeToBlob(services: CatalogueService[]) {
+  const store = getCatalogueDataStore()
+  if (!store) return false
+
+  try {
+    await store.set(CATALOGUE_SERVICES_KEY, JSON.stringify(services, null, 2))
+    return true
+  } catch {
+    return false
+  }
 }
 
 export async function listCatalogueServices(): Promise<CatalogueService[]> {
   const fromBlob = await readFromBlob()
-  if (fromBlob && fromBlob.length > 0) return fromBlob.map(normalizeService)
+  if (fromBlob !== null) return fromBlob
   return readFromFile()
 }
 
 export async function saveCatalogueServices(services: CatalogueService[]) {
   const sorted = [...services].map(normalizeService).sort((a, b) => a.order - b.order)
   const blobSaved = await writeToBlob(sorted)
-  if (!blobSaved) {
-    await writeToFile(sorted)
-  }
+  if (blobSaved) return sorted
+
+  await writeToFile(sorted)
   return sorted
 }
 

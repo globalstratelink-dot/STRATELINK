@@ -7,6 +7,7 @@ import {
   CATALOGUE_MAX_IMAGE_BYTES,
 } from "@/lib/catalogue-types"
 import { detectImageMime, extensionForImageMime } from "@/lib/image-magic"
+import { catalogueMediaUrl, getCatalogueImagesStore } from "@/lib/catalogue-blobs"
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "catalogue")
 
@@ -54,6 +55,14 @@ export async function POST(request: NextRequest) {
 
     const extension = extensionForImageMime(detectedMime)
     const filename = `${Date.now()}-${sanitizeFilename(file.name.replace(/\.[^.]+$/, "") || "image")}.${extension}`
+
+    const imageStore = getCatalogueImagesStore()
+    if (imageStore) {
+      await imageStore.set(filename, buffer, {
+        metadata: { contentType: detectedMime },
+      })
+      return NextResponse.json({ url: catalogueMediaUrl(filename) })
+    }
 
     await fs.mkdir(UPLOAD_DIR, { recursive: true })
     await fs.writeFile(path.join(UPLOAD_DIR, filename), buffer)

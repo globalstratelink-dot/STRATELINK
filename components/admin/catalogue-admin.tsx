@@ -302,7 +302,7 @@ export function CatalogueAdminPanel() {
                     setImageError("")
                     setForm((p) => ({ ...p, imageUrl: e.target.value }))
                   }}
-                  placeholder="https://... ou /uploads/catalogue/..."
+                  placeholder="https://... ou /api/catalogue/media/..."
                   className="bg-[#0d1528] border-white/15 text-white text-base"
                 />
                 <p className="text-xs text-gray-500 mt-2">JPG, PNG, WEBP ou GIF — max 5 Mo</p>
