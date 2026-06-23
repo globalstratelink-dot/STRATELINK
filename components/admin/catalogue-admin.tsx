@@ -43,7 +43,7 @@ export function CatalogueAdminPanel() {
   const loadServices = useCallback(async () => {
     setLoading(true)
     try {
-      const res = await fetch("/api/catalogue")
+      const res = await fetch("/api/catalogue/", { cache: "no-store" })
       const data = await res.json()
       setServices(data.services || [])
     } finally {
@@ -98,10 +98,11 @@ export function CatalogueAdminPanel() {
     try {
       const body = new FormData()
       body.append("file", file)
-      const res = await fetch("/api/catalogue/upload", {
+      const res = await fetch("/api/catalogue/upload/", {
         method: "POST",
         body,
         credentials: "same-origin",
+        cache: "no-store",
       })
       const data = await res.json()
       if (!res.ok) {
@@ -127,11 +128,12 @@ export function CatalogueAdminPanel() {
     setError("")
     try {
       const payload = { ...form, id: editing?.id }
-      const res = await fetch("/api/catalogue/admin", {
+      const res = await fetch("/api/catalogue/admin/", {
         method: editing ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
         credentials: "same-origin",
+        cache: "no-store",
       })
       const data = await res.json()
       if (!res.ok) {
@@ -149,7 +151,11 @@ export function CatalogueAdminPanel() {
     if (!confirm("Supprimer ce service ?")) return
     setError("")
     try {
-      const res = await fetch(`/api/catalogue/${id}`, { method: "DELETE", credentials: "same-origin" })
+      const res = await fetch(`/api/catalogue/${id}/`, {
+        method: "DELETE",
+        credentials: "same-origin",
+        cache: "no-store",
+      })
       const data = await res.json()
       if (!res.ok) {
         setError(data.error || "Impossible de supprimer ce service")

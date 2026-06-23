@@ -56,6 +56,13 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
+# Headers API catalogue (pas de cache CDN — auth par cookie)
+[[headers]]
+  for = "/api/catalogue/*"
+  [headers.values]
+    Cache-Control = "private, no-cache, no-store, must-revalidate"
+    Vary = "Cookie"
+
 # Headers pour les assets statiques
 [[headers]]
   for = "/_next/static/*"

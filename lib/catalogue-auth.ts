@@ -55,12 +55,20 @@ export async function isAdminAuthenticated() {
 }
 
 export function adminSessionCookieOptions() {
+  const isProd = process.env.NODE_ENV === "production"
   return {
     name: COOKIE_NAME,
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
+    secure: isProd,
     sameSite: "lax" as const,
     path: "/",
     maxAge: SESSION_MAX_AGE,
+  }
+}
+
+export function adminApiResponseHeaders() {
+  return {
+    "Cache-Control": "private, no-cache, no-store, must-revalidate",
+    Vary: "Cookie",
   }
 }

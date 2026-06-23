@@ -22,6 +22,8 @@ insert into storage.buckets (id, name, public)
 values ('catalogue-images', 'catalogue-images', true)
 on conflict (id) do update set public = true;
 
+drop policy if exists "catalogue images public read" on storage.objects;
+
 create policy "catalogue images public read"
 on storage.objects for select
 using (bucket_id = 'catalogue-images');

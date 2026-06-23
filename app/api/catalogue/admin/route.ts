@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import {
   adminSessionCookieOptions,
+  adminApiResponseHeaders,
   createAdminSessionToken,
   isAdminAuthenticated,
   isAdminConfigured,
@@ -21,9 +22,18 @@ function validateInput(body: Partial<CatalogueServiceInput>) {
   return null
 }
 
+const ADMIN_HEADERS = adminApiResponseHeaders()
+
+function unauthorizedResponse() {
+  return NextResponse.json(
+    { error: "Session expirée. Reconnectez-vous." },
+    { status: 401, headers: ADMIN_HEADERS }
+  )
+}
+
 export async function POST(request: NextRequest) {
   if (!(await isAdminAuthenticated())) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    return unauthorizedResponse()
   }
 
   try {
@@ -51,7 +61,7 @@ export async function POST(request: NextRequest) {
     }
 
     const updated = await saveCatalogueServices([...services, service])
-    return NextResponse.json({ service, services: updated }, { status: 201 })
+    return NextResponse.json({ service, services: updated }, { status: 201, headers: ADMIN_HEADERS })
   } catch (error) {
     if (error instanceof CataloguePersistenceError) {
       return NextResponse.json({ error: error.message }, { status: 503 })
@@ -62,7 +72,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
   if (!(await isAdminAuthenticated())) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    return unauthorizedResponse()
   }
 
   try {
@@ -95,7 +105,7 @@ export async function PUT(request: NextRequest) {
     const next = [...services]
     next[index] = service
     const updated = await saveCatalogueServices(next)
-    return NextResponse.json({ service, services: updated })
+    return NextResponse.json({ service, services: updated }, { headers: ADMIN_HEADERS })
   } catch (error) {
     if (error instanceof CataloguePersistenceError) {
       return NextResponse.json({ error: error.message }, { status: 503 })
@@ -123,14 +133,14 @@ export async function PATCH(request: NextRequest) {
 
     const token = createAdminSessionToken()
     const cookie = adminSessionCookieOptions()
-    const response = NextResponse.json({ success: true })
+    const response = NextResponse.json({ success: true }, { headers: ADMIN_HEADERS })
     response.cookies.set(cookie.name, token, cookie)
     return response
   }
 
   if (body?.action === "logout") {
     const cookie = adminSessionCookieOptions()
-    const response = NextResponse.json({ success: true })
+    const response = NextResponse.json({ success: true }, { headers: ADMIN_HEADERS })
     response.cookies.set(cookie.name, "", { ...cookie, maxAge: 0 })
     return response
   }
@@ -140,8 +150,11 @@ export async function PATCH(request: NextRequest) {
 
 export async function GET() {
   const authenticated = await isAdminAuthenticated()
-  return NextResponse.json({
-    authenticated,
-    configured: isAdminConfigured(),
-  })
+  return NextResponse.json(
+    {
+      authenticated,
+      configured: isAdminConfigured(),
+    },
+    { headers: ADMIN_HEADERS }
+  )
 }

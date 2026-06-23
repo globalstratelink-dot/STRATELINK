@@ -18,7 +18,10 @@ export function AdminShell({ children }: AdminShellProps) {
   const checkAuth = useCallback(async () => {
     setCheckingAuth(true)
     try {
-      const res = await fetch("/api/catalogue/admin", { credentials: "same-origin" })
+      const res = await fetch("/api/catalogue/admin/", {
+        credentials: "same-origin",
+        cache: "no-store",
+      })
       const data = await res.json()
       setAuthenticated(Boolean(data.authenticated))
     } finally {
@@ -33,11 +36,12 @@ export function AdminShell({ children }: AdminShellProps) {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setAuthError("")
-    const res = await fetch("/api/catalogue/admin", {
+    const res = await fetch("/api/catalogue/admin/", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: "login", password }),
       credentials: "same-origin",
+      cache: "no-store",
     })
     if (!res.ok) {
       const data = await res.json().catch(() => ({}))
@@ -51,15 +55,16 @@ export function AdminShell({ children }: AdminShellProps) {
       return
     }
     setPassword("")
-    setAuthenticated(true)
+    await checkAuth()
   }
 
   const logout = async () => {
-    await fetch("/api/catalogue/admin", {
+    await fetch("/api/catalogue/admin/", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: "logout" }),
       credentials: "same-origin",
+      cache: "no-store",
     })
     setAuthenticated(false)
   }
