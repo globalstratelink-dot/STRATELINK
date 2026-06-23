@@ -148,16 +148,8 @@ async function writeToBlob(services: CatalogueService[]) {
 
 export async function listCatalogueServices(): Promise<CatalogueService[]> {
   if (isSupabaseConfigured()) {
-    try {
-      const fromSupabase = await readCatalogueFromSupabase()
-      if (fromSupabase.length > 0) return fromSupabase
-
-      const seed = DEFAULT_CATALOGUE_SERVICES
-      await saveCatalogueToSupabase(seed)
-      return seed
-    } catch (error) {
-      console.error("[catalogue-store] Supabase read failed, falling back", error)
-    }
+    const fromSupabase = await readCatalogueFromSupabase()
+    return fromSupabase
   }
 
   if (useNetlifyBlobStorage()) {
@@ -185,8 +177,9 @@ export async function saveCatalogueServices(services: CatalogueService[]) {
       return sorted
     } catch (error) {
       console.error("[catalogue-store] Supabase save failed", error)
+      const detail = error instanceof Error ? error.message : "erreur inconnue"
       throw new CataloguePersistenceError(
-        "Impossible de sauvegarder dans Supabase. Vérifiez la table catalogue_services et le bucket catalogue-images."
+        `Impossible de sauvegarder dans Supabase : ${detail}. Vérifiez la table catalogue_services, le bucket catalogue-images, et que SUPABASE_URL correspond à la clé secrète.`
       )
     }
   }

@@ -48,6 +48,15 @@ const nextConfig = {
   async headers() {
     return [
       {
+        source: "/api/catalogue/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-cache, no-store, must-revalidate",
+          },
+        ],
+      },
+      {
         source: "/adminAbdelhamid/:path*",
         headers: [
           {

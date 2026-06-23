@@ -76,19 +76,36 @@ export async function readCatalogueFromSupabase(): Promise<CatalogueService[]> {
 export async function saveCatalogueToSupabase(services: CatalogueService[]) {
   const supabase = getSupabaseAdmin()
 
-  const { error: deleteError } = await supabase.from(TABLE).delete().neq("id", "")
-  if (deleteError) {
-    console.error("[catalogue-supabase] delete failed", deleteError)
-    throw deleteError
+  if (services.length === 0) {
+    const { error } = await supabase.from(TABLE).delete().neq("id", "")
+    if (error) {
+      console.error("[catalogue-supabase] clear failed", error)
+      throw error
+    }
+    return
   }
 
-  if (services.length === 0) return
-
   const rows = services.map(serviceToRow)
-  const { error: insertError } = await supabase.from(TABLE).insert(rows)
-  if (insertError) {
-    console.error("[catalogue-supabase] insert failed", insertError)
-    throw insertError
+  const { error: upsertError } = await supabase.from(TABLE).upsert(rows, { onConflict: "id" })
+  if (upsertError) {
+    console.error("[catalogue-supabase] upsert failed", upsertError)
+    throw upsertError
+  }
+
+  const keepIds = services.map((s) => s.id)
+  const { data: existing, error: listError } = await supabase.from(TABLE).select("id")
+  if (listError) {
+    console.error("[catalogue-supabase] list for prune failed", listError)
+    throw listError
+  }
+
+  const staleIds = (existing || []).map((row) => row.id).filter((id) => !keepIds.includes(id))
+  if (staleIds.length === 0) return
+
+  const { error: pruneError } = await supabase.from(TABLE).delete().in("id", staleIds)
+  if (pruneError) {
+    console.error("[catalogue-supabase] prune failed", pruneError)
+    throw pruneError
   }
 }
 

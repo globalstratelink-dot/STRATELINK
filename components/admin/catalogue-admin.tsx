@@ -147,10 +147,17 @@ export function CatalogueAdminPanel() {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Supprimer ce service ?")) return
-    const res = await fetch(`/api/catalogue/${id}`, { method: "DELETE", credentials: "same-origin" })
-    if (res.ok) {
+    setError("")
+    try {
+      const res = await fetch(`/api/catalogue/${id}`, { method: "DELETE", credentials: "same-origin" })
       const data = await res.json()
+      if (!res.ok) {
+        setError(data.error || "Impossible de supprimer ce service")
+        return
+      }
       setServices(data.services || [])
+    } catch {
+      setError("Impossible de supprimer ce service")
     }
   }
 
@@ -175,6 +182,11 @@ export function CatalogueAdminPanel() {
               Nouveau service
             </Button>
           </div>
+          {error && (
+            <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
+              {error}
+            </p>
+          )}
         </div>
 
         {loading ? (
