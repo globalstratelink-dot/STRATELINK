@@ -6,6 +6,11 @@ import {
   getCatalogueDataStore,
   useNetlifyBlobStorage,
 } from "@/lib/catalogue-blobs"
+import { isSupabaseConfigured } from "@/lib/supabase-admin"
+import {
+  readCatalogueFromSupabase,
+  saveCatalogueToSupabase,
+} from "@/lib/catalogue-supabase"
 
 const DATA_DIR = path.join(process.cwd(), "data")
 const DATA_FILE = path.join(DATA_DIR, "catalogue-services.json")
@@ -140,6 +145,19 @@ async function writeToBlob(services: CatalogueService[]) {
 }
 
 export async function listCatalogueServices(): Promise<CatalogueService[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      const fromSupabase = await readCatalogueFromSupabase()
+      if (fromSupabase.length > 0) return fromSupabase
+
+      const seed = await readFromFile()
+      await saveCatalogueToSupabase(seed)
+      return seed
+    } catch (error) {
+      console.error("[catalogue-store] Supabase read failed, falling back", error)
+    }
+  }
+
   const fromBlob = await readFromBlob()
   if (fromBlob !== null) return fromBlob
   return readFromFile()
@@ -148,11 +166,23 @@ export async function listCatalogueServices(): Promise<CatalogueService[]> {
 export async function saveCatalogueServices(services: CatalogueService[]) {
   const sorted = [...services].map(normalizeService).sort((a, b) => a.order - b.order)
 
+  if (isSupabaseConfigured()) {
+    try {
+      await saveCatalogueToSupabase(sorted)
+      return sorted
+    } catch (error) {
+      console.error("[catalogue-store] Supabase save failed", error)
+      throw new CataloguePersistenceError(
+        "Impossible de sauvegarder dans Supabase. Vérifiez la table catalogue_services et le bucket catalogue-images."
+      )
+    }
+  }
+
   if (useNetlifyBlobStorage()) {
     const blobSaved = await writeToBlob(sorted)
     if (!blobSaved) {
       throw new CataloguePersistenceError(
-        "Impossible de sauvegarder le catalogue en ligne. Ajoutez NETLIFY_AUTH_TOKEN dans les variables Netlify."
+        "Impossible de sauvegarder le catalogue en ligne. Configurez Supabase (recommandé) ou NETLIFY_AUTH_TOKEN."
       )
     }
     return sorted

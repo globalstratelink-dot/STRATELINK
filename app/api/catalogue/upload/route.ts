@@ -8,6 +8,8 @@ import {
 } from "@/lib/catalogue-types"
 import { detectImageMime, extensionForImageMime } from "@/lib/image-magic"
 import { catalogueMediaUrl, getCatalogueImagesStore, useNetlifyBlobStorage } from "@/lib/catalogue-blobs"
+import { isSupabaseConfigured } from "@/lib/supabase-admin"
+import { uploadCatalogueImageToSupabase } from "@/lib/catalogue-supabase"
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "catalogue")
 
@@ -55,6 +57,18 @@ export async function POST(request: NextRequest) {
 
     const extension = extensionForImageMime(detectedMime)
     const filename = `${Date.now()}-${sanitizeFilename(file.name.replace(/\.[^.]+$/, "") || "image")}.${extension}`
+
+    if (isSupabaseConfigured()) {
+      try {
+        const publicUrl = await uploadCatalogueImageToSupabase(filename, buffer, detectedMime)
+        return NextResponse.json({ url: publicUrl })
+      } catch {
+        return NextResponse.json(
+          { error: "Impossible d'envoyer l'image sur Supabase. Vérifiez le bucket catalogue-images." },
+          { status: 503 }
+        )
+      }
+    }
 
     const imageStore = getCatalogueImagesStore()
     if (useNetlifyBlobStorage()) {
