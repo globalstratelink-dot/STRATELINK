@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   alternates: { canonical: SITE_URL },
   verification: {
-    google: "Op8Z_4qIe0eB8qZvIrfQVnjapNUeEyewg6DZE7SBRC0",
+    google: "vLDfkmTRzDbZIipSCzKT5hk-GUB_bU-Ld8dpJ9SWNMU",
   },
   openGraph: {
     type: "website",
