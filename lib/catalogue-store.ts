@@ -125,7 +125,9 @@ async function readFromBlob(): Promise<CatalogueService[] | null> {
     return parsed.map(normalizeService).sort((a, b) => a.order - b.order)
   } catch (error) {
     console.error("[catalogue-store] Blob read failed", error)
-    return null
+    throw new CataloguePersistenceError(
+      "Impossible de lire le catalogue en ligne. Configurez Supabase (recommandé) ou vérifiez NETLIFY_AUTH_TOKEN."
+    )
   }
 }
 
@@ -150,7 +152,7 @@ export async function listCatalogueServices(): Promise<CatalogueService[]> {
       const fromSupabase = await readCatalogueFromSupabase()
       if (fromSupabase.length > 0) return fromSupabase
 
-      const seed = await readFromFile()
+      const seed = DEFAULT_CATALOGUE_SERVICES
       await saveCatalogueToSupabase(seed)
       return seed
     } catch (error) {
@@ -158,8 +160,19 @@ export async function listCatalogueServices(): Promise<CatalogueService[]> {
     }
   }
 
-  const fromBlob = await readFromBlob()
-  if (fromBlob !== null) return fromBlob
+  if (useNetlifyBlobStorage()) {
+    const fromBlob = await readFromBlob()
+    if (fromBlob !== null) return fromBlob
+
+    const seeded = DEFAULT_CATALOGUE_SERVICES
+    const blobSaved = await writeToBlob(seeded)
+    if (blobSaved) return seeded
+
+    throw new CataloguePersistenceError(
+      "Catalogue non disponible en ligne. Configurez Supabase (SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY) sur Netlify."
+    )
+  }
+
   return readFromFile()
 }
 

@@ -1,5 +1,6 @@
--- Run this SQL in Supabase → SQL Editor → New query → Run
+-- STRATELINK — Configuration catalogue (Supabase SQL Editor → New query → Run)
 
+-- 1. Table des services
 create table if not exists public.catalogue_services (
   id text primary key,
   image_url text not null,
@@ -18,6 +19,12 @@ create table if not exists public.catalogue_services (
 
 alter table public.catalogue_services enable row level security;
 
--- Storage bucket: create manually in Supabase → Storage → New bucket
--- Name: catalogue-images
--- Public bucket: ON
+-- 2. Bucket images (public)
+insert into storage.buckets (id, name, public)
+values ('catalogue-images', 'catalogue-images', true)
+on conflict (id) do update set public = true;
+
+-- 3. Lecture publique des images
+create policy "catalogue images public read"
+on storage.objects for select
+using (bucket_id = 'catalogue-images');
