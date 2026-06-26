@@ -20,12 +20,16 @@ export function CatalogueContent() {
     const loadServices = () => {
       setLoading(true)
       fetch(`/api/catalogue/?_=${Date.now()}`, { cache: "no-store" })
-        .then((res) => res.json())
+        .then(async (res) => {
+          const data = await res.json()
+          if (!res.ok) throw new Error(data.error || "load failed")
+          return data
+        })
         .then((data) => {
-          if (!cancelled) setServices(data.services || [])
+          if (!cancelled) setServices(Array.isArray(data.services) ? data.services : [])
         })
         .catch(() => {
-          if (!cancelled) setServices([])
+          // Keep the previous list on refresh errors (e.g. tab refocus).
         })
         .finally(() => {
           if (!cancelled) setLoading(false)

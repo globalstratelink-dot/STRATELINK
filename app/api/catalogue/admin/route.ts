@@ -7,10 +7,19 @@ import {
   isAdminConfigured,
   verifyAdminPassword,
 } from "@/lib/catalogue-auth"
-import { buildService, listCatalogueServices, saveCatalogueServices, CataloguePersistenceError } from "@/lib/catalogue-store"
+import {
+  addCatalogueService,
+  buildService,
+  listCatalogueServices,
+  updateCatalogueService,
+  CataloguePersistenceError,
+} from "@/lib/catalogue-store"
 import type { CatalogueServiceInput } from "@/lib/catalogue-types"
 import { getClientIp } from "@/lib/request-ip"
 import { rateLimit, rateLimitResponse } from "@/lib/rate-limit"
+
+export const dynamic = "force-dynamic"
+export const revalidate = 0
 
 function validateInput(body: Partial<CatalogueServiceInput>) {
   if (!body.nameFr?.trim() || !body.nameEn?.trim()) return "Name is required in both languages"
@@ -60,7 +69,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "A service with this name already exists" }, { status: 409 })
     }
 
-    const updated = await saveCatalogueServices([...services, service])
+    const updated = await addCatalogueService(service)
     return NextResponse.json({ service, services: updated }, { status: 201, headers: ADMIN_HEADERS })
   } catch (error) {
     if (error instanceof CataloguePersistenceError) {
@@ -83,8 +92,8 @@ export async function PUT(request: NextRequest) {
     if (error) return NextResponse.json({ error }, { status: 400 })
 
     const services = await listCatalogueServices()
-    const index = services.findIndex((s) => s.id === body.id)
-    if (index < 0) return NextResponse.json({ error: "Service not found" }, { status: 404 })
+    const existing = services.find((s) => s.id === body.id)
+    if (!existing) return NextResponse.json({ error: "Service not found" }, { status: 404 })
 
     const service = buildService(
       {
@@ -97,14 +106,12 @@ export async function PUT(request: NextRequest) {
         includesEn: body.includesEn!,
         audienceFr: body.audienceFr!,
         audienceEn: body.audienceEn!,
-        order: typeof body.order === "number" ? body.order : services[index].order,
+        order: typeof body.order === "number" ? body.order : existing.order,
       },
-      services[index]
+      existing
     )
 
-    const next = [...services]
-    next[index] = service
-    const updated = await saveCatalogueServices(next)
+    const updated = await updateCatalogueService(service)
     return NextResponse.json({ service, services: updated }, { headers: ADMIN_HEADERS })
   } catch (error) {
     if (error instanceof CataloguePersistenceError) {
@@ -150,11 +157,31 @@ export async function PATCH(request: NextRequest) {
 
 export async function GET() {
   const authenticated = await isAdminAuthenticated()
-  return NextResponse.json(
-    {
-      authenticated,
-      configured: isAdminConfigured(),
-    },
-    { headers: ADMIN_HEADERS }
-  )
+
+  if (!authenticated) {
+    return NextResponse.json(
+      {
+        authenticated: false,
+        configured: isAdminConfigured(),
+      },
+      { headers: ADMIN_HEADERS }
+    )
+  }
+
+  try {
+    const services = await listCatalogueServices()
+    return NextResponse.json(
+      {
+        authenticated: true,
+        configured: isAdminConfigured(),
+        services,
+      },
+      { headers: ADMIN_HEADERS }
+    )
+  } catch (error) {
+    if (error instanceof CataloguePersistenceError) {
+      return NextResponse.json({ error: error.message, authenticated: true }, { status: 503, headers: ADMIN_HEADERS })
+    }
+    return NextResponse.json({ error: "Unable to load catalogue", authenticated: true }, { status: 500, headers: ADMIN_HEADERS })
+  }
 }

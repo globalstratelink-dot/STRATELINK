@@ -73,11 +73,62 @@ export async function readCatalogueFromSupabase(): Promise<CatalogueService[]> {
   return (data as CatalogueRow[]).map(rowToService)
 }
 
+export async function insertCatalogueServiceInSupabase(service: CatalogueService) {
+  const supabase = getSupabaseAdmin()
+  const { error } = await supabase.from(TABLE).insert(serviceToRow(service))
+  if (error) {
+    console.error("[catalogue-supabase] insert failed", error)
+    throw error
+  }
+}
+
+export async function updateCatalogueServiceInSupabase(service: CatalogueService) {
+  const supabase = getSupabaseAdmin()
+  const { data, error } = await supabase
+    .from(TABLE)
+    .update(serviceToRow(service))
+    .eq("id", service.id)
+    .select("id")
+
+  if (error) {
+    console.error("[catalogue-supabase] update failed", error)
+    throw error
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error("Service introuvable en base")
+  }
+}
+
+export async function deleteCatalogueServiceFromSupabase(id: string) {
+  const supabase = getSupabaseAdmin()
+  const { data, error } = await supabase.from(TABLE).delete().eq("id", id).select("id")
+
+  if (error) {
+    console.error("[catalogue-supabase] delete failed", error)
+    throw error
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error("Service introuvable en base")
+  }
+}
+
+/** Bulk replace — local dev / Netlify Blobs only; avoid on Supabase when possible. */
 export async function saveCatalogueToSupabase(services: CatalogueService[]) {
   const supabase = getSupabaseAdmin()
 
   if (services.length === 0) {
-    const { error } = await supabase.from(TABLE).delete().neq("id", "")
+    const { data: existing, error: listError } = await supabase.from(TABLE).select("id")
+    if (listError) {
+      console.error("[catalogue-supabase] list for clear failed", listError)
+      throw listError
+    }
+
+    const ids = (existing || []).map((row) => row.id)
+    if (ids.length === 0) return
+
+    const { error } = await supabase.from(TABLE).delete().in("id", ids)
     if (error) {
       console.error("[catalogue-supabase] clear failed", error)
       throw error
@@ -106,13 +157,6 @@ export async function saveCatalogueToSupabase(services: CatalogueService[]) {
   if (pruneError) {
     console.error("[catalogue-supabase] prune failed", pruneError)
     throw pruneError
-  }
-
-  const saved = await readCatalogueFromSupabase()
-  if (saved.length !== services.length) {
-    throw new Error(
-      `Vérification échouée : ${services.length} service(s) attendu(s), ${saved.length} en base`
-    )
   }
 }
 

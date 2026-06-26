@@ -40,17 +40,32 @@ export function CatalogueAdminPanel() {
   const [imageError, setImageError] = useState("")
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const loadServices = useCallback(async () => {
-    setLoading(true)
+  const [loadError, setLoadError] = useState("")
+
+  const applyServices = (next: CatalogueService[]) => {
+    setServices(next)
+    setLoadError("")
+  }
+
+  const loadServices = useCallback(async (options?: { silent?: boolean }) => {
+    if (!options?.silent) setLoading(true)
     try {
-      const res = await fetch(`/api/catalogue/?_=${Date.now()}`, {
+      const res = await fetch(`/api/catalogue/admin/?_=${Date.now()}`, {
         cache: "no-store",
         credentials: "same-origin",
       })
       const data = await res.json()
-      setServices(data.services || [])
+
+      if (!res.ok || !data.authenticated) {
+        setLoadError(data.error || "Impossible de charger le catalogue. Reconnectez-vous si besoin.")
+        return
+      }
+
+      applyServices(Array.isArray(data.services) ? data.services : [])
+    } catch {
+      setLoadError("Impossible de charger le catalogue. Vérifiez votre connexion.")
     } finally {
-      setLoading(false)
+      if (!options?.silent) setLoading(false)
     }
   }, [])
 
@@ -144,7 +159,11 @@ export function CatalogueAdminPanel() {
         return
       }
       setDialogOpen(false)
-      await loadServices()
+      if (Array.isArray(data.services)) {
+        applyServices(data.services)
+      } else {
+        await loadServices({ silent: true })
+      }
     } finally {
       setSaving(false)
     }
@@ -164,7 +183,11 @@ export function CatalogueAdminPanel() {
         setError(data.error || "Impossible de supprimer ce service")
         return
       }
-      await loadServices()
+      if (Array.isArray(data.services)) {
+        applyServices(data.services)
+      } else {
+        await loadServices({ silent: true })
+      }
     } catch {
       setError("Impossible de supprimer ce service")
     }
@@ -191,6 +214,11 @@ export function CatalogueAdminPanel() {
               Nouveau service
             </Button>
           </div>
+          {loadError && (
+            <p className="text-sm text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-3">
+              {loadError}
+            </p>
+          )}
           {error && (
             <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3">
               {error}

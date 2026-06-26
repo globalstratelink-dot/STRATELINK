@@ -8,8 +8,11 @@ import {
 } from "@/lib/catalogue-blobs"
 import { isSupabaseConfigured } from "@/lib/supabase-admin"
 import {
+  deleteCatalogueServiceFromSupabase,
+  insertCatalogueServiceInSupabase,
   readCatalogueFromSupabase,
   saveCatalogueToSupabase,
+  updateCatalogueServiceInSupabase,
 } from "@/lib/catalogue-supabase"
 
 const DATA_DIR = path.join(process.cwd(), "data")
@@ -159,6 +162,73 @@ export async function listCatalogueServices(): Promise<CatalogueService[]> {
   }
 
   return readFromFile()
+}
+
+export async function addCatalogueService(service: CatalogueService): Promise<CatalogueService[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      await insertCatalogueServiceInSupabase(service)
+      return readCatalogueFromSupabase()
+    } catch (error) {
+      console.error("[catalogue-store] Supabase insert failed", error)
+      const detail = error instanceof Error ? error.message : "erreur inconnue"
+      throw new CataloguePersistenceError(
+        `Impossible d'ajouter le service dans Supabase : ${detail}`
+      )
+    }
+  }
+
+  const services = await listCatalogueServices()
+  if (services.some((s) => s.id === service.id)) {
+    throw new CataloguePersistenceError("Un service avec ce nom existe déjà")
+  }
+  return saveCatalogueServices([...services, service])
+}
+
+export async function updateCatalogueService(service: CatalogueService): Promise<CatalogueService[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      await updateCatalogueServiceInSupabase(service)
+      return readCatalogueFromSupabase()
+    } catch (error) {
+      console.error("[catalogue-store] Supabase update failed", error)
+      const detail = error instanceof Error ? error.message : "erreur inconnue"
+      throw new CataloguePersistenceError(
+        `Impossible de modifier le service dans Supabase : ${detail}`
+      )
+    }
+  }
+
+  const services = await listCatalogueServices()
+  const index = services.findIndex((s) => s.id === service.id)
+  if (index < 0) {
+    throw new CataloguePersistenceError("Service introuvable")
+  }
+  const next = [...services]
+  next[index] = service
+  return saveCatalogueServices(next)
+}
+
+export async function removeCatalogueService(id: string): Promise<CatalogueService[]> {
+  if (isSupabaseConfigured()) {
+    try {
+      await deleteCatalogueServiceFromSupabase(id)
+      return readCatalogueFromSupabase()
+    } catch (error) {
+      console.error("[catalogue-store] Supabase delete failed", error)
+      const detail = error instanceof Error ? error.message : "erreur inconnue"
+      throw new CataloguePersistenceError(
+        `Impossible de supprimer le service dans Supabase : ${detail}`
+      )
+    }
+  }
+
+  const services = await listCatalogueServices()
+  const next = services.filter((s) => s.id !== id)
+  if (next.length === services.length) {
+    throw new CataloguePersistenceError("Service introuvable")
+  }
+  return saveCatalogueServices(next)
 }
 
 export async function saveCatalogueServices(services: CatalogueService[]) {
