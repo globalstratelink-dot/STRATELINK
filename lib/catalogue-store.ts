@@ -36,7 +36,7 @@ export const DEFAULT_CATALOGUE_SERVICES: CatalogueService[] = [
     nameEn: "Sourcing & Procurement",
     descriptionFr: "Identification de fournisseurs qualifiés et gestion des achats internationaux pour vos projets B2B.",
     descriptionEn: "Qualified supplier identification and international procurement management for your B2B projects.",
-    includesFr: ["Recherche fournisseurs", "Négociation commerciale", "Contrôle qualité", "Coordination logistique"],
+    includesFr: ["Recherche de fournisseurs", "Négociation commerciale", "Contrôle qualité", "Coordination logistique"],
     includesEn: ["Supplier research", "Commercial negotiation", "Quality control", "Logistics coordination"],
     audienceFr: "Importateurs, distributeurs et EPC",
     audienceEn: "Importers, distributors and EPC contractors",
@@ -49,11 +49,11 @@ export const DEFAULT_CATALOGUE_SERVICES: CatalogueService[] = [
     imageUrl: DEFAULT_IMAGES.customs,
     nameFr: "Douanes & Conformité",
     nameEn: "Customs & Compliance",
-    descriptionFr: "Accompagnement réglementaire et facilitation des flux transfrontaliers sans friction.",
+    descriptionFr: "Accompagnement réglementaire et facilitation des flux transfrontaliers fluides.",
     descriptionEn: "Regulatory support and frictionless cross-border flow facilitation.",
-    includesFr: ["Classification douanière", "Documentation export/import", "Conformité produit", "Suivi clearance"],
+    includesFr: ["Classification douanière", "Documentation export/import", "Conformité produit", "Suivi du dédouanement"],
     includesEn: ["Customs classification", "Export/import documentation", "Product compliance", "Clearance tracking"],
-    audienceFr: "Trading houses et industriels",
+    audienceFr: "Maisons de négoce et industriels",
     audienceEn: "Trading houses and industrial companies",
     order: 2,
     createdAt: new Date().toISOString(),
@@ -64,9 +64,9 @@ export const DEFAULT_CATALOGUE_SERVICES: CatalogueService[] = [
     imageUrl: DEFAULT_IMAGES.logistics,
     nameFr: "Logistique & Corridors",
     nameEn: "Logistics & Corridors",
-    descriptionFr: "Orchestration des corridors Chine, EAU, Europe et Afrique selon vos incoterms.",
+    descriptionFr: "Orchestration des corridors Chine, Émirats, Europe et Afrique selon vos incoterms.",
     descriptionEn: "Orchestration of China, UAE, Europe and Africa corridors based on your incoterms.",
-    includesFr: ["Planification transport", "Fret maritime/aérien", "Assurance cargo", "Suivi bout-en-bout"],
+    includesFr: ["Planification du transport", "Fret maritime/aérien", "Assurance marchandises", "Suivi de bout en bout"],
     includesEn: ["Transport planning", "Sea/air freight", "Cargo insurance", "End-to-end tracking"],
     audienceFr: "Projets multi-pays et grossistes",
     audienceEn: "Multi-country projects and wholesalers",
@@ -100,9 +100,10 @@ async function readFromFile(): Promise<CatalogueService[]> {
   try {
     const raw = await fs.readFile(DATA_FILE, "utf-8")
     const parsed = JSON.parse(raw) as LegacyCatalogueService[]
+    if (!Array.isArray(parsed) || parsed.length === 0) return []
     return parsed.map(normalizeService).sort((a, b) => a.order - b.order)
   } catch {
-    return DEFAULT_CATALOGUE_SERVICES
+    return []
   }
 }
 
@@ -148,24 +149,13 @@ async function writeToBlob(services: CatalogueService[]) {
 
 export async function listCatalogueServices(): Promise<CatalogueService[]> {
   if (isSupabaseConfigured()) {
-    const fromSupabase = await readCatalogueFromSupabase()
-    if (fromSupabase.length > 0) return fromSupabase
-
-    await saveCatalogueToSupabase(DEFAULT_CATALOGUE_SERVICES)
-    return DEFAULT_CATALOGUE_SERVICES
+    return readCatalogueFromSupabase()
   }
 
   if (useNetlifyBlobStorage()) {
     const fromBlob = await readFromBlob()
     if (fromBlob !== null) return fromBlob
-
-    const seeded = DEFAULT_CATALOGUE_SERVICES
-    const blobSaved = await writeToBlob(seeded)
-    if (blobSaved) return seeded
-
-    throw new CataloguePersistenceError(
-      "Catalogue non disponible en ligne. Configurez Supabase (SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY) sur Netlify."
-    )
+    return []
   }
 
   return readFromFile()
