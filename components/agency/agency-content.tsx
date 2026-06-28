@@ -59,7 +59,7 @@ return (
                   asChild
                 >
                   <Link href="/services">
-                    {t('viewAllServices')}
+                    {t('viewOurServices')}
                   </Link>
                 </Button>
               </div>

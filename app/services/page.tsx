@@ -3,9 +3,9 @@ import { ServicesContent } from "@/components/services/services-content"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
-  title: "Import Export Services, Sourcing & International Logistics",
+  title: "Our Services — Import/Export from China | Stratelink Global",
   description:
-    "End-to-end import-export services: strategic sourcing, quality control, logistics, customs compliance and exclusive B2B catalog for global trade.",
+    "Sourcing, supplier verification, negotiation, logistics, customs and Dubai transit hub — end-to-end import/export from China to Africa, Europe and the UAE.",
   path: "/services",
 })
 

@@ -105,7 +105,12 @@ export function CatalogueContent() {
         {loading ? (
           <p className="text-center text-gray-400">{t("loading")}</p>
         ) : services.length === 0 ? (
-          <p className="text-center text-gray-400">{t("catalogueEmpty")}</p>
+          <div className="text-center max-w-xl mx-auto">
+            <p className="text-gray-300 mb-6">{t("catalogueEmpty")}</p>
+            <Button asChild className="bg-gradient-to-r from-copper to-sand text-navy font-bold">
+              <Link href="/contact">{t("catalogueEmptyCta")}</Link>
+            </Button>
+          </div>
         ) : (
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
             {services.map((service, index) => (

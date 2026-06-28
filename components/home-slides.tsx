@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, Globe, TrendingUp, Palette, Zap } from "lucide-react"
+import { ArrowRight, ArrowLeft, Globe, TrendingUp, Layers, CheckCircle } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { HeroImage, ServicesImage, OptimizedAvatar } from "@/components/optimized-image"
 import Link from "next/link"
@@ -29,39 +29,81 @@ export function HomeSlides() {
     }
   }, [])
 
-  // Charger le script Calendly pour le widget
+  // Charger Calendly (CSS + script + init avec repli)
   useEffect(() => {
-    // Vérifier si le script est déjà chargé
-    const existingScript = document.querySelector('script[src="https://assets.calendly.com/assets/external/widget.js"]')
-    
-    if (!existingScript) {
-      const script = document.createElement('script')
-      script.src = 'https://assets.calendly.com/assets/external/widget.js'
+    if (!isLoaded) return
+
+    const showFallback = () => {
+      const fallback = document.getElementById("home-calendly-fallback")
+      if (fallback) {
+        fallback.classList.remove("hidden")
+        fallback.classList.add("block")
+      }
+    }
+
+    const initCalendlyWidgets = () => {
+      const calendly = (window as Window & { Calendly?: { initInlineWidget: (el: Element) => void } }).Calendly
+      if (!calendly) return false
+
+      const widgets = document.querySelectorAll("#home-calendly-widget.calendly-inline-widget")
+      let initialized = false
+
+      widgets.forEach((widget) => {
+        if (widget.hasAttribute("data-calendly-initialized")) return
+        try {
+          calendly.initInlineWidget(widget)
+          widget.setAttribute("data-calendly-initialized", "true")
+          initialized = true
+        } catch {
+          showFallback()
+        }
+      })
+
+      return initialized
+    }
+
+    if (!document.querySelector('link[href="https://assets.calendly.com/assets/external/widget.css"]')) {
+      const link = document.createElement("link")
+      link.href = "https://assets.calendly.com/assets/external/widget.css"
+      link.rel = "stylesheet"
+      document.head.appendChild(link)
+    }
+
+    const existingScript = document.querySelector(
+      'script[src="https://assets.calendly.com/assets/external/widget.js"]'
+    ) as HTMLScriptElement | null
+
+    const onScriptReady = () => {
+      if (!initCalendlyWidgets()) {
+        window.setTimeout(() => {
+          if (!initCalendlyWidgets()) showFallback()
+        }, 1500)
+      }
+    }
+
+    if (existingScript) {
+      if ((window as Window & { Calendly?: unknown }).Calendly) {
+        onScriptReady()
+      } else {
+        existingScript.addEventListener("load", onScriptReady, { once: true })
+        window.setTimeout(onScriptReady, 2500)
+      }
+    } else {
+      const script = document.createElement("script")
+      script.src = "https://assets.calendly.com/assets/external/widget.js"
       script.async = true
+      script.onload = onScriptReady
+      script.onerror = showFallback
       document.head.appendChild(script)
     }
 
-    // Initialiser le widget après un délai
-    const initWidget = setTimeout(() => {
-      if (typeof window !== 'undefined' && (window as any).Calendly) {
-        const widgets = document.querySelectorAll('.calendly-inline-widget')
-        widgets.forEach(widget => {
-          if (!widget.hasAttribute('data-calendly-initialized')) {
-            try {
-              (window as any).Calendly.initInlineWidget(widget)
-              widget.setAttribute('data-calendly-initialized', 'true')
-            } catch (error) {
-              console.log('Erreur initialisation Calendly:', error)
-            }
-          }
-        })
-      }
-    }, 2000)
+    const fallbackTimer = window.setTimeout(() => {
+      const widget = document.getElementById("home-calendly-widget")
+      if (widget && widget.children.length === 0) showFallback()
+    }, 5000)
 
-    return () => {
-      clearTimeout(initWidget)
-    }
-  }, [])
+    return () => window.clearTimeout(fallbackTimer)
+  }, [isLoaded])
 
   // Props d'animation conditionnelles
   const getAnimationProps = (defaultProps: any) => {
@@ -100,13 +142,27 @@ export function HomeSlides() {
       text: t('testimonial1')
     },
     { 
-      name: 'Daniel Smith', company: 'GlobalTrade', image: '/6.webp',
+      name: 'Daniel Smith', company: 'Snap.tel', image: '/6.webp',
       text: t('testimonial2')
     },
     { 
-      name: 'Emma Rodriguez', company: 'Manufacturing', image: '/5.webp',
+      name: 'Emma Rodriguez', company: 'Mefcars', image: '/5.webp',
       text: t('testimonial5')
     },
+  ]
+
+  const importExportItems = [
+    t('importExportItem1'),
+    t('importExportItem2'),
+    t('importExportItem3'),
+    t('importExportItem4'),
+  ]
+
+  const catalogueItems = [
+    t('productCatalogueItem1'),
+    t('productCatalogueItem2'),
+    t('productCatalogueItem3'),
+    t('productCatalogueItem4'),
   ]
   
   const nextGroup = () => {
@@ -189,15 +245,26 @@ export function HomeSlides() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.2, delay: 0.9 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               >
                 <Button 
                   size="lg"
                   className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:scale-105 transition-transform duration-200 w-full sm:w-auto"
                   asChild
                 >
-                  <Link href="/services">
-                    {t('discoverOurSolutions')}
+                  <Link href="/process">
+                    {t('homeCtaPrimary')}
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+                  </Link>
+                </Button>
+                <Button 
+                  size="lg"
+                  variant="outline"
+                  className="border-copper text-copper hover:bg-copper hover:text-navy font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
+                  asChild
+                >
+                  <Link href="/services">
+                    {t('homeCtaSecondary')}
                   </Link>
                 </Button>
               </motion.div>
@@ -384,16 +451,31 @@ export function HomeSlides() {
                 <Globe className="w-8 h-8 text-copper" />
               </div>
               <h3 className="title-card text-white mb-4 text-center">{t('importExport')}</h3>
-              <p className="text-gray-300 text-center">{t('importExportDesc')}</p>
+              <p className="text-gray-300 text-center mb-6">{t('importExportDesc')}</p>
+              <ul className="space-y-2">
+                {importExportItems.map((item) => (
+                  <li key={String(item)} className="flex items-start gap-2 text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-copper shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Service 2 - Business Development */}
             <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 lg:p-10 hover:border-copper/40 transition-all duration-300">
               <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
-                <TrendingUp className="w-8 h-8 text-copper" />
+                <Layers className="w-8 h-8 text-copper" />
               </div>
-              <h3 className="title-card text-white mb-4 text-center">{t('businessDevelopment')}</h3>
-              <p className="text-gray-300 text-center">{t('businessDevelopmentDesc')}</p>
+              <h3 className="title-card text-white mb-4 text-center">{t('productCatalogue')}</h3>
+              <p className="text-gray-300 text-center mb-6">{t('productCatalogueDesc')}</p>
+              <ul className="space-y-2">
+                {catalogueItems.map((item) => (
+                  <li key={String(item)} className="flex items-start gap-2 text-sm text-gray-300">
+                    <CheckCircle className="w-4 h-4 text-copper shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </motion.div>
         </div>
@@ -418,7 +500,7 @@ export function HomeSlides() {
               className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
             >
               <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
-              {t('excellence')}
+              {t('whyUsBadge')}
             </motion.div>
             
             <motion.h2
@@ -436,19 +518,9 @@ export function HomeSlides() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
-              className="text-xl text-gray-300 max-w-4xl mx-auto mb-4"
+              className="text-xl text-gray-300 max-w-4xl mx-auto"
             >
               {t('excellenceAtServiceOfGrowth')}
-            </motion.p>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-              viewport={{ once: true }}
-              className="text-lg text-gray-400 max-w-3xl mx-auto"
-            >
-              {t('discoverWhatDistinguishesUs')}
             </motion.p>
 
           </motion.div>
@@ -691,67 +763,57 @@ export function HomeSlides() {
         </div>
       </section>
 
-      {/* Call-to-Action Bilingue */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, delay: 0.8 }}
-        viewport={{ once: true }}
-        className="mt-20 text-center"
-      >
-
-        {/* Section Anglaise */}
+      {/* CTA + Calendly */}
+      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 pb-24">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.1 }}
-          viewport={{ once: true }}
-          className="bg-copper/10 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 sm:p-12 max-w-4xl mx-auto"
+          transition={{ duration: 1.2, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.15 }}
+          className="max-w-4xl mx-auto text-center bg-copper/10 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 sm:p-12"
         >
           <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-            {t('readyToTransformYourBusiness')}
+            {t("readyToTransformYourBusiness")}
           </h3>
           <p className="text-lg text-white/80 mb-8">
-            {t('letsDiscussStrategicSolutions')}
+            {t("letsDiscussStrategicSolutions")}
           </p>
-          
-          {/* Bouton Contact */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-lg px-8 py-4 hover:shadow-lg transition-all duration-300"
+            asChild
           >
-            <Button 
-              size="lg"
-              className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-lg px-8 py-4 hover:shadow-lg transition-all duration-300"
-              asChild
-            >
-              <Link href="/contact">
-                {t('contactButton')}
-              </Link>
-            </Button>
-          </motion.div>
-          
-          {/* Widget Calendly */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            viewport={{ once: true }}
-            className="mt-8"
-          >
-            <div 
-              className="calendly-inline-widget" 
-              data-url="https://calendly.com/stratelink?background_color=041331&text_color=ffffff&primary_color=a97968" 
-              style={{ minWidth: "320px", height: "500px" }}
+            <Link href="/process">{t("qualifyProjectCta")}</Link>
+          </Button>
+
+          <div className="mt-8">
+            <p className="text-sm text-copper font-semibold mb-4 uppercase tracking-wider">
+              {t("scheduleTime")}
+            </p>
+            <div
+              id="home-calendly-widget"
+              className="calendly-inline-widget rounded-xl overflow-hidden"
+              data-url="https://calendly.com/stratelink?background_color=041331&text_color=ffffff&primary_color=a97968"
+              style={{ minWidth: "280px", width: "100%", height: "620px" }}
             />
-          </motion.div>
-          
+
+            <div className="hidden" id="home-calendly-fallback">
+              <div className="bg-white/10 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 text-center">
+                <h4 className="text-xl font-bold text-white mb-4">{t("scheduleTime")}</h4>
+                <a
+                  href="https://calendly.com/stratelink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block bg-gradient-to-r from-copper to-sand text-navy font-bold px-8 py-4 rounded-xl hover:shadow-lg transition-all duration-300"
+                >
+                  Ouvrir Calendly
+                </a>
+              </div>
+            </div>
+          </div>
         </motion.div>
-      </motion.div>
+      </section>
     </div>
   )
 } 

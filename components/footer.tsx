@@ -2,18 +2,25 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import { Mail, Phone, MapPin, Linkedin } from "lucide-react"
 import { ResponsiveOptimizedLogo } from "@/components/optimized-logo"
 
 export function Footer() {
   const { t } = useLanguage()
-  const currentYear = new Date().getFullYear()
-  
+
+  const footerLinks = [
+    { href: "/", label: t("home") },
+    { href: "/services/", label: t("services") },
+    { href: "/catalogue/", label: t("productCatalogue") },
+    { href: "/process/", label: t("sourceFromChina") },
+    { href: "/agency/", label: t("agency") },
+    { href: "/contact/", label: t("contact") },
+  ]
+
   return (
     <footer className="bg-navy border-t border-copper/20 relative overflow-hidden">
-      {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
         <motion.div
           className="absolute top-10 left-10 w-32 h-32 bg-copper/20 rounded-full blur-3xl"
@@ -28,80 +35,81 @@ export function Footer() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Top Grid */}
         <div className="py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
               <ResponsiveOptimizedLogo className="w-16 h-12 sm:w-20 sm:h-14 lg:w-24 lg:h-16 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
               <div className="text-white text-xl font-bold tracking-wide">
-                <span>{t('companyName')}</span>{' '}
-                <span className="text-copper">{t('companyTagline')}</span>
+                <span>{t("companyName")}</span>{" "}
+                <span className="text-copper">{t("companyTagline")}</span>
               </div>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              {t('strategicPartnerDubaiEuropeAsia')}
-            </p>
+            <p className="text-gray-400 text-sm leading-relaxed">{t("footerTagline")}</p>
           </div>
 
-          {/* Navigation */}
           <div>
-            <h4 className="text-white font-semibold mb-4">{t('home')}</h4>
+            <h4 className="text-white font-semibold mb-4">{t("home")}</h4>
+            <ul className="space-y-3 text-gray-300 text-sm">
+              {footerLinks.map((link) => (
+                <li key={link.href}>
+                  <Link className="hover:text-copper transition-colors" href={link.href}>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-semibold mb-4">{t("legalNotice")}</h4>
             <ul className="space-y-3 text-gray-300 text-sm">
               <li>
-                <Link className="hover:text-copper transition-colors" href="/">
-                  {t('home')}
+                <Link className="hover:text-copper transition-colors" href="/legal-notice/">
+                  {t("legalNotice")}
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-copper transition-colors" href="/services/">
-                  {t('services')}
+                <Link className="hover:text-copper transition-colors" href="/privacy-policy/">
+                  {t("privacyPolicy")}
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-copper transition-colors" href="/agency/">
-                  {t('agency')}
+                <Link className="hover:text-copper transition-colors" href="/terms-of-use/">
+                  {t("termsOfService")}
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Useful Links */}
           <div>
-            <h4 className="text-white font-semibold mb-4">{t('services')}</h4>
-            <ul className="space-y-3 text-gray-300 text-sm">
-              <li>
-                <Link className="hover:text-copper transition-colors" href="/services/#import-export">
-                  {t('importExport')}
-                </Link>
-              </li>
-              <li>
-                <Link className="hover:text-copper transition-colors" href="/services/#business-development">
-                  {t('businessDevelopment')}
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">{t('contact')}</h4>
+            <h4 className="text-white font-semibold mb-4">{t("contact")}</h4>
             <ul className="space-y-3 text-gray-300 text-sm">
               <li className="flex items-start space-x-3">
                 <Mail className="w-4 h-4 mt-0.5 text-copper" />
-                <a className="hover:text-copper transition-colors" href="mailto:Contact@stratelink-global.com">Contact@stratelink-global.com</a>
+                <a className="hover:text-copper transition-colors" href="mailto:Contact@stratelink-global.com">
+                  Contact@stratelink-global.com
+                </a>
               </li>
               <li className="flex items-start space-x-3">
                 <Phone className="w-4 h-4 mt-0.5 text-copper" />
-                <a className="hover:text-copper transition-colors" href="tel:+971543192348">+971 54 319 2348</a>
+                <a className="hover:text-copper transition-colors" href="tel:+971543192348">
+                  +971 54 319 2348
+                </a>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-copper" />
-                <span>{t('contactDubaiEuropeAsia')}</span>
+                <span>{t("contactDubaiEuropeAsia")}</span>
               </li>
               <li className="flex items-start space-x-3">
                 <Linkedin className="w-4 h-4 mt-0.5 text-copper" />
-                <a className="hover:text-copper transition-colors" href="https://linkedin.com/company/stratelink-global" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a
+                  className="hover:text-copper transition-colors"
+                  href="https://linkedin.com/company/stratelink-global"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
               </li>
             </ul>
           </div>
@@ -109,41 +117,11 @@ export function Footer() {
 
         <div className="border-t border-copper/20" />
 
-        {/* Bottom bar */}
         <div className="py-6">
-          {/* Legal Links */}
-          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-6 mb-4 text-sm">
-            <Link 
-              href="/legal-notice/" 
-              className="text-gray-400 hover:text-copper transition-colors"
-            >
-              {t('legalNotice')}
-            </Link>
-            <span className="text-gray-600">•</span>
-            <Link 
-              href="/privacy-policy/" 
-              className="text-gray-400 hover:text-copper transition-colors"
-            >
-              {t('privacyPolicy')}
-            </Link>
-            <span className="text-gray-600">•</span>
-            <Link 
-              href="/terms-of-use/" 
-              className="text-gray-400 hover:text-copper transition-colors"
-            >
-              {t('termsOfService')}
-            </Link>
-          </div>
-
-          {/* Credits and Copyright */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Credits */}
             <div className="flex items-center space-x-2 text-sm">
-              <span className="text-gray-400">{t('designedBy')}</span>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center space-x-1"
-              >
+              <span className="text-gray-400">{t("designedBy")}</span>
+              <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-1">
                 <Image
                   src="/optimized/new-logo-16x16.png"
                   alt="STRATELINK"
@@ -151,13 +129,12 @@ export function Footer() {
                   height={16}
                   className="w-4 h-4 filter brightness-110"
                 />
-                <span className="text-copper font-semibold">{t('companyName')}</span>
+                <span className="text-copper font-semibold">{t("companyName")}</span>
               </motion.div>
             </div>
 
-            {/* Copyright */}
             <div className="text-gray-400 text-xs sm:text-sm">
-              © {currentYear} STRATELINK GLOBAL. All rights reserved.
+              © 2026 STRATELINK GLOBAL. {t("allRightsReserved")}
             </div>
           </div>
         </div>
