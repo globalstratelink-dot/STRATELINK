@@ -2,7 +2,7 @@ import { CatalogueAdminPanel } from "@/components/admin/catalogue-admin"
 import { NOINDEX_METADATA } from "@/lib/seo"
 
 export const metadata = {
-  title: "Admin Catalogue",
+  title: "Administration",
   ...NOINDEX_METADATA,
 }
 

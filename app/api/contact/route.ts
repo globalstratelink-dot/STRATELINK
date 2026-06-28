@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createTransporter, createEmailTemplate, createTextTemplate, EMAIL_CONFIG } from '@/lib/nodemailer-config'
+import { createFormNotification } from '@/lib/form-notifications-store'
 import { getClientIp } from '@/lib/request-ip'
 import { rateLimit, rateLimitResponse } from '@/lib/rate-limit'
 import { isHoneypotTriggered, verifyTurnstileToken } from '@/lib/turnstile'
@@ -141,6 +142,22 @@ export async function POST(request: NextRequest) {
       phoneNumber: body.phoneNumber?.trim() || '',
       subject: body.subject.trim(),
       message: body.message.trim()
+    }
+
+    const isQualificationEmail = cleanData.subject === "Partner Qualification"
+
+    if (!isQualificationEmail) {
+      await createFormNotification({
+        type: "contact",
+        firstName: cleanData.firstName,
+        lastName: cleanData.lastName,
+        email: cleanData.email,
+        company: cleanData.company,
+        phone: cleanData.phoneNumber,
+        country: cleanData.country,
+        subject: cleanData.subject,
+        message: cleanData.message,
+      })
     }
 
     // Envoyer l'email

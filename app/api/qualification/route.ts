@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { createFormNotification } from "@/lib/form-notifications-store"
 import { getClientIp } from "@/lib/request-ip"
 import { rateLimit, rateLimitResponse } from "@/lib/rate-limit"
 import { isHoneypotTriggered, verifyTurnstileToken } from "@/lib/turnstile"
@@ -26,6 +27,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
+    const qualificationMessage = formatQualificationMessage(body)
+
+    await createFormNotification({
+      type: "qualification",
+      firstName: String(body.firstName).trim(),
+      lastName: String(body.lastName).trim(),
+      email: String(body.email).trim().toLowerCase(),
+      company: String(body.companyName || "").trim(),
+      phone: String(body.phone || "").trim(),
+      country: String(body.country || "").trim(),
+      subject: "Partner Qualification",
+      message: qualificationMessage,
+      payload: body as Record<string, unknown>,
+    })
+
     const contactRes = await fetch(`${request.nextUrl.origin}/api/contact`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -37,7 +53,8 @@ export async function POST(request: NextRequest) {
         country: body.country || "",
         phoneNumber: body.phone || "",
         subject: "Partner Qualification",
-        message: formatQualificationMessage(body),
+        message: qualificationMessage,
+        turnstileToken: body.turnstileToken,
       }),
     })
 
