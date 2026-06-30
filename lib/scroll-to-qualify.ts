@@ -1,3 +1,5 @@
+import { normalizePathname } from "@/lib/site-routes"
+
 export const QUALIFY_SECTION_ID = "qualify-project"
 
 export function scrollToQualifyProject() {
@@ -8,6 +10,5 @@ export function scrollToQualifyProject() {
 }
 
 export function isQualifyScrollPage(pathname: string) {
-  const normalized = pathname.replace(/\/$/, "") || "/"
-  return normalized === "/process"
+  return normalizePathname(pathname) === "/process"
 }

@@ -9,6 +9,7 @@ import { useLanguage } from "@/contexts/language-context"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { ResponsiveOptimizedLogo } from "@/components/optimized-logo"
 import { isQualifyScrollPage, scrollToQualifyProject } from "@/lib/scroll-to-qualify"
+import { isSameRoute, qualifyProjectHref, ROUTES } from "@/lib/site-routes"
 
 export function Navbar() {
   const pathname = usePathname()
@@ -49,15 +50,15 @@ export function Navbar() {
 
   const navItems = useMemo(
     () => [
-      { name: stringify(t("home")), href: "/process" },
-      { name: stringify(t("services")), href: "/" },
-      { name: stringify(t("agency")), href: "/agency" },
-      { name: stringify(t("productCatalogue")), href: "/catalogue" },
+      { name: stringify(t("home")), href: ROUTES.accueil },
+      { name: stringify(t("services")), href: ROUTES.services },
+      { name: stringify(t("agency")), href: ROUTES.agency },
+      { name: stringify(t("productCatalogue")), href: ROUTES.catalogue },
     ],
     [t]
   )
 
-  const isActive = (href: string) => pathname === href || pathname === `${href}/`
+  const isActive = (href: string) => isSameRoute(pathname, href)
 
   const linkClass = (href: string) =>
     `relative shrink-0 px-1 lg:px-1.5 xl:px-2.5 py-2 text-[11px] lg:text-xs xl:text-sm 2xl:text-base font-semibold whitespace-nowrap transition-colors duration-200 ${
@@ -70,7 +71,7 @@ export function Navbar() {
       scrollToQualifyProject()
       return
     }
-    router.push("/process#qualify-project")
+    router.push(qualifyProjectHref())
   }, [pathname, closeMobileMenu, router])
 
   return (
@@ -82,7 +83,7 @@ export function Navbar() {
       <div className="max-w-[90rem] mx-auto px-3 sm:px-4 lg:px-5 xl:px-6">
         <div className="flex justify-between items-center min-h-[5rem] py-2 lg:py-0 lg:h-[4.5rem] xl:h-24 gap-2 lg:gap-3">
           <Link
-            href="/process"
+            href={ROUTES.accueil}
             className="flex items-center gap-2 sm:gap-3 lg:gap-2 xl:gap-3 min-w-0 shrink-0 lg:-ml-2 xl:-ml-8 2xl:-ml-12 overflow-visible"
           >
             <ResponsiveOptimizedLogo className="w-11 h-9 sm:w-16 sm:h-12 lg:w-12 lg:h-10 xl:w-16 xl:h-12 2xl:w-20 2xl:h-14 shrink-0 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
@@ -116,7 +117,7 @@ export function Navbar() {
               className="border-copper text-copper hover:bg-copper hover:text-navy font-semibold text-xs xl:text-sm px-2.5 xl:px-4 h-9 xl:h-10"
               asChild
             >
-              <Link href="/contact">{t("contactUs")}</Link>
+              <Link href={ROUTES.contact}>{t("contactUs")}</Link>
             </Button>
             <Button
               type="button"
@@ -180,7 +181,7 @@ export function Navbar() {
                     asChild
                     onClick={closeMobileMenu}
                   >
-                    <Link href="/contact">{t("contactUs")}</Link>
+                    <Link href={ROUTES.contact}>{t("contactUs")}</Link>
                   </Button>
                 </div>
               </div>

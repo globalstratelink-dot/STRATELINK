@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Star, Award, TrendingUp, Users, Globe, Shield, Zap, Target, Crown, Sparkles, ArrowRight } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
+import { ROUTES } from "@/lib/site-routes"
 import { ScrollReveal, ScaleOnHover } from "./advanced-animations"
 import { useLanguage } from "@/contexts/language-context"
 
@@ -269,14 +270,14 @@ export function ExcellenceShowcase() {
       title: "Confidentiel & Sécurisé",
       description: "Sécurité bancaire pour toutes les consultations stratégiques avec certification ISO 27001",
       badge: "Niveau Entreprise",
-      link: "/services"
+      link: ROUTES.services
     },
     {
       icon: <Zap className="w-8 h-8" />,
       title: "Implémentation Rapide",
       description: "Solutions stratégiques déployées en temps record avec support 24/7",
       badge: "Voie Rapide",
-      link: "/services"
+      link: ROUTES.services
     },
     {
       icon: <Award className="w-8 h-8" />,

@@ -37,12 +37,12 @@ const nextConfig = {
     return [
       {
         source: "/services",
-        destination: "/catalogue/",
+        destination: "/",
         permanent: true,
       },
       {
         source: "/services/:path*",
-        destination: "/catalogue/",
+        destination: "/",
         permanent: true,
       },
       {

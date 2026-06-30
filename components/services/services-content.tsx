@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import { Globe, FileText, Truck, Landmark, Warehouse } from "lucide-react"
 import Link from "next/link"
+import { ROUTES } from "@/lib/site-routes"
 
 export function ServicesContent() {
   const { t } = useLanguage()
@@ -107,7 +108,7 @@ export function ServicesContent() {
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">{t("readyToStart")}</h3>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">{t("contactUsForConsultation")}</p>
             <Link
-              href="/process"
+              href={ROUTES.accueil}
               className="inline-block bg-gradient-to-r from-copper to-sand text-navy font-bold text-lg px-8 py-4 rounded-xl hover:shadow-lg transition-all duration-300"
             >
               {t("qualifyProjectCta")}

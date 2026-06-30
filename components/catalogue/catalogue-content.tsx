@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { ROUTES } from "@/lib/site-routes"
 import { motion } from "framer-motion"
 import { ArrowRight, CheckCircle, Layers } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
@@ -108,7 +109,7 @@ export function CatalogueContent() {
           <div className="text-center max-w-xl mx-auto">
             <p className="text-gray-300 mb-6">{t("catalogueEmpty")}</p>
             <Button asChild className="bg-gradient-to-r from-copper to-sand text-navy font-bold">
-              <Link href="/contact">{t("catalogueEmptyCta")}</Link>
+              <Link href={ROUTES.contact}>{t("catalogueEmptyCta")}</Link>
             </Button>
           </div>
         ) : (
@@ -157,7 +158,7 @@ export function CatalogueContent() {
                     asChild
                     className="mt-auto w-full bg-gradient-to-r from-copper to-sand text-navy font-bold uppercase tracking-wider text-xs sm:text-sm"
                   >
-                    <Link href={`/contact?subject=${quoteSubject(service)}`}>
+                    <Link href={`${ROUTES.contact}?subject=${quoteSubject(service)}`}>
                       {t("catalogueCta")}
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Link>

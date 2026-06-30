@@ -5,9 +5,9 @@ https://www.stratelink-global.ae/* https://stratelink-global.com/:splat 301!
 # Redirection www vers non-www pour .com
 https://www.stratelink-global.com/* https://stratelink-global.com/:splat 301!
 
-# Ancienne page services → catalogue
-/services/ /catalogue/ 301!
-/services/* /catalogue/ 301!
+# Ancienne page services → Nos Services (accueil contenu)
+/services/ / 301!
+/services/* / 301!
 
 /calendly/ /process/ 301!
 /calendly/* /process/ 301!

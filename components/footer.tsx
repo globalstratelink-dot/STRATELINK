@@ -6,16 +6,17 @@ import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import { Mail, Phone, MapPin, Linkedin } from "lucide-react"
 import { ResponsiveOptimizedLogo } from "@/components/optimized-logo"
+import { ROUTES } from "@/lib/site-routes"
 
 export function Footer() {
   const { t } = useLanguage()
 
   const footerLinks = [
-    { href: "/process/", label: t("home") },
-    { href: "/", label: t("services") },
-    { href: "/agency/", label: t("agency") },
-    { href: "/catalogue/", label: t("productCatalogue") },
-    { href: "/contact/", label: t("contact") },
+    { href: ROUTES.accueil, label: t("home") },
+    { href: ROUTES.services, label: t("services") },
+    { href: ROUTES.agency, label: t("agency") },
+    { href: ROUTES.catalogue, label: t("productCatalogue") },
+    { href: ROUTES.contact, label: t("contact") },
   ]
 
   return (
@@ -63,17 +64,17 @@ export function Footer() {
             <h4 className="text-white font-semibold mb-4">{t("legalNotice")}</h4>
             <ul className="space-y-3 text-gray-300 text-sm">
               <li>
-                <Link className="hover:text-copper transition-colors" href="/legal-notice/">
+                <Link className="hover:text-copper transition-colors" href={ROUTES.legalNotice}>
                   {t("legalNotice")}
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-copper transition-colors" href="/privacy-policy/">
+                <Link className="hover:text-copper transition-colors" href={ROUTES.privacyPolicy}>
                   {t("privacyPolicy")}
                 </Link>
               </li>
               <li>
-                <Link className="hover:text-copper transition-colors" href="/terms-of-use/">
+                <Link className="hover:text-copper transition-colors" href={ROUTES.termsOfUse}>
                   {t("termsOfService")}
                 </Link>
               </li>

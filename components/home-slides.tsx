@@ -6,6 +6,7 @@ import { ArrowRight, ArrowLeft, Globe, TrendingUp, Layers, CheckCircle } from "l
 import { useLanguage } from "@/contexts/language-context"
 import { HeroImage, ServicesImage, OptimizedAvatar } from "@/components/optimized-image"
 import Link from "next/link"
+import { ROUTES } from "@/lib/site-routes"
 import { useRef, useState, useEffect } from "react"
 
 export function HomeSlides() {
@@ -176,7 +177,7 @@ export function HomeSlides() {
                   className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:scale-105 transition-transform duration-200 w-full sm:w-auto"
                   asChild
                 >
-                  <Link href="/process">
+                  <Link href={ROUTES.accueil}>
                     {t('homeCtaPrimary')}
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
                   </Link>
@@ -187,7 +188,7 @@ export function HomeSlides() {
                   className="border-copper text-copper hover:bg-copper hover:text-navy font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
                   asChild
                 >
-                  <Link href="/catalogue">
+                  <Link href={ROUTES.catalogue}>
                     {t('homeCatalogueCta')}
                   </Link>
                 </Button>

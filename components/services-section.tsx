@@ -8,6 +8,7 @@ import { motion } from 'framer-motion'
 import { useLanguage } from "@/contexts/language-context"
 import { ScrollReveal, ScaleOnHover } from "./advanced-animations"
 import Link from "next/link"
+import { ROUTES } from "@/lib/site-routes"
 
 export function ServicesSection() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null)
@@ -20,7 +21,7 @@ export function ServicesSection() {
       description: t('importServicesDesc'),
       features: ["Sourcing & Procurement", "Quality Control", "Import Documentation", "Port Handling"],
       color: "from-copper to-sand",
-      link: "/services"
+      link: ROUTES.services
     },
     {
       icon: <Globe className="w-8 h-8" />,
@@ -28,7 +29,7 @@ export function ServicesSection() {
       description: t('exportServicesDesc'),
       features: ["Market Research", "Export Documentation", "Market Access", "Trade Compliance"],
       color: "from-sand to-copper",
-      link: "/services"
+      link: ROUTES.services
     },
     {
       icon: <Truck className="w-8 h-8" />,
@@ -36,7 +37,7 @@ export function ServicesSection() {
       description: t('logisticsSolutionsDesc'),
       features: ["Freight Forwarding", "Warehousing", "Distribution", "Real-time Tracking"],
       color: "from-copper/80 to-sand/80",
-      link: "/services"
+      link: ROUTES.services
     },
     {
       icon: <FileText className="w-8 h-8" />,
@@ -44,7 +45,7 @@ export function ServicesSection() {
       description: t('customsClearanceDesc'),
       features: ["Documentation", "Customs Procedures", "Duty Calculation", "Compliance"],
       color: "from-sand/80 to-copper/80",
-      link: "/services"
+      link: ROUTES.services
     },
     {
       icon: <TrendingUp className="w-8 h-8" />,
@@ -52,7 +53,7 @@ export function ServicesSection() {
       description: t('tradeConsultingDesc'),
       features: ["Market Entry Strategy", "Trade Regulations", "Risk Assessment", "Business Expansion"],
       color: "from-copper to-sand",
-      link: "/services"
+      link: ROUTES.services
     },
     {
       icon: <Package className="w-8 h-8" />,
@@ -164,7 +165,7 @@ export function ServicesSection() {
                 className="bg-copper hover:bg-copper/90 text-navy font-semibold px-8 py-4 relative overflow-hidden group"
                 asChild
               >
-                <Link href="/services">
+                <Link href={ROUTES.services}>
                   <span className="relative z-10">{t('viewAllServices')}</span>
                   <ArrowRight className="ml-2 w-5 h-5 relative z-10" />
                   <motion.div 

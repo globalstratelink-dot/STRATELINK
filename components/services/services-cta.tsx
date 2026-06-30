@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import Link from "next/link"
+import { ROUTES } from "@/lib/site-routes"
 
 export function ServicesCTA() {
   const { t } = useLanguage()
@@ -18,7 +19,7 @@ export function ServicesCTA() {
           className="bg-copper hover:bg-copper/90 text-navy font-semibold px-8 py-4 transform hover:scale-105 transition-all duration-300"
           asChild
         >
-          <Link href="/process">
+          <Link href={ROUTES.accueil}>
             {t("qualifyProjectCta")}
             <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
