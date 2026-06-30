@@ -198,7 +198,7 @@ export function HomeSlides() {
   return (
     <div className="min-h-screen bg-navy">
       {/* Slide 1: Vision - Synergies - Développement */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy via-navy to-navy/90 relative overflow-hidden pt-20 md:pt-24 lg:pt-28 xl:pt-32">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy via-navy to-navy/90 relative overflow-hidden pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-8 md:pb-12">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-72 h-72 bg-copper/10 rounded-full blur-3xl"></div>
@@ -332,7 +332,7 @@ export function HomeSlides() {
       </section>
 
       {/* Slide 2: Nos Services */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy/95 to-navy relative overflow-hidden mt-16 md:mt-0">
+      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy/95 to-navy relative overflow-hidden mt-12 md:mt-10 lg:mt-12 pt-4 md:pt-6">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-copper/5 rounded-full blur-3xl"></div>
@@ -481,146 +481,7 @@ export function HomeSlides() {
         </div>
       </section>
 
-      {/* Slide 3 - Pourquoi choisir Stratelink Global */}
-      <section className="py-20 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Header du Slide 3 */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center px-4 py-2 bg-copper/20 backdrop-blur-sm border border-copper/30 rounded-full text-copper font-semibold text-sm mb-6"
-            >
-              <span className="w-2 h-2 bg-copper rounded-full mr-2"></span>
-              {t('whyUsBadge')}
-            </motion.div>
-            
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              viewport={{ once: true }}
-              className="title-section text-white mb-6"
-            >
-              {t('whyChooseStratelinkGlobal')}
-            </motion.h2>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              viewport={{ once: true }}
-              className="text-xl text-gray-300 max-w-4xl mx-auto"
-            >
-              {t('excellenceAtServiceOfGrowth')}
-            </motion.p>
-
-          </motion.div>
-
-          {/* Grille des 4 Avantages */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
-          >
-            {/* Avantage 1: Accès direct aux marchés stratégiques */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
-            >
-              <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <span className="text-2xl font-bold text-copper">1</span>
-                </div>
-                <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">{t('privilegedMarketAccess')}</h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {t('privilegedMarketAccessDesc')}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Avantage 2: Croissance commerciale accélérée */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
-              viewport={{ once: true }}
-              className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
-            >
-              <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <span className="text-2xl font-bold text-copper">2</span>
-                </div>
-                <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">{t('customerAcquisitionRetention')}</h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {t('customerAcquisitionRetentionDesc')}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Avantage 3: Solutions sur mesure, clé en main */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-              viewport={{ once: true }}
-              className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
-            >
-              <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <span className="text-2xl font-bold text-copper">3</span>
-                </div>
-                <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">{t('turnkeySolutions')}</h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {t('turnkeySolutionsDesc')}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Avantage 4: Exécution rapide et sécurisée */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.1 }}
-              viewport={{ once: true }}
-              className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 hover:border-copper/40 transition-all duration-300 group"
-            >
-              <div className="flex items-start space-x-4">
-                <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-copper/30 transition-all duration-300">
-                  <span className="text-2xl font-bold text-copper">4</span>
-                </div>
-                <div className="flex-1">
-                  <h3 className="title-card text-white mb-4">{t('rapidReliableDeployment')}</h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    {t('rapidReliableDeploymentDesc')}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Slide 4 - Ils nous ont fait confiance */}
+      {/* Slide 3 - Ils nous ont fait confiance */}
       <section className="py-20 relative overflow-x-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header du Slide 4 */}

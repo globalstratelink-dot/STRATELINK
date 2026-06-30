@@ -3,7 +3,7 @@ export const translations = {
     // Navigation
     home: "Home",
     services: "Our Services",
-    agency: "Our Agency",
+    agency: "Who We Are",
     process: "Process",
     sourceFromChina: "Source from China",
     productCatalogue: "Product Catalogue",
@@ -561,7 +561,7 @@ export const translations = {
     // Navigation
     home: "Accueil",
     services: "Nos Services",
-    agency: "Notre Agence",
+    agency: "Qui sommes-nous ?",
     process: "Processus",
     sourceFromChina: "Sourcer depuis la Chine",
     productCatalogue: "Catalogue Produits",
