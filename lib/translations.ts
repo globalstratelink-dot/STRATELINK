@@ -6,8 +6,8 @@ export const translations = {
     agency: "Who We Are?",
     process: "Process",
     sourceFromChina: "Source from China",
-    productCatalogue: "Product Catalogue",
-    catalogue: "Product Catalogue",
+    productCatalogue: "Dubai Import Catalogue",
+    catalogue: "Dubai Import Catalogue",
     contact: "Contact",
     getStarted: "Get Started",
     viewOurServices: "View Our Services",
@@ -517,7 +517,7 @@ export const translations = {
 
     // Catalogue
     catalogueBadge: "B2B Catalogue",
-    catalogueTitle: "Product Catalogue",
+    catalogueTitle: "Dubai Import Catalogue",
     catalogueSubtitle: "Industrial products sourced directly from China — no public pricing, custom quotes for qualified partners.",
     catalogueIncludes: "What's included",
     catalogueAudience: "Audience",
@@ -564,8 +564,8 @@ export const translations = {
     agency: "Qui sommes-nous ?",
     process: "Processus",
     sourceFromChina: "Sourcer depuis la Chine",
-    productCatalogue: "Catalogue Produits",
-    catalogue: "Catalogue Produits",
+    productCatalogue: "Catalogue import Dubaï",
+    catalogue: "Catalogue import Dubaï",
     contact: "Contact",
     getStarted: "Commencer",
     viewOurServices: "Voir nos services",
@@ -1075,7 +1075,7 @@ export const translations = {
 
     // Catalogue
     catalogueBadge: "Catalogue B2B",
-    catalogueTitle: "Catalogue Produits",
+    catalogueTitle: "Catalogue import Dubaï",
     catalogueSubtitle: "Produits industriels sourcés directement en Chine — sans prix public, devis sur mesure pour partenaires qualifiés.",
     catalogueIncludes: "Ce qui est inclus",
     catalogueAudience: "Pour qui",

@@ -547,32 +547,6 @@ export function HomeSlides() {
           </motion.div>
         </div>
       </section>
-
-      {/* CTA — Qualifier mon projet */}
-      <section id="qualify-project" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 pb-24 scroll-mt-28">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.2 }}
-          viewport={{ once: true, amount: 0.15 }}
-          className="max-w-4xl mx-auto text-center bg-copper/10 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 sm:p-12"
-        >
-          <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-            {t("readyToTransformYourBusiness")}
-          </h3>
-          <p className="text-lg text-white/80 mb-8">
-            {t("letsDiscussStrategicSolutions")}
-          </p>
-
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-lg px-8 py-4 hover:shadow-lg transition-all duration-300"
-            asChild
-          >
-            <Link href="/process">{t("qualifyProjectCta")}</Link>
-          </Button>
-        </motion.div>
-      </section>
     </div>
   )
 } 

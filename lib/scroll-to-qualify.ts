@@ -9,5 +9,5 @@ export function scrollToQualifyProject() {
 
 export function isQualifyScrollPage(pathname: string) {
   const normalized = pathname.replace(/\/$/, "") || "/"
-  return normalized === "/" || normalized === "/process"
+  return normalized === "/process"
 }
