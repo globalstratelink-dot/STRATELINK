@@ -296,7 +296,7 @@ export const translations = {
     digitalSolutionsApiSaaSItems: ["Enterprise Solutions", "Tracking", "Telecom"],
     
     // Process Page
-    processHeroLabel: "DUBAI · CHINA · WORLDWIDE",
+    processHeroLabel: "CHINA · DUBAI · WORLDWIDE",
     processHeroTitle1: "Source Smarter from China.",
     processHeroTitle2: "Your Trading Partner",
     processHeroTitle3: "Deliver Anywhere.",
@@ -855,7 +855,7 @@ export const translations = {
     digitalSolutionsApiSaaSItems: ["Solutions d'entreprise", "Tracking", "Télécom"],
     
     // Process Page
-    processHeroLabel: "DUBAÏ · CHINE · MONDE",
+    processHeroLabel: "CHINE · DUBAÏ · MONDE",
     processHeroTitle1: "Sourcez mieux depuis la Chine.",
     processHeroTitle2: "Votre partenaire commercial",
     processHeroTitle3: "Livrez partout.",
@@ -1028,7 +1028,7 @@ export const translations = {
     qualOpportunityDesc: "Donnez-nous le contexte commercial de votre projet.",
     qualVolumeLabel: "VOLUME ANNUEL D'IMPORT ESTIMÉ (USD)",
     qualTimelineLabel: "DÉLAI DE LA PREMIÈRE COMMANDE",
-    qualTimelineUnder1: "1 MOIS",
+    qualTimelineUnder1: "1-mois",
     qualTimeline1to3: "1 - 3 MOIS",
     qualTimeline3to6: "3 - 6 MOIS",
     qualPaymentLabel: "MODE DE PAIEMENT PRÉFÉRÉ",
