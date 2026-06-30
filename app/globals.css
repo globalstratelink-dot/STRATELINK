@@ -280,6 +280,18 @@
   textarea {
     outline: none;
   }
+
+  [data-qualification-form] input:-webkit-autofill,
+  [data-qualification-form] input:-webkit-autofill:hover,
+  [data-qualification-form] input:-webkit-autofill:focus,
+  [data-qualification-form] textarea:-webkit-autofill,
+  [data-qualification-form] textarea:-webkit-autofill:hover,
+  [data-qualification-form] textarea:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #0d1528 inset !important;
+    box-shadow: 0 0 0 1000px #0d1528 inset !important;
+    -webkit-text-fill-color: #e5e7eb !important;
+    caret-color: #e5e7eb;
+  }
   
   /* Optimisations pour les listes */
   ul,

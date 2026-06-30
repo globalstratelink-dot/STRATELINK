@@ -40,10 +40,10 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-const inputClass =
-  "bg-[#0d1528] border-white/15 text-gray-100 placeholder:text-gray-500 focus-visible:ring-copper/40 focus-visible:border-copper h-11 rounded-sm text-sm"
-const inputClassCompact =
-  "bg-[#0d1528] border-white/15 text-gray-100 placeholder:text-gray-500 focus-visible:ring-copper/40 focus-visible:border-copper h-9 text-sm rounded-sm"
+const fieldBase =
+  "!bg-[#0d1528] border-white/15 text-gray-100 placeholder:text-gray-500 focus-visible:ring-copper/40 focus-visible:border-copper rounded-sm border [&:-webkit-autofill]:!bg-[#0d1528] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill]:[-webkit-text-fill-color:rgb(229,231,235)] [&:-webkit-autofill:hover]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill:focus]:shadow-[inset_0_0_0_1000px_#0d1528]"
+const inputClass = `${fieldBase} h-11 text-sm`
+const inputClassCompact = `${fieldBase} h-9 text-sm`
 const labelClass = "text-[11px] tracking-[0.2em] text-copper uppercase font-semibold block mb-2"
 const labelClassCompact = "text-[11px] tracking-[0.15em] text-copper uppercase font-semibold block mb-1"
 const descClass = "text-gray-300 text-sm leading-relaxed"
@@ -216,6 +216,7 @@ export function QualificationFormModal() {
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
       <DialogContent
+        data-qualification-form
         className={cn(
           "w-full max-w-lg lg:max-w-xl bg-navy border border-white/15 p-0 gap-0 text-white flex flex-col overflow-hidden",
           "max-sm:fixed max-sm:inset-0 max-sm:left-0 max-sm:top-0 max-sm:translate-x-0 max-sm:translate-y-0",
