@@ -188,7 +188,7 @@ export function HomeSlides() {
                   asChild
                 >
                   <Link href="/catalogue">
-                    {t('productCatalogue')}
+                    {t('homeCatalogueCta')}
                   </Link>
                 </Button>
               </motion.div>

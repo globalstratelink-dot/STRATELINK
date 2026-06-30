@@ -2,10 +2,6 @@
 
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
-import { ArrowRight } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
 import { WhyChooseStratelink } from "@/components/why-choose-stratelink"
 
 export function AgencyContent() {
@@ -39,30 +35,6 @@ return (
                   <p className="text-copper font-semibold">{t('aboutStratelinkDescription2')}</p>
                   <p>{t('aboutStratelinkDescription3')}</p>
                 </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-lg px-8 py-4 hover:scale-105 transition-transform duration-200"
-                  asChild
-                >
-                  <Link href="/contact">
-                    {t('contactUs')}
-                    <ArrowRight className="w-5 h-5 ml-2" />
-                  </Link>
-                </Button>
-                
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-2 border-copper text-copper hover:bg-copper hover:text-navy px-8 py-4"
-                  asChild
-                >
-                  <Link href="/catalogue">
-                    {t('productCatalogue')}
-                  </Link>
-                </Button>
               </div>
             </motion.div>
 
