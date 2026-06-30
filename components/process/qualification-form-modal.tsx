@@ -27,8 +27,13 @@ import {
   VOLUME_SCALE_LABELS,
   VOLUME_STEP_K,
   formatVolumeK,
+  isIdentityStepComplete,
 } from "@/lib/qualification-form-data"
-import { ALL_COUNTRIES } from "@/lib/all-countries"
+import {
+  applyPhoneWithCountryCode,
+  COUNTRIES_WITH_PHONE_CODES,
+  getPhoneCodeByCountryName,
+} from "@/lib/country-phone-codes"
 import { CONTACT_EMAIL } from "@/lib/site-contact"
 import { TurnstileWidget, isTurnstileEnabled } from "@/components/turnstile-widget"
 import { cn } from "@/lib/utils"
@@ -48,6 +53,7 @@ const labelClass = "text-[11px] tracking-[0.2em] text-copper uppercase font-semi
 const labelClassCompact = "text-[11px] tracking-[0.15em] text-copper uppercase font-semibold block mb-1"
 const descClass = "text-gray-300 text-sm leading-relaxed"
 const descClassCompact = "text-gray-300 text-xs leading-snug"
+const stepTitleClass = "text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1 sm:mb-1.5"
 const hintClass = "text-xs text-gray-400"
 const cardDescClass = "text-gray-400"
 
@@ -91,6 +97,21 @@ export function QualificationFormModal() {
     updateForm({
       [field]: current.includes(id) ? current.filter((v) => v !== id) : [...current, id],
     })
+  }
+
+  const handleCountryChange = (countryName: string) => {
+    updateForm({
+      country: countryName,
+      phone: applyPhoneWithCountryCode(countryName, form.phone),
+    })
+  }
+
+  const selectedPhoneCode = form.country ? getPhoneCodeByCountryName(form.country) : ""
+  const identityStepComplete = isIdentityStepComplete(form)
+
+  const handleContinue = () => {
+    if (step === "identity" && !identityStepComplete) return
+    nextStep()
   }
 
   const labelFor = (options: readonly { id: string; labelKey?: string; titleKey?: string }[], id: string | null) => {
@@ -179,13 +200,10 @@ export function QualificationFormModal() {
     resetForm()
   }
 
-  const isIdentity = step === "identity"
-  const isCorridors = step === "corridors"
   const isReview = step === "review"
-  const isCompactStep = isIdentity || isCorridors
-  const contentPadding = isCompactStep ? "px-4 py-3 sm:px-5 sm:py-4" : "px-4 py-4 sm:px-6 sm:py-6 md:px-8 md:py-8"
-  const headerPadding = isCompactStep ? "px-4 pt-4 pb-3 sm:px-5 sm:pt-5" : "px-4 pt-5 pb-3 sm:px-6 sm:pt-6 md:px-8 md:pt-8 md:pb-4"
-  const footerPadding = isCompactStep ? "px-4 py-3 sm:px-5 sm:py-4" : "px-4 py-3 sm:px-6 sm:py-5 md:px-8"
+  const contentPadding = "px-4 py-3 sm:px-5 sm:py-4"
+  const headerPadding = "px-4 pt-4 pb-3 sm:px-5 sm:pt-5"
+  const footerPadding = "px-4 py-3 sm:px-5 sm:py-4"
   const stepNavRef = useRef<HTMLDivElement>(null)
   const [stepIndicator, setStepIndicator] = useState({ left: 0, width: 0 })
 
@@ -232,7 +250,7 @@ export function QualificationFormModal() {
           <p className="text-sm sm:text-base md:text-lg tracking-[0.15em] sm:tracking-[0.2em] text-copper uppercase font-medium pr-8 sm:pr-10">
             {t("qualFormTitle")}
           </p>
-          <div className={cn("border-t border-white/15", isCompactStep ? "mt-2.5 pt-2.5 sm:mt-3 sm:pt-3" : "mt-3 pt-3 sm:mt-4 sm:pt-4 md:mt-5 md:pt-5")}>
+          <div className="border-t border-white/15 mt-2.5 pt-2.5 sm:mt-3 sm:pt-3">
             <div className="relative pb-1">
               <div
                 ref={stepNavRef}
@@ -271,8 +289,7 @@ export function QualificationFormModal() {
           className={cn(
             contentPadding,
             "flex-1 min-h-0 overflow-y-auto",
-            isReview ? "scrollbar-form" : "scrollbar-hide sm:scrollbar-hide",
-            isCompactStep && "sm:overflow-hidden"
+            isReview ? "scrollbar-form" : "scrollbar-hide sm:scrollbar-hide"
           )}
         >
           {submitted ? (
@@ -285,15 +302,15 @@ export function QualificationFormModal() {
             </div>
           ) : (
             <>
-              <p className={cn("text-[11px] tracking-[0.25em] text-copper uppercase font-medium", isCompactStep ? "mb-2" : "mb-3")}>
+              <p className="text-[11px] tracking-[0.25em] text-copper uppercase font-medium mb-2">
                 STEP {String(stepIndex + 1).padStart(2, "0")} OF 05
               </p>
 
               {step === "identity" && (
                 <div className="space-y-3">
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-0.5">{t("qualIdentityTitle")}</h3>
-                    <p className={descClassCompact}>{t("qualIdentityDesc")}</p>
+                    <h3 className={stepTitleClass}>{t("qualIdentityTitle")}</h3>
+                    <p className={descClass}>{t("qualIdentityDesc")}</p>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
@@ -315,17 +332,8 @@ export function QualificationFormModal() {
                       <Input type="email" className={inputClassCompact} value={form.email} onChange={(e) => updateForm({ email: e.target.value })} placeholder="email@company.com" />
                     </div>
                     <div>
-                      <label className={labelClassCompact}>{t("qualPhone")}</label>
-                      <Input className={inputClassCompact} value={form.phone} onChange={(e) => updateForm({ phone: e.target.value })} placeholder="+971 54 XXX XXXX" />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                      <label className={labelClassCompact}>{t("qualCountry")} *</label>
-                      <Select
-                        value={form.country || undefined}
-                        onValueChange={(value) => updateForm({ country: value })}
-                      >
+                      <label className={labelClassCompact}>{t("qualCountry")}</label>
+                      <Select value={form.country || undefined} onValueChange={handleCountryChange}>
                         <SelectTrigger className={cn(inputClassCompact, "w-full [&>span]:text-left [&>span]:text-gray-100")}>
                           <SelectValue placeholder={t("qualSelect")} />
                         </SelectTrigger>
@@ -334,17 +342,39 @@ export function QualificationFormModal() {
                           sideOffset={4}
                           className="z-[200] max-h-[220px] bg-[#0d1528] border-white/15 text-white [&_[data-radix-select-viewport]]:max-h-[200px]"
                         >
-                          {ALL_COUNTRIES.map((country) => (
+                          {COUNTRIES_WITH_PHONE_CODES.map(({ name, phoneCode }) => (
                             <SelectItem
-                              key={country}
-                              value={country}
+                              key={name}
+                              value={name}
                               className="text-sm text-gray-100 focus:bg-copper/20 focus:text-white"
                             >
-                              {country}
+                              <span className="inline-flex items-center gap-2">
+                                {phoneCode ? (
+                                  <span className="text-copper font-mono text-xs shrink-0">{phoneCode}</span>
+                                ) : null}
+                                <span>{name}</span>
+                              </span>
                             </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className={labelClassCompact}>
+                        {t("qualPhone")}
+                        {selectedPhoneCode ? (
+                          <span className="text-copper font-mono normal-case tracking-normal ml-1">({selectedPhoneCode})</span>
+                        ) : null}
+                      </label>
+                      <Input
+                        type="tel"
+                        className={inputClassCompact}
+                        value={form.phone}
+                        onChange={(e) => updateForm({ phone: e.target.value })}
+                        placeholder={selectedPhoneCode ? `${selectedPhoneCode} 00 000 000` : "+971 54 XXX XXXX"}
+                      />
                     </div>
                     <div>
                       <label className={labelClassCompact}>{t("qualCity")}</label>
@@ -359,9 +389,9 @@ export function QualificationFormModal() {
               )}
 
               {step === "profile" && (
-                <div className="space-y-5 sm:space-y-8">
+                <div className="space-y-3">
                   <div>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1.5 sm:mb-2">{t("qualProfileTitle")}</h3>
+                    <h3 className={stepTitleClass}>{t("qualProfileTitle")}</h3>
                     <p className={descClass}>{t("qualProfileDesc")}</p>
                   </div>
                   <div>
@@ -394,8 +424,8 @@ export function QualificationFormModal() {
               {step === "corridors" && (
                 <div className="space-y-3.5">
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-0.5">{t("qualCorridorsTitle")}</h3>
-                    <p className={descClassCompact}>{t("qualCorridorsDesc")}</p>
+                    <h3 className={stepTitleClass}>{t("qualCorridorsTitle")}</h3>
+                    <p className={descClass}>{t("qualCorridorsDesc")}</p>
                   </div>
                   <div>
                     <p className={labelClassCompact}>{t("qualCorridorLabel")}</p>
@@ -457,9 +487,9 @@ export function QualificationFormModal() {
               )}
 
               {step === "opportunity" && (
-                <div className="space-y-5 sm:space-y-8">
+                <div className="space-y-3">
                   <div>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1.5 sm:mb-2">{t("qualOpportunityTitle")}</h3>
+                    <h3 className={stepTitleClass}>{t("qualOpportunityTitle")}</h3>
                     <p className={descClass}>{t("qualOpportunityDesc")}</p>
                   </div>
                   <div>
@@ -528,9 +558,9 @@ export function QualificationFormModal() {
               )}
 
               {step === "review" && (
-                <div className="space-y-4 sm:space-y-6">
+                <div className="space-y-3">
                   <div>
-                    <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-1.5 sm:mb-2">{t("qualReviewTitle")}</h3>
+                    <h3 className={stepTitleClass}>{t("qualReviewTitle")}</h3>
                     <p className={descClass}>{t("qualReviewDesc")}</p>
                   </div>
                   <div className="border-t border-white/10">
@@ -586,7 +616,12 @@ export function QualificationFormModal() {
                 {submitting ? t("qualSubmitting") : t("qualSubmit")}<ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5 sm:ml-2" />
               </Button>
             ) : (
-              <Button type="button" onClick={nextStep} className="bg-copper hover:bg-copper/90 text-navy font-bold uppercase tracking-wider text-[10px] sm:text-xs px-4 sm:px-6 h-9 sm:h-10">
+              <Button
+                type="button"
+                onClick={handleContinue}
+                disabled={step === "identity" && !identityStepComplete}
+                className="bg-copper hover:bg-copper/90 text-navy font-bold uppercase tracking-wider text-[10px] sm:text-xs px-4 sm:px-6 h-9 sm:h-10 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
                 {step === "opportunity" ? t("qualReviewBtn") : t("qualContinue")}<ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5 sm:ml-2" />
               </Button>
             )}

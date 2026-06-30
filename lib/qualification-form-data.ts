@@ -124,5 +124,14 @@ export const PAYMENT_OPTIONS = [
   { id: "discuss", titleKey: "qualPaymentDiscuss", descKey: "qualPaymentDiscussDesc" },
 ] as const
 
+export function isIdentityStepComplete(form: QualificationFormData): boolean {
+  return (
+    form.firstName.trim().length > 0 &&
+    form.lastName.trim().length > 0 &&
+    form.companyName.trim().length > 0 &&
+    form.email.trim().length > 0
+  )
+}
+
 export const FORM_STEPS = ["identity", "profile", "corridors", "opportunity", "review"] as const
 export type FormStep = (typeof FORM_STEPS)[number]
