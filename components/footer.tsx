@@ -11,11 +11,10 @@ export function Footer() {
   const { t } = useLanguage()
 
   const footerLinks = [
-    { href: "/", label: t("home") },
-    { href: "/services/", label: t("services") },
-    { href: "/catalogue/", label: t("productCatalogue") },
-    { href: "/process/", label: t("sourceFromChina") },
+    { href: "/process/", label: t("home") },
+    { href: "/", label: t("services") },
     { href: "/agency/", label: t("agency") },
+    { href: "/catalogue/", label: t("productCatalogue") },
     { href: "/contact/", label: t("contact") },
   ]
 

@@ -2,9 +2,9 @@ import type { ReactNode } from "react"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
-  title: "Our Trade Process — China, UAE, Europe & Africa Corridors",
+  title: "International Import Export Dubai & B2B Trade Corridors",
   description:
-    "Discover how STRATELINK GLOBAL manages import-export projects: qualification, sourcing, compliance, logistics and deployment across international trade corridors.",
+    "STRATELINK GLOBAL connects businesses worldwide through import-export, sourcing, customs compliance and logistics across China, UAE, Europe and Africa.",
   path: "/process",
 })
 

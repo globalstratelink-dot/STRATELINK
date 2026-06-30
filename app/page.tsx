@@ -3,9 +3,9 @@ import { Footer } from "@/components/footer"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
-  title: "International Import Export Dubai & B2B Trade Corridors",
+  title: "Our Services — Import/Export from China | Stratelink Global",
   description:
-    "STRATELINK GLOBAL connects businesses worldwide through import-export, sourcing, customs compliance and logistics across China, UAE, Europe and Africa.",
+    "From supplier sourcing to destination delivery, STRATELINK GLOBAL manages your import/export operations across China, UAE, Europe and Africa.",
   path: "/",
 })
 

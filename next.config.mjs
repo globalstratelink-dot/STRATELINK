@@ -32,6 +32,21 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
+
+  async redirects() {
+    return [
+      {
+        source: "/services",
+        destination: "/catalogue/",
+        permanent: true,
+      },
+      {
+        source: "/services/:path*",
+        destination: "/catalogue/",
+        permanent: true,
+      },
+    ]
+  },
   
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {

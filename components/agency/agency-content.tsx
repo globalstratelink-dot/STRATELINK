@@ -58,8 +58,8 @@ return (
                   className="border-2 border-copper text-copper hover:bg-copper hover:text-navy px-8 py-4"
                   asChild
                 >
-                  <Link href="/services">
-                    {t('viewOurServices')}
+                  <Link href="/catalogue">
+                    {t('productCatalogue')}
                   </Link>
                 </Button>
               </div>

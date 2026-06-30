@@ -263,8 +263,8 @@ export function HomeSlides() {
                   className="border-copper text-copper hover:bg-copper hover:text-navy font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
                   asChild
                 >
-                  <Link href="/services">
-                    {t('homeCtaSecondary')}
+                  <Link href="/catalogue">
+                    {t('productCatalogue')}
                   </Link>
                 </Button>
               </motion.div>

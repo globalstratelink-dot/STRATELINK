@@ -47,11 +47,10 @@ export function Navbar() {
 
   const navItems = useMemo(
     () => [
-      { name: stringify(t("home")), href: "/" },
-      { name: stringify(t("services")), href: "/services" },
+      { name: stringify(t("home")), href: "/process" },
+      { name: stringify(t("services")), href: "/" },
       { name: stringify(t("agency")), href: "/agency" },
       { name: stringify(t("productCatalogue")), href: "/catalogue" },
-      { name: stringify(t("sourceFromChina")), href: "/process" },
     ],
     [t]
   )
@@ -72,7 +71,7 @@ export function Navbar() {
       <div className="max-w-[90rem] mx-auto px-3 sm:px-4 lg:px-5 xl:px-6">
         <div className="flex justify-between items-center min-h-[5rem] py-2 lg:py-0 lg:h-[4.5rem] xl:h-24 gap-2 lg:gap-3">
           <Link
-            href="/"
+            href="/process"
             className="flex items-center gap-2 sm:gap-3 lg:gap-2 xl:gap-3 min-w-0 shrink-0 lg:-ml-2 xl:-ml-8 2xl:-ml-12 overflow-visible"
           >
             <ResponsiveOptimizedLogo className="w-11 h-9 sm:w-16 sm:h-12 lg:w-12 lg:h-10 xl:w-16 xl:h-12 2xl:w-20 2xl:h-14 shrink-0 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
