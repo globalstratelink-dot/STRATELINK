@@ -73,14 +73,23 @@ export function ProcessWhoWeWorkWith() {
             </div>
 
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="text-white">{t("processSlide4Title1")}</span>{" "}
-              <span className="text-copper">{t("processSlide4Title2")}</span>{" "}
-              <span className="text-white">{t("processSlide4Title3")}</span>
+              <span className="block text-white">{t("processSlide4Title1")}</span>
+              <span className="block text-copper mt-2 sm:mt-3">
+                <span className="block">{t("processSlide4Title2")}</span>
+                {t("processSlide4Title2b") ? (
+                  <span className="block">{t("processSlide4Title2b")}</span>
+                ) : null}
+              </span>
             </h2>
 
-            <p className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-md">
-              {t("processSlide4Description")}
-            </p>
+            <div className="space-y-4 max-w-md">
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed">
+                {t("processSlide4Description")}
+              </p>
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed">
+                {t("processSlide4Description2")}
+              </p>
+            </div>
           </motion.div>
 
           {/* Right column — client cards */}

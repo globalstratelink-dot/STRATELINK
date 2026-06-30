@@ -38,15 +38,20 @@ export function ProcessWhatWeDo() {
               <span className="block text-copper mt-1">{t("processSlide2Title2")}</span>
             </h2>
 
-            <p className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-md">
-              {t("processSlide2DescPart1")}
-              <span className="text-white font-semibold">{t("processSlide2DescBold1")}</span>
-              {t("processSlide2DescPart2")}
-              <span className="text-white font-semibold">{t("processSlide2DescBold2")}</span>
-              {t("processSlide2DescPart3")}
-              <span className="text-white font-semibold">{t("processSlide2DescBold3")}</span>
-              {t("processSlide2DescPart4")}
-            </p>
+            <div className="space-y-4 max-w-md">
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed">
+                {t("processSlide2DescPart1")}
+                <span className="text-white font-semibold">{t("processSlide2DescBold1")}</span>
+                {t("processSlide2DescPart2")}
+              </p>
+              <p className="text-base sm:text-lg text-gray-400 leading-relaxed">
+                {t("processSlide2DescPart3")}
+                <span className="text-white font-semibold">{t("processSlide2DescBold2")}</span>
+                {t("processSlide2DescPart4")}
+                <span className="text-white font-semibold">{t("processSlide2DescBold3")}</span>
+                {t("processSlide2DescPart5")}
+              </p>
+            </div>
           </motion.div>
 
           {/* Right column */}

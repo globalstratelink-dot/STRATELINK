@@ -35,9 +35,11 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   }
 
   const t = (key: TranslationKey): string | string[] => {
-    // Fallback sécurisé pour éviter les erreurs
     try {
-      return translations[language]?.[key] || translations.en[key] || key
+      const localized = translations[language]
+      if (localized && key in localized) return localized[key]
+      if (key in translations.en) return translations.en[key]
+      return key
     } catch (error) {
       console.warn(`Translation key "${key}" not found for language "${language}"`)
       return key

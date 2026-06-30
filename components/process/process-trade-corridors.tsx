@@ -62,17 +62,12 @@ export function ProcessTradeCorridors() {
           viewport={{ once: true }}
           className="mb-12 sm:mb-16"
         >
-          <div className="flex items-center gap-4 mb-6">
+          <div className="flex items-center gap-4">
             <div className="h-px w-10 bg-copper" />
             <span className="text-xs tracking-[0.3em] text-copper uppercase font-medium">
               {t("processSlide3Label")}
             </span>
           </div>
-
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-            <span className="text-white">{t("processSlide3Title1")}</span>{" "}
-            <span className="text-copper">{t("processSlide3Title2")}</span>
-          </h2>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
