@@ -45,6 +45,16 @@ const nextConfig = {
         destination: "/catalogue/",
         permanent: true,
       },
+      {
+        source: "/calendly",
+        destination: "/process/",
+        permanent: true,
+      },
+      {
+        source: "/calendly/:path*",
+        destination: "/process/",
+        permanent: true,
+      },
     ]
   },
   

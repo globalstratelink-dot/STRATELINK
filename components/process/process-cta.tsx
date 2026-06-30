@@ -16,7 +16,7 @@ export function ProcessCta() {
   ]
 
   return (
-    <section className="bg-navy border-t border-white/10">
+    <section id="qualify-project" className="bg-navy border-t border-white/10 scroll-mt-28">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-28 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

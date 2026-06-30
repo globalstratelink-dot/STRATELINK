@@ -2,15 +2,17 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { ResponsiveOptimizedLogo } from "@/components/optimized-logo"
+import { isQualifyScrollPage, scrollToQualifyProject } from "@/lib/scroll-to-qualify"
 
 export function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { t } = useLanguage()
@@ -62,6 +64,15 @@ export function Navbar() {
       isActive(href) ? "text-copper" : "text-gray-300 hover:text-copper"
     }`
 
+  const handleGetStarted = useCallback(() => {
+    closeMobileMenu()
+    if (isQualifyScrollPage(pathname)) {
+      scrollToQualifyProject()
+      return
+    }
+    router.push("/process#qualify-project")
+  }, [pathname, closeMobileMenu, router])
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -108,11 +119,12 @@ export function Navbar() {
               <Link href="/contact">{t("contactUs")}</Link>
             </Button>
             <Button
+              type="button"
               size="sm"
+              onClick={handleGetStarted}
               className="bg-gradient-to-r from-copper to-sand text-navy font-bold hover:scale-105 transition-transform duration-200 text-xs xl:text-sm px-2.5 xl:px-4 h-9 xl:h-10"
-              asChild
             >
-              <Link href="/calendly">{t("getStarted")}</Link>
+              {t("getStarted")}
             </Button>
           </div>
 
@@ -156,11 +168,11 @@ export function Navbar() {
                     <LanguageSwitcher />
                   </div>
                   <Button
+                    type="button"
                     className="bg-gradient-to-r from-copper to-sand text-navy font-bold w-full hover:scale-105 transition-transform duration-200"
-                    asChild
-                    onClick={closeMobileMenu}
+                    onClick={handleGetStarted}
                   >
-                    <Link href="/calendly">{t("getStarted")}</Link>
+                    {t("getStarted")}
                   </Button>
                   <Button
                     variant="outline"

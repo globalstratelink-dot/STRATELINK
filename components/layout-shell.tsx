@@ -1,13 +1,21 @@
 "use client"
 
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
+import { useEffect } from "react"
 import { Navbar } from "@/components/navbar"
 import { WhatsAppFloat } from "@/components/whatsapp-float"
 import { MobileLanguageFAB } from "@/components/mobile-language-fab"
+import { scrollToQualifyProject } from "@/lib/scroll-to-qualify"
 
 export function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const isAdmin = pathname.startsWith("/adminAbdelhamid")
+
+  useEffect(() => {
+    if (typeof window === "undefined" || window.location.hash !== "#qualify-project") return
+    const timer = window.setTimeout(() => scrollToQualifyProject(), 150)
+    return () => window.clearTimeout(timer)
+  }, [pathname])
 
   return (
     <>

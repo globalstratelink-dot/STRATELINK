@@ -8,3 +8,6 @@ https://www.stratelink-global.com/* https://stratelink-global.com/:splat 301!
 # Ancienne page services → catalogue
 /services/ /catalogue/ 301!
 /services/* /catalogue/ 301!
+
+/calendly/ /process/ 301!
+/calendly/* /process/ 301!

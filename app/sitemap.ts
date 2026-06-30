@@ -11,7 +11,6 @@ const PUBLIC_ROUTES: Array<{
   { path: "/process/", changeFrequency: "monthly", priority: 0.85 },
   { path: "/agency/", changeFrequency: "monthly", priority: 0.8 },
   { path: "/contact/", changeFrequency: "monthly", priority: 0.85 },
-  { path: "/calendly/", changeFrequency: "monthly", priority: 0.7 },
   { path: "/privacy-policy/", changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms-of-use/", changeFrequency: "yearly", priority: 0.3 },
   { path: "/legal-notice/", changeFrequency: "yearly", priority: 0.3 },

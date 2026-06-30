@@ -29,82 +29,6 @@ export function HomeSlides() {
     }
   }, [])
 
-  // Charger Calendly (CSS + script + init avec repli)
-  useEffect(() => {
-    if (!isLoaded) return
-
-    const showFallback = () => {
-      const fallback = document.getElementById("home-calendly-fallback")
-      if (fallback) {
-        fallback.classList.remove("hidden")
-        fallback.classList.add("block")
-      }
-    }
-
-    const initCalendlyWidgets = () => {
-      const calendly = (window as Window & { Calendly?: { initInlineWidget: (el: Element) => void } }).Calendly
-      if (!calendly) return false
-
-      const widgets = document.querySelectorAll("#home-calendly-widget.calendly-inline-widget")
-      let initialized = false
-
-      widgets.forEach((widget) => {
-        if (widget.hasAttribute("data-calendly-initialized")) return
-        try {
-          calendly.initInlineWidget(widget)
-          widget.setAttribute("data-calendly-initialized", "true")
-          initialized = true
-        } catch {
-          showFallback()
-        }
-      })
-
-      return initialized
-    }
-
-    if (!document.querySelector('link[href="https://assets.calendly.com/assets/external/widget.css"]')) {
-      const link = document.createElement("link")
-      link.href = "https://assets.calendly.com/assets/external/widget.css"
-      link.rel = "stylesheet"
-      document.head.appendChild(link)
-    }
-
-    const existingScript = document.querySelector(
-      'script[src="https://assets.calendly.com/assets/external/widget.js"]'
-    ) as HTMLScriptElement | null
-
-    const onScriptReady = () => {
-      if (!initCalendlyWidgets()) {
-        window.setTimeout(() => {
-          if (!initCalendlyWidgets()) showFallback()
-        }, 1500)
-      }
-    }
-
-    if (existingScript) {
-      if ((window as Window & { Calendly?: unknown }).Calendly) {
-        onScriptReady()
-      } else {
-        existingScript.addEventListener("load", onScriptReady, { once: true })
-        window.setTimeout(onScriptReady, 2500)
-      }
-    } else {
-      const script = document.createElement("script")
-      script.src = "https://assets.calendly.com/assets/external/widget.js"
-      script.async = true
-      script.onload = onScriptReady
-      script.onerror = showFallback
-      document.head.appendChild(script)
-    }
-
-    const fallbackTimer = window.setTimeout(() => {
-      const widget = document.getElementById("home-calendly-widget")
-      if (widget && widget.children.length === 0) showFallback()
-    }, 5000)
-
-    return () => window.clearTimeout(fallbackTimer)
-  }, [isLoaded])
-
   // Props d'animation conditionnelles
   const getAnimationProps = (defaultProps: any) => {
     if (isMobile) {
@@ -624,8 +548,8 @@ export function HomeSlides() {
         </div>
       </section>
 
-      {/* CTA + Calendly */}
-      <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 pb-24">
+      {/* CTA — Qualifier mon projet */}
+      <section id="qualify-project" className="py-16 md:py-20 px-4 sm:px-6 lg:px-8 pb-24 scroll-mt-28">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -647,32 +571,6 @@ export function HomeSlides() {
           >
             <Link href="/process">{t("qualifyProjectCta")}</Link>
           </Button>
-
-          <div className="mt-8">
-            <p className="text-sm text-copper font-semibold mb-4 uppercase tracking-wider">
-              {t("scheduleTime")}
-            </p>
-            <div
-              id="home-calendly-widget"
-              className="calendly-inline-widget rounded-xl overflow-hidden"
-              data-url="https://calendly.com/stratelink?background_color=041331&text_color=ffffff&primary_color=a97968"
-              style={{ minWidth: "280px", width: "100%", height: "620px" }}
-            />
-
-            <div className="hidden" id="home-calendly-fallback">
-              <div className="bg-white/10 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 text-center">
-                <h4 className="text-xl font-bold text-white mb-4">{t("scheduleTime")}</h4>
-                <a
-                  href="https://calendly.com/stratelink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block bg-gradient-to-r from-copper to-sand text-navy font-bold px-8 py-4 rounded-xl hover:shadow-lg transition-all duration-300"
-                >
-                  Ouvrir Calendly
-                </a>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </section>
     </div>
