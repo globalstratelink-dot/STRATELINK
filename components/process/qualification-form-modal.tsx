@@ -53,7 +53,7 @@ const labelClass = "text-[11px] tracking-[0.2em] text-copper uppercase font-semi
 const labelClassCompact = "text-[11px] tracking-[0.15em] text-copper uppercase font-semibold block mb-1"
 const descClass = "text-gray-300 text-sm leading-relaxed"
 const descClassCompact = "text-gray-300 text-xs leading-snug"
-const stepTitleClass = "text-xl sm:text-2xl md:text-3xl font-bold text-white mb-1 sm:mb-1.5"
+const stepTitleClass = "text-base sm:text-lg md:text-xl font-bold text-white mb-1 sm:mb-1.5"
 const hintClass = "text-xs text-gray-400"
 const cardDescClass = "text-gray-400"
 
