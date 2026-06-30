@@ -173,8 +173,8 @@ export const translations = {
     // Call-to-Action Section
     readyToTransformYourBusiness: "Ready to source from China?",
     letsDiscussStrategicSolutions: "Submit your project file. Our team reviews every request personally and responds within 48 business hours.",
-    contactButton: "Qualify my project →",
-    qualifyProjectCta: "Qualify my project →",
+    contactButton: "Tell us about your project →",
+    qualifyProjectCta: "Tell us about your project →",
     
 
     
@@ -300,7 +300,7 @@ export const translations = {
     processHeroTitle2: "Your Trading Partner",
     processHeroTitle3: "Deliver Anywhere.",
     processHeroDescription: "We source, verify and deliver industrial products from China to Africa, Europe and the UAE — factory to port.",
-    processQualifyProject: "QUALIFY YOUR PROJECT →",
+    processQualifyProject: "TELL US ABOUT YOUR PROJECT →",
     processHowItWorks: "HOW IT WORKS ↓",
     
     // Process Stats
@@ -389,7 +389,7 @@ export const translations = {
     processCtaTitle1: "Ready to source",
     processCtaTitle2: "smarter?",
     processCtaDescription: "Submit your project file. Our team reviews every request personally and responds within 48 business hours.",
-    processCtaButton: "QUALIFY MY PROJECT",
+    processCtaButton: "TELL US ABOUT YOUR PROJECT",
     processCtaTrust1: "CONFIDENTIAL REVIEW",
     processCtaTrust2: "NO COMMITMENT REQUIRED",
     processCtaTrust3: "RESPONSE WITHIN 48H",
@@ -731,8 +731,8 @@ export const translations = {
     // Call-to-Action Section
     readyToTransformYourBusiness: "Prêt à sourcer depuis la Chine ?",
     letsDiscussStrategicSolutions: "Soumettez votre dossier. Notre équipe examine chaque demande personnellement et répond sous 48 heures ouvrées.",
-    contactButton: "Qualifier mon projet →",
-    qualifyProjectCta: "Qualifier mon projet →",
+    contactButton: "Discutons de votre projet →",
+    qualifyProjectCta: "Discutons de votre projet →",
     
 
     
@@ -858,7 +858,7 @@ export const translations = {
     processHeroTitle2: "Votre partenaire commercial",
     processHeroTitle3: "Livrez partout.",
     processHeroDescription: "Nous sourçons, vérifions et livrons des produits industriels de Chine vers l'Afrique, l'Europe et les Émirats — de l'usine au port.",
-    processQualifyProject: "QUALIFIEZ VOTRE PROJET →",
+    processQualifyProject: "DISCUTONS DE VOTRE PROJET →",
     processHowItWorks: "COMMENT ÇA MARCHE ↓",
     
     // Process Stats
@@ -947,7 +947,7 @@ export const translations = {
     processCtaTitle1: "Prêt à optimiser vos",
     processCtaTitle2: "approvisionnements ?",
     processCtaDescription: "Soumettez votre dossier de projet. Notre équipe examine personnellement chaque demande et vous répond sous 48 heures ouvrées.",
-    processCtaButton: "QUALIFIER MON PROJET",
+    processCtaButton: "DISCUTONS DE VOTRE PROJET",
     processCtaTrust1: "EXAMEN CONFIDENTIEL",
     processCtaTrust2: "AUCUN ENGAGEMENT REQUIS",
     processCtaTrust3: "RÉPONSE SOUS 48 H",
