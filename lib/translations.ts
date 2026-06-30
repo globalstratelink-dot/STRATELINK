@@ -950,9 +950,9 @@ export const translations = {
     processTimeline4Desc: "Nous assurons l'exécution complète de la chaîne logistique, de la sortie d'usine jusqu'à votre port de destination, avec un suivi rigoureux et une documentation complète.",
     
     // Process Slide 6 — CTA
-    processCtaTitle1: "Prêt à optimiser vos",
-    processCtaTitle2: "approvisionnements ?",
-    processCtaDescription: "Soumettez votre dossier de projet. Notre équipe examine personnellement chaque demande et vous répond sous 48 heures ouvrées.",
+    processCtaTitle1: "Structurer votre",
+    processCtaTitle2: "approvisionnement",
+    processCtaDescription: "Soumettez votre projet. Notre équipe l'examine personnellement et vous répond sous 48 heures ouvrées.",
     processCtaButton: "DISCUTONS DE VOTRE PROJET",
     processCtaTrust1: "EXAMEN CONFIDENTIEL",
     processCtaTrust2: "AUCUN ENGAGEMENT REQUIS",
