@@ -31,7 +31,7 @@ export const translations = {
     discoverOurSolutions: "View Our Services",
     globalSolutionsInternationalTrade: "Our expertise",
     sourcingToDeliveryDescription: "We manage international procurement on behalf of third-party companies, from supplier sourcing through to destination delivery. In Dubai, we also import a selection of products made available to our partner distributors.",
-    whyUsBadge: "Why us",
+    whyUsBadge: "Our positioning",
     
     // Services Grid
     importExport: "Import/Export",
@@ -269,8 +269,8 @@ export const translations = {
     
     // Agency Page
     whyChooseStratelinkGlobal: "Why Stratelink Global?",
-    excellence: "Why us",
-    excellenceAtServiceOfGrowth: "A serious operator, registered in Dubai, with direct access to Chinese manufacturers and full command of logistics corridors.",
+    excellence: "Our positioning",
+    excellenceAtServiceOfGrowth: "A legal structure in Dubai, direct access to manufacturers, and documented execution at every stage of the transaction.",
     discoverWhatDistinguishesUs: "",
     
     // Agency Features
@@ -599,7 +599,7 @@ export const translations = {
     discoverOurSolutions: "Voir nos services",
     globalSolutionsInternationalTrade: "Notre expertise",
     sourcingToDeliveryDescription: "Nous gérons l'approvisionnement international pour le compte d'entreprises tierces, du sourcing fournisseur à la livraison à destination. À Dubaï, nous importons également une sélection de produits, mis à disposition de nos distributeurs partenaires.",
-    whyUsBadge: "Pourquoi nous",
+    whyUsBadge: "Notre positionnement",
     
     // Services Grid
     importExport: "Import/Export",
@@ -837,8 +837,8 @@ export const translations = {
     
     // Agency Page
     whyChooseStratelinkGlobal: "Pourquoi Stratelink Global ?",
-    excellence: "Pourquoi nous",
-    excellenceAtServiceOfGrowth: "Un opérateur sérieux, enregistré à Dubaï, avec des accès directs aux fabricants chinois et une maîtrise complète des corridors logistiques.",
+    excellence: "Notre positionnement",
+    excellenceAtServiceOfGrowth: "Une structure légale à Dubaï, un accès direct aux fabricants, et une exécution documentée à chaque étape de la transaction.",
     discoverWhatDistinguishesUs: "",
     
     // Agency Features
