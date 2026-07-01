@@ -28,7 +28,7 @@ return (
                 
                 <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
                   <span className="block">{t('orchestratorOfInternationalGrowthLine1')}</span>
-                  <span className="block mt-2">{t('orchestratorOfInternationalGrowthLine2')}</span>
+                  <span className="block mt-2 text-copper">{t('orchestratorOfInternationalGrowthLine2')}</span>
                 </h2>
                 
                 <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
