@@ -169,13 +169,23 @@ export async function uploadCatalogueImageToSupabase(
   const { error } = await supabase.storage.from(BUCKET).upload(filename, buffer, {
     contentType,
     upsert: true,
+    cacheControl: "31536000",
   })
 
   if (error) {
     console.error("[catalogue-supabase] image upload failed", error)
-    throw error
+    throw new Error(error.message)
   }
 
   const { data } = supabase.storage.from(BUCKET).getPublicUrl(filename)
   return data.publicUrl
+}
+
+export async function checkCatalogueImageStorage() {
+  const supabase = getSupabaseAdmin()
+  const { error } = await supabase.storage.from(BUCKET).list("", { limit: 1 })
+  return {
+    ok: !error,
+    message: error?.message ?? "Bucket catalogue-images accessible",
+  }
 }

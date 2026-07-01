@@ -45,6 +45,7 @@ export function CatalogueAdminPanel() {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [loadError, setLoadError] = useState("")
+  const [storageWarning, setStorageWarning] = useState("")
 
   const applyServices = (next: CatalogueService[]) => {
     setServices(next)
@@ -75,6 +76,22 @@ export function CatalogueAdminPanel() {
 
   useEffect(() => {
     loadServices()
+    void fetch("/api/catalogue/upload/", { credentials: "same-origin", cache: "no-store" })
+      .then(async (res) => {
+        if (!res.ok) return
+        const data = await res.json()
+        if (data.supabaseConfigured && data.supabaseBucketOk === false) {
+          setStorageWarning(
+            data.supabaseBucketMessage ||
+              "Bucket Supabase catalogue-images inaccessible. Vérifiez Storage et le SQL catalogue-setup.sql."
+          )
+        } else if (data.serverless && !data.supabaseConfigured && !data.netlifyBlobs) {
+          setStorageWarning(
+            "Stockage images non configuré en production. Ajoutez SUPABASE_URL et SUPABASE_SERVICE_ROLE_KEY sur Netlify, puis redéployez."
+          )
+        }
+      })
+      .catch(() => undefined)
   }, [loadServices])
 
   const openCreate = () => {
@@ -233,6 +250,11 @@ export function CatalogueAdminPanel() {
           {loadError && (
             <p className="text-sm text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-3">
               {loadError}
+            </p>
+          )}
+          {storageWarning && (
+            <p className="text-sm text-amber-300 bg-amber-500/10 border border-amber-500/30 rounded-lg px-4 py-3">
+              {storageWarning}
             </p>
           )}
           {error && (

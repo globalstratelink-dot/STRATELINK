@@ -10,7 +10,9 @@ import {
   isServerlessRuntime,
 } from "@/lib/catalogue-blobs"
 import { isSupabaseConfigured } from "@/lib/supabase-admin"
-import { uploadCatalogueImageToSupabase } from "@/lib/catalogue-supabase"
+import { checkCatalogueImageStorage, uploadCatalogueImageToSupabase } from "@/lib/catalogue-supabase"
+
+const CATALOGUE_IMAGES_BUCKET = "catalogue-images"
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "catalogue")
 
@@ -35,7 +37,7 @@ async function saveCatalogueImage(
     try {
       return await uploadCatalogueImageToSupabase(filename, buffer, contentType)
     } catch (error) {
-      const detail = error instanceof Error ? error.message : "erreur inconnue"
+      const detail = error instanceof Error ? error.message : String(error)
       console.error("[catalogue/upload] Supabase failed", error)
       errors.push(`Supabase: ${detail}`)
     }
@@ -49,7 +51,7 @@ async function saveCatalogueImage(
       })
       return catalogueMediaUrl(filename)
     } catch (error) {
-      const detail = error instanceof Error ? error.message : "erreur inconnue"
+      const detail = error instanceof Error ? error.message : String(error)
       console.error("[catalogue/upload] Netlify Blobs failed", error)
       errors.push(`Netlify Blobs: ${detail}`)
     }
@@ -121,4 +123,31 @@ export async function POST(request: NextRequest) {
       error instanceof Error ? error.message : "Impossible d'enregistrer l'image"
     return NextResponse.json({ error: message }, { status: 500 })
   }
+}
+
+export async function GET() {
+  if (!(await isAdminAuthenticated())) {
+    return NextResponse.json({ error: "Non autorisé" }, { status: 401 })
+  }
+
+  const status: Record<string, unknown> = {
+    serverless: isServerlessRuntime(),
+    supabaseConfigured: isSupabaseConfigured(),
+    netlifyBlobs: Boolean(getCatalogueImagesStore()),
+    bucket: CATALOGUE_IMAGES_BUCKET,
+  }
+
+  if (isSupabaseConfigured()) {
+    try {
+      const bucketStatus = await checkCatalogueImageStorage()
+      status.supabaseBucketOk = bucketStatus.ok
+      status.supabaseBucketMessage = bucketStatus.message
+    } catch (error) {
+      status.supabaseBucketOk = false
+      status.supabaseBucketMessage =
+        error instanceof Error ? error.message : "Impossible de joindre Supabase"
+    }
+  }
+
+  return NextResponse.json(status)
 }
