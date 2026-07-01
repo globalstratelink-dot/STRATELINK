@@ -2,16 +2,15 @@ import { NextRequest, NextResponse } from "next/server"
 import { promises as fs } from "fs"
 import path from "path"
 import { isAdminAuthenticated } from "@/lib/catalogue-auth"
-import {
-  CATALOGUE_ALLOWED_IMAGE_TYPES,
-  CATALOGUE_MAX_IMAGE_BYTES,
-} from "@/lib/catalogue-types"
-import { detectImageMime, extensionForImageMime } from "@/lib/image-magic"
+import { CATALOGUE_MAX_IMAGE_BYTES } from "@/lib/catalogue-types"
+import { detectImageMime, extensionForImageMime, normalizeImageMime } from "@/lib/image-magic"
 import { catalogueMediaUrl, getCatalogueImagesStore, useNetlifyBlobStorage } from "@/lib/catalogue-blobs"
 import { isSupabaseConfigured } from "@/lib/supabase-admin"
 import { uploadCatalogueImageToSupabase } from "@/lib/catalogue-supabase"
 
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "catalogue")
+
+export const runtime = "nodejs"
 
 function sanitizeFilename(name: string) {
   return name
@@ -34,23 +33,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Aucun fichier image fourni" }, { status: 400 })
     }
 
-    if (!CATALOGUE_ALLOWED_IMAGE_TYPES.includes(file.type as (typeof CATALOGUE_ALLOWED_IMAGE_TYPES)[number])) {
-      return NextResponse.json(
-        { error: "Format non supporté. Utilisez JPG, PNG, WEBP ou GIF." },
-        { status: 400 }
-      )
+    const buffer = Buffer.from(await file.arrayBuffer())
+
+    if (buffer.length === 0) {
+      return NextResponse.json({ error: "Le fichier image est vide" }, { status: 400 })
     }
 
-    if (file.size > CATALOGUE_MAX_IMAGE_BYTES) {
+    if (buffer.length > CATALOGUE_MAX_IMAGE_BYTES) {
       return NextResponse.json({ error: "Image trop volumineuse (max 5 Mo)" }, { status: 400 })
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer())
-    const detectedMime = detectImageMime(buffer)
-
+    const detectedMime = detectImageMime(buffer) ?? normalizeImageMime(file.type)
     if (!detectedMime) {
       return NextResponse.json(
-        { error: "Fichier image invalide ou corrompu." },
+        {
+          error:
+            "Format non supporté ou fichier non reconnu. Utilisez une image JPG, PNG, WEBP ou GIF valide.",
+        },
         { status: 400 }
       )
     }
@@ -62,9 +61,13 @@ export async function POST(request: NextRequest) {
       try {
         const publicUrl = await uploadCatalogueImageToSupabase(filename, buffer, detectedMime)
         return NextResponse.json({ url: publicUrl })
-      } catch {
+      } catch (error) {
+        console.error("[catalogue/upload] Supabase failed", error)
+        const detail = error instanceof Error ? error.message : "unknown"
         return NextResponse.json(
-          { error: "Impossible d'envoyer l'image sur Supabase. Vérifiez le bucket catalogue-images." },
+          {
+            error: `Impossible d'envoyer l'image sur Supabase. ${detail}`,
+          },
           { status: 503 }
         )
       }
@@ -95,7 +98,8 @@ export async function POST(request: NextRequest) {
     await fs.writeFile(path.join(UPLOAD_DIR, filename), buffer)
 
     return NextResponse.json({ url: `/uploads/catalogue/${filename}` })
-  } catch {
+  } catch (error) {
+    console.error("[catalogue/upload] failed", error)
     return NextResponse.json({ error: "Impossible d'enregistrer l'image" }, { status: 500 })
   }
 }

@@ -35,3 +35,14 @@ export function detectImageMime(buffer: Buffer): (typeof CATALOGUE_ALLOWED_IMAGE
 export function extensionForImageMime(mime: (typeof CATALOGUE_ALLOWED_IMAGE_TYPES)[number]) {
   return EXTENSION_BY_MIME[mime]
 }
+
+/** Browsers on Windows often send image/jpg, empty string, or application/octet-stream. */
+export function normalizeImageMime(type: string): (typeof CATALOGUE_ALLOWED_IMAGE_TYPES)[number] | null {
+  const normalized = type.toLowerCase().split(";")[0].trim()
+  if (!normalized) return null
+  if (normalized === "image/jpg" || normalized === "image/pjpeg") return "image/jpeg"
+  if (CATALOGUE_ALLOWED_IMAGE_TYPES.includes(normalized as (typeof CATALOGUE_ALLOWED_IMAGE_TYPES)[number])) {
+    return normalized as (typeof CATALOGUE_ALLOWED_IMAGE_TYPES)[number]
+  }
+  return null
+}

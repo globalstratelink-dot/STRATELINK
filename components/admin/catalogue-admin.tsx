@@ -12,7 +12,11 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { CatalogueServiceImage } from "@/components/catalogue/catalogue-service-image"
-import type { CatalogueService, CatalogueServiceInput } from "@/lib/catalogue-types"
+import {
+  CATALOGUE_MAX_IMAGE_BYTES,
+  type CatalogueService,
+  type CatalogueServiceInput,
+} from "@/lib/catalogue-types"
 import { cn } from "@/lib/utils"
 
 const emptyForm: CatalogueServiceInput = {
@@ -114,6 +118,11 @@ export function CatalogueAdminPanel() {
     setUploadingImage(true)
     setImageError("")
     try {
+      if (file.size > CATALOGUE_MAX_IMAGE_BYTES) {
+        setImageError("Image trop volumineuse (max 5 Mo)")
+        return
+      }
+
       const body = new FormData()
       body.append("file", file)
       const res = await fetch("/api/catalogue/upload/", {
@@ -122,6 +131,13 @@ export function CatalogueAdminPanel() {
         credentials: "same-origin",
         cache: "no-store",
       })
+
+      const contentType = res.headers.get("content-type") || ""
+      if (!contentType.includes("application/json")) {
+        setImageError("Le serveur a refusé l'image. Réessayez avec JPG, PNG ou WEBP (max 5 Mo).")
+        return
+      }
+
       const data = await res.json()
       if (!res.ok) {
         setImageError(data.error || "Impossible d'envoyer l'image")
@@ -316,7 +332,7 @@ export function CatalogueAdminPanel() {
                 <input
                   ref={fileInputRef}
                   type="file"
-                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  accept="image/jpeg,image/jpg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif"
                   className="hidden"
                   onChange={(e) => {
                     const file = e.target.files?.[0]
