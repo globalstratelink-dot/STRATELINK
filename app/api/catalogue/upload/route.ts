@@ -18,6 +18,17 @@ const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "catalogue")
 
 export const runtime = "nodejs"
 
+type FormUpload = Blob & { name?: string }
+
+/** Avoid `instanceof File` — the File global is missing in some Netlify/Node bundles. */
+function isFormUpload(entry: FormDataEntryValue | null): entry is FormUpload {
+  return (
+    entry !== null &&
+    typeof entry === "object" &&
+    typeof (entry as Blob).arrayBuffer === "function"
+  )
+}
+
 function sanitizeFilename(name: string) {
   return name
     .toLowerCase()
@@ -85,13 +96,13 @@ export async function POST(request: NextRequest) {
 
   try {
     const formData = await request.formData()
-    const file = formData.get("file")
+    const upload = formData.get("file")
 
-    if (!(file instanceof File)) {
+    if (!isFormUpload(upload)) {
       return NextResponse.json({ error: "Aucun fichier image fourni" }, { status: 400 })
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer())
+    const buffer = Buffer.from(await upload.arrayBuffer())
 
     if (buffer.length === 0) {
       return NextResponse.json({ error: "Le fichier image est vide" }, { status: 400 })
@@ -101,7 +112,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Image trop volumineuse (max 5 Mo)" }, { status: 400 })
     }
 
-    const detectedMime = detectImageMime(buffer) ?? normalizeImageMime(file.type)
+    const detectedMime = detectImageMime(buffer) ?? normalizeImageMime(upload.type || "")
     if (!detectedMime) {
       return NextResponse.json(
         {
@@ -113,7 +124,8 @@ export async function POST(request: NextRequest) {
     }
 
     const extension = extensionForImageMime(detectedMime)
-    const filename = `${Date.now()}-${sanitizeFilename(file.name.replace(/\.[^.]+$/, "") || "image")}.${extension}`
+    const originalName = typeof upload.name === "string" ? upload.name : "image"
+    const filename = `${Date.now()}-${sanitizeFilename(originalName.replace(/\.[^.]+$/, "") || "image")}.${extension}`
 
     const url = await saveCatalogueImage(filename, buffer, detectedMime)
     return NextResponse.json({ url })
