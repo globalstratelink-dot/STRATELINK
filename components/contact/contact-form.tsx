@@ -284,7 +284,7 @@ export function ContactForm() {
               <label className="text-sm font-medium text-gray-300">{getTranslation('country', 'Pays')}</label>
               <Select value={selectedCountry} onValueChange={handleCountryChange}>
                 <SelectTrigger className={getInputClassName("country")}>
-                  <SelectValue placeholder={getTranslation('selectCountry', 'Sélectionnez votre pays')} />
+                  <SelectValue placeholder={String(t('selectCountry'))} />
                 </SelectTrigger>
                 <SelectContent className="bg-navy border-copper/30">
                   {countries.map((country) => (
@@ -308,7 +308,7 @@ export function ContactForm() {
               </label>
               <Input
                 type="tel"
-                placeholder={phoneCode ? `${phoneCode} 123 456 789` : getTranslation('phoneNumberPlaceholder', 'Entrez votre numéro de téléphone')}
+                placeholder={phoneCode ? `${phoneCode} 54 319 2348` : String(t('phoneNumberPlaceholder'))}
                 value={formData.phoneNumber}
                 onChange={(e) => handlePhoneChange(e.target.value)}
                 className={getInputClassName("phoneNumber")}
