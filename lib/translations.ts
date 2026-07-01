@@ -268,7 +268,7 @@ export const translations = {
     statsClientSatisfactionDesc: "Consistently exceeding expectations",
     
     // Agency Page
-    whyChooseStratelinkGlobal: "Why Choose Stratelink Global?",
+    whyChooseStratelinkGlobal: "Why Stratelink Global?",
     excellence: "Why us",
     excellenceAtServiceOfGrowth: "A serious operator, registered in Dubai, with direct access to Chinese manufacturers and full command of logistics corridors.",
     discoverWhatDistinguishesUs: "",
@@ -285,9 +285,11 @@ export const translations = {
     
     // About Stratelink Global
     aboutStratelinkGlobal: "About Stratelink Global",
-    orchestratorOfInternationalGrowth: "An international operator. Based in Dubai. Networked in China.",
-    aboutStratelinkDescription1: "Stratelink Global is an international trade operator registered in Dubai under an IFZA licence. We connect serious B2B buyers with verified Chinese manufacturers, and manage the entire chain — from sourcing to destination delivery.",
-    aboutStratelinkDescription2: "Our mission: to simplify your import operations from China, secure your suppliers and deliver on time — across Africa, Europe and the UAE.",
+    orchestratorOfInternationalGrowthLine1: "Importer in Dubai.",
+    orchestratorOfInternationalGrowthLine2: "International procurement partner.",
+    aboutStratelinkDescription1: "Stratelink Global is an international trade operator registered in Dubai under an IFZA licence. The company was founded on a simple insight: supplier availability is never the limiting factor — reliability of execution is.",
+    aboutStratelinkDescription1Part2: "Stratelink Global was structured to eliminate these failure points, with an operational base in Dubai — a natural position between Asian production zones and the markets it serves.",
+    aboutStratelinkDescription2: "Our role: to simplify your import operations and guarantee stable supply, regardless of volume. We follow each transaction from sourcing through to delivery, so you can plan with confidence — without fear of stockouts.",
     aboutStratelinkDescription3: "Drawing on our experience across the China → Africa and China → UAE corridors, we apply operational rigour that delivers measurable results and lasting partnerships.",
     
     // Agency Services
@@ -834,7 +836,7 @@ export const translations = {
     statsClientSatisfactionDesc: "Dépassement constant des attentes",
     
     // Agency Page
-    whyChooseStratelinkGlobal: "Pourquoi choisir Stratelink Global ?",
+    whyChooseStratelinkGlobal: "Pourquoi Stratelink Global ?",
     excellence: "Pourquoi nous",
     excellenceAtServiceOfGrowth: "Un opérateur sérieux, enregistré à Dubaï, avec des accès directs aux fabricants chinois et une maîtrise complète des corridors logistiques.",
     discoverWhatDistinguishesUs: "",
@@ -851,9 +853,11 @@ export const translations = {
     
     // About Stratelink Global
     aboutStratelinkGlobal: "À propos de Stratelink Global",
-    orchestratorOfInternationalGrowth: "Un opérateur international. Une base à Dubaï. Un réseau en Chine.",
-    aboutStratelinkDescription1: "Stratelink Global est un opérateur de commerce international enregistré à Dubaï sous licence IFZA. Nous connectons des acheteurs B2B sérieux avec des fabricants chinois vérifiés, et gérons l'intégralité de la chaîne — du sourcing à la livraison à destination.",
-    aboutStratelinkDescription2: "Notre mission : simplifier vos opérations d'import depuis la Chine, sécuriser vos fournisseurs et livrer dans les délais — partout en Afrique, en Europe et aux Émirats.",
+    orchestratorOfInternationalGrowthLine1: "Importateur à Dubaï.",
+    orchestratorOfInternationalGrowthLine2: "Partenaire international d'approvisionnement.",
+    aboutStratelinkDescription1: "Stratelink Global est un opérateur de commerce international enregistré à Dubaï sous licence IFZA. La société est née d'un constat simple : la disponibilité des fournisseurs n'est jamais le facteur limitant, la fiabilité de l'exécution l'est.",
+    aboutStratelinkDescription1Part2: "Stratelink Global a été structurée pour éliminer ces points de rupture, avec une base opérationnelle à Dubaï, position naturelle entre les zones de production Asiatique et les marchés qu'elle dessert.",
+    aboutStratelinkDescription2: "Notre rôle : simplifier vos opérations d'import afin de garantir un approvisionnement stable, quel que soit le volume. Nous suivons chaque transaction du sourcing à la livraison, pour que vous puissiez planifier sans crainte de ruptures.",
     aboutStratelinkDescription3: "Forts de notre expérience sur les corridors Chine → Afrique et Chine → EAU, nous appliquons une rigueur opérationnelle qui produit des résultats mesurables et des partenariats durables.",
     
     // Agency Services
