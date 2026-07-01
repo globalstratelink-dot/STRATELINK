@@ -274,14 +274,14 @@ export const translations = {
     discoverWhatDistinguishesUs: "",
     
     // Agency Features
-    privilegedMarketAccess: "Direct Access to Chinese Manufacturers",
-    privilegedMarketAccessDesc: "Exclusive network of verified suppliers — no unnecessary intermediaries, factory-direct pricing.",
-    customerAcquisitionRetention: "Command of Logistics Corridors",
-    customerAcquisitionRetentionDesc: "China → Africa, UAE and Europe. FCL/LCL, Jebel Ali, re-export, customs clearance at destination.",
-    turnkeySolutions: "Registered Operator in Dubai",
-    turnkeySolutionsDesc: "IFZA licence, Dubai Free Zone. Solid legal structure for secure B2B transactions.",
-    rapidReliableDeployment: "Fast & Secure Execution",
-    rapidReliableDeploymentDesc: "File review within 48 hours, 24/7 support and quality control at every stage.",
+    privilegedMarketAccess: "Supply stability",
+    privilegedMarketAccessDesc: "Consistent supply, regardless of order volume.",
+    customerAcquisitionRetention: "Fast & secure execution",
+    customerAcquisitionRetentionDesc: "Structured handling of every order, from sourcing to delivery.",
+    turnkeySolutions: "Secure financial transactions",
+    turnkeySolutionsDesc: "Your financial commitment is protected at every stage through recognised payment instruments and solid guarantees.",
+    rapidReliableDeployment: "Protected margins",
+    rapidReliableDeploymentDesc: "Factory-level negotiated prices and controlled logistics costs to preserve your margin on every transaction.",
     
     // About Stratelink Global
     aboutStratelinkGlobal: "About Stratelink Global",
@@ -289,7 +289,7 @@ export const translations = {
     orchestratorOfInternationalGrowthLine2: "International procurement partner.",
     aboutStratelinkDescription1: "Stratelink Global is an international trade operator registered in Dubai under an IFZA licence. The company was founded on a simple insight: supplier availability is never the limiting factor — reliability of execution is.",
     aboutStratelinkDescription1Part2: "Stratelink Global was structured to eliminate these failure points, with an operational base in Dubai — a natural position between Asian production zones and the markets it serves.",
-    aboutStratelinkDescription2: "Our role: to simplify your import operations and guarantee stable supply, regardless of volume. We follow each transaction from sourcing through to delivery, so you can plan with confidence — without fear of stockouts.",
+    aboutStratelinkDescription2: "Our role: to simplify your import operations and guarantee stable supply, regardless of volume. We follow each transaction from sourcing through to delivery.",
     aboutStratelinkDescription3: "Drawing on our experience across the China → Africa and China → UAE corridors, we apply operational rigour that delivers measurable results and lasting partnerships.",
     
     // Agency Services
@@ -842,14 +842,14 @@ export const translations = {
     discoverWhatDistinguishesUs: "",
     
     // Agency Features
-    privilegedMarketAccess: "Accès direct aux fabricants chinois",
-    privilegedMarketAccessDesc: "Réseau exclusif de fournisseurs vérifiés — aucun intermédiaire inutile, prix usine direct.",
-    customerAcquisitionRetention: "Maîtrise des corridors logistiques",
-    customerAcquisitionRetentionDesc: "Chine → Afrique, EAU et Europe. FCL/LCL, Jebel Ali, réexport, dédouanement à destination.",
-    turnkeySolutions: "Opérateur enregistré à Dubaï",
-    turnkeySolutionsDesc: "Licence IFZA, zone franche de Dubaï. Structure juridique solide pour des transactions B2B sécurisées.",
-    rapidReliableDeployment: "Exécution rapide et sécurisée",
-    rapidReliableDeploymentDesc: "Réponse dossier sous 48h, support 24/7 et contrôle qualité à chaque étape.",
+    privilegedMarketAccess: "Stabilité d'approvisionnement",
+    privilegedMarketAccessDesc: "Un approvisionnement constant, quel que soit le volume de vos commandes.",
+    customerAcquisitionRetention: "Exécution rapide et sécurisée",
+    customerAcquisitionRetentionDesc: "Un traitement structuré de chaque commande, du sourcing à la livraison.",
+    turnkeySolutions: "Transaction financière sécurisée",
+    turnkeySolutionsDesc: "Votre engagement financier est protégé à chaque étape, par des instruments de paiement reconnus et des garanties solides.",
+    rapidReliableDeployment: "Marges protégées",
+    rapidReliableDeploymentDesc: "Prix négociés au niveau usine et coûts logistiques maîtrisés, pour préserver votre marge à chaque transaction.",
     
     // About Stratelink Global
     aboutStratelinkGlobal: "À propos de Stratelink Global",
@@ -857,7 +857,7 @@ export const translations = {
     orchestratorOfInternationalGrowthLine2: "Partenaire international d'approvisionnement.",
     aboutStratelinkDescription1: "Stratelink Global est un opérateur de commerce international enregistré à Dubaï sous licence IFZA. La société est née d'un constat simple : la disponibilité des fournisseurs n'est jamais le facteur limitant, la fiabilité de l'exécution l'est.",
     aboutStratelinkDescription1Part2: "Stratelink Global a été structurée pour éliminer ces points de rupture, avec une base opérationnelle à Dubaï, position naturelle entre les zones de production Asiatique et les marchés qu'elle dessert.",
-    aboutStratelinkDescription2: "Notre rôle : simplifier vos opérations d'import afin de garantir un approvisionnement stable, quel que soit le volume. Nous suivons chaque transaction du sourcing à la livraison, pour que vous puissiez planifier sans crainte de ruptures.",
+    aboutStratelinkDescription2: "Notre rôle : simplifier vos opérations d'import afin de garantir un approvisionnement stable, quel que soit le volume. Nous suivons chaque transaction du sourcing à la livraison.",
     aboutStratelinkDescription3: "Forts de notre expérience sur les corridors Chine → Afrique et Chine → EAU, nous appliquons une rigueur opérationnelle qui produit des résultats mesurables et des partenariats durables.",
     
     // Agency Services
