@@ -27,7 +27,7 @@ export function ContactInfo() {
       icon: <MapPin className="w-6 h-6 text-copper" />,
       title: t('visitUs'),
       details: "Dubai, United Arab Emirates",
-      description: t('globalOfficesWorldwide'),
+      description: "",
       mapsQuery: "Dubai, United Arab Emirates"
     },
     {
