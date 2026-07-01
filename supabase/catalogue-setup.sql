@@ -37,3 +37,17 @@ drop policy if exists "catalogue images public read" on storage.objects;
 create policy "catalogue images public read"
 on storage.objects for select
 using (bucket_id = 'catalogue-images');
+
+drop policy if exists "catalogue images service role upload" on storage.objects;
+
+create policy "catalogue images service role upload"
+on storage.objects for insert
+to service_role
+with check (bucket_id = 'catalogue-images');
+
+drop policy if exists "catalogue images service role update" on storage.objects;
+
+create policy "catalogue images service role update"
+on storage.objects for update
+to service_role
+using (bucket_id = 'catalogue-images');

@@ -8,13 +8,19 @@ export function catalogueMediaUrl(filename: string) {
   return `/api/catalogue/media/${filename}/`
 }
 
+/** True on Netlify/AWS serverless (read-only filesystem). */
+export function isServerlessRuntime() {
+  return Boolean(
+    process.env.AWS_LAMBDA_FUNCTION_NAME ||
+      process.env.NETLIFY ||
+      process.env.SITE_ID ||
+      process.env.NETLIFY_SITE_ID
+  )
+}
+
 /** True on Netlify serverless runtime (not plain `next dev`). */
 export function useNetlifyBlobStorage() {
-  return Boolean(
-    process.env.SITE_ID ||
-      process.env.NETLIFY_SITE_ID ||
-      (process.env.AWS_LAMBDA_FUNCTION_NAME && process.env.CONTEXT)
-  )
+  return isServerlessRuntime()
 }
 
 function getBlobStore(name: string) {
