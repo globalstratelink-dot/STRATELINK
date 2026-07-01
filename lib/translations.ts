@@ -11,9 +11,10 @@ export const translations = {
     productCatalogue: "Distributor catalog",
     catalogue: "Dubai Import Catalogue",
     contact: "Contact",
+    contactPageBadge: "Contact page",
     getStarted: "Get Started",
     viewOurServices: "View Our Services",
-    footerTagline: "Stratelink Global — international import/export operator based in Dubai, connecting China to Africa, Europe and the UAE.",
+    footerTagline: "Smart sourcing",
     
     // Company Name
     companyName: "STRATELINK",
@@ -215,7 +216,7 @@ export const translations = {
     trustedByUs: "They Trust Us",
     trustedByUsTitle: "They Trust Us",
     imageNotAvailable: "Image not available",
-    contactDubaiEuropeAsia: "Contact : Dubai / Europe / Asia",
+    contactDubaiEuropeAsia: "Zone: Dubai / Europe / Asia",
     
     // Legal Pages
     legalNoticeTitle: "Legal Notice",
@@ -528,7 +529,7 @@ export const translations = {
     qualClose: "CLOSE",
 
     // Catalogue
-    catalogueBadge: "B2B Catalogue",
+    catalogueBadge: "Dubai distributor catalogue",
     catalogueTitle: "Dubai Import Catalogue",
     catalogueSubtitle: "Industrial products sourced directly from China — no public pricing, custom quotes for qualified partners.",
     catalogueIncludes: "What's included",
@@ -581,9 +582,10 @@ export const translations = {
     productCatalogue: "Catalogue distributeurs",
     catalogue: "Catalogue distributeurs",
     contact: "Contact",
+    contactPageBadge: "Page contact",
     getStarted: "Commencer",
     viewOurServices: "Voir nos services",
-    footerTagline: "Stratelink Global — opérateur import/export international basé à Dubaï, connectant la Chine à l'Afrique, l'Europe et les Émirats.",
+    footerTagline: "Sourcing optimisé",
     
     // Company Name
     companyName: "STRATELINK",
@@ -785,7 +787,7 @@ export const translations = {
     trustedByUs: "Ils Nous Font Confiance",
     trustedByUsTitle: "Ils nous font confiance",
     imageNotAvailable: "Image non disponible",
-    contactDubaiEuropeAsia: "Contact : Dubai / Europe / Asie",
+    contactDubaiEuropeAsia: "Zone : Dubai / Europe / Asie",
     
     // Legal Pages
     legalNoticeTitle: "Mentions Légales",
@@ -1098,7 +1100,7 @@ export const translations = {
     qualClose: "FERMER",
 
     // Catalogue
-    catalogueBadge: "Catalogue B2B",
+    catalogueBadge: "Catalogue distributeurs Dubaï",
     catalogueTitle: "Catalogue import Dubaï",
     catalogueSubtitle: "Produits industriels sourcés directement en Chine — sans prix public, devis sur mesure pour partenaires qualifiés.",
     catalogueIncludes: "Ce qui est inclus",

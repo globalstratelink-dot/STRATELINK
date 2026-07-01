@@ -40,12 +40,6 @@
   status = 301
   force = true
 
-# SPA fallback (garde après les redirections)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 # Headers de sécurité
 [[headers]]
   for = "/*"

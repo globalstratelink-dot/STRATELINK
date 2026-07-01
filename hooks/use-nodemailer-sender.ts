@@ -46,6 +46,11 @@ export function useNodemailerSender() {
         body: JSON.stringify(data)
       })
 
+      const contentType = response.headers.get('content-type') || ''
+      if (!contentType.includes('application/json')) {
+        throw new Error('Le service email est indisponible. Vérifiez la configuration serveur.')
+      }
+
       const result = await response.json()
 
       if (response.ok && result.success) {
@@ -72,6 +77,8 @@ export function useNodemailerSender() {
           errorMessage = 'Configuration SMTP invalide. Vérifiez votre mot de passe d\'application Google.'
         } else if (error.message.includes('Échec d\'authentification')) {
           errorMessage = 'Échec d\'authentification. Vérifiez vos identifiants SMTP.'
+        } else if (error.message.includes('GMAIL_USER') || error.message.includes('GMAIL_APP_PASSWORD')) {
+          errorMessage = 'Configuration email manquante. Contactez l\'administrateur du site.'
         } else {
           errorMessage = error.message
         }

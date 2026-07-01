@@ -77,6 +77,12 @@ async function sendEmail(data: ContactData) {
           error: 'Échec d\'authentification. Vérifiez vos identifiants SMTP.'
         }
       }
+      if (error.message.includes('GMAIL_USER') || error.message.includes('GMAIL_APP_PASSWORD')) {
+        return {
+          success: false,
+          error: 'Configuration email manquante. Configurez GMAIL_USER et GMAIL_APP_PASSWORD.'
+        }
+      }
     }
     
     return {
