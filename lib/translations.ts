@@ -18,15 +18,15 @@ export const translations = {
     companyTagline: "GLOBAL",
     
     // New Home Slides
-    visionSynergiesDevelopment: "Dubai · China · Worldwide",
+    visionSynergiesDevelopment: "China · Dubai · Worldwide",
     accelerateInternationalExpansion: "Your international import/export operator based in Dubai",
     strategicPartnerDubaiEuropeAsia: "We source, verify and deliver industrial products from China to Africa, Europe and the UAE — factory to port.",
     homeCtaPrimary: "Tell us about your project",
     homeCtaSecondary: "View Our Services",
     homeCatalogueCta: "Distributor catalog",
     discoverOurSolutions: "View Our Services",
-    globalSolutionsInternationalTrade: "Our Services",
-    sourcingToDeliveryDescription: "From supplier sourcing to destination delivery, we manage your entire import/export operations on China → Africa, UAE and Europe corridors.",
+    globalSolutionsInternationalTrade: "Our expertise",
+    sourcingToDeliveryDescription: "We manage international procurement on behalf of third-party companies, from supplier sourcing through to destination delivery. In Dubai, we also import a selection of products made available to our partner distributors.",
     whyUsBadge: "Why us",
     
     // Services Grid
@@ -36,7 +36,8 @@ export const translations = {
     importExportItem2: "Price & contract negotiation",
     importExportItem3: "Logistics & transportation",
     importExportItem4: "Customs coordination",
-    productCatalogueDesc: "Construction materials, industrial equipment, electronic components and solar panels — direct from Chinese factories.",
+    productCatalogueDesc: "A selection of products imported directly from China, available in stock in Dubai and made available to our partner distributors.",
+    productCatalogueBoxTitle: "Dubai import for distributors",
     productCatalogueItem1: "Construction materials & steel",
     productCatalogueItem2: "Industrial equipment & machinery",
     productCatalogueItem3: "Electronic components",
@@ -55,10 +56,10 @@ export const translations = {
     connectingDubaiEuropeAsia: "Connecting Dubai, Europe and Asia",
     
     // Services Page
-    servicesPageDescription: "From supplier sourcing to destination delivery, we manage your entire import/export operations on China → Africa, UAE and Europe corridors.",
+    servicesPageDescription: "We manage international procurement on behalf of third-party companies, from supplier sourcing through to destination delivery. In Dubai, we also import a selection of products made available to our partner distributors.",
     servicesPageTitle: "Import/export from China to the world — managed end to end",
     servicesPageSubtitle: "",
-    servicesPageDescription1: "From supplier sourcing to destination delivery, we manage your entire import/export operations on China → Africa, UAE and Europe corridors.",
+    servicesPageDescription1: "We manage international procurement on behalf of third-party companies, from supplier sourcing through to destination delivery. In Dubai, we also import a selection of products made available to our partner distributors.",
     servicesDetail1Title: "Sourcing & Supplier Verification",
     servicesDetail1Desc: "Factory audit, sample validation, compliance checks. We never pass on unverified suppliers.",
     servicesDetail2Title: "Price & Contract Negotiation",
@@ -579,15 +580,15 @@ export const translations = {
     companyTagline: "GLOBAL",
     
     // New Home Slides
-    visionSynergiesDevelopment: "Dubaï · Chine · Monde",
+    visionSynergiesDevelopment: "Chine · Dubaï · Monde",
     accelerateInternationalExpansion: "Sourcing international. Stock à Dubaï. Livraison sans frontières.",
     strategicPartnerDubaiEuropeAsia: "Nous sourçons et exportons des produits industriels vers l'Afrique, l'Europe et nous importons une sélection de ces produits à Dubaï, disponibles pour les distributeurs locaux.",
     homeCtaPrimary: "Discutons de votre projet",
     homeCtaSecondary: "Voir nos services",
     homeCatalogueCta: "Catalogue distributeurs",
     discoverOurSolutions: "Voir nos services",
-    globalSolutionsInternationalTrade: "Nos Services",
-    sourcingToDeliveryDescription: "Du sourcing fournisseur à la livraison à destination, nous pilotons l'intégralité de vos opérations d'import/export sur les corridors Chine → Afrique, EAU et Europe.",
+    globalSolutionsInternationalTrade: "Notre expertise",
+    sourcingToDeliveryDescription: "Nous gérons l'approvisionnement international pour le compte d'entreprises tierces, du sourcing fournisseur à la livraison à destination. À Dubaï, nous importons également une sélection de produits, mis à disposition de nos distributeurs partenaires.",
     whyUsBadge: "Pourquoi nous",
     
     // Services Grid
@@ -597,7 +598,8 @@ export const translations = {
     importExportItem2: "Négociation prix & contrats",
     importExportItem3: "Logistique & transport",
     importExportItem4: "Coordination douanière",
-    productCatalogueDesc: "Matériaux de construction, équipements industriels, composants électroniques et panneaux solaires — directs usine Chine.",
+    productCatalogueDesc: "Une sélection de produits importés directement depuis la Chine, disponibles en stock à Dubaï et mis à disposition de nos distributeurs partenaires.",
+    productCatalogueBoxTitle: "Import Dubaï pour distributeurs",
     productCatalogueItem1: "Matériaux de construction & acier",
     productCatalogueItem2: "Équipements industriels & machines",
     productCatalogueItem3: "Composants électroniques",
@@ -616,10 +618,10 @@ export const translations = {
     connectingDubaiEuropeAsia: "Connectant Dubaï, l'Europe et l'Asie",
     
     // Services Page
-    servicesPageDescription: "Du sourcing fournisseur à la livraison à destination, nous pilotons l'intégralité de vos opérations d'import/export sur les corridors Chine → Afrique, EAU et Europe.",
+    servicesPageDescription: "Nous gérons l'approvisionnement international pour le compte d'entreprises tierces, du sourcing fournisseur à la livraison à destination. À Dubaï, nous importons également une sélection de produits, mis à disposition de nos distributeurs partenaires.",
     servicesPageTitle: "Import/export de la Chine vers le monde — géré de A à Z",
     servicesPageSubtitle: "",
-    servicesPageDescription1: "Du sourcing fournisseur à la livraison à destination, nous pilotons l'intégralité de vos opérations d'import/export sur les corridors Chine → Afrique, EAU et Europe.",
+    servicesPageDescription1: "Nous gérons l'approvisionnement international pour le compte d'entreprises tierces, du sourcing fournisseur à la livraison à destination. À Dubaï, nous importons également une sélection de produits, mis à disposition de nos distributeurs partenaires.",
     servicesDetail1Title: "Sourcing & Vérification Fournisseurs",
     servicesDetail1Desc: "Audit usine, validation échantillons, contrôles conformité. Nous ne transmettons jamais de fournisseurs non vérifiés.",
     servicesDetail2Title: "Négociation Prix & Contrats",

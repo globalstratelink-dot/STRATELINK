@@ -275,10 +275,10 @@ export function HomeSlides() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1.0 }}
                 viewport={{ once: true }}
-                className="inline-flex items-center px-6 py-3 bg-copper/10 border border-copper/20 rounded-full text-copper text-lg font-medium mb-8"
+                className="inline-flex items-center justify-center w-12 h-12 bg-copper/10 border border-copper/20 rounded-full text-copper mb-8"
+                aria-hidden="true"
               >
-                <TrendingUp className="w-5 h-5 mr-2" />
-                {t('services')}
+                <TrendingUp className="w-5 h-5" />
               </motion.div>
 
               {/* Main Title */}
@@ -391,7 +391,7 @@ export function HomeSlides() {
               <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
                 <Layers className="w-8 h-8 text-copper" />
               </div>
-              <h3 className="title-card text-white mb-4 text-center">{t('productCatalogue')}</h3>
+              <h3 className="title-card text-white mb-4 text-center">{t('productCatalogueBoxTitle')}</h3>
               <p className="text-gray-300 text-center mb-6">{t('productCatalogueDesc')}</p>
               <ul className="space-y-2">
                 {catalogueItems.map((item) => (
