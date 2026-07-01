@@ -24,7 +24,7 @@ export const translations = {
     accelerateInternationalExpansionLine1: "International sourcing.",
     accelerateInternationalExpansionHighlight: "Stock in Dubai.",
     accelerateInternationalExpansionLine2: "Borderless delivery.",
-    strategicPartnerDubaiEuropeAsia: "We source, verify and deliver industrial products from China to Africa, Europe and the UAE — factory to port.",
+    strategicPartnerDubaiEuropeAsia: "We source and export industrial products to Africa and Europe, and import a selection of these products to Dubai, available to local distributors.",
     homeCtaPrimary: "Tell us about your project",
     homeCtaSecondary: "View Our Services",
     homeCatalogueCta: "Distributor catalog",
