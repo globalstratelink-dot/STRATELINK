@@ -51,8 +51,8 @@ export function Navbar() {
   const navItems = useMemo(
     () => [
       { name: stringify(t("home")), href: ROUTES.accueil },
-      { name: stringify(t("services")), href: ROUTES.services },
-      { name: stringify(t("agency")), href: ROUTES.agency },
+      { name: stringify(t("navActivities")), href: ROUTES.services },
+      { name: stringify(t("navAboutUs")), href: ROUTES.agency },
       { name: stringify(t("productCatalogue")), href: ROUTES.catalogue },
     ],
     [t]

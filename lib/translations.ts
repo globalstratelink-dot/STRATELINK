@@ -2,6 +2,8 @@ export const translations = {
   en: {
     // Navigation
     home: "Home",
+    navActivities: "Our Activities",
+    navAboutUs: "About Us ?",
     services: "Our Services",
     agency: "Who We Are ?",
     process: "Process",
@@ -566,6 +568,8 @@ export const translations = {
   fr: {
     // Navigation
     home: "Accueil",
+    navActivities: "Nos activités",
+    navAboutUs: "Qui sommes-nous ?",
     services: "Nos Services",
     agency: "Qui sommes-nous ?",
     process: "Processus",
