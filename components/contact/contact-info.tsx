@@ -15,7 +15,7 @@ export function ContactInfo() {
       icon: <Mail className="w-6 h-6 text-copper" />,
       title: t('emailUs'),
       details: CONTACT_EMAIL,
-      description: t('weWillRespondWithin24Hours')
+      description: ""
     },
     {
       icon: <Phone className="w-6 h-6 text-copper" />,
@@ -34,7 +34,7 @@ export function ContactInfo() {
       icon: <Clock className="w-6 h-6 text-copper" />,
       title: t('businessHours'),
       details: t('support24HoursAvailable'),
-      description: t('weAreHereWhenYouNeedUs')
+      description: ""
     }
   ]
 
