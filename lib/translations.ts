@@ -6,7 +6,7 @@ export const translations = {
     agency: "Who We Are ?",
     process: "Process",
     sourceFromChina: "Source from China",
-    productCatalogue: "Dubai Import Catalogue",
+    productCatalogue: "Distributor catalog",
     catalogue: "Dubai Import Catalogue",
     contact: "Contact",
     getStarted: "Get Started",
@@ -567,8 +567,8 @@ export const translations = {
     agency: "Qui sommes-nous ?",
     process: "Processus",
     sourceFromChina: "Sourcer depuis la Chine",
-    productCatalogue: "Catalogue import Dubaï",
-    catalogue: "Catalogue import Dubaï",
+    productCatalogue: "Catalogue distributeurs",
+    catalogue: "Catalogue distributeurs",
     contact: "Contact",
     getStarted: "Commencer",
     viewOurServices: "Voir nos services",
@@ -580,8 +580,8 @@ export const translations = {
     
     // New Home Slides
     visionSynergiesDevelopment: "Dubaï · Chine · Monde",
-    accelerateInternationalExpansion: "Votre opérateur import/export international basé à Dubaï",
-    strategicPartnerDubaiEuropeAsia: "Nous sourçons, vérifions et livrons des produits industriels depuis la Chine vers l'Afrique, l'Europe et les Émirats — de l'usine à votre port.",
+    accelerateInternationalExpansion: "Sourcing international. Stock à Dubaï. Livraison sans frontières.",
+    strategicPartnerDubaiEuropeAsia: "Nous sourçons et exportons des produits industriels vers l'Afrique, l'Europe et nous importons une sélection de ces produits à Dubaï, disponibles pour les distributeurs locaux.",
     homeCtaPrimary: "Discutons de votre projet",
     homeCtaSecondary: "Voir nos services",
     homeCatalogueCta: "Catalogue distributeurs",
@@ -592,7 +592,7 @@ export const translations = {
     
     // Services Grid
     importExport: "Import/Export",
-    importExportDesc: "Sourcing, négociation, logistique et dédouanement sur les corridors Chine → Afrique, EAU et Europe.",
+    importExportDesc: "Sourcing, négociation, logistique et dédouanement sur les corridors depuis l'Asie vers Afrique, EAU et Europe.",
     importExportItem1: "Sourcing & vérification fournisseurs",
     importExportItem2: "Négociation prix & contrats",
     importExportItem3: "Logistique & transport",
