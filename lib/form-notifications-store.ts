@@ -9,6 +9,8 @@ import {
   listFormNotificationsFromSupabase,
   markAllFormNotificationsReadInSupabase,
   markFormNotificationReadInSupabase,
+  deleteFormNotificationInSupabase,
+  deleteAllFormNotificationsInSupabase,
 } from "@/lib/form-notifications-supabase"
 
 const DATA_DIR = path.join(process.cwd(), "data")
@@ -106,4 +108,23 @@ export async function markAllFormNotificationsRead(): Promise<void> {
   const notifications = await readFromFile()
   const next = notifications.map((n) => ({ ...n, read: true }))
   await writeToFile(next)
+}
+
+export async function deleteFormNotification(id: string): Promise<void> {
+  if (isSupabaseConfigured()) {
+    await deleteFormNotificationInSupabase(id)
+    return
+  }
+
+  const notifications = await readFromFile()
+  await writeToFile(notifications.filter((n) => n.id !== id))
+}
+
+export async function deleteAllFormNotifications(): Promise<void> {
+  if (isSupabaseConfigured()) {
+    await deleteAllFormNotificationsInSupabase()
+    return
+  }
+
+  await writeToFile([])
 }

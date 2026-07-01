@@ -99,7 +99,7 @@ export function AdminSidebar({ onLogout }: AdminSidebarProps) {
 
   return (
     <>
-      <div className="lg:hidden sticky top-0 z-40 border-b border-white/10 bg-[#0d1528] px-3 py-3 flex items-center justify-between">
+      <div className="lg:hidden shrink-0 z-40 border-b border-white/10 bg-[#0d1528] px-3 py-3 flex items-center justify-between">
         <div>
           <p className="text-[10px] uppercase tracking-[0.2em] text-copper font-semibold">STRATELINK</p>
           <p className="text-sm font-bold text-white">Administration</p>
@@ -124,7 +124,8 @@ export function AdminSidebar({ onLogout }: AdminSidebarProps) {
 
       <aside
         className={cn(
-          "fixed lg:sticky top-0 z-50 lg:z-30 h-full lg:h-screen w-64 shrink-0 bg-[#0d1528] border-r border-white/10 flex flex-col transition-transform duration-200",
+          "w-64 shrink-0 bg-[#0d1528] border-r border-white/10 flex flex-col transition-transform duration-200",
+          "fixed inset-y-0 left-0 z-50 h-full lg:relative lg:z-auto lg:h-full lg:translate-x-0",
           mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         )}
       >

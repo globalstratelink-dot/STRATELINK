@@ -117,3 +117,23 @@ export async function markAllFormNotificationsReadInSupabase(): Promise<void> {
     throw error
   }
 }
+
+export async function deleteFormNotificationInSupabase(id: string): Promise<void> {
+  const supabase = getSupabaseAdmin()
+  const { error } = await supabase.from(TABLE).delete().eq("id", id)
+
+  if (error) {
+    console.error("[form-notifications-supabase] delete failed", error)
+    throw error
+  }
+}
+
+export async function deleteAllFormNotificationsInSupabase(): Promise<void> {
+  const supabase = getSupabaseAdmin()
+  const { error } = await supabase.from(TABLE).delete().gte("created_at", "1970-01-01T00:00:00Z")
+
+  if (error) {
+    console.error("[form-notifications-supabase] delete all failed", error)
+    throw error
+  }
+}

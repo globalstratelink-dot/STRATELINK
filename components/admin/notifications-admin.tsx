@@ -1,7 +1,7 @@
 "use client"
 
 import { useCallback, useEffect, useMemo, useState } from "react"
-import { CheckCheck, ExternalLink, Loader2, Mail, RefreshCw } from "lucide-react"
+import { CheckCheck, ExternalLink, Loader2, Mail, RefreshCw, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type { FormNotification, FormNotificationType } from "@/lib/form-notification-types"
 import { cn } from "@/lib/utils"
@@ -30,6 +30,8 @@ export function NotificationsAdminPanel() {
   const [filter, setFilter] = useState<"all" | FormNotificationType>("all")
   const [markingId, setMarkingId] = useState<string | null>(null)
   const [markingAll, setMarkingAll] = useState(false)
+  const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [deletingAll, setDeletingAll] = useState(false)
 
   const loadNotifications = useCallback(async (options?: { silent?: boolean }) => {
     if (!options?.silent) setLoading(true)
@@ -99,6 +101,45 @@ export function NotificationsAdminPanel() {
     }
   }
 
+  const deleteNotification = async (id: string) => {
+    if (!window.confirm("Supprimer cette notification ? Cette action est irréversible.")) return
+
+    setDeletingId(id)
+    try {
+      const res = await fetch("/api/admin/notifications/", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ action: "delete", id }),
+      })
+      if (!res.ok) return
+      setNotifications((prev) => prev.filter((n) => n.id !== id))
+      const data = await res.json()
+      setUnreadCount(typeof data.unreadCount === "number" ? data.unreadCount : 0)
+    } finally {
+      setDeletingId(null)
+    }
+  }
+
+  const deleteAll = async () => {
+    if (!window.confirm("Supprimer toutes les notifications ? Cette action est irréversible.")) return
+
+    setDeletingAll(true)
+    try {
+      const res = await fetch("/api/admin/notifications/", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        body: JSON.stringify({ action: "deleteAll" }),
+      })
+      if (!res.ok) return
+      setNotifications([])
+      setUnreadCount(0)
+    } finally {
+      setDeletingAll(false)
+    }
+  }
+
   return (
     <div className="p-4 sm:p-6 max-w-5xl">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
@@ -133,6 +174,23 @@ export function NotificationsAdminPanel() {
                 <CheckCheck className="w-4 h-4 mr-2" />
               )}
               Tout marquer lu ({unreadCount})
+            </Button>
+          )}
+          {notifications.length > 0 && (
+            <Button
+              type="button"
+              size="sm"
+              variant="outline"
+              onClick={deleteAll}
+              disabled={deletingAll}
+              className="border-red-500/30 bg-red-500/10 text-red-300 hover:bg-red-500/20"
+            >
+              {deletingAll ? (
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              ) : (
+                <Trash2 className="w-4 h-4 mr-2" />
+              )}
+              Tout effacer
             </Button>
           )}
         </div>
@@ -243,25 +301,44 @@ export function NotificationsAdminPanel() {
                   ) : null}
                 </div>
 
-                {!notification.read && (
+                <div className="flex flex-col sm:items-end gap-2 shrink-0">
+                  {!notification.read && (
+                    <Button
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      disabled={markingId === notification.id}
+                      onClick={() => markRead(notification.id)}
+                      className="border-white/20 bg-white/5 text-gray-200 hover:bg-white/10"
+                    >
+                      {markingId === notification.id ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <>
+                          <CheckCheck className="w-4 h-4 mr-2" />
+                          Marquer lu
+                        </>
+                      )}
+                    </Button>
+                  )}
                   <Button
                     type="button"
                     size="sm"
                     variant="outline"
-                    disabled={markingId === notification.id}
-                    onClick={() => markRead(notification.id)}
-                    className="shrink-0 border-white/20 bg-white/5 text-gray-200 hover:bg-white/10"
+                    disabled={deletingId === notification.id}
+                    onClick={() => deleteNotification(notification.id)}
+                    className="border-red-500/30 bg-red-500/10 text-red-300 hover:bg-red-500/20"
                   >
-                    {markingId === notification.id ? (
+                    {deletingId === notification.id ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
                       <>
-                        <CheckCheck className="w-4 h-4 mr-2" />
-                        Marquer lu
+                        <Trash2 className="w-4 h-4 mr-2" />
+                        Supprimer
                       </>
                     )}
                   </Button>
-                )}
+                </div>
               </div>
             </li>
           ))}

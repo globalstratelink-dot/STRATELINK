@@ -8,6 +8,8 @@ import {
   listFormNotifications,
   markAllFormNotificationsRead,
   markFormNotificationRead,
+  deleteFormNotification,
+  deleteAllFormNotifications,
 } from "@/lib/form-notifications-store"
 
 export const dynamic = "force-dynamic"
@@ -61,6 +63,17 @@ export async function PATCH(request: NextRequest) {
 
     if (body?.action === "markAllRead") {
       await markAllFormNotificationsRead()
+      return NextResponse.json({ success: true, unreadCount: 0 }, { headers: ADMIN_HEADERS })
+    }
+
+    if (body?.action === "delete" && body.id) {
+      await deleteFormNotification(String(body.id))
+      const unreadCount = await countUnreadFormNotifications()
+      return NextResponse.json({ success: true, unreadCount }, { headers: ADMIN_HEADERS })
+    }
+
+    if (body?.action === "deleteAll") {
+      await deleteAllFormNotifications()
       return NextResponse.json({ success: true, unreadCount: 0 }, { headers: ADMIN_HEADERS })
     }
 
