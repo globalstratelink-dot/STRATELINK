@@ -4,6 +4,7 @@ export const translations = {
     home: "Home",
     navActivities: "Our Activities",
     navAboutUs: "About Us ?",
+    navDistributionUae: "Distribution UAE",
     services: "Our Services",
     agency: "Who We Are ?",
     process: "Process",
@@ -530,8 +531,8 @@ export const translations = {
 
     // Catalogue
     catalogueBadge: "Dubai distributor catalogue",
-    catalogueTitle: "Dubai Import Catalogue",
-    catalogueSubtitle: "Industrial products sourced directly from China — no public pricing, custom quotes for qualified partners.",
+    catalogueTitle: "Become our distribution partner in the UAE",
+    catalogueSubtitle: "Products already imported from China, ready to distribute. Request the price for any product you're interested in.",
     catalogueIncludes: "What's included",
     catalogueAudience: "Audience",
     catalogueCta: "Request a quote",
@@ -575,6 +576,7 @@ export const translations = {
     home: "Accueil",
     navActivities: "Nos activités",
     navAboutUs: "Qui sommes-nous ?",
+    navDistributionUae: "Distribution UAE",
     services: "Nos Services",
     agency: "Qui sommes-nous ?",
     process: "Processus",
@@ -1101,8 +1103,8 @@ export const translations = {
 
     // Catalogue
     catalogueBadge: "Catalogue distributeurs Dubaï",
-    catalogueTitle: "Catalogue import Dubaï",
-    catalogueSubtitle: "Produits industriels sourcés directement en Chine — sans prix public, devis sur mesure pour partenaires qualifiés.",
+    catalogueTitle: "Devenez notre partenaire de distribution aux Émirats",
+    catalogueSubtitle: "Des produits déjà importés, prêts à être distribués. Demandez le prix pour chaque produit qui vous intéresse.",
     catalogueIncludes: "Ce qui est inclus",
     catalogueAudience: "Pour qui",
     catalogueCta: "Demander un devis",

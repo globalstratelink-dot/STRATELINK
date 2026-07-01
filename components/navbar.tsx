@@ -53,7 +53,7 @@ export function Navbar() {
       { name: stringify(t("home")), href: ROUTES.accueil },
       { name: stringify(t("navActivities")), href: ROUTES.services },
       { name: stringify(t("navAboutUs")), href: ROUTES.agency },
-      { name: stringify(t("productCatalogue")), href: ROUTES.catalogue },
+      { name: stringify(t("navDistributionUae")), href: ROUTES.catalogue },
     ],
     [t]
   )
