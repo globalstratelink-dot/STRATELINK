@@ -19,7 +19,9 @@ export const translations = {
     
     // New Home Slides
     visionSynergiesDevelopment: "China · Dubai · Worldwide",
-    accelerateInternationalExpansion: "Your international import/export operator based in Dubai",
+    accelerateInternationalExpansionLine1: "International sourcing.",
+    accelerateInternationalExpansionHighlight: "Stock in Dubai.",
+    accelerateInternationalExpansionLine2: "Borderless delivery.",
     strategicPartnerDubaiEuropeAsia: "We source, verify and deliver industrial products from China to Africa, Europe and the UAE — factory to port.",
     homeCtaPrimary: "Tell us about your project",
     homeCtaSecondary: "View Our Services",
@@ -581,7 +583,9 @@ export const translations = {
     
     // New Home Slides
     visionSynergiesDevelopment: "Chine · Dubaï · Monde",
-    accelerateInternationalExpansion: "Sourcing international. Stock à Dubaï. Livraison sans frontières.",
+    accelerateInternationalExpansionLine1: "Sourcing international.",
+    accelerateInternationalExpansionHighlight: "Stock à Dubaï.",
+    accelerateInternationalExpansionLine2: "Livraison sans frontières.",
     strategicPartnerDubaiEuropeAsia: "Nous sourçons et exportons des produits industriels vers l'Afrique, l'Europe et nous importons une sélection de ces produits à Dubaï, disponibles pour les distributeurs locaux.",
     homeCtaPrimary: "Discutons de votre projet",
     homeCtaSecondary: "Voir nos services",

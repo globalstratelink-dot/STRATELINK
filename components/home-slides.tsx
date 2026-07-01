@@ -152,7 +152,9 @@ export function HomeSlides() {
                 transition={{ duration: 1.2, delay: 0.3 }}
                 className="title-hero text-white mb-6 sm:mb-8"
               >
-                {t('accelerateInternationalExpansion')}
+                <span className="block">{t('accelerateInternationalExpansionLine1')}</span>
+                <span className="block text-copper mt-1">{t('accelerateInternationalExpansionHighlight')}</span>
+                <span className="block mt-1">{t('accelerateInternationalExpansionLine2')}</span>
               </motion.h1>
 
               {/* Subtitle */}
