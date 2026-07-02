@@ -311,7 +311,7 @@ export const translations = {
     processHeroTitle1: "Source Smarter from China.",
     processHeroTitle2: "Your Trading Partner",
     processHeroTitle3: "Deliver Anywhere.",
-    processHeroDescription: "We source, verify and deliver industrial products from China to Africa, Europe and the UAE — from the factory to your chosen destination.",
+    processHeroDescription: "We source, verify and deliver industrial products from China to Africa, Europe and the United Arab Emirates — from factory to your port of destination.",
     processQualifyProject: "TELL US ABOUT YOUR PROJECT →",
     processHowItWorks: "HOW IT WORKS ↓",
     
@@ -885,7 +885,7 @@ export const translations = {
     processHeroTitle1: "Sourcez mieux depuis la Chine.",
     processHeroTitle2: "Votre partenaire commercial",
     processHeroTitle3: "Livraison mondiale.",
-    processHeroDescription: "Nous sourçons, vérifions et livrons des produits industriels de Chine vers l'Afrique, l'Europe et les Émirats — de l'usine à la destination de votre choix.",
+    processHeroDescription: "Nous sourçons, vérifions et livrons des produits industriels de Chine vers l'Afrique, l'Europe et les Émirats arabes unis — de l'usine à votre port de destination.",
     processQualifyProject: "DISCUTONS DE VOTRE PROJET →",
     processHowItWorks: "COMMENT ÇA MARCHE ↓",
     
