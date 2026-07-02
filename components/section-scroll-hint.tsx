@@ -18,7 +18,7 @@ export function SectionScrollHintAnchor({ targetId }: { targetId: string }) {
 /** @deprecated No extra section padding needed with the fixed scroll button. */
 export const sectionWithScrollHintClass = ""
 
-function useScrollHintState() {
+function useScrollHintState(enabled: boolean) {
   const [isAtBottom, setIsAtBottom] = useState(false)
   const [nextTargetId, setNextTargetId] = useState<string | null>(null)
 
@@ -53,6 +53,7 @@ function useScrollHintState() {
   }, [])
 
   useEffect(() => {
+    if (!enabled) return
     update()
     window.addEventListener("scroll", update, { passive: true })
     window.addEventListener("resize", update)
@@ -60,7 +61,7 @@ function useScrollHintState() {
       window.removeEventListener("scroll", update)
       window.removeEventListener("resize", update)
     }
-  }, [update])
+  }, [update, enabled])
 
   return { isAtBottom, nextTargetId }
 }
@@ -69,11 +70,12 @@ export function SectionScrollFloat() {
   const pathname = usePathname()
   const { language } = useLanguage()
   const [mounted, setMounted] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-  const { isAtBottom, nextTargetId } = useScrollHintState()
+  const [isMobile, setIsMobile] = useState(true)
 
   const pagePath = pathname?.replace(/\/$/, "") ?? ""
   const isScrollPage = SCROLL_HINT_PAGES.includes(pagePath)
+  const showScrollHint = mounted && isScrollPage && !isMobile
+  const { isAtBottom, nextTargetId } = useScrollHintState(showScrollHint)
 
   useEffect(() => {
     setMounted(true)
@@ -93,7 +95,7 @@ export function SectionScrollFloat() {
     }
   }
 
-  if (!mounted || !isScrollPage || typeof document === "undefined") return null
+  if (!showScrollHint || typeof document === "undefined") return null
 
   const ariaLabel = isAtBottom
     ? language === "fr"
@@ -111,8 +113,8 @@ export function SectionScrollFloat() {
       className="group flex flex-col items-start focus:outline-none focus-visible:ring-2 focus-visible:ring-copper focus-visible:ring-offset-2 focus-visible:ring-offset-navy rounded-full"
       style={{
         position: "fixed",
-        left: isMobile ? "16px" : "24px",
-        bottom: isMobile ? "112px" : "24px",
+        left: "24px",
+        bottom: "24px",
         zIndex: 55,
         transform: "translateZ(0)",
         WebkitTransform: "translateZ(0)",
