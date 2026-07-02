@@ -600,7 +600,7 @@ export const translations = {
     accelerateInternationalExpansionLine1: "Sourcing international.",
     accelerateInternationalExpansionHighlight: "Stock à Dubaï.",
     accelerateInternationalExpansionLine2: "Livraison sur tous les continents.",
-    strategicPartnerDubaiEuropeAsia: "Nous sourçons et exportons des produits industriels vers l'Afrique et l'Europe et importons à Dubaï une sélection de produits mis à disposition de nos distributeurs.",
+    strategicPartnerDubaiEuropeAsia: "Nous sourçons et exportons des produits industriels vers l'Afrique et l'Europe, et importons à Dubaï une sélection de produits mis à disposition de nos distributeurs.",
     homeCtaPrimary: "Discutons de votre projet",
     homeCtaSecondary: "Voir nos services",
     homeCatalogueCta: "Catalogue distributeurs",
