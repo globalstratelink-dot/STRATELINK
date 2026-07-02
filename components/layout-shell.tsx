@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { Navbar } from "@/components/navbar"
 import { WhatsAppFloat } from "@/components/whatsapp-float"
 import { MobileLanguageFAB } from "@/components/mobile-language-fab"
+import { SectionScrollFloat } from "@/components/section-scroll-hint"
 import { scrollToQualifyProject } from "@/lib/scroll-to-qualify"
 
 export function LayoutShell({ children }: { children: React.ReactNode }) {
@@ -27,6 +28,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
             phoneNumber="+971 54 319 2348"
             message="Bonjour, j'aimerais avoir plus d'informations"
           />
+          <SectionScrollFloat />
           <MobileLanguageFAB />
         </>
       )}
