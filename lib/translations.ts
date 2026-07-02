@@ -381,7 +381,7 @@ export const translations = {
     processClient1Title: "INDUSTRIAL IMPORTERS",
     processClient1Desc: "Construction materials, steel, electrical equipment, machinery. Companies with recurring volume needs.",
     processClient2Title: "DISTRIBUTORS",
-    processClient2Desc: "Wherever you are, you know your market — We manage the supply chain.",
+    processClient2Desc: "Wherever you are, you know your market - We manage the supply chain.",
     processClient3Title: "PROJECT & TENDER BUYERS",
     processClient3Desc: "Engineering, procurement and construction contractors needing fast, reliable sourcing for specific project requirements with full documentation compliance.",
     processClient4Title: "UAE-BASED TRADE OPERATORS",
