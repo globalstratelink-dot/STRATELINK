@@ -21,7 +21,7 @@ export function ProcessWhoWeWorkWith() {
     {
       icon: (
         <Image
-          src="/process/planet-earth.png"
+          src="/images/process/planet-earth.png"
           alt=""
           width={24}
           height={24}
@@ -43,7 +43,7 @@ export function ProcessWhoWeWorkWith() {
     {
       icon: (
         <Image
-          src="/process/world-flag.png"
+          src="/images/process/world-flag.png"
           alt=""
           width={24}
           height={24}

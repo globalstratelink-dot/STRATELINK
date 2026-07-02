@@ -7,14 +7,14 @@ import { useLanguage } from "@/contexts/language-context"
 import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
 import { cn } from "@/lib/utils"
 
-const CHINA_ICON = "/process/icons8-chine-emoji-48.png"
+const CHINA_ICON = "/images/process/icons8-chine-emoji-48.png"
 
 export function ProcessTradeCorridors() {
   const { t } = useLanguage()
 
   const corridors = [
     {
-      destinationIcon: "/process/european-union.png",
+      destinationIcon: "/images/process/european-union.png",
       destinationAlt: "European Union",
       label: t("processCorridor1Label"),
       title: t("processCorridor1Title"),
@@ -27,7 +27,7 @@ export function ProcessTradeCorridors() {
       ],
     },
     {
-      destinationIcon: "/process/world-flag.png",
+      destinationIcon: "/images/process/world-flag.png",
       destinationAlt: "United Arab Emirates",
       label: t("processCorridor2Label"),
       title: t("processCorridor2Title"),
@@ -40,7 +40,7 @@ export function ProcessTradeCorridors() {
       ],
     },
     {
-      destinationIcon: "/process/planet-earth.png",
+      destinationIcon: "/images/process/planet-earth.png",
       destinationAlt: "Africa",
       label: t("processCorridor3Label"),
       title: t("processCorridor3Title"),
