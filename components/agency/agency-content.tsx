@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import { WhyChooseStratelink } from "@/components/why-choose-stratelink"
 import { SectionScrollHintAnchor } from "@/components/section-scroll-hint"
-import { cn } from "@/lib/utils"
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -24,7 +23,7 @@ export function AgencyContent() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-            <motion.div {...fadeUp} className="space-y-6 sm:space-y-8 min-w-0 order-2 lg:order-1">
+            <motion.div {...fadeUp} className="space-y-6 sm:space-y-8 min-w-0">
               <div className="space-y-4 sm:space-y-6">
                 <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-copper/10 border border-copper/20 rounded-full text-copper text-xs sm:text-sm font-medium">
                   {t("agency")}
@@ -46,7 +45,7 @@ export function AgencyContent() {
             <motion.div
               {...fadeUp}
               transition={{ ...fadeUp.transition, delay: 0.15 }}
-              className="flex justify-center lg:justify-end min-w-0 order-1 lg:order-2"
+              className="flex justify-center lg:justify-end min-w-0"
             >
               <div className="relative w-full max-w-xs sm:max-w-md lg:max-w-lg mx-auto lg:mx-0">
                 <div className="absolute inset-0 bg-gradient-to-r from-copper/20 via-transparent to-sand/20 rounded-3xl blur-2xl" />
