@@ -11,9 +11,9 @@ export const metadata = pageMetadata({
 
 export default function AboutUsPage() {
   return (
-    <div className="min-h-screen bg-navy pt-20 md:pt-24">
+    <div className="min-h-screen bg-navy pt-16 sm:pt-20 md:pt-24 overflow-x-hidden">
       <AgencyContent />
-      <div className="pt-8 md:pt-12">
+      <div className="pt-6 sm:pt-8 md:pt-12">
         <Footer />
       </div>
     </div>

@@ -3,66 +3,62 @@
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import { WhyChooseStratelink } from "@/components/why-choose-stratelink"
-import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
+import { SectionScrollHintAnchor } from "@/components/section-scroll-hint"
 import { cn } from "@/lib/utils"
+
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  transition: { duration: 0.7 },
+  viewport: { once: true },
+} as const
 
 export function AgencyContent() {
   const { t } = useLanguage()
 
-return (
-    <div className="min-h-screen bg-navy">
-      {/* About Section */}
-      <section id="about-us-intro" className={cn("py-20 bg-gradient-to-br from-navy via-navy to-navy/90 scroll-mt-28", sectionWithScrollHintClass)}>
+  return (
+    <div className="bg-navy overflow-x-hidden">
+      <section
+        id="about-us-intro"
+        className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-navy via-navy to-navy/90 scroll-mt-24 sm:scroll-mt-28 overflow-x-hidden"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 bg-copper/10 border border-copper/20 rounded-full text-copper text-sm font-medium">
-                  {t('agency')}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+            <motion.div {...fadeUp} className="space-y-6 sm:space-y-8 min-w-0 order-2 lg:order-1">
+              <div className="space-y-4 sm:space-y-6">
+                <div className="inline-flex items-center px-3 py-1.5 sm:px-4 sm:py-2 bg-copper/10 border border-copper/20 rounded-full text-copper text-xs sm:text-sm font-medium">
+                  {t("agency")}
                 </div>
-                
-                <h2 className="text-4xl lg:text-5xl font-bold text-white leading-tight">
-                  <span className="block">{t('orchestratorOfInternationalGrowthLine1')}</span>
-                  <span className="block mt-2 text-copper">{t('orchestratorOfInternationalGrowthLine2')}</span>
+
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight text-balance">
+                  <span className="block">{t("orchestratorOfInternationalGrowthLine1")}</span>
+                  <span className="block mt-2 text-copper">{t("orchestratorOfInternationalGrowthLine2")}</span>
                 </h2>
-                
-                <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
-                  <p>{t('aboutStratelinkDescription1')}</p>
-                  <p>{t('aboutStratelinkDescription1Part2')}</p>
-                  <p className="text-copper font-semibold">{t('aboutStratelinkDescription2')}</p>
+
+                <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-300 leading-relaxed">
+                  <p>{t("aboutStratelinkDescription1")}</p>
+                  <p>{t("aboutStratelinkDescription1Part2")}</p>
+                  <p className="text-copper font-semibold">{t("aboutStratelinkDescription2")}</p>
                 </div>
               </div>
             </motion.div>
 
-            {/* Image */}
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="flex justify-center lg:justify-end"
+              {...fadeUp}
+              transition={{ ...fadeUp.transition, delay: 0.15 }}
+              className="flex justify-center lg:justify-end min-w-0 order-1 lg:order-2"
             >
-              <div className="relative max-w-lg mx-auto lg:mx-0">
-                {/* Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-copper/20 via-transparent to-sand/20 rounded-3xl blur-2xl"></div>
-                
-                {/* Image Container */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
+              <div className="relative w-full max-w-xs sm:max-w-md lg:max-w-lg mx-auto lg:mx-0">
+                <div className="absolute inset-0 bg-gradient-to-r from-copper/20 via-transparent to-sand/20 rounded-3xl blur-2xl" />
+
+                <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
                   <img
                     src="/workss.webp"
                     alt="STRATELINK GLOBAL Agency"
                     className="w-full h-auto object-cover"
                   />
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent"></div>
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
                 </div>
               </div>
             </motion.div>
@@ -75,5 +71,4 @@ return (
       <WhyChooseStratelink />
     </div>
   )
-} 
-
+}
