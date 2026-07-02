@@ -37,22 +37,42 @@ const nextConfig = {
     return [
       {
         source: "/services",
-        destination: "/",
+        destination: "/activities/",
         permanent: true,
       },
       {
         source: "/services/:path*",
-        destination: "/",
+        destination: "/activities/",
+        permanent: true,
+      },
+      {
+        source: "/process",
+        destination: "/home/",
+        permanent: true,
+      },
+      {
+        source: "/process/:path*",
+        destination: "/home/",
+        permanent: true,
+      },
+      {
+        source: "/agency",
+        destination: "/about-us/",
+        permanent: true,
+      },
+      {
+        source: "/agency/:path*",
+        destination: "/about-us/",
         permanent: true,
       },
       {
         source: "/calendly",
-        destination: "/process/",
+        destination: "/home/",
         permanent: true,
       },
       {
         source: "/calendly/:path*",
-        destination: "/process/",
+        destination: "/home/",
         permanent: true,
       },
     ]

@@ -10,5 +10,5 @@ export function scrollToQualifyProject() {
 }
 
 export function isQualifyScrollPage(pathname: string) {
-  return normalizePathname(pathname) === "/process"
+  return normalizePathname(pathname) === "/home"
 }

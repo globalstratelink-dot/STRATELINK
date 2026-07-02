@@ -48,7 +48,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4">{t("home")}</h4>
+            <h4 className="text-white font-semibold mb-4">{t("navActivities")}</h4>
             <ul className="space-y-3 text-gray-300 text-sm">
               {footerLinks.map((link) => (
                 <li key={link.href}>

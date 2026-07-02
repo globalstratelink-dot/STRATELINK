@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
 import { useLanguage } from "@/contexts/language-context"
+import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
+import { cn } from "@/lib/utils"
 
 const CHINA_ICON = "/process/icons8-chine-emoji-48.png"
 
@@ -53,7 +55,7 @@ export function ProcessTradeCorridors() {
   ]
 
   return (
-    <section className="bg-navy border-t border-white/10">
+    <section id="trade-corridors" className={cn("bg-navy border-t border-white/10 scroll-mt-28", sectionWithScrollHintClass)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -124,6 +126,8 @@ export function ProcessTradeCorridors() {
           ))}
         </div>
       </div>
+
+      <SectionScrollHintAnchor targetId="our-partners" />
     </section>
   )
 }

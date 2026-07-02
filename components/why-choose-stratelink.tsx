@@ -7,7 +7,7 @@ export function WhyChooseStratelink() {
   const { t } = useLanguage()
 
   return (
-    <section className="py-20 bg-gradient-to-br from-navy/95 to-navy relative">
+    <section id="why-stratelink" className="py-20 bg-gradient-to-br from-navy/95 to-navy relative scroll-mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

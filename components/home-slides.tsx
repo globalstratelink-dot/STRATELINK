@@ -6,7 +6,9 @@ import { ArrowRight, ArrowLeft, Globe, TrendingUp, Layers, CheckCircle } from "l
 import { useLanguage } from "@/contexts/language-context"
 import { HeroImage, ServicesImage, OptimizedAvatar } from "@/components/optimized-image"
 import Link from "next/link"
-import { ROUTES } from "@/lib/site-routes"
+import { ROUTES, qualifyProjectHref } from "@/lib/site-routes"
+import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
+import { cn } from "@/lib/utils"
 import { useRef, useState, useEffect } from "react"
 
 export function HomeSlides() {
@@ -123,7 +125,7 @@ export function HomeSlides() {
   return (
     <div className="min-h-screen bg-navy">
       {/* Slide 1: Vision - Synergies - Développement */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy via-navy to-navy/90 relative overflow-hidden pt-20 md:pt-24 lg:pt-28 xl:pt-32 pb-8 md:pb-12">
+      <section className={cn("min-h-screen flex items-center justify-center bg-gradient-to-br from-navy via-navy to-navy/90 relative overflow-x-hidden pt-20 md:pt-24 lg:pt-28 xl:pt-32", sectionWithScrollHintClass)}>
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-72 h-72 bg-copper/10 rounded-full blur-3xl"></div>
@@ -166,35 +168,6 @@ export function HomeSlides() {
               >
                 {t('strategicPartnerDubaiEuropeAsia')}
               </motion.p>
-
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.9 }}
-                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              >
-                <Button 
-                  size="lg"
-                  className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:scale-105 transition-transform duration-200 w-full sm:w-auto"
-                  asChild
-                >
-                  <Link href={ROUTES.accueil}>
-                    {t('homeCtaPrimary')}
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
-                  </Link>
-                </Button>
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  className="border-copper text-copper hover:bg-copper hover:text-navy font-semibold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 w-full sm:w-auto"
-                  asChild
-                >
-                  <Link href={ROUTES.catalogue}>
-                    {t('homeCatalogueCta')}
-                  </Link>
-                </Button>
-              </motion.div>
             </div>
 
             {/* Right Logo Block */}
@@ -256,10 +229,12 @@ export function HomeSlides() {
             </motion.div>
           </div>
         </div>
+
+        <SectionScrollHintAnchor targetId="our-expertise" />
       </section>
 
       {/* Slide 2: Nos Services */}
-      <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-navy/95 to-navy relative overflow-hidden mt-12 md:mt-10 lg:mt-12 pt-4 md:pt-6">
+      <section id="our-expertise" className={cn("min-h-screen flex items-center justify-center bg-gradient-to-br from-navy/95 to-navy relative overflow-x-hidden mt-12 md:mt-10 lg:mt-12 pt-4 md:pt-6 scroll-mt-28", sectionWithScrollHintClass)}>
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-copper/5 rounded-full blur-3xl"></div>
@@ -395,7 +370,7 @@ export function HomeSlides() {
               </div>
               <h3 className="title-card text-white mb-4 text-center">{t('productCatalogueBoxTitle')}</h3>
               <p className="text-gray-300 text-center mb-6">{t('productCatalogueDesc')}</p>
-              <ul className="space-y-2">
+              <ul className="space-y-2 mb-6">
                 {catalogueItems.map((item) => (
                   <li key={String(item)} className="flex items-start gap-2 text-sm text-gray-300">
                     <CheckCircle className="w-4 h-4 text-copper shrink-0 mt-0.5" />
@@ -403,13 +378,43 @@ export function HomeSlides() {
                   </li>
                 ))}
               </ul>
+              <Button
+                size="sm"
+                variant="outline"
+                className="w-full border-copper text-copper hover:bg-copper hover:text-navy font-semibold"
+                asChild
+              >
+                <Link href={ROUTES.catalogue}>{t('homeCatalogueCta')}</Link>
+              </Button>
             </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 1 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center max-w-2xl mx-auto"
+          >
+            <p className="text-gray-400 mb-6">{t('contactUsForConsultation')}</p>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-copper to-sand text-navy font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:scale-105 transition-transform duration-200"
+              asChild
+            >
+              <Link href={qualifyProjectHref()}>
+                {t('homeCtaPrimary')}
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+              </Link>
+            </Button>
+          </motion.div>
         </div>
+
+        <SectionScrollHintAnchor targetId="testimonials-section" />
       </section>
 
       {/* Slide 3 - Ils nous ont fait confiance */}
-      <section className="py-20 relative overflow-x-hidden">
+      <section id="testimonials-section" className="py-20 relative overflow-x-hidden scroll-mt-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Header du Slide 4 */}
           <motion.div

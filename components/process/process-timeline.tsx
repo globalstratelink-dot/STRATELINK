@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
+import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
+import { cn } from "@/lib/utils"
 
 export function ProcessTimeline() {
   const { t } = useLanguage()
@@ -17,7 +19,7 @@ export function ProcessTimeline() {
     "relative z-10 rounded-full border-2 border-copper/60 bg-navy flex items-center justify-center transition-all duration-300 cursor-pointer hover:border-copper hover:bg-copper/10 hover:shadow-[0_0_20px_rgba(169,121,104,0.35)]"
 
   return (
-    <section className="bg-navy border-t border-white/10">
+    <section id="the-process" className={cn("bg-navy border-t border-white/10 scroll-mt-28", sectionWithScrollHintClass)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -101,6 +103,8 @@ export function ProcessTimeline() {
           ))}
         </div>
       </div>
+
+      <SectionScrollHintAnchor targetId="qualify-project" />
     </section>
   )
 }

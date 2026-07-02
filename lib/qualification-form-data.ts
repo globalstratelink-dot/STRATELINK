@@ -129,7 +129,8 @@ export function isIdentityStepComplete(form: QualificationFormData): boolean {
     form.firstName.trim().length > 0 &&
     form.lastName.trim().length > 0 &&
     form.companyName.trim().length > 0 &&
-    form.email.trim().length > 0
+    form.email.trim().length > 0 &&
+    form.country.trim().length > 0
   )
 }
 

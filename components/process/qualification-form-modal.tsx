@@ -235,6 +235,8 @@ export function QualificationFormModal() {
     <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
       <DialogContent
         data-qualification-form
+        onInteractOutside={(event) => event.preventDefault()}
+        onEscapeKeyDown={(event) => event.preventDefault()}
         className={cn(
           "w-full max-w-lg lg:max-w-xl bg-navy border border-white/15 p-0 gap-0 text-white flex flex-col overflow-hidden",
           "max-sm:fixed max-sm:inset-0 max-sm:left-0 max-sm:top-0 max-sm:translate-x-0 max-sm:translate-y-0",
@@ -249,6 +251,9 @@ export function QualificationFormModal() {
         <div className={cn("border-b border-white/10 shrink-0", headerPadding)}>
           <p className="text-sm sm:text-base md:text-lg tracking-[0.15em] sm:tracking-[0.2em] text-copper uppercase font-medium pr-8 sm:pr-10">
             {t("qualFormTitle")}
+          </p>
+          <p className="text-xs sm:text-sm text-gray-400 mt-2 pr-8 sm:pr-10 leading-relaxed">
+            {t("qualFormSubtitle")}
           </p>
           <div className="border-t border-white/15 mt-2.5 pt-2.5 sm:mt-3 sm:pt-3">
             <div className="relative pb-1">
@@ -332,7 +337,7 @@ export function QualificationFormModal() {
                       <Input type="email" className={inputClassCompact} value={form.email} onChange={(e) => updateForm({ email: e.target.value })} placeholder="email@company.com" />
                     </div>
                     <div>
-                      <label className={labelClassCompact}>{t("qualCountry")}</label>
+                      <label className={labelClassCompact}>{t("qualCountry")} *</label>
                       <Select value={form.country || undefined} onValueChange={handleCountryChange}>
                         <SelectTrigger className={cn(inputClassCompact, "w-full [&>span]:text-left [&>span]:text-gray-100")}>
                           <SelectValue placeholder={t("qualSelect")} />

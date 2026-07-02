@@ -6,10 +6,10 @@ const PUBLIC_ROUTES: Array<{
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]
   priority: number
 }> = [
-  { path: "/", changeFrequency: "weekly", priority: 1 },
+  { path: "/home/", changeFrequency: "weekly", priority: 1 },
+  { path: "/activities/", changeFrequency: "weekly", priority: 0.95 },
   { path: "/catalogue/", changeFrequency: "weekly", priority: 0.9 },
-  { path: "/process/", changeFrequency: "monthly", priority: 0.85 },
-  { path: "/agency/", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/about-us/", changeFrequency: "monthly", priority: 0.8 },
   { path: "/contact/", changeFrequency: "monthly", priority: 0.85 },
   { path: "/privacy-policy/", changeFrequency: "yearly", priority: 0.3 },
   { path: "/terms-of-use/", changeFrequency: "yearly", priority: 0.3 },

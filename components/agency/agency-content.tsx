@@ -3,6 +3,8 @@
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
 import { WhyChooseStratelink } from "@/components/why-choose-stratelink"
+import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
+import { cn } from "@/lib/utils"
 
 export function AgencyContent() {
   const { t } = useLanguage()
@@ -10,7 +12,7 @@ export function AgencyContent() {
 return (
     <div className="min-h-screen bg-navy">
       {/* About Section */}
-      <section className="py-20 bg-gradient-to-br from-navy via-navy to-navy/90">
+      <section id="about-us-intro" className={cn("py-20 bg-gradient-to-br from-navy via-navy to-navy/90 scroll-mt-28", sectionWithScrollHintClass)}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Content */}
@@ -66,6 +68,8 @@ return (
             </motion.div>
           </div>
         </div>
+
+        <SectionScrollHintAnchor targetId="why-stratelink" />
       </section>
 
       <WhyChooseStratelink />

@@ -4,6 +4,8 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { Factory } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
+import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
+import { cn } from "@/lib/utils"
 
 export function ProcessWhoWeWorkWith() {
   const { t } = useLanguage()
@@ -54,7 +56,7 @@ export function ProcessWhoWeWorkWith() {
   ]
 
   return (
-    <section className="bg-navy border-t border-white/10">
+    <section id="our-partners" className={cn("bg-navy border-t border-white/10 scroll-mt-28", sectionWithScrollHintClass)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
         <div className="grid lg:grid-cols-[2fr_3fr] gap-12 lg:gap-16 xl:gap-20 items-start">
           {/* Left column */}
@@ -119,6 +121,8 @@ export function ProcessWhoWeWorkWith() {
           </div>
         </div>
       </div>
+
+      <SectionScrollHintAnchor targetId="the-process" />
     </section>
   )
 }

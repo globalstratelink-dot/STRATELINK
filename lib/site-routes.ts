@@ -1,8 +1,8 @@
 /** Canonical internal paths (trailingSlash matches next.config). */
 export const ROUTES = {
-  accueil: "/process/",
-  services: "/",
-  agency: "/agency/",
+  accueil: "/home/",
+  services: "/activities/",
+  agency: "/about-us/",
   catalogue: "/catalogue/",
   contact: "/contact/",
   legalNotice: "/legal-notice/",

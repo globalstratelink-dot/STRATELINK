@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
+import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
+import { cn } from "@/lib/utils"
 
 export function ProcessWhatWeDo() {
   const { t } = useLanguage()
@@ -15,7 +17,7 @@ export function ProcessWhatWeDo() {
   ]
 
   return (
-    <section id="how-it-works" className="bg-navy border-t border-white/10">
+    <section id="how-it-works" className={cn("bg-navy border-t border-white/10", sectionWithScrollHintClass)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
         <div className="grid lg:grid-cols-[2fr_3fr] gap-12 lg:gap-16 xl:gap-20 items-start">
           {/* Left column */}
@@ -37,6 +39,9 @@ export function ProcessWhatWeDo() {
               <span className="block text-white">{t("processSlide2Title1")}</span>
               <span className="block text-copper mt-1">{t("processSlide2Title2")}</span>
             </h2>
+            <p className="text-sm sm:text-base tracking-[0.15em] text-gray-500 uppercase">
+              {t("processSlide2ResponseTime")}
+            </p>
 
             <div className="space-y-4 max-w-md">
               <p className="text-base sm:text-lg text-gray-400 leading-relaxed">
@@ -83,6 +88,8 @@ export function ProcessWhatWeDo() {
           </motion.div>
         </div>
       </div>
+
+      <SectionScrollHintAnchor targetId="trade-corridors" />
     </section>
   )
 }

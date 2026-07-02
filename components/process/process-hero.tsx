@@ -3,7 +3,8 @@
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/contexts/language-context"
-import { QualifyProjectButton } from "@/components/process/qualify-project-button"
+import { SectionScrollHintAnchor } from "@/components/section-scroll-hint"
+import { scrollToQualifyProject } from "@/lib/scroll-to-qualify"
 
 export function ProcessHero() {
   const { t } = useLanguage()
@@ -16,7 +17,7 @@ export function ProcessHero() {
   const circleSpacing = 130
 
   return (
-    <section className="h-screen bg-navy relative overflow-hidden">
+    <section className="h-screen bg-navy relative overflow-x-hidden">
       {/* Divider below navbar */}
       <div className="absolute top-20 md:top-24 left-0 right-0 h-px bg-white/10 z-10" />
 
@@ -87,12 +88,13 @@ export function ProcessHero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <QualifyProjectButton
+          <Button
             size="lg"
             className="bg-copper hover:bg-copper/90 text-navy font-bold text-sm sm:text-base tracking-wider uppercase px-8 py-6 w-full sm:w-auto"
+            onClick={scrollToQualifyProject}
           >
             {t("processQualifyProject")}
-          </QualifyProjectButton>
+          </Button>
 
           <Button
             size="lg"
@@ -105,6 +107,8 @@ export function ProcessHero() {
         </motion.div>
         </div>
       </div>
+
+      <SectionScrollHintAnchor targetId="how-it-works" />
     </section>
   )
 }
