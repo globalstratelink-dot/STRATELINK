@@ -258,10 +258,8 @@ export function QualificationFormModal() {
   const closeButtonClass =
     "absolute z-10 text-gray-300 border border-white/20 rounded-sm p-2 touch-manipulation top-[max(0.75rem,env(safe-area-inset-top))] right-3 sm:top-4 sm:right-4"
 
-  const panel = (
+  const panelBody = (
     <>
-      <DialogTitle className="sr-only">{t("qualFormTitle")}</DialogTitle>
-
       <div className={cn("border-b border-white/10 shrink-0", headerPadding)}>
         <p className="text-xs sm:text-sm md:text-base tracking-[0.12em] sm:tracking-[0.15em] md:tracking-[0.2em] text-copper uppercase font-medium pr-10 sm:pr-12 leading-snug">
           {t("qualFormTitle")}
@@ -762,12 +760,16 @@ export function QualificationFormModal() {
         data-qualification-form
         role="dialog"
         aria-modal="true"
+        aria-labelledby="qualification-form-title"
         className="fixed inset-0 z-[200] flex flex-col bg-navy text-white overflow-hidden"
       >
+        <h2 id="qualification-form-title" className="sr-only">
+          {t("qualFormTitle")}
+        </h2>
         <button type="button" onClick={handleClose} className={closeButtonClass} aria-label={t("qualClose")}>
           <X className="h-4 w-4" />
         </button>
-        {panel}
+        {panelBody}
       </div>,
       document.body
     )
@@ -786,7 +788,8 @@ export function QualificationFormModal() {
           "[&>button]:p-2 [&>button]:top-4 [&>button]:right-4 [&>button]:opacity-100 [&>button]:touch-manipulation"
         )}
       >
-        {panel}
+        <DialogTitle className="sr-only">{t("qualFormTitle")}</DialogTitle>
+        {panelBody}
       </DialogContent>
     </Dialog>
   )
