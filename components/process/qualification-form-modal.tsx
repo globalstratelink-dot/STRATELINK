@@ -4,7 +4,6 @@ import { useMemo, useState, useEffect, useRef, useLayoutEffect } from "react"
 import { ArrowLeft, ArrowRight, Check, Paperclip } from "lucide-react"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
@@ -47,8 +46,8 @@ import {
 
 const fieldBase =
   "!bg-[#0d1528] border-white/15 text-gray-100 placeholder:text-gray-500 focus-visible:ring-copper/40 focus-visible:border-copper rounded-sm border [&:-webkit-autofill]:!bg-[#0d1528] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill]:[-webkit-text-fill-color:rgb(229,231,235)] [&:-webkit-autofill:hover]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill:focus]:shadow-[inset_0_0_0_1000px_#0d1528]"
-const inputClass = `${fieldBase} h-11 text-base sm:text-sm !py-0 px-3 leading-[1.25] block box-border`
-const inputClassCompact = `${fieldBase} h-11 sm:h-9 text-base sm:text-sm !py-0 px-3 leading-[1.25] block box-border`
+const inputClass = `${fieldBase} qualification-field`
+const inputClassCompact = `${fieldBase} qualification-field`
 const labelClass = "text-[11px] tracking-[0.2em] text-copper uppercase font-semibold block mb-2"
 const labelClassCompact = "text-[11px] tracking-[0.15em] text-copper uppercase font-semibold block mb-1"
 const descClass = "text-gray-300 text-sm leading-relaxed"
@@ -328,21 +327,21 @@ export function QualificationFormModal() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className={labelClassCompact}>{t("qualFirstName")} *</label>
-                      <Input className={inputClassCompact} value={form.firstName} onChange={(e) => updateForm({ firstName: e.target.value })} placeholder={t("qualFirstNamePlaceholder")} />
+                      <input className={inputClassCompact} value={form.firstName} onChange={(e) => updateForm({ firstName: e.target.value })} placeholder={t("qualFirstNamePlaceholder")} />
                     </div>
                     <div>
                       <label className={labelClassCompact}>{t("qualLastName")} *</label>
-                      <Input className={inputClassCompact} value={form.lastName} onChange={(e) => updateForm({ lastName: e.target.value })} placeholder={t("qualLastNamePlaceholder")} />
+                      <input className={inputClassCompact} value={form.lastName} onChange={(e) => updateForm({ lastName: e.target.value })} placeholder={t("qualLastNamePlaceholder")} />
                     </div>
                   </div>
                   <div>
                     <label className={labelClassCompact}>{t("qualCompanyName")} *</label>
-                    <Input className={inputClassCompact} value={form.companyName} onChange={(e) => updateForm({ companyName: e.target.value })} placeholder={t("qualCompanyPlaceholder")} />
+                    <input className={inputClassCompact} value={form.companyName} onChange={(e) => updateForm({ companyName: e.target.value })} placeholder={t("qualCompanyPlaceholder")} />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className={labelClassCompact}>{t("qualEmail")} *</label>
-                      <Input type="email" className={inputClassCompact} value={form.email} onChange={(e) => updateForm({ email: e.target.value })} placeholder="email@company.com" />
+                      <input type="email" className={inputClassCompact} value={form.email} onChange={(e) => updateForm({ email: e.target.value })} placeholder="email@company.com" />
                     </div>
                     <div>
                       <label className={labelClassCompact}>{t("qualCountry")} *</label>
@@ -381,7 +380,7 @@ export function QualificationFormModal() {
                           <span className="text-copper font-mono normal-case tracking-normal ml-1">({selectedPhoneCode})</span>
                         ) : null}
                       </label>
-                      <Input
+                      <input
                         type="tel"
                         className={inputClassCompact}
                         value={form.phone}
@@ -391,12 +390,12 @@ export function QualificationFormModal() {
                     </div>
                     <div>
                       <label className={labelClassCompact}>{t("qualCity")}</label>
-                      <Input className={inputClassCompact} value={form.city} onChange={(e) => updateForm({ city: e.target.value })} placeholder={t("qualCityPlaceholder")} />
+                      <input className={inputClassCompact} value={form.city} onChange={(e) => updateForm({ city: e.target.value })} placeholder={t("qualCityPlaceholder")} />
                     </div>
                   </div>
                   <div>
                     <label className={labelClassCompact}>{t("qualWebsite")}</label>
-                    <Input className={inputClassCompact} value={form.website} onChange={(e) => updateForm({ website: e.target.value })} placeholder="https://linkedin.com/company/..." />
+                    <input className={inputClassCompact} value={form.website} onChange={(e) => updateForm({ website: e.target.value })} placeholder="https://linkedin.com/company/..." />
                   </div>
                 </div>
               )}

@@ -293,42 +293,61 @@
     caret-color: #e5e7eb;
   }
 
+  [data-qualification-form] .qualification-field {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    height: 2.75rem;
+    padding: 0 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+  }
+
+  [data-qualification-form] .qualification-field:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 1px rgba(169, 121, 104, 0.4);
+  }
+
+  [data-qualification-form] .qualification-field::placeholder {
+    line-height: 1.25rem;
+  }
+
   @media (max-width: 639px) {
     [data-qualification-form] {
       -webkit-overflow-scrolling: touch;
     }
 
-    [data-qualification-form] input:not([type="checkbox"]):not([type="file"]):not([type="hidden"]),
-    [data-qualification-form] textarea,
+    [data-qualification-form] .qualification-field {
+      font-size: 16px !important;
+      height: 44px !important;
+      min-height: 44px !important;
+      max-height: 44px !important;
+      padding: 11px 12px !important;
+      line-height: 20px !important;
+    }
+
+    [data-qualification-form] .qualification-field::placeholder {
+      line-height: 20px;
+    }
+
+    [data-qualification-form] textarea.qualification-field,
+    [data-qualification-form] textarea {
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 7.5rem;
+      padding: 0.75rem;
+      height: auto;
+      max-height: none;
+    }
+
     [data-qualification-form] [role="combobox"] {
       font-size: 16px;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-
-    [data-qualification-form] input:not([type="checkbox"]):not([type="file"]):not([type="hidden"]) {
-      display: block;
-      height: 2.75rem;
-      min-height: 2.75rem;
-      max-height: 2.75rem;
-      padding-top: 0;
-      padding-bottom: 0;
-      line-height: 2.625rem;
-      box-sizing: border-box;
-    }
-
-    [data-qualification-form] textarea {
-      height: auto;
-      min-height: 7.5rem;
-      max-height: none;
-      line-height: 1.5;
-      padding-top: 0.75rem;
-      padding-bottom: 0.75rem;
-    }
-
-    [data-qualification-form] [role="combobox"] {
-      min-height: 2.75rem;
-      height: 2.75rem;
+      min-height: 44px;
+      height: 44px;
       padding-top: 0;
       padding-bottom: 0;
     }
