@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { createFormNotification } from "@/lib/form-notifications-store"
 import { getClientIp } from "@/lib/request-ip"
 import { rateLimit, rateLimitResponse } from "@/lib/rate-limit"
+import { sendContactEmail } from "@/lib/send-contact-email"
 import { isHoneypotTriggered, verifyTurnstileToken } from "@/lib/turnstile"
 
 export async function POST(request: NextRequest) {
@@ -29,43 +30,45 @@ export async function POST(request: NextRequest) {
 
     const qualificationMessage = formatQualificationMessage(body)
 
-    await createFormNotification({
-      type: "qualification",
+    try {
+      await createFormNotification({
+        type: "qualification",
+        firstName: String(body.firstName).trim(),
+        lastName: String(body.lastName).trim(),
+        email: String(body.email).trim().toLowerCase(),
+        company: String(body.companyName || "").trim(),
+        phone: String(body.phone || "").trim(),
+        country: String(body.country || "").trim(),
+        subject: "Partner Qualification",
+        message: qualificationMessage,
+        payload: body as Record<string, unknown>,
+      })
+    } catch (notificationError) {
+      console.error("[qualification] notification save failed", notificationError)
+    }
+
+    const emailResult = await sendContactEmail({
       firstName: String(body.firstName).trim(),
       lastName: String(body.lastName).trim(),
       email: String(body.email).trim().toLowerCase(),
       company: String(body.companyName || "").trim(),
-      phone: String(body.phone || "").trim(),
       country: String(body.country || "").trim(),
+      phoneNumber: String(body.phone || "").trim(),
       subject: "Partner Qualification",
       message: qualificationMessage,
-      payload: body as Record<string, unknown>,
     })
 
-    const contactRes = await fetch(`${request.nextUrl.origin}/api/contact`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        firstName: body.firstName,
-        lastName: body.lastName,
-        email: body.email,
-        company: body.companyName,
-        country: body.country || "",
-        phoneNumber: body.phone || "",
-        subject: "Partner Qualification",
-        message: qualificationMessage,
-        turnstileToken: body.turnstileToken,
-      }),
-    })
-
-    const data = await contactRes.json()
-    if (!contactRes.ok) {
-      return NextResponse.json(data, { status: contactRes.status })
+    if (!emailResult.success) {
+      return NextResponse.json({ error: emailResult.error }, { status: 500 })
     }
 
     return NextResponse.json({ success: true, message: "Qualification submitted" })
-  } catch {
-    return NextResponse.json({ error: "Server error" }, { status: 500 })
+  } catch (error) {
+    console.error("[qualification] unhandled error", error)
+    return NextResponse.json(
+      { error: "Erreur serveur. Veuillez réessayer plus tard." },
+      { status: 500 }
+    )
   }
 }
 
