@@ -1,14 +1,15 @@
 "use client"
 
-import { useMemo, useState, useEffect, useRef, useLayoutEffect } from "react"
-import { ArrowLeft, ArrowRight, Check, Paperclip } from "lucide-react"
+import { useMemo, useState, useEffect, useRef, useLayoutEffect, type FocusEvent } from "react"
+import { createPortal } from "react-dom"
+import { ArrowLeft, ArrowRight, Check, Paperclip, X } from "lucide-react"
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
 import { useLanguage } from "@/contexts/language-context"
 import { useQualificationForm } from "@/contexts/qualification-form-context"
+import { useIsMobile } from "@/hooks/use-mobile"
 import {
   CHINA_OPTIONS,
   CORRIDOR_OPTIONS,
@@ -70,6 +71,28 @@ export function QualificationFormModal() {
   const [turnstileToken, setTurnstileToken] = useState("")
   const [honeypot, setHoneypot] = useState("")
   const [submitError, setSubmitError] = useState("")
+  const [mounted, setMounted] = useState(false)
+  const isMobile = useIsMobile()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!isOpen) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [isOpen])
+
+  const handleFieldFocus = (event: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (!isMobile) return
+    window.setTimeout(() => {
+      event.currentTarget.scrollIntoView({ block: "center", behavior: "smooth" })
+    }, 350)
+  }
 
   useEffect(() => {
     if (isOpen) {
@@ -232,71 +255,80 @@ export function QualificationFormModal() {
     return () => window.removeEventListener("resize", updateIndicator)
   }, [stepIndex, isOpen])
 
-  return (
-    <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
-      <DialogContent
-        data-qualification-form
-        onInteractOutside={(event) => event.preventDefault()}
-        onEscapeKeyDown={(event) => event.preventDefault()}
-        className={cn(
-          "w-full max-w-lg lg:max-w-xl bg-navy border border-white/15 p-0 gap-0 text-white flex flex-col overflow-hidden",
-          "max-sm:!fixed max-sm:!inset-0 max-sm:!left-0 max-sm:!top-0 max-sm:!right-0 max-sm:!bottom-0",
-          "max-sm:!translate-x-0 max-sm:!translate-y-0 max-sm:!scale-100 max-sm:!transform-none",
-          "max-sm:!animate-none max-sm:max-w-none max-sm:max-h-none max-sm:h-[100dvh] max-sm:w-full max-sm:rounded-none max-sm:border-0",
-          "sm:w-[92vw] sm:max-h-[96vh] md:min-h-[640px] sm:rounded-lg",
-          "[&>button]:text-gray-300 [&>button]:border [&>button]:border-white/20 [&>button]:rounded-sm",
-          "[&>button]:p-2 [&>button]:top-[max(0.75rem,env(safe-area-inset-top))] [&>button]:right-3 sm:[&>button]:top-4 sm:[&>button]:right-4 [&>button]:opacity-100",
-          "[&>button]:touch-manipulation"
-        )}
-      >
-        <DialogTitle className="sr-only">{t("qualFormTitle")}</DialogTitle>
+  const closeButtonClass =
+    "absolute z-10 text-gray-300 border border-white/20 rounded-sm p-2 touch-manipulation top-[max(0.75rem,env(safe-area-inset-top))] right-3 sm:top-4 sm:right-4"
 
-        <div className={cn("border-b border-white/10 shrink-0", headerPadding)}>
-          <p className="text-xs sm:text-sm md:text-base tracking-[0.12em] sm:tracking-[0.15em] md:tracking-[0.2em] text-copper uppercase font-medium pr-10 sm:pr-12 leading-snug">
-            {t("qualFormTitle")}
-          </p>
-          <p className="text-[11px] sm:text-sm text-gray-400 mt-1.5 sm:mt-2 pr-10 sm:pr-12 leading-relaxed">
-            {t("qualFormSubtitle")}
-          </p>
-          <div className="border-t border-white/15 mt-2 pt-2 sm:mt-3 sm:pt-3">
-            <div className="relative pb-1 -mx-1 px-1">
-              <div
-                ref={stepNavRef}
-                className="flex gap-2.5 sm:gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
-              >
-                {FORM_STEPS.map((s, i) => (
-                  <button
-                    key={s}
-                    data-step-index={i}
-                    type="button"
-                    onClick={() => i <= stepIndex && setStep(s)}
-                    className={cn(
-                      "snap-center shrink-0 text-[10px] sm:text-xs tracking-[0.12em] sm:tracking-[0.15em] uppercase whitespace-nowrap pb-2.5 sm:pb-3 transition-colors duration-300 touch-manipulation min-h-[44px] flex items-end",
-                      step === s
-                        ? "text-copper"
-                        : i < stepIndex
-                          ? "text-gray-300 hover:text-copper active:text-copper"
-                          : "text-gray-500 cursor-default"
-                    )}
-                  >
-                    {stepLabels[i]}
-                  </button>
-                ))}
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 h-px bg-white/15" aria-hidden="true" />
-              <div
-                className="absolute bottom-0 h-0.5 bg-copper transition-all duration-500 ease-in-out"
-                style={{ left: stepIndicator.left, width: stepIndicator.width }}
-                aria-hidden="true"
-              />
+  const panel = (
+    <>
+      <DialogTitle className="sr-only">{t("qualFormTitle")}</DialogTitle>
+
+      <div className={cn("border-b border-white/10 shrink-0", headerPadding)}>
+        <p className="text-xs sm:text-sm md:text-base tracking-[0.12em] sm:tracking-[0.15em] md:tracking-[0.2em] text-copper uppercase font-medium pr-10 sm:pr-12 leading-snug">
+          {t("qualFormTitle")}
+        </p>
+        <p className="hidden sm:block text-[11px] sm:text-sm text-gray-400 mt-1.5 sm:mt-2 pr-10 sm:pr-12 leading-relaxed">
+          {t("qualFormSubtitle")}
+        </p>
+
+        <div className="border-t border-white/15 mt-2 pt-2 sm:mt-3 sm:pt-3">
+          <div className="sm:hidden space-y-2">
+            <div className="flex gap-1.5">
+              {FORM_STEPS.map((s, i) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => i <= stepIndex && setStep(s)}
+                  className={cn(
+                    "h-1 flex-1 rounded-full transition-colors touch-manipulation",
+                    i <= stepIndex ? "bg-copper" : "bg-white/15"
+                  )}
+                  aria-label={stepLabels[i]}
+                />
+              ))}
             </div>
+            <p className="text-[11px] tracking-[0.15em] text-copper uppercase font-medium">
+              {stepLabels[stepIndex]} · {stepIndex + 1}/5
+            </p>
+          </div>
+
+          <div className="relative pb-1 -mx-1 px-1 hidden sm:block">
+            <div
+              ref={stepNavRef}
+              className="flex gap-2.5 sm:gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
+            >
+              {FORM_STEPS.map((s, i) => (
+                <button
+                  key={s}
+                  data-step-index={i}
+                  type="button"
+                  onClick={() => i <= stepIndex && setStep(s)}
+                  className={cn(
+                    "snap-center shrink-0 text-[10px] sm:text-xs tracking-[0.12em] sm:tracking-[0.15em] uppercase whitespace-nowrap pb-2.5 sm:pb-3 transition-colors duration-300 touch-manipulation min-h-[44px] flex items-end",
+                    step === s
+                      ? "text-copper"
+                      : i < stepIndex
+                        ? "text-gray-300 hover:text-copper active:text-copper"
+                        : "text-gray-500 cursor-default"
+                  )}
+                >
+                  {stepLabels[i]}
+                </button>
+              ))}
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-white/15" aria-hidden="true" />
+            <div
+              className="absolute bottom-0 h-0.5 bg-copper transition-all duration-500 ease-in-out"
+              style={{ left: stepIndicator.left, width: stepIndicator.width }}
+              aria-hidden="true"
+            />
           </div>
         </div>
+      </div>
 
         <div
           className={cn(
             contentPadding,
-            "flex-1 min-h-0 overflow-y-auto overscroll-contain",
+            "flex-1 min-h-0 overflow-y-auto overscroll-contain max-sm:pb-6",
             isReview ? "scrollbar-form" : "max-sm:scrollbar-form sm:scrollbar-hide"
           )}
         >
@@ -325,6 +357,7 @@ export function QualificationFormModal() {
                       <label className={labelClassCompact}>{t("qualFirstName")} *</label>
                       <input
                         className={inputClassCompact}
+                        onFocus={handleFieldFocus}
                         value={form.firstName}
                         onChange={(e) => updateForm({ firstName: e.target.value })}
                         placeholder={t("qualFirstNamePlaceholder")}
@@ -336,6 +369,7 @@ export function QualificationFormModal() {
                       <label className={labelClassCompact}>{t("qualLastName")} *</label>
                       <input
                         className={inputClassCompact}
+                        onFocus={handleFieldFocus}
                         value={form.lastName}
                         onChange={(e) => updateForm({ lastName: e.target.value })}
                         placeholder={t("qualLastNamePlaceholder")}
@@ -348,6 +382,7 @@ export function QualificationFormModal() {
                     <label className={labelClassCompact}>{t("qualCompanyName")} *</label>
                     <input
                       className={inputClassCompact}
+                      onFocus={handleFieldFocus}
                       value={form.companyName}
                       onChange={(e) => updateForm({ companyName: e.target.value })}
                       placeholder={t("qualCompanyPlaceholder")}
@@ -361,6 +396,7 @@ export function QualificationFormModal() {
                       <input
                         type="email"
                         className={inputClassCompact}
+                        onFocus={handleFieldFocus}
                         value={form.email}
                         onChange={(e) => updateForm({ email: e.target.value })}
                         placeholder="email@company.com"
@@ -372,11 +408,11 @@ export function QualificationFormModal() {
                     <div>
                       <label className={labelClassCompact}>{t("qualCountry")} *</label>
                       <Select value={form.country || undefined} onValueChange={handleCountryChange}>
-                        <SelectTrigger className={cn(inputClassCompact, "w-full [&>span]:text-left [&>span]:text-gray-100")}>
+                        <SelectTrigger className={cn(inputClassCompact, "qualification-select w-full [&>span]:text-left [&>span]:text-gray-100")}>
                           <SelectValue placeholder={t("qualSelect")} />
                         </SelectTrigger>
                         <SelectContent
-                          position="popper"
+                          position={isMobile ? "item-aligned" : "popper"}
                           sideOffset={4}
                           className="z-[200] max-h-[220px] bg-[#0d1528] border-white/15 text-white [&_[data-radix-select-viewport]]:max-h-[200px]"
                         >
@@ -409,6 +445,7 @@ export function QualificationFormModal() {
                       <input
                         type="tel"
                         className={inputClassCompact}
+                        onFocus={handleFieldFocus}
                         value={form.phone}
                         onChange={(e) => updateForm({ phone: e.target.value })}
                         placeholder={selectedPhoneCode ? `${selectedPhoneCode} 00 000 000` : "+971 54 XXX XXXX"}
@@ -421,6 +458,7 @@ export function QualificationFormModal() {
                       <label className={labelClassCompact}>{t("qualCity")}</label>
                       <input
                         className={inputClassCompact}
+                        onFocus={handleFieldFocus}
                         value={form.city}
                         onChange={(e) => updateForm({ city: e.target.value })}
                         placeholder={t("qualCityPlaceholder")}
@@ -433,6 +471,7 @@ export function QualificationFormModal() {
                     <label className={labelClassCompact}>{t("qualWebsite")}</label>
                     <input
                       className={inputClassCompact}
+                      onFocus={handleFieldFocus}
                       value={form.website}
                       onChange={(e) => updateForm({ website: e.target.value })}
                       placeholder="https://linkedin.com/company/..."
@@ -598,7 +637,13 @@ export function QualificationFormModal() {
                   </div>
                   <div>
                     <p className={labelClass}>{t("qualBriefLabel")}</p>
-                    <Textarea className={cn(inputClass, "min-h-[120px] h-auto resize-none")} value={form.projectBrief} onChange={(e) => updateForm({ projectBrief: e.target.value })} placeholder={t("qualBriefPlaceholder")} />
+                    <textarea
+                      className={cn(inputClass, "min-h-[120px] h-auto resize-none")}
+                      onFocus={handleFieldFocus}
+                      value={form.projectBrief}
+                      onChange={(e) => updateForm({ projectBrief: e.target.value })}
+                      placeholder={t("qualBriefPlaceholder")}
+                    />
                     <p className={cn(hintClass, "mt-2")}>{t("qualBriefHint")}</p>
                   </div>
                   <div>
@@ -704,6 +749,45 @@ export function QualificationFormModal() {
             )}
           </div>
         )}
+      </div>
+    </>
+  )
+
+  if (!isOpen) return null
+
+  if (isMobile) {
+    if (!mounted) return null
+
+    return createPortal(
+      <div
+        data-qualification-form
+        role="dialog"
+        aria-modal="true"
+        className="fixed inset-0 z-[200] flex flex-col bg-navy text-white overflow-hidden"
+      >
+        <button type="button" onClick={handleClose} className={closeButtonClass} aria-label={t("qualClose")}>
+          <X className="h-4 w-4" />
+        </button>
+        {panel}
+      </div>,
+      document.body
+    )
+  }
+
+  return (
+    <Dialog open={isOpen} onOpenChange={(open) => !open && handleClose()}>
+      <DialogContent
+        data-qualification-form
+        onInteractOutside={(event) => event.preventDefault()}
+        onEscapeKeyDown={(event) => event.preventDefault()}
+        className={cn(
+          "w-full max-w-lg lg:max-w-xl bg-navy border border-white/15 p-0 gap-0 text-white flex flex-col overflow-hidden",
+          "sm:w-[92vw] sm:max-h-[96vh] md:min-h-[640px] sm:rounded-lg",
+          "[&>button]:text-gray-300 [&>button]:border [&>button]:border-white/20 [&>button]:rounded-sm",
+          "[&>button]:p-2 [&>button]:top-4 [&>button]:right-4 [&>button]:opacity-100 [&>button]:touch-manipulation"
+        )}
+      >
+        {panel}
       </DialogContent>
     </Dialog>
   )
