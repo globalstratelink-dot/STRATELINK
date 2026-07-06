@@ -298,10 +298,39 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    [data-qualification-form] input,
+    [data-qualification-form] input:not([type="checkbox"]):not([type="file"]):not([type="hidden"]),
     [data-qualification-form] textarea,
     [data-qualification-form] [role="combobox"] {
       font-size: 16px;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    [data-qualification-form] input:not([type="checkbox"]):not([type="file"]):not([type="hidden"]) {
+      display: block;
+      height: 2.75rem;
+      min-height: 2.75rem;
+      max-height: 2.75rem;
+      padding-top: 0;
+      padding-bottom: 0;
+      line-height: 2.625rem;
+      box-sizing: border-box;
+    }
+
+    [data-qualification-form] textarea {
+      height: auto;
+      min-height: 7.5rem;
+      max-height: none;
+      line-height: 1.5;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+    }
+
+    [data-qualification-form] [role="combobox"] {
+      min-height: 2.75rem;
+      height: 2.75rem;
+      padding-top: 0;
+      padding-bottom: 0;
     }
   }
   

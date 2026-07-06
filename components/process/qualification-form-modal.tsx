@@ -47,8 +47,8 @@ import {
 
 const fieldBase =
   "!bg-[#0d1528] border-white/15 text-gray-100 placeholder:text-gray-500 focus-visible:ring-copper/40 focus-visible:border-copper rounded-sm border [&:-webkit-autofill]:!bg-[#0d1528] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill]:[-webkit-text-fill-color:rgb(229,231,235)] [&:-webkit-autofill:hover]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill:focus]:shadow-[inset_0_0_0_1000px_#0d1528]"
-const inputClass = `${fieldBase} h-11 text-base sm:text-sm`
-const inputClassCompact = `${fieldBase} h-11 sm:h-9 text-base sm:text-sm`
+const inputClass = `${fieldBase} h-11 text-base sm:text-sm !py-0 px-3 leading-[1.25] block box-border`
+const inputClassCompact = `${fieldBase} h-11 sm:h-9 text-base sm:text-sm !py-0 px-3 leading-[1.25] block box-border`
 const labelClass = "text-[11px] tracking-[0.2em] text-copper uppercase font-semibold block mb-2"
 const labelClassCompact = "text-[11px] tracking-[0.15em] text-copper uppercase font-semibold block mb-1"
 const descClass = "text-gray-300 text-sm leading-relaxed"
@@ -58,7 +58,7 @@ const hintClass = "text-xs text-gray-400"
 const cardDescClass = "text-gray-400"
 
 function empty(value?: string | null) {
-  return value?.trim() ? value.trim() : "—"
+  return value?.trim() ? value.trim() : ""
 }
 
 export function QualificationFormModal() {
@@ -115,7 +115,7 @@ export function QualificationFormModal() {
   }
 
   const labelFor = (options: readonly { id: string; labelKey?: string; titleKey?: string }[], id: string | null) => {
-    if (!id) return "—"
+    if (!id) return ""
     const opt = options.find((o) => o.id === id)
     if (!opt) return id
     const key = ("labelKey" in opt && opt.labelKey) || ("titleKey" in opt && opt.titleKey)
@@ -124,13 +124,13 @@ export function QualificationFormModal() {
 
   const reviewRows = useMemo(
     () => [
-      { label: t("qualReviewFullName"), value: [form.firstName, form.lastName].filter(Boolean).join(" ") || "—" },
+      { label: t("qualReviewFullName"), value: [form.firstName, form.lastName].filter(Boolean).join(" ") || "" },
       { label: t("qualReviewCompany"), value: empty(form.companyName) },
       { label: t("qualReviewEmail"), value: empty(form.email) },
       { label: t("qualReviewPhone"), value: empty(form.phone) },
       {
         label: t("qualReviewCountry"),
-        value: form.country || form.city ? [form.country, form.city].filter(Boolean).join(", ") : "—",
+        value: form.country || form.city ? [form.country, form.city].filter(Boolean).join(", ") : "",
       },
       { label: t("qualReviewWebsite"), value: empty(form.website) },
       { label: t("qualReviewRole"), value: labelFor(ROLE_OPTIONS, form.role) },
@@ -141,7 +141,7 @@ export function QualificationFormModal() {
         value:
           form.corridors.length > 0
             ? form.corridors.map((id) => labelFor(CORRIDOR_OPTIONS, id)).join(", ")
-            : "—",
+            : "",
       },
       {
         label: t("qualReviewSectors"),
@@ -153,12 +153,12 @@ export function QualificationFormModal() {
                   return idx >= 0 ? String(t(PRODUCT_SECTOR_KEYS[idx] as never)) : id
                 })
                 .join(", ")
-            : "—",
+            : "",
       },
       { label: t("qualReviewIncoterm"), value: labelFor(INCOTERM_OPTIONS, form.incoterm) },
       {
         label: t("qualReviewVolume"),
-        value: volumeTouched && form.annualVolumeK !== null ? formatVolumeK(form.annualVolumeK) : "—",
+        value: volumeTouched && form.annualVolumeK !== null ? formatVolumeK(form.annualVolumeK) : "",
       },
       { label: t("qualReviewTimeline"), value: labelFor(TIMELINE_OPTIONS, form.timeline) },
       { label: t("qualReviewPayment"), value: labelFor(PAYMENT_OPTIONS, form.payment) },
@@ -508,7 +508,7 @@ export function QualificationFormModal() {
                   <div>
                     <p className={labelClass}>{t("qualVolumeLabel")}</p>
                     <p className="text-2xl sm:text-3xl md:text-4xl text-copper font-serif font-light text-center mb-4 sm:mb-6 transition-all duration-150">
-                      {volumeTouched && form.annualVolumeK !== null ? formatVolumeK(form.annualVolumeK) : "—"}
+                      {volumeTouched && form.annualVolumeK !== null ? formatVolumeK(form.annualVolumeK) : ""}
                     </p>
                     <Slider
                       min={VOLUME_MIN_K}

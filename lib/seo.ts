@@ -56,7 +56,7 @@ export function pageMetadata({
           url: "/og-image.png",
           width: 1200,
           height: 630,
-          alt: `${SITE_NAME} — International Import Export`,
+          alt: `${SITE_NAME} International Import Export`,
         },
       ],
     },

@@ -63,7 +63,7 @@ export const translations = {
     
     // Services Page
     servicesPageDescription: "We manage international procurement on behalf of third-party companies, from supplier sourcing to delivery. In Dubai, we also import a selection of products made available to our partner distributors.",
-    servicesPageTitle: "Import/export from China to the world — managed end to end",
+    servicesPageTitle: "Import/export from China to the world managed end to end",
     servicesPageSubtitle: "",
     servicesPageDescription1: "We manage international procurement on behalf of third-party companies, from supplier sourcing to delivery. In Dubai, we also import a selection of products made available to our partner distributors.",
     servicesDetail1Title: "Sourcing & Supplier Verification",
@@ -73,7 +73,7 @@ export const translations = {
     servicesDetail3Title: "Logistics & Customs Coordination",
     servicesDetail3Desc: "FCL / LCL, freight booking, B/L tracking, customs clearance support at destination.",
     servicesDetail4Title: "Trade Finance Structuring",
-    servicesDetail4Desc: "T/T, L/C, D/P — advice on payment structure to protect both parties.",
+    servicesDetail4Desc: "T/T, L/C, D/P advice on payment structure to protect both parties.",
     servicesDetail5Title: "Dubai Transit & Consolidation Hub",
     servicesDetail5Desc: "Using Dubai as a re-export platform for multi-destination shipments to Africa.",
     importExportDescription: "Complete import and export solutions for your international trade needs",
@@ -244,7 +244,7 @@ export const translations = {
     // Premium Showcase
     approvedByIndustryLeaders: "Approved by Industry Leaders",
     ourPrestigiousClients: "Our Prestigious Clients",
-    premiumTestimonial: "Stratelink Global hasn't just transformed our import/export operations—they've revolutionized our approach to international trade. Their expertise is unmatched.",
+    premiumTestimonial: "Stratelink Global hasn't just transformed our import/export operations they've revolutionized our approach to international trade. Their expertise is unmatched.",
     
     // About Section
     aboutGlobalTradeSolutions: "About Stratelink Global",
@@ -291,7 +291,7 @@ export const translations = {
     aboutStratelinkGlobal: "About Stratelink Global",
     orchestratorOfInternationalGrowthLine1: "Importer in Dubai.",
     orchestratorOfInternationalGrowthLine2: "International procurement partner.",
-    aboutStratelinkDescription1: "Stratelink Global is an international trade operator registered in Dubai under an IFZA licence. The company was founded on a simple insight: supplier availability is never the limiting factor — reliability of execution is.",
+    aboutStratelinkDescription1: "Stratelink Global is an international trade operator registered in Dubai under an IFZA licence. The company was founded on a simple insight: supplier availability is never the limiting factor reliability of execution is.",
     aboutStratelinkDescription1Part2: "Stratelink Global is designed to eliminate weaknesses in the supply chain, with an operational base in Dubai - an ideal location between Asian production zones and the markets it serves.",
     aboutStratelinkDescription2: "Our role: to simplify your import operations and guarantee stable supply, regardless of volume. We monitor every transaction, from sourcing to delivery.",
     aboutStratelinkDescription3: "Drawing on our experience across the China → Africa and China → UAE corridors, we apply operational rigour that delivers measurable results and lasting partnerships.",
@@ -311,7 +311,7 @@ export const translations = {
     processHeroTitle1: "Source Smarter from China.",
     processHeroTitle2: "Your Trading Partner",
     processHeroTitle3: "Deliver Anywhere.",
-    processHeroDescription: "We source, verify and deliver industrial products from China to Africa, Europe and the United Arab Emirates — from factory to your port of destination.",
+    processHeroDescription: "We source, verify and deliver industrial products from China to Africa, Europe and the United Arab Emirates from factory to your port of destination.",
     processQualifyProject: "TELL US ABOUT YOUR PROJECT →",
     processHowItWorks: "HOW IT WORKS ↓",
     
@@ -341,7 +341,7 @@ export const translations = {
     processService3Title: "LOGISTICS & CUSTOMS COORDINATION",
     processService3Desc: "FCL / LCL, freight booking, B/L tracking, customs clearance support at destination.",
     processService4Title: "TRADE FINANCE STRUCTURING",
-    processService4Desc: "T/T, L/C, D/P — we advise on payment structure to protect both parties.",
+    processService4Desc: "T/T, L/C, D/P we advise on payment structure to protect both parties.",
     processService5Title: "DUBAI HUB TRANSIT & CONSOLIDATION",
     processService5Desc: "Using Dubai as a re-export hub for shipments to multiple destinations, including Africa.",
     
@@ -377,7 +377,7 @@ export const translations = {
     processSlide4Title2: "discerning",
     processSlide4Title2b: "professionals.",
     processSlide4Description: "We are selective.",
-    processSlide4Description2: "Every partnership begins with a qualification process — not to create barriers, but to ensure we can genuinely deliver on your expectations.",
+    processSlide4Description2: "Every partnership begins with a qualification process not to create barriers, but to ensure we can genuinely deliver on your expectations.",
     processClient1Title: "INDUSTRIAL IMPORTERS",
     processClient1Desc: "Construction materials, steel, electrical equipment, machinery. Companies with recurring volume needs.",
     processClient2Title: "DISTRIBUTORS",
@@ -411,7 +411,7 @@ export const translations = {
     processCtaTrust4: "B2B ONLY",
 
     qualFormTitle: "PARTNER QUALIFICATION",
-    qualFormSubtitle: "Submit your project file for review. Within 48 business hours, you will receive a feasibility assessment and next steps — a quote or a commercial meeting.",
+    qualFormSubtitle: "Submit your project file for review. Within 48 business hours, you will receive a feasibility assessment and next steps a quote or a commercial meeting.",
     qualStepIdentity: "IDENTITY",
     qualStepProfile: "PROFILE",
     qualStepCorridors: "CORRIDORS",
@@ -431,7 +431,7 @@ export const translations = {
     qualLastNamePlaceholder: "Okafor",
     qualCompanyPlaceholder: "Lagos Industrial Supply Ltd",
     qualCityPlaceholder: "Johannesburg",
-    qualSelect: "— Select —",
+    qualSelect: "Select",
     qualOther: "Other",
     qualProfileTitle: "PROFILE",
     qualProfileDesc: "What type of business do you run?",
@@ -443,7 +443,7 @@ export const translations = {
     qualRoleDistributor: "DISTRIBUTOR",
     qualRoleDistributorDesc: "Resale to regional markets",
     qualRoleEpc: "EPC / PROJECT BUYER",
-    qualRoleEpcDesc: "Engineering, procurement & construction — project-specific sourcing",
+    qualRoleEpcDesc: "Engineering, procurement & construction project-specific sourcing",
     qualRoleTrading: "TRADING COMPANY",
     qualRoleTradingDesc: "Broker / intermediary",
     qualExpUnder2: "UNDER 2 YRS",
@@ -502,7 +502,7 @@ export const translations = {
     qualAttachLabel: "ATTACH A DOCUMENT (OPTIONAL)",
     qualAttachClick: "Click to upload",
     qualAttachDrag: "or drag & drop",
-    qualAttachHint: "Spec sheet, tender, product list — PDF, XLSX, DOCX",
+    qualAttachHint: "Spec sheet, tender, product list PDF, XLSX, DOCX",
     qualReviewTitle: "REVIEW",
     qualReviewDesc: "Please review your information before submitting your application.",
     qualReviewFullName: "FULL NAME",
@@ -637,7 +637,7 @@ export const translations = {
     
     // Services Page
     servicesPageDescription: "Nous gérons l'approvisionnement international pour le compte d'entreprises tierces, du sourcing fournisseur jusqu'à la livraison à bon port. À Dubaï, nous importons également une sélection de produits, mis à disposition de nos distributeurs partenaires.",
-    servicesPageTitle: "Import/export de la Chine vers le monde — géré de A à Z",
+    servicesPageTitle: "Import/export de la Chine vers le monde géré de A à Z",
     servicesPageSubtitle: "",
     servicesPageDescription1: "Nous gérons l'approvisionnement international pour le compte d'entreprises tierces, du sourcing fournisseur jusqu'à la livraison à bon port. À Dubaï, nous importons également une sélection de produits, mis à disposition de nos distributeurs partenaires.",
     servicesDetail1Title: "Sourcing & Vérification Fournisseurs",
@@ -647,7 +647,7 @@ export const translations = {
     servicesDetail3Title: "Logistique & Coordination Douanière",
     servicesDetail3Desc: "FCL / LCL, réservation fret, suivi B/L, accompagnement dédouanement à destination.",
     servicesDetail4Title: "Structuration Financement Commercial",
-    servicesDetail4Desc: "T/T, L/C, D/P — conseil sur la structure de paiement pour protéger les deux parties.",
+    servicesDetail4Desc: "T/T, L/C, D/P conseil sur la structure de paiement pour protéger les deux parties.",
     servicesDetail5Title: "Transit & Consolidation Hub Dubaï",
     servicesDetail5Desc: "Utilisation de Dubaï comme plateforme de réexport pour expéditions multi-destinations vers l'Afrique.",
     importExportDescription: "Solutions complètes d'import et d'export pour vos besoins commerciaux internationaux",
@@ -818,7 +818,7 @@ export const translations = {
     // Premium Showcase
     approvedByIndustryLeaders: "Approuvé par les Leaders de l'Industrie",
     ourPrestigiousClients: "Notre Clientèle Prestigieuse",
-    premiumTestimonial: "Stratelink Global n'a pas seulement transformé nos opérations d'import/export—ils ont révolutionné notre approche du commerce international. Leur expertise est inégalée.",
+    premiumTestimonial: "Stratelink Global n'a pas seulement transformé nos opérations d'import/export ils ont révolutionné notre approche du commerce international. Leur expertise est inégalée.",
     
     // About Section
     aboutGlobalTradeSolutions: "À Propos de Stratelink Global",
@@ -915,7 +915,7 @@ export const translations = {
     processService3Title: "LOGISTIQUE ET COORDINATION DOUANIÈRE",
     processService3Desc: "FCL / LCL, réservation du fret, suivi du connaissement (B/L) et accompagnement des formalités douanières à destination.",
     processService4Title: "STRUCTURATION DU FINANCEMENT COMMERCIAL",
-    processService4Desc: "T/T, L/C, D/P — nous vous conseillons sur la structure de paiement la plus adaptée afin de sécuriser les intérêts des deux parties.",
+    processService4Desc: "T/T, L/C, D/P nous vous conseillons sur la structure de paiement la plus adaptée afin de sécuriser les intérêts des deux parties.",
     processService5Title: "HUB DE TRANSIT ET CONSOLIDATION À DUBAÏ",
     processService5Desc: "Utilisation de Dubaï comme hub de réexportation pour des expéditions vers plusieurs destinations, dont l'Afrique.",
     
@@ -985,7 +985,7 @@ export const translations = {
     processCtaTrust4: "EXCLUSIVEMENT B2B",
 
     qualFormTitle: "QUALIFICATION PARTENAIRE",
-    qualFormSubtitle: "Transmettez votre dossier pour examen. Sous 48 heures ouvrées, vous recevrez une évaluation de faisabilité et les prochaines étapes — un devis ou un rendez-vous commercial.",
+    qualFormSubtitle: "Transmettez votre dossier pour examen. Sous 48 heures ouvrées, vous recevrez une évaluation de faisabilité et les prochaines étapes un devis ou un rendez-vous commercial.",
     qualStepIdentity: "IDENTITÉ",
     qualStepProfile: "PROFIL",
     qualStepCorridors: "CORRIDORS",
@@ -1005,7 +1005,7 @@ export const translations = {
     qualLastNamePlaceholder: "Okafor",
     qualCompanyPlaceholder: "Lagos Industrial Supply Ltd",
     qualCityPlaceholder: "Johannesburg",
-    qualSelect: "— Sélectionner —",
+    qualSelect: "Sélectionner",
     qualOther: "Autre",
     qualProfileTitle: "PROFIL",
     qualProfileDesc: "Quel type d'activité exercez-vous ?",
@@ -1017,7 +1017,7 @@ export const translations = {
     qualRoleDistributor: "DISTRIBUTEUR",
     qualRoleDistributorDesc: "Revente sur les marchés régionaux",
     qualRoleEpc: "EPC / ACHETEUR PROJET",
-    qualRoleEpcDesc: "Ingénierie, approvisionnement et construction — achats spécifiques projet",
+    qualRoleEpcDesc: "Ingénierie, approvisionnement et construction achats spécifiques projet",
     qualRoleTrading: "SOCIÉTÉ DE NÉGOCE",
     qualRoleTradingDesc: "Intermédiaire / courtier",
     qualExpUnder2: "MOINS DE 2 ANS",
@@ -1076,7 +1076,7 @@ export const translations = {
     qualAttachLabel: "JOINDRE UN DOCUMENT (OPTIONNEL)",
     qualAttachClick: "Cliquez pour téléverser",
     qualAttachDrag: "ou glisser-déposer",
-    qualAttachHint: "Fiche technique, appel d'offres, liste produits — PDF, XLSX, DOCX",
+    qualAttachHint: "Fiche technique, appel d'offres, liste produits PDF, XLSX, DOCX",
     qualReviewTitle: "RÉCAPITULATIF",
     qualReviewDesc: "Vérifiez vos informations avant de soumettre votre candidature.",
     qualReviewFullName: "NOM COMPLET",

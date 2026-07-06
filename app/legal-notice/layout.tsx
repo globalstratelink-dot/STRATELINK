@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
   title: "Legal Notice",
-  description: "Legal notice and company information for STRATELINK GLOBAL — international import-export services.",
+  description: "Legal notice and company information for STRATELINK GLOBAL international import-export services.",
   path: "/legal-notice",
 })
 

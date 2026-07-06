@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
-  title: "Our Activities — Import/Export from China | Stratelink Global",
+  title: "Our Activities Import/Export from China | Stratelink Global",
   description:
     "From supplier sourcing to destination delivery, STRATELINK GLOBAL manages your import/export operations across China, UAE, Europe and Africa.",
   path: "/activities",

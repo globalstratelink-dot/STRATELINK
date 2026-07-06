@@ -3,7 +3,7 @@ import { AgencyContent } from "@/components/agency/agency-content"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
-  title: "About Us — Stratelink Global Dubai",
+  title: "About Us Stratelink Global Dubai",
   description:
     "Discover Stratelink Global: international trade operator based in Dubai, connecting B2B buyers with verified Chinese manufacturers across Africa, Europe and the UAE.",
   path: "/about-us",

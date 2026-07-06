@@ -7,9 +7,9 @@ import { ZohoChatbot } from "@/components/zoho-chatbot"
 import { pageMetadata } from "@/lib/seo"
 
 export const metadata = pageMetadata({
-  title: "Contact — Import Export Quote & B2B Inquiry",
+  title: "Contact Import Export Quote & B2B Inquiry",
   description:
-    "Request a quote for import-export, sourcing or logistics. STRATELINK GLOBAL — Dubai-based international trade partner. Response within 24 hours.",
+    "Request a quote for import-export, sourcing or logistics. STRATELINK GLOBAL Dubai-based international trade partner. Response within 24 hours.",
   path: "/contact",
 })
 
