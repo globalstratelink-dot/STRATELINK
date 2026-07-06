@@ -45,7 +45,7 @@ import {
 } from "@/components/ui/select"
 
 const fieldBase =
-  "!bg-[#0d1528] border-white/15 text-gray-100 placeholder:text-gray-500 focus-visible:ring-copper/40 focus-visible:border-copper rounded-sm border [&:-webkit-autofill]:!bg-[#0d1528] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill]:[-webkit-text-fill-color:rgb(229,231,235)] [&:-webkit-autofill:hover]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill:focus]:shadow-[inset_0_0_0_1000px_#0d1528]"
+  "!bg-[#0d1528] border-white/15 text-gray-100 placeholder:text-gray-500 focus-visible:ring-copper/40 focus-visible:border-copper rounded-sm border"
 const inputClass = `${fieldBase} qualification-field`
 const inputClassCompact = `${fieldBase} qualification-field`
 const labelClass = "text-[11px] tracking-[0.2em] text-copper uppercase font-semibold block mb-2"
@@ -240,13 +240,9 @@ export function QualificationFormModal() {
         onEscapeKeyDown={(event) => event.preventDefault()}
         className={cn(
           "w-full max-w-lg lg:max-w-xl bg-navy border border-white/15 p-0 gap-0 text-white flex flex-col overflow-hidden",
-          "max-sm:fixed max-sm:inset-0 max-sm:left-0 max-sm:top-0 max-sm:right-0 max-sm:bottom-0",
-          "max-sm:translate-x-0 max-sm:translate-y-0 max-sm:!translate-x-0 max-sm:!translate-y-0",
-          "max-sm:max-w-none max-sm:max-h-none max-sm:h-[100dvh] max-sm:w-full max-sm:rounded-none max-sm:border-0",
-          "max-sm:data-[state=open]:slide-in-from-bottom max-sm:data-[state=closed]:slide-out-to-bottom",
-          "max-sm:data-[state=open]:slide-in-from-left-0 max-sm:data-[state=open]:slide-in-from-top-0",
-          "max-sm:data-[state=closed]:slide-out-to-left-0 max-sm:data-[state=closed]:slide-out-to-top-0",
-          "max-sm:data-[state=open]:zoom-in-100 max-sm:data-[state=closed]:zoom-out-100",
+          "max-sm:!fixed max-sm:!inset-0 max-sm:!left-0 max-sm:!top-0 max-sm:!right-0 max-sm:!bottom-0",
+          "max-sm:!translate-x-0 max-sm:!translate-y-0 max-sm:!scale-100 max-sm:!transform-none",
+          "max-sm:!animate-none max-sm:max-w-none max-sm:max-h-none max-sm:h-[100dvh] max-sm:w-full max-sm:rounded-none max-sm:border-0",
           "sm:w-[92vw] sm:max-h-[96vh] md:min-h-[640px] sm:rounded-lg",
           "[&>button]:text-gray-300 [&>button]:border [&>button]:border-white/20 [&>button]:rounded-sm",
           "[&>button]:p-2 [&>button]:top-[max(0.75rem,env(safe-area-inset-top))] [&>button]:right-3 sm:[&>button]:top-4 sm:[&>button]:right-4 [&>button]:opacity-100",
@@ -327,21 +323,51 @@ export function QualificationFormModal() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className={labelClassCompact}>{t("qualFirstName")} *</label>
-                      <input className={inputClassCompact} value={form.firstName} onChange={(e) => updateForm({ firstName: e.target.value })} placeholder={t("qualFirstNamePlaceholder")} />
+                      <input
+                        className={inputClassCompact}
+                        value={form.firstName}
+                        onChange={(e) => updateForm({ firstName: e.target.value })}
+                        placeholder={t("qualFirstNamePlaceholder")}
+                        autoComplete="given-name"
+                        name="firstName"
+                      />
                     </div>
                     <div>
                       <label className={labelClassCompact}>{t("qualLastName")} *</label>
-                      <input className={inputClassCompact} value={form.lastName} onChange={(e) => updateForm({ lastName: e.target.value })} placeholder={t("qualLastNamePlaceholder")} />
+                      <input
+                        className={inputClassCompact}
+                        value={form.lastName}
+                        onChange={(e) => updateForm({ lastName: e.target.value })}
+                        placeholder={t("qualLastNamePlaceholder")}
+                        autoComplete="family-name"
+                        name="lastName"
+                      />
                     </div>
                   </div>
                   <div>
                     <label className={labelClassCompact}>{t("qualCompanyName")} *</label>
-                    <input className={inputClassCompact} value={form.companyName} onChange={(e) => updateForm({ companyName: e.target.value })} placeholder={t("qualCompanyPlaceholder")} />
+                    <input
+                      className={inputClassCompact}
+                      value={form.companyName}
+                      onChange={(e) => updateForm({ companyName: e.target.value })}
+                      placeholder={t("qualCompanyPlaceholder")}
+                      autoComplete="organization"
+                      name="companyName"
+                    />
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className={labelClassCompact}>{t("qualEmail")} *</label>
-                      <input type="email" className={inputClassCompact} value={form.email} onChange={(e) => updateForm({ email: e.target.value })} placeholder="email@company.com" />
+                      <input
+                        type="email"
+                        className={inputClassCompact}
+                        value={form.email}
+                        onChange={(e) => updateForm({ email: e.target.value })}
+                        placeholder="email@company.com"
+                        autoComplete="email"
+                        name="email"
+                        inputMode="email"
+                      />
                     </div>
                     <div>
                       <label className={labelClassCompact}>{t("qualCountry")} *</label>
@@ -386,16 +412,34 @@ export function QualificationFormModal() {
                         value={form.phone}
                         onChange={(e) => updateForm({ phone: e.target.value })}
                         placeholder={selectedPhoneCode ? `${selectedPhoneCode} 00 000 000` : "+971 54 XXX XXXX"}
+                        autoComplete="tel"
+                        name="phone"
+                        inputMode="tel"
                       />
                     </div>
                     <div>
                       <label className={labelClassCompact}>{t("qualCity")}</label>
-                      <input className={inputClassCompact} value={form.city} onChange={(e) => updateForm({ city: e.target.value })} placeholder={t("qualCityPlaceholder")} />
+                      <input
+                        className={inputClassCompact}
+                        value={form.city}
+                        onChange={(e) => updateForm({ city: e.target.value })}
+                        placeholder={t("qualCityPlaceholder")}
+                        autoComplete="address-level2"
+                        name="city"
+                      />
                     </div>
                   </div>
                   <div>
                     <label className={labelClassCompact}>{t("qualWebsite")}</label>
-                    <input className={inputClassCompact} value={form.website} onChange={(e) => updateForm({ website: e.target.value })} placeholder="https://linkedin.com/company/..." />
+                    <input
+                      className={inputClassCompact}
+                      value={form.website}
+                      onChange={(e) => updateForm({ website: e.target.value })}
+                      placeholder="https://linkedin.com/company/..."
+                      autoComplete="url"
+                      name="website"
+                      inputMode="url"
+                    />
                   </div>
                 </div>
               )}
