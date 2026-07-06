@@ -47,8 +47,8 @@ import {
 
 const fieldBase =
   "!bg-[#0d1528] border-white/15 text-gray-100 placeholder:text-gray-500 focus-visible:ring-copper/40 focus-visible:border-copper rounded-sm border [&:-webkit-autofill]:!bg-[#0d1528] [&:-webkit-autofill]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill]:[-webkit-text-fill-color:rgb(229,231,235)] [&:-webkit-autofill:hover]:shadow-[inset_0_0_0_1000px_#0d1528] [&:-webkit-autofill:focus]:shadow-[inset_0_0_0_1000px_#0d1528]"
-const inputClass = `${fieldBase} h-11 text-sm`
-const inputClassCompact = `${fieldBase} h-9 text-sm`
+const inputClass = `${fieldBase} h-11 text-base sm:text-sm`
+const inputClassCompact = `${fieldBase} h-11 sm:h-9 text-base sm:text-sm`
 const labelClass = "text-[11px] tracking-[0.2em] text-copper uppercase font-semibold block mb-2"
 const labelClassCompact = "text-[11px] tracking-[0.15em] text-copper uppercase font-semibold block mb-1"
 const descClass = "text-gray-300 text-sm leading-relaxed"
@@ -201,9 +201,9 @@ export function QualificationFormModal() {
   }
 
   const isReview = step === "review"
-  const contentPadding = "px-4 py-3 sm:px-5 sm:py-4"
-  const headerPadding = "px-4 pt-4 pb-3 sm:px-5 sm:pt-5"
-  const footerPadding = "px-4 py-3 sm:px-5 sm:py-4"
+  const contentPadding = "px-4 py-3 sm:px-5 sm:py-4 max-sm:px-3"
+  const headerPadding = "px-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3 sm:px-5 sm:pt-5"
+  const footerPadding = "px-4 py-3 sm:px-5 sm:py-4 max-sm:px-3"
   const stepNavRef = useRef<HTMLDivElement>(null)
   const [stepIndicator, setStepIndicator] = useState({ left: 0, width: 0 })
 
@@ -215,6 +215,8 @@ export function QualificationFormModal() {
       if (!nav) return
       const activeButton = nav.querySelector<HTMLButtonElement>(`[data-step-index="${stepIndex}"]`)
       if (!activeButton) return
+
+      activeButton.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" })
 
       const next = {
         left: activeButton.offsetLeft,
@@ -239,27 +241,33 @@ export function QualificationFormModal() {
         onEscapeKeyDown={(event) => event.preventDefault()}
         className={cn(
           "w-full max-w-lg lg:max-w-xl bg-navy border border-white/15 p-0 gap-0 text-white flex flex-col overflow-hidden",
-          "max-sm:fixed max-sm:inset-0 max-sm:left-0 max-sm:top-0 max-sm:translate-x-0 max-sm:translate-y-0",
-          "max-sm:max-w-none max-sm:max-h-none max-sm:h-[100dvh] max-sm:rounded-none max-sm:border-0",
-          "sm:w-[92vw] sm:max-h-[96vh] sm:min-h-[640px] sm:rounded-lg",
+          "max-sm:fixed max-sm:inset-0 max-sm:left-0 max-sm:top-0 max-sm:right-0 max-sm:bottom-0",
+          "max-sm:translate-x-0 max-sm:translate-y-0 max-sm:!translate-x-0 max-sm:!translate-y-0",
+          "max-sm:max-w-none max-sm:max-h-none max-sm:h-[100dvh] max-sm:w-full max-sm:rounded-none max-sm:border-0",
+          "max-sm:data-[state=open]:slide-in-from-bottom max-sm:data-[state=closed]:slide-out-to-bottom",
+          "max-sm:data-[state=open]:slide-in-from-left-0 max-sm:data-[state=open]:slide-in-from-top-0",
+          "max-sm:data-[state=closed]:slide-out-to-left-0 max-sm:data-[state=closed]:slide-out-to-top-0",
+          "max-sm:data-[state=open]:zoom-in-100 max-sm:data-[state=closed]:zoom-out-100",
+          "sm:w-[92vw] sm:max-h-[96vh] md:min-h-[640px] sm:rounded-lg",
           "[&>button]:text-gray-300 [&>button]:border [&>button]:border-white/20 [&>button]:rounded-sm",
-          "[&>button]:p-1.5 [&>button]:top-3 [&>button]:right-3 sm:[&>button]:top-4 sm:[&>button]:right-4 [&>button]:opacity-100"
+          "[&>button]:p-2 [&>button]:top-[max(0.75rem,env(safe-area-inset-top))] [&>button]:right-3 sm:[&>button]:top-4 sm:[&>button]:right-4 [&>button]:opacity-100",
+          "[&>button]:touch-manipulation"
         )}
       >
         <DialogTitle className="sr-only">{t("qualFormTitle")}</DialogTitle>
 
         <div className={cn("border-b border-white/10 shrink-0", headerPadding)}>
-          <p className="text-sm sm:text-base md:text-lg tracking-[0.15em] sm:tracking-[0.2em] text-copper uppercase font-medium pr-8 sm:pr-10">
+          <p className="text-xs sm:text-sm md:text-base tracking-[0.12em] sm:tracking-[0.15em] md:tracking-[0.2em] text-copper uppercase font-medium pr-10 sm:pr-12 leading-snug">
             {t("qualFormTitle")}
           </p>
-          <p className="text-xs sm:text-sm text-gray-400 mt-2 pr-8 sm:pr-10 leading-relaxed">
+          <p className="text-[11px] sm:text-sm text-gray-400 mt-1.5 sm:mt-2 pr-10 sm:pr-12 leading-relaxed">
             {t("qualFormSubtitle")}
           </p>
-          <div className="border-t border-white/15 mt-2.5 pt-2.5 sm:mt-3 sm:pt-3">
-            <div className="relative pb-1">
+          <div className="border-t border-white/15 mt-2 pt-2 sm:mt-3 sm:pt-3">
+            <div className="relative pb-1 -mx-1 px-1">
               <div
                 ref={stepNavRef}
-                className="flex gap-3 sm:gap-4 overflow-x-auto scrollbar-hide"
+                className="flex gap-2.5 sm:gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
               >
                 {FORM_STEPS.map((s, i) => (
                   <button
@@ -268,11 +276,11 @@ export function QualificationFormModal() {
                     type="button"
                     onClick={() => i <= stepIndex && setStep(s)}
                     className={cn(
-                      "text-[11px] sm:text-xs tracking-[0.15em] uppercase whitespace-nowrap pb-3 transition-colors duration-300",
+                      "snap-center shrink-0 text-[10px] sm:text-xs tracking-[0.12em] sm:tracking-[0.15em] uppercase whitespace-nowrap pb-2.5 sm:pb-3 transition-colors duration-300 touch-manipulation min-h-[44px] flex items-end",
                       step === s
                         ? "text-copper"
                         : i < stepIndex
-                          ? "text-gray-300 hover:text-copper"
+                          ? "text-gray-300 hover:text-copper active:text-copper"
                           : "text-gray-500 cursor-default"
                     )}
                   >
@@ -293,8 +301,8 @@ export function QualificationFormModal() {
         <div
           className={cn(
             contentPadding,
-            "flex-1 min-h-0 overflow-y-auto",
-            isReview ? "scrollbar-form" : "scrollbar-hide sm:scrollbar-hide"
+            "flex-1 min-h-0 overflow-y-auto overscroll-contain",
+            isReview ? "scrollbar-form" : "max-sm:scrollbar-form sm:scrollbar-hide"
           )}
         >
           {submitted ? (
@@ -455,17 +463,17 @@ export function QualificationFormModal() {
                   </div>
                   <div>
                     <p className={labelClassCompact}>{t("qualSectorsLabel")}</p>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
                       {PRODUCT_SECTOR_IDS.map((id, i) => (
                         <button
                           key={id}
                           type="button"
                           onClick={() => toggleArray("productSectors", id)}
                           className={cn(
-                            "text-[10px] tracking-wider uppercase px-2 py-1 border transition-colors leading-tight",
+                            "text-[10px] sm:text-[10px] tracking-wider uppercase px-2.5 py-1.5 sm:px-2 sm:py-1 border transition-colors leading-tight touch-manipulation min-h-[36px] sm:min-h-0",
                             form.productSectors.includes(id)
                               ? "border-copper text-copper bg-copper/10"
-                              : "border-white/25 text-gray-300 hover:border-copper/50"
+                              : "border-white/25 text-gray-300 hover:border-copper/50 active:border-copper/50"
                           )}
                         >
                           {t(PRODUCT_SECTOR_KEYS[i] as never)}
@@ -521,7 +529,7 @@ export function QualificationFormModal() {
                         "[&_[role=slider]]:focus-visible:ring-0 [&_[role=slider]]:focus-visible:ring-offset-0"
                       )}
                     />
-                    <div className="grid grid-cols-5 gap-0.5 sm:gap-1 text-[8px] sm:text-[11px] text-gray-400 mt-3">
+                    <div className="grid grid-cols-5 gap-0.5 sm:gap-1 text-[9px] sm:text-[11px] text-gray-400 mt-3 px-0.5">
                       {VOLUME_SCALE_LABELS.map((label) => (
                         <span key={label} className="text-center leading-tight">
                           {label}
@@ -570,9 +578,9 @@ export function QualificationFormModal() {
                   </div>
                   <div className="border-t border-white/10">
                     {reviewRows.map((row) => (
-                      <div key={row.label} className="grid grid-cols-1 sm:grid-cols-[1fr_1.2fr] gap-1 sm:gap-4 py-3 sm:py-4 border-b border-white/10 text-sm">
-                        <span className="text-[11px] tracking-[0.15em] text-copper uppercase font-medium">{row.label}</span>
-                        <span className="text-gray-200 sm:text-right break-words">{row.value}</span>
+                      <div key={row.label} className="grid grid-cols-1 sm:grid-cols-[1fr_1.2fr] gap-0.5 sm:gap-4 py-2.5 sm:py-4 border-b border-white/10 text-sm">
+                        <span className="text-[10px] sm:text-[11px] tracking-[0.12em] sm:tracking-[0.15em] text-copper uppercase font-medium">{row.label}</span>
+                        <span className="text-gray-200 sm:text-right break-words text-[13px] sm:text-sm">{row.value}</span>
                       </div>
                     ))}
                   </div>
@@ -610,24 +618,45 @@ export function QualificationFormModal() {
         </div>
 
         {!submitted && (
-          <div className={cn("border-t border-white/10 flex justify-between items-center gap-2 sm:gap-4 shrink-0 pb-[max(0.75rem,env(safe-area-inset-bottom))]", footerPadding)}>
+          <div
+            className={cn(
+              "border-t border-white/10 flex flex-col-reverse sm:flex-row sm:justify-between sm:items-center gap-2.5 sm:gap-4 shrink-0",
+              "pb-[max(0.75rem,env(safe-area-inset-bottom))]",
+              footerPadding
+            )}
+          >
             {stepIndex > 0 ? (
-              <Button type="button" variant="outline" onClick={prevStep} className="border-white/25 bg-transparent text-gray-200 hover:bg-white/5 uppercase tracking-wider text-[10px] sm:text-xs px-3 sm:px-4 h-9 sm:h-10">
-                <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 mr-1.5 sm:mr-2" />{t("qualBack")}
+              <Button
+                type="button"
+                variant="outline"
+                onClick={prevStep}
+                className="w-full sm:w-auto border-white/25 bg-transparent text-gray-200 hover:bg-white/5 uppercase tracking-wider text-xs px-4 h-11 sm:h-10 touch-manipulation"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                {t("qualBack")}
               </Button>
-            ) : (<div />)}
+            ) : (
+              <div className="hidden sm:block" />
+            )}
             {step === "review" ? (
-              <Button type="button" onClick={handleSubmit} disabled={!form.consent || submitting} className="bg-copper hover:bg-copper/90 text-navy font-bold uppercase tracking-wider text-[10px] sm:text-xs px-4 sm:px-6 h-9 sm:h-10">
-                {submitting ? t("qualSubmitting") : t("qualSubmit")}<ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5 sm:ml-2" />
+              <Button
+                type="button"
+                onClick={handleSubmit}
+                disabled={!form.consent || submitting}
+                className="w-full sm:w-auto bg-copper hover:bg-copper/90 text-navy font-bold uppercase tracking-wider text-xs px-6 h-11 sm:h-10 touch-manipulation disabled:opacity-50"
+              >
+                {submitting ? t("qualSubmitting") : t("qualSubmit")}
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             ) : (
               <Button
                 type="button"
                 onClick={handleContinue}
                 disabled={step === "identity" && !identityStepComplete}
-                className="bg-copper hover:bg-copper/90 text-navy font-bold uppercase tracking-wider text-[10px] sm:text-xs px-4 sm:px-6 h-9 sm:h-10 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full sm:w-auto bg-copper hover:bg-copper/90 text-navy font-bold uppercase tracking-wider text-xs px-6 h-11 sm:h-10 touch-manipulation disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {step === "opportunity" ? t("qualReviewBtn") : t("qualContinue")}<ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 ml-1.5 sm:ml-2" />
+                {step === "opportunity" ? t("qualReviewBtn") : t("qualContinue")}
+                <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             )}
           </div>
@@ -647,7 +676,14 @@ function CircleIndicator({ selected }: { selected: boolean }) {
 
 function SelectCard({ selected, onClick, title, description }: { selected: boolean; onClick: () => void; title: string; description: string }) {
   return (
-    <button type="button" onClick={onClick} className={cn("flex gap-3 text-left p-3 sm:p-4 border rounded-sm transition-colors w-full", selected ? "border-copper bg-copper/5" : "border-white/15 hover:border-white/30")}>
+    <button
+      type="button"
+      onClick={onClick}
+      className={cn(
+        "flex gap-3 text-left p-3 sm:p-4 border rounded-sm transition-colors w-full touch-manipulation min-h-[52px]",
+        selected ? "border-copper bg-copper/5" : "border-white/15 hover:border-white/30 active:border-white/40"
+      )}
+    >
       <CircleIndicator selected={selected} />
       <div><p className="text-xs font-semibold text-gray-100 uppercase tracking-wide">{title}</p><p className={cn("text-xs mt-1", cardDescClass)}>{description}</p></div>
     </button>
@@ -672,9 +708,9 @@ function RadioCard({
       type="button"
       onClick={onClick}
       className={cn(
-        "flex text-left border rounded-sm transition-colors w-full",
-        compact ? "gap-2 p-2.5 items-start" : "gap-3 p-3 sm:p-4",
-        selected ? "border-copper bg-copper/5" : "border-white/15 hover:border-white/30"
+        "flex text-left border rounded-sm transition-colors w-full touch-manipulation",
+        compact ? "gap-2 p-3 min-h-[48px] items-start" : "gap-3 p-3 sm:p-4 min-h-[52px]",
+        selected ? "border-copper bg-copper/5" : "border-white/15 hover:border-white/30 active:border-white/40"
       )}
     >
       <CircleIndicator selected={selected} />
@@ -710,9 +746,9 @@ function CheckCard({
       type="button"
       onClick={onClick}
       className={cn(
-        "flex text-left border rounded-sm transition-colors",
-        compact ? "gap-2 p-2.5 items-start" : "gap-3 p-3 sm:p-4",
-        selected ? "border-copper bg-copper/5" : "border-white/15 hover:border-white/30"
+        "flex text-left border rounded-sm transition-colors w-full touch-manipulation",
+        compact ? "gap-2 p-3 min-h-[48px] items-start" : "gap-3 p-3 sm:p-4 min-h-[52px]",
+        selected ? "border-copper bg-copper/5" : "border-white/15 hover:border-white/30 active:border-white/40"
       )}
     >
       <div
