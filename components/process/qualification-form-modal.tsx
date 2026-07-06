@@ -749,7 +749,6 @@ export function QualificationFormModal() {
             )}
           </div>
         )}
-      </div>
     </>
   )
 
