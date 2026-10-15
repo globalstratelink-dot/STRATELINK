@@ -6,9 +6,12 @@ import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/contexts/language-context"
 import { SectionScrollHintAnchor } from "@/components/section-scroll-hint"
 import { scrollToQualifyProject } from "@/lib/scroll-to-qualify"
+import { ROUTES } from "@/lib/site-routes"
+import { useRouter } from "next/navigation"
 
 export function ProcessHero() {
   const { t } = useLanguage()
+  const router = useRouter()
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -18,8 +21,8 @@ export function ProcessHero() {
     void video.play().catch(() => undefined)
   }, [])
 
-  const scrollToHowItWorks = () => {
-    document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
+  const openHowItWorks = () => {
+    router.push(`${ROUTES.agency}#how-it-works`)
   }
 
   return (
@@ -83,7 +86,7 @@ export function ProcessHero() {
             size="lg"
             variant="outline"
             className="border border-white/40 bg-transparent text-white hover:bg-white/5 font-semibold text-sm sm:text-base tracking-wider uppercase px-8 py-6 w-full sm:w-auto"
-            onClick={scrollToHowItWorks}
+            onClick={openHowItWorks}
           >
             {t("processHowItWorks")}
           </Button>
@@ -91,7 +94,7 @@ export function ProcessHero() {
         </div>
       </div>
 
-      <SectionScrollHintAnchor targetId="how-it-works" />
+      <SectionScrollHintAnchor targetId="trade-corridors" />
     </section>
   )
 }

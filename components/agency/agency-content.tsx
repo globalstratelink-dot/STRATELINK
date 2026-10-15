@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
-import { WhyChooseStratelink } from "@/components/why-choose-stratelink"
+import { ProcessWhatWeDo } from "@/components/process/process-what-we-do"
 import { SectionScrollHintAnchor } from "@/components/section-scroll-hint"
 
 const fadeUp = {
@@ -64,10 +64,10 @@ export function AgencyContent() {
           </div>
         </div>
 
-        <SectionScrollHintAnchor targetId="why-stratelink" />
+        <SectionScrollHintAnchor targetId="how-it-works" />
       </section>
 
-      <WhyChooseStratelink />
+      <ProcessWhatWeDo scrollNext={null} />
     </div>
   )
 }

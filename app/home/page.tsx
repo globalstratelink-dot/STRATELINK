@@ -3,7 +3,6 @@
 import { Footer } from "@/components/footer"
 import { ProcessHero } from "@/components/process/process-hero"
 import { ProcessStats } from "@/components/process/process-stats"
-import { ProcessWhatWeDo } from "@/components/process/process-what-we-do"
 import { ProcessTradeCorridors } from "@/components/process/process-trade-corridors"
 import { ProcessWhoWeWorkWith } from "@/components/process/process-who-we-work-with"
 import { ProcessCta } from "@/components/process/process-cta"
@@ -16,7 +15,6 @@ export default function HomePage() {
       <div className="min-h-screen bg-navy">
         <ProcessHero />
         <ProcessStats />
-        <ProcessWhatWeDo />
         <ProcessTradeCorridors />
         <ProcessWhoWeWorkWith />
         <ProcessCta />

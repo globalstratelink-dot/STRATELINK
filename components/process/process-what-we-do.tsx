@@ -5,7 +5,7 @@ import { useLanguage } from "@/contexts/language-context"
 import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
 import { cn } from "@/lib/utils"
 
-export function ProcessWhatWeDo() {
+export function ProcessWhatWeDo({ scrollNext = "trade-corridors" }: { scrollNext?: string | null }) {
   const { t } = useLanguage()
 
   const services = [
@@ -89,7 +89,7 @@ export function ProcessWhatWeDo() {
         </div>
       </div>
 
-      <SectionScrollHintAnchor targetId="trade-corridors" />
+      {scrollNext ? <SectionScrollHintAnchor targetId={scrollNext} /> : null}
     </section>
   )
 }
