@@ -25,7 +25,10 @@ function validateInput(body: Partial<CatalogueServiceInput>) {
   if (!body.nameFr?.trim() || !body.nameEn?.trim()) return "Name is required in both languages"
   if (!body.descriptionFr?.trim() || !body.descriptionEn?.trim()) return "Description is required"
   if (!body.audienceFr?.trim() || !body.audienceEn?.trim()) return "Audience is required"
-  if (!body.imageUrl?.trim()) return "Image is required"
+  const images = Array.isArray(body.imageUrls)
+    ? body.imageUrls.map((item) => item.trim()).filter(Boolean)
+    : []
+  if (!images.length && !body.imageUrl?.trim()) return "Image is required"
   if (!Array.isArray(body.includesFr) || body.includesFr.filter(Boolean).length < 1) return "At least one included item (FR)"
   if (!Array.isArray(body.includesEn) || body.includesEn.filter(Boolean).length < 1) return "At least one included item (EN)"
   return null
@@ -53,7 +56,9 @@ export async function POST(request: NextRequest) {
     const services = await listCatalogueServices()
     const order = typeof body.order === "number" ? body.order : services.length + 1
     const service = buildService({
-      imageUrl: body.imageUrl!,
+      imageUrl: body.imageUrl || "",
+      imageUrls: Array.isArray(body.imageUrls) ? body.imageUrls : body.imageUrl ? [body.imageUrl] : [],
+      videoUrl: body.videoUrl || "",
       nameFr: body.nameFr!,
       nameEn: body.nameEn!,
       descriptionFr: body.descriptionFr!,
@@ -97,7 +102,9 @@ export async function PUT(request: NextRequest) {
 
     const service = buildService(
       {
-        imageUrl: body.imageUrl!,
+        imageUrl: body.imageUrl || "",
+        imageUrls: Array.isArray(body.imageUrls) ? body.imageUrls : body.imageUrl ? [body.imageUrl] : [],
+        videoUrl: body.videoUrl || "",
         nameFr: body.nameFr!,
         nameEn: body.nameEn!,
         descriptionFr: body.descriptionFr!,

@@ -51,3 +51,9 @@ create policy "catalogue images service role update"
 on storage.objects for update
 to service_role
 using (bucket_id = 'catalogue-images');
+
+-- Plusieurs images et une vidéo par service, sans plafond de taille côté bucket.
+update storage.buckets
+set file_size_limit = null,
+    allowed_mime_types = null
+where id = 'catalogue-images';

@@ -41,8 +41,18 @@ export function normalizeImageMime(type: string): (typeof CATALOGUE_ALLOWED_IMAG
   const normalized = type.toLowerCase().split(";")[0].trim()
   if (!normalized) return null
   if (normalized === "image/jpg" || normalized === "image/pjpeg") return "image/jpeg"
-  if (CATALOGUE_ALLOWED_IMAGE_TYPES.includes(normalized as (typeof CATALOGUE_ALLOWED_IMAGE_TYPES)[number])) {
-    return normalized as (typeof CATALOGUE_ALLOWED_IMAGE_TYPES)[number]
+  return null
+}
+
+export function detectVideoMime(buffer: Buffer): "video/mp4" | "video/webm" | "video/quicktime" | null {
+  if (buffer.length < 12) return null
+  if (buffer.subarray(4, 8).toString("ascii") === "ftyp") {
+    const brand = buffer.subarray(8, 12).toString("ascii")
+    if (brand.startsWith("qt")) return "video/quicktime"
+    return "video/mp4"
+  }
+  if (buffer[0] === 0x1a && buffer[1] === 0x45 && buffer[2] === 0xdf && buffer[3] === 0xa3) {
+    return "video/webm"
   }
   return null
 }

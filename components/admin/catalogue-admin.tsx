@@ -13,7 +13,6 @@ import {
 } from "@/components/ui/dialog"
 import { CatalogueServiceImage } from "@/components/catalogue/catalogue-service-image"
 import {
-  CATALOGUE_MAX_IMAGE_BYTES,
   type CatalogueService,
   type CatalogueServiceInput,
 } from "@/lib/catalogue-types"
@@ -21,6 +20,8 @@ import { cn } from "@/lib/utils"
 
 const emptyForm: CatalogueServiceInput = {
   imageUrl: "",
+  imageUrls: [],
+  videoUrl: "",
   nameFr: "",
   nameEn: "",
   descriptionFr: "",
@@ -43,6 +44,7 @@ export function CatalogueAdminPanel() {
   const [uploadingImage, setUploadingImage] = useState(false)
   const [imageError, setImageError] = useState("")
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const videoInputRef = useRef<HTMLInputElement>(null)
 
   const [loadError, setLoadError] = useState("")
   const [storageWarning, setStorageWarning] = useState("")
@@ -105,7 +107,9 @@ export function CatalogueAdminPanel() {
     setEditing(service)
     setImageError("")
     setForm({
-      imageUrl: service.imageUrl,
+      imageUrl: service.imageUrls?.[0] || service.imageUrl,
+      imageUrls: service.imageUrls?.length ? service.imageUrls : service.imageUrl ? [service.imageUrl] : [],
+      videoUrl: service.videoUrl || "",
       nameFr: service.nameFr,
       nameEn: service.nameEn,
       descriptionFr: service.descriptionFr,
@@ -131,48 +135,93 @@ export function CatalogueAdminPanel() {
     })
   }
 
-  const handleImageUpload = async (file: File) => {
+  const uploadCatalogueFile = async (file: File) => {
+    const signRes = await fetch("/api/catalogue/upload/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      cache: "no-store",
+      body: JSON.stringify({
+        action: "sign",
+        filename: file.name,
+        contentType: file.type,
+      }),
+    })
+    const signType = signRes.headers.get("content-type") || ""
+    const signData = signType.includes("application/json") ? await signRes.json() : null
+
+    if (!signRes.ok) {
+      throw new Error(signData?.error || "Impossible de préparer l'envoi")
+    }
+
+    if (signData?.signedUrl && signData?.publicUrl) {
+      const body = new FormData()
+      body.append("cacheControl", "31536000")
+      body.append("", file)
+      const put = await fetch(signData.signedUrl, { method: "PUT", body })
+      if (!put.ok) {
+        const detail = (await put.text()).slice(0, 180)
+        throw new Error(detail || "Impossible d'envoyer le fichier")
+      }
+      return signData.publicUrl as string
+    }
+
+    const body = new FormData()
+    body.append("file", file)
+    const res = await fetch("/api/catalogue/upload/", {
+      method: "POST",
+      body,
+      credentials: "same-origin",
+      cache: "no-store",
+    })
+    const contentType = res.headers.get("content-type") || ""
+    if (!contentType.includes("application/json")) {
+      throw new Error("Le serveur a refusé le fichier.")
+    }
+    const data = await res.json()
+    if (!res.ok) throw new Error(data.error || "Impossible d'envoyer le fichier")
+    return data.url as string
+  }
+
+  const handleImageUpload = async (files: File[]) => {
+    if (!files.length) return
     setUploadingImage(true)
     setImageError("")
     try {
-      if (file.size > CATALOGUE_MAX_IMAGE_BYTES) {
-        setImageError("Image trop volumineuse (max 5 Mo)")
-        return
+      const uploaded: string[] = []
+      for (const file of files) {
+        uploaded.push(await uploadCatalogueFile(file))
       }
-
-      const body = new FormData()
-      body.append("file", file)
-      const res = await fetch("/api/catalogue/upload/", {
-        method: "POST",
-        body,
-        credentials: "same-origin",
-        cache: "no-store",
+      setForm((prev) => {
+        const imageUrls = [...prev.imageUrls, ...uploaded]
+        return { ...prev, imageUrls, imageUrl: imageUrls[0] || "" }
       })
-
-      const contentType = res.headers.get("content-type") || ""
-      if (!contentType.includes("application/json")) {
-        setImageError("Le serveur a refusé l'image. Réessayez avec JPG, PNG ou WEBP (max 5 Mo).")
-        return
-      }
-
-      const data = await res.json()
-      if (!res.ok) {
-        setImageError(data.error || "Impossible d'envoyer l'image")
-        return
-      }
-      setForm((prev) => ({ ...prev, imageUrl: data.url }))
-    } catch {
-      setImageError("Impossible d'envoyer l'image")
+    } catch (error) {
+      setImageError(error instanceof Error ? error.message : "Impossible d'envoyer l'image")
     } finally {
       setUploadingImage(false)
       if (fileInputRef.current) fileInputRef.current.value = ""
     }
   }
 
+  const handleVideoUpload = async (file: File) => {
+    setUploadingImage(true)
+    setImageError("")
+    try {
+      const url = await uploadCatalogueFile(file)
+      setForm((prev) => ({ ...prev, videoUrl: url }))
+    } catch (error) {
+      setImageError(error instanceof Error ? error.message : "Impossible d'envoyer la vidéo")
+    } finally {
+      setUploadingImage(false)
+      if (videoInputRef.current) videoInputRef.current.value = ""
+    }
+  }
+
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!form.imageUrl.trim()) {
-      setError("Ajoutez une image pour ce service")
+    if (!form.imageUrls.length && !form.imageUrl.trim()) {
+      setError("Ajoutez au moins une image pour ce service")
       return
     }
     setSaving(true)
@@ -285,7 +334,7 @@ export function CatalogueAdminPanel() {
               >
                 <div className="flex items-start gap-3 min-w-0 mb-4">
                   <CatalogueServiceImage
-                    src={service.imageUrl}
+                    src={service.imageUrls?.[0] || service.imageUrl}
                     alt={service.nameFr}
                     className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg shrink-0"
                   />
@@ -341,24 +390,44 @@ export function CatalogueAdminPanel() {
           <form onSubmit={handleSave} className="space-y-4 pb-2">
             <div className="p-4 border border-white/10 rounded-xl space-y-4">
               <label className="text-xs text-copper uppercase tracking-wider font-semibold">
-                Image du service
+                Images du service
               </label>
 
-              <CatalogueServiceImage
-                src={form.imageUrl}
-                alt={previewName}
-                className="w-full h-44 rounded-lg"
-              />
+              {form.imageUrls.length > 0 ? (
+                <div className="grid grid-cols-3 gap-2">
+                  {form.imageUrls.map((url, index) => (
+                    <div key={`${url}-${index}`} className="relative">
+                      <CatalogueServiceImage src={url} alt={`${previewName} ${index + 1}`} className="w-full h-24 rounded-lg" />
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setForm((prev) => {
+                            const imageUrls = prev.imageUrls.filter((_, i) => i !== index)
+                            return { ...prev, imageUrls, imageUrl: imageUrls[0] || "" }
+                          })
+                        }
+                        className="absolute top-1 right-1 h-6 w-6 rounded-full bg-black/70 text-white text-xs"
+                        aria-label="Retirer cette image"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <CatalogueServiceImage src="" alt={previewName} className="w-full h-44 rounded-lg" />
+              )}
 
               <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   ref={fileInputRef}
                   type="file"
                   accept="image/jpeg,image/jpg,image/png,image/webp,image/gif,.jpg,.jpeg,.png,.webp,.gif"
+                  multiple
                   className="hidden"
                   onChange={(e) => {
-                    const file = e.target.files?.[0]
-                    if (file) void handleImageUpload(file)
+                    const files = Array.from(e.target.files || [])
+                    if (files.length) void handleImageUpload(files)
                   }}
                 />
                 <button
@@ -375,26 +444,54 @@ export function CatalogueAdminPanel() {
                   ) : (
                     <>
                       <Upload className="w-4 h-4" />
-                      Choisir une image
+                      Ajouter des images
                     </>
                   )}
                 </button>
               </div>
+              <p className="text-xs text-gray-500">JPG, PNG, WEBP ou GIF. Plusieurs images, sans limite de taille.</p>
+            </div>
 
-              <div>
-                <label className="text-xs text-gray-400 mb-2 block">Ou coller une URL d&apos;image</label>
-                <Input
-                  value={form.imageUrl}
-                  onChange={(e) => {
-                    setImageError("")
-                    setForm((p) => ({ ...p, imageUrl: e.target.value }))
-                  }}
-                  placeholder="https://... ou /api/catalogue/media/..."
-                  className="bg-[#0d1528] border-white/15 text-white text-base"
-                />
-                <p className="text-xs text-gray-500 mt-2">JPG, PNG, WEBP ou GIF — max 5 Mo</p>
+            <div className="p-4 border border-white/10 rounded-xl space-y-4">
+              <label className="text-xs text-copper uppercase tracking-wider font-semibold">
+                Vidéo du service
+              </label>
+              {form.videoUrl ? (
+                <video src={form.videoUrl} controls playsInline className="w-full max-h-48 rounded-lg bg-black" />
+              ) : (
+                <p className="text-sm text-gray-500">Aucune vidéo.</p>
+              )}
+              <input
+                ref={videoInputRef}
+                type="file"
+                accept="video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov,.m4v"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0]
+                  if (file) void handleVideoUpload(file)
+                }}
+              />
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button
+                  type="button"
+                  disabled={uploadingImage}
+                  onClick={() => videoInputRef.current?.click()}
+                  className="w-full h-10 sm:h-auto sm:w-auto px-4 rounded-md border border-copper bg-copper/15 text-copper font-semibold text-sm hover:bg-copper/25 transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50"
+                >
+                  <Upload className="w-4 h-4" />
+                  {form.videoUrl ? "Remplacer la vidéo" : "Ajouter une vidéo"}
+                </button>
+                {form.videoUrl ? (
+                  <button
+                    type="button"
+                    onClick={() => setForm((prev) => ({ ...prev, videoUrl: "" }))}
+                    className="h-10 px-4 rounded-md border border-white/20 text-sm text-gray-300"
+                  >
+                    Retirer
+                  </button>
+                ) : null}
               </div>
-
+              <p className="text-xs text-gray-500">MP4, WEBM ou MOV. Sans limite de taille.</p>
               {imageError && <p className="text-sm text-red-400">{imageError}</p>}
             </div>
 

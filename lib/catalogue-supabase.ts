@@ -1,4 +1,5 @@
 import type { CatalogueService } from "@/lib/catalogue-types"
+import { packCatalogueMedia, unpackCatalogueMedia } from "@/lib/catalogue-types"
 import { getSupabaseAdmin, supabaseFetch, supabaseProjectUrl } from "@/lib/supabase-admin"
 
 const TABLE = "catalogue_services"
@@ -7,6 +8,8 @@ const BUCKET = "catalogue-images"
 type CatalogueRow = {
   id: string
   image_url: string
+  image_urls?: string[] | null
+  video_url?: string | null
   name_fr: string
   name_en: string
   description_fr: string
@@ -21,9 +24,12 @@ type CatalogueRow = {
 }
 
 function rowToService(row: CatalogueRow): CatalogueService {
+  const media = unpackCatalogueMedia(row.image_url, row.image_urls || undefined, row.video_url || undefined)
   return {
     id: row.id,
-    imageUrl: row.image_url,
+    imageUrl: media.images[0] || "",
+    imageUrls: media.images,
+    videoUrl: media.video,
     nameFr: row.name_fr,
     nameEn: row.name_en,
     descriptionFr: row.description_fr,
@@ -38,10 +44,11 @@ function rowToService(row: CatalogueRow): CatalogueService {
   }
 }
 
-function serviceToRow(service: CatalogueService): CatalogueRow {
+function serviceToRow(service: CatalogueService) {
+  const images = service.imageUrls?.length ? service.imageUrls : service.imageUrl ? [service.imageUrl] : []
   return {
     id: service.id,
-    image_url: service.imageUrl,
+    image_url: packCatalogueMedia(images, service.videoUrl || ""),
     name_fr: service.nameFr,
     name_en: service.nameEn,
     description_fr: service.descriptionFr,
@@ -157,6 +164,22 @@ export async function saveCatalogueToSupabase(services: CatalogueService[]) {
   if (pruneError) {
     console.error("[catalogue-supabase] prune failed", pruneError)
     throw pruneError
+  }
+}
+
+export async function createCatalogueSignedUpload(filename: string) {
+  const supabase = getSupabaseAdmin()
+  await supabase.storage.updateBucket(BUCKET, { public: true, fileSizeLimit: null }).catch(() => undefined)
+  const { data, error } = await supabase.storage.from(BUCKET).createSignedUploadUrl(filename, { upsert: true })
+  if (error || !data?.signedUrl || !data.token) {
+    throw new Error(error?.message || "Impossible de préparer l'envoi")
+  }
+  const { data: pub } = supabase.storage.from(BUCKET).getPublicUrl(data.path)
+  return {
+    signedUrl: data.signedUrl,
+    token: data.token,
+    path: data.path,
+    publicUrl: pub.publicUrl,
   }
 }
 

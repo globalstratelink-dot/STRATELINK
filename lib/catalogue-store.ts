@@ -1,6 +1,6 @@
 import { promises as fs } from "fs"
 import path from "path"
-import type { CatalogueService, CatalogueServiceInput } from "@/lib/catalogue-types"
+import { unpackCatalogueMedia, type CatalogueService, type CatalogueServiceInput } from "@/lib/catalogue-types"
 import {
   CATALOGUE_SERVICES_KEY,
   getCatalogueDataStore,
@@ -35,6 +35,8 @@ export const DEFAULT_CATALOGUE_SERVICES: CatalogueService[] = [
   {
     id: "sourcing-procurement",
     imageUrl: DEFAULT_IMAGES.sourcing,
+    imageUrls: [DEFAULT_IMAGES.sourcing],
+    videoUrl: "",
     nameFr: "Sourcing & Approvisionnement",
     nameEn: "Sourcing & Procurement",
     descriptionFr: "Identification de fournisseurs qualifiés et gestion des achats internationaux pour vos projets B2B.",
@@ -50,6 +52,8 @@ export const DEFAULT_CATALOGUE_SERVICES: CatalogueService[] = [
   {
     id: "customs-compliance",
     imageUrl: DEFAULT_IMAGES.customs,
+    imageUrls: [DEFAULT_IMAGES.customs],
+    videoUrl: "",
     nameFr: "Douanes & Conformité",
     nameEn: "Customs & Compliance",
     descriptionFr: "Accompagnement réglementaire et facilitation des flux transfrontaliers fluides.",
@@ -65,6 +69,8 @@ export const DEFAULT_CATALOGUE_SERVICES: CatalogueService[] = [
   {
     id: "logistics-corridors",
     imageUrl: DEFAULT_IMAGES.logistics,
+    imageUrls: [DEFAULT_IMAGES.logistics],
+    videoUrl: "",
     nameFr: "Logistique & Corridors",
     nameEn: "Logistics & Corridors",
     descriptionFr: "Orchestration des corridors Chine, Émirats, Europe et Afrique selon vos incoterms.",
@@ -82,9 +88,12 @@ export const DEFAULT_CATALOGUE_SERVICES: CatalogueService[] = [
 type LegacyCatalogueService = Partial<CatalogueService> & { icon?: string }
 
 function normalizeService(raw: LegacyCatalogueService): CatalogueService {
+  const media = unpackCatalogueMedia(raw.imageUrl, raw.imageUrls, raw.videoUrl)
   return {
     id: raw.id || "",
-    imageUrl: raw.imageUrl?.trim() || "",
+    imageUrl: media.images[0] || "",
+    imageUrls: media.images,
+    videoUrl: media.video,
     nameFr: raw.nameFr || "",
     nameEn: raw.nameEn || "",
     descriptionFr: raw.descriptionFr || "",
@@ -273,9 +282,14 @@ export function createServiceId(name: string) {
 
 export function buildService(input: CatalogueServiceInput, existing?: CatalogueService): CatalogueService {
   const now = new Date().toISOString()
+  const images = (input.imageUrls?.length ? input.imageUrls : input.imageUrl ? [input.imageUrl] : [])
+    .map((item) => item.trim())
+    .filter(Boolean)
   return {
     id: existing?.id || createServiceId(input.nameEn || input.nameFr),
-    imageUrl: input.imageUrl.trim(),
+    imageUrl: images[0] || "",
+    imageUrls: images,
+    videoUrl: input.videoUrl?.trim() || "",
     nameFr: input.nameFr.trim(),
     nameEn: input.nameEn.trim(),
     descriptionFr: input.descriptionFr.trim(),

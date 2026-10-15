@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 import { ArrowRight, CheckCircle, Layers } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 import { CatalogueServiceImage } from "@/components/catalogue/catalogue-service-image"
+import { CatalogueServiceDetail } from "@/components/catalogue/catalogue-service-detail"
 import type { CatalogueService } from "@/lib/catalogue-types"
 import { Button } from "@/components/ui/button"
 
@@ -14,6 +15,7 @@ export function CatalogueContent() {
   const { t, language } = useLanguage()
   const [services, setServices] = useState<CatalogueService[]>([])
   const [loading, setLoading] = useState(true)
+  const [selected, setSelected] = useState<CatalogueService | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -113,13 +115,18 @@ export function CatalogueContent() {
                 viewport={{ once: true }}
                 className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl overflow-hidden hover:border-copper/40 transition-all duration-300 flex flex-col"
               >
+                <button
+                  type="button"
+                  onClick={() => setSelected(service)}
+                  className="flex w-full flex-1 flex-col text-left cursor-pointer"
+                >
                 <CatalogueServiceImage
-                  src={service.imageUrl}
+                  src={service.imageUrls?.[0] || service.imageUrl}
                   alt={label(service, "name")}
                   className="w-full h-44 sm:h-48 rounded-none border-0 border-b border-copper/20"
                 />
 
-                <div className="p-6 md:p-7 flex flex-col flex-1">
+                <div className="p-6 md:p-7 pb-0 flex flex-col">
                   <h2 className="text-xl md:text-2xl font-bold text-white mb-2">{label(service, "name")}</h2>
                   <p className="text-gray-300 text-sm leading-relaxed line-clamp-2 mb-5">{label(service, "description")}</p>
 
@@ -143,10 +150,13 @@ export function CatalogueContent() {
                     </p>
                     <p className="text-sm text-gray-300">{label(service, "audience")}</p>
                   </div>
+                </div>
+                </button>
 
+                <div className="px-6 md:px-7 pb-6 md:pb-7 mt-auto">
                   <Button
                     asChild
-                    className="mt-auto w-full bg-gradient-to-r from-copper to-sand text-navy font-bold uppercase tracking-wider text-xs sm:text-sm"
+                    className="w-full bg-gradient-to-r from-copper to-sand text-navy font-bold uppercase tracking-wider text-xs sm:text-sm"
                   >
                     <Link href={`${ROUTES.contact}?subject=${quoteSubject(service)}`}>
                       {t("catalogueCta")}
@@ -159,6 +169,7 @@ export function CatalogueContent() {
           </div>
         )}
       </div>
+      <CatalogueServiceDetail service={selected} open={Boolean(selected)} onOpenChange={(open) => { if (!open) setSelected(null) }} />
     </section>
   )
 }

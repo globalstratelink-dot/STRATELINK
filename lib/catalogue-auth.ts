@@ -4,8 +4,13 @@ import { createHmac, timingSafeEqual } from "crypto"
 const COOKIE_NAME = "catalogue_admin_session"
 const SESSION_MAX_AGE = 60 * 60 * 12 // 12 hours
 
+const LOCAL_DEV_PASSWORD = "stratelink-local"
+
 function getSecret() {
-  return process.env.CATALOGUE_ADMIN_PASSWORD || ""
+  const configured = process.env.CATALOGUE_ADMIN_PASSWORD || ""
+  if (configured) return configured
+  if (process.env.NODE_ENV !== "production") return LOCAL_DEV_PASSWORD
+  return ""
 }
 
 export function isAdminConfigured() {

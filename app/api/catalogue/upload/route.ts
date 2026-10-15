@@ -2,15 +2,15 @@ import { NextRequest, NextResponse } from "next/server"
 import { promises as fs } from "fs"
 import path from "path"
 import { isAdminAuthenticated } from "@/lib/catalogue-auth"
-import { CATALOGUE_MAX_IMAGE_BYTES } from "@/lib/catalogue-types"
-import { detectImageMime, extensionForImageMime, normalizeImageMime } from "@/lib/image-magic"
+import { detectImageMime, detectVideoMime, extensionForImageMime, normalizeImageMime } from "@/lib/image-magic"
 import {
   catalogueMediaUrl,
   getCatalogueImagesStore,
   isServerlessRuntime,
 } from "@/lib/catalogue-blobs"
 import { isSupabaseConfigured } from "@/lib/supabase-admin"
-import { checkCatalogueImageStorage, uploadCatalogueImageToSupabase } from "@/lib/catalogue-supabase"
+import { checkCatalogueImageStorage, createCatalogueSignedUpload, uploadCatalogueImageToSupabase } from "@/lib/catalogue-supabase"
+import { catalogueMediaExtension, isCatalogueVideoName } from "@/lib/catalogue-types"
 
 const CATALOGUE_IMAGES_BUCKET = "catalogue-images"
 
@@ -97,6 +97,29 @@ export async function POST(request: NextRequest) {
   }
 
   try {
+    const contentTypeHeader = request.headers.get("content-type") || ""
+    if (contentTypeHeader.includes("application/json")) {
+      const body = (await request.json()) as { action?: string; filename?: string; contentType?: string }
+      if (body.action !== "sign") {
+        return NextResponse.json({ error: "Action inconnue" }, { status: 400 })
+      }
+      if (!isSupabaseConfigured()) {
+        return NextResponse.json({ direct: false })
+      }
+      const original = body.filename || "media"
+      const ext = catalogueMediaExtension(original, body.contentType || "")
+      const allowed = ["jpg", "jpeg", "png", "webp", "gif", "mp4", "webm", "mov", "m4v"]
+      if (!allowed.includes(ext) && !isCatalogueVideoName(original)) {
+        return NextResponse.json(
+          { error: "Format non supporté. Images JPG, PNG, WEBP, GIF ou vidéo MP4, WEBM, MOV." },
+          { status: 400 }
+        )
+      }
+      const filename = `${Date.now()}-${sanitizeFilename(original.replace(/\.[^.]+$/, "") || "media")}.${ext === "jpeg" ? "jpg" : ext}`
+      const target = await createCatalogueSignedUpload(filename)
+      return NextResponse.json(target)
+    }
+
     const formData = await request.formData()
     const upload = formData.get("file")
 
@@ -107,29 +130,28 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(await upload.arrayBuffer())
 
     if (buffer.length === 0) {
-      return NextResponse.json({ error: "Le fichier image est vide" }, { status: 400 })
+      return NextResponse.json({ error: "Le fichier est vide" }, { status: 400 })
     }
 
-    if (buffer.length > CATALOGUE_MAX_IMAGE_BYTES) {
-      return NextResponse.json({ error: "Image trop volumineuse (max 5 Mo)" }, { status: 400 })
-    }
-
-    const detectedMime = detectImageMime(buffer) ?? normalizeImageMime(upload.type || "")
-    if (!detectedMime) {
+    const videoMime = detectVideoMime(buffer)
+    const imageMime = videoMime ? null : detectImageMime(buffer) ?? normalizeImageMime(upload.type || "")
+    const mime = videoMime || imageMime
+    if (!mime) {
       return NextResponse.json(
         {
-          error:
-            "Format non supporté ou fichier non reconnu. Utilisez une image JPG, PNG, WEBP ou GIF valide.",
+          error: "Format non supporté. Utilisez une image JPG, PNG, WEBP, GIF ou une vidéo MP4, WEBM ou MOV.",
         },
         { status: 400 }
       )
     }
 
-    const extension = extensionForImageMime(detectedMime)
+    const extension = videoMime
+      ? catalogueMediaExtension(typeof upload.name === "string" ? upload.name : "video", videoMime)
+      : extensionForImageMime(imageMime!)
     const originalName = typeof upload.name === "string" ? upload.name : "image"
     const filename = `${Date.now()}-${sanitizeFilename(originalName.replace(/\.[^.]+$/, "") || "image")}.${extension}`
 
-    const url = await saveCatalogueImage(filename, buffer, detectedMime)
+    const url = await saveCatalogueImage(filename, buffer, mime)
     return NextResponse.json({ url })
   } catch (error) {
     console.error("[catalogue/upload] failed", error)
