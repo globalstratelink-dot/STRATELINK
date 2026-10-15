@@ -17,6 +17,8 @@ const CATALOGUE_IMAGES_BUCKET = "catalogue-images"
 const UPLOAD_DIR = path.join(process.cwd(), "public", "uploads", "catalogue")
 
 export const runtime = "nodejs"
+export const dynamic = "force-dynamic"
+export const revalidate = 0
 
 type FormUpload = Blob & { name?: string }
 

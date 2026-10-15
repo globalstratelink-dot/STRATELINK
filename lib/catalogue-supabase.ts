@@ -1,5 +1,5 @@
 import type { CatalogueService } from "@/lib/catalogue-types"
-import { getSupabaseAdmin } from "@/lib/supabase-admin"
+import { getSupabaseAdmin, supabaseFetch, supabaseProjectUrl } from "@/lib/supabase-admin"
 
 const TABLE = "catalogue_services"
 const BUCKET = "catalogue-images"
@@ -181,11 +181,48 @@ export async function uploadCatalogueImageToSupabase(
   return data.publicUrl
 }
 
+function storageErrorDetail(error: unknown) {
+  if (!(error instanceof Error)) return "Impossible de joindre le stockage images"
+  const cause = "cause" in error && error.cause instanceof Error ? error.cause.message : ""
+  if (error.message === "fetch failed") {
+    return cause
+      ? `Stockage images injoignable : ${cause}`
+      : "Stockage images injoignable. Vérifiez SUPABASE_URL sur Netlify."
+  }
+  return error.message
+}
+
 export async function checkCatalogueImageStorage() {
   const supabase = getSupabaseAdmin()
-  const { error } = await supabase.storage.from(BUCKET).list("", { limit: 1 })
-  return {
-    ok: !error,
-    message: error?.message ?? "Bucket catalogue-images accessible",
+  try {
+    const { error } = await supabase.storage.from(BUCKET).list("", { limit: 1 })
+    if (!error) return { ok: true, message: "Bucket catalogue-images accessible" }
+    if (error.message !== "fetch failed") return { ok: false, message: error.message }
+  } catch (error) {
+    if (!(error instanceof Error) || error.message !== "fetch failed") {
+      return { ok: false, message: storageErrorDetail(error) }
+    }
+  }
+
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim()
+  if (!key) return { ok: false, message: "SUPABASE_SERVICE_ROLE_KEY manquante" }
+
+  try {
+    const res = await supabaseFetch(`${supabaseProjectUrl()}/storage/v1/bucket/${BUCKET}`, {
+      headers: {
+        Authorization: `Bearer ${key}`,
+        apikey: key,
+      },
+    })
+    if (res.ok) return { ok: true, message: "Bucket catalogue-images accessible" }
+    const body = (await res.text()).slice(0, 180)
+    return {
+      ok: false,
+      message: body
+        ? `Bucket catalogue-images inaccessible (${res.status}). ${body}`
+        : `Bucket catalogue-images inaccessible (${res.status}).`,
+    }
+  } catch (error) {
+    return { ok: false, message: storageErrorDetail(error) }
   }
 }
