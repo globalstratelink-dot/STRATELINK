@@ -6,8 +6,7 @@ export function ProcessStats() {
   const { t } = useLanguage()
 
   const stats = [
-    { value: "3", label: t("processStat1Label") },
-    { value: "48h", label: t("processStat2Label") },
+    { value: "360°", label: t("processStat1Label") },
     { value: "IFZA", label: t("processStat3Label") },
     { value: "B2B", label: t("processStat4Label") },
   ]
@@ -15,15 +14,13 @@ export function ProcessStats() {
   return (
     <section className="bg-navy border-t border-white/10">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3">
           {stats.map((stat, index) => (
             <div
-              key={index}
+              key={stat.value}
               className={[
                 "flex flex-col items-center justify-center text-center px-4 py-10 sm:py-12 md:py-14 border-white/10",
-                index % 2 === 0 && index !== 3 ? "border-r" : "",
-                index < 2 ? "border-b md:border-b-0" : "",
-                index < 3 ? "md:border-r" : "",
+                index < stats.length - 1 ? "border-b sm:border-b-0 sm:border-r" : "",
               ].join(" ")}
             >
               <span className="text-4xl sm:text-5xl md:text-6xl font-light text-copper tracking-wide mb-3 sm:mb-4">

@@ -316,7 +316,7 @@ export const translations = {
     processHowItWorks: "HOW IT WORKS ↓",
     
     // Process Stats
-    processStat1Label: "ACTIVE TRADE CORRIDORS",
+    processStat1Label: "FACTORY TO PORT",
     processStat2Label: "APPLICATION RESPONSE",
     processStat3Label: "LICENSED - DUBAI FREE ZONE",
     processStat4Label: "EXCLUSIVELY PROFESSIONAL",
@@ -533,7 +533,7 @@ export const translations = {
 
     // Catalogue
     catalogueBadge: "Dubai distributor catalogue",
-    catalogueTitle: "Become our distribution partner in the UAE",
+    catalogueTitle: "Become distribution partner in the UAE",
     catalogueSubtitle: "Products already imported from China, ready to distribute. Request the price for any product you're interested in.",
     catalogueIncludes: "What's included",
     catalogueAudience: "Audience",
@@ -890,7 +890,7 @@ export const translations = {
     processHowItWorks: "COMMENT ÇA MARCHE ↓",
     
     // Process Stats
-    processStat1Label: "CORRIDORS COMMERCIAUX ACTIFS",
+    processStat1Label: "DE L'USINE AU PORT",
     processStat2Label: "RÉPONSE SOUS 48 H",
     processStat3Label: "LICENCE ZONE FRANCHE DE DUBAÏ",
     processStat4Label: "EXCLUSIVEMENT RÉSERVÉ AUX PROFESSIONNELS",
@@ -1107,7 +1107,7 @@ export const translations = {
 
     // Catalogue
     catalogueBadge: "Catalogue distributeurs Dubaï",
-    catalogueTitle: "Devenez notre partenaire de distribution aux Émirats",
+    catalogueTitle: "Devenez partenaire de distribution aux Émirats",
     catalogueSubtitle: "Des produits déjà importés, prêts à être distribués. Demandez le prix pour chaque produit qui vous intéresse.",
     catalogueIncludes: "Ce qui est inclus",
     catalogueAudience: "Pour qui",
