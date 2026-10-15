@@ -308,11 +308,11 @@ export const translations = {
     
     // Process Page
     processHeroLabel: "CHINA · DUBAI · WORLDWIDE",
-    processHeroTitle1: "Source Smarter from China.",
-    processHeroTitle2: "Your Trading Partner",
-    processHeroTitle3: "Deliver Anywhere.",
-    processHeroDescription: "We source, verify and deliver industrial products from China to Africa, Europe and the United Arab Emirates from factory to your port of destination.",
-    processQualifyProject: "TELL US ABOUT YOUR PROJECT →",
+    processHeroTitle1: "Connecting industry",
+    processHeroTitle2: "to global markets.",
+    processHeroTitle3: "",
+    processHeroDescription: "International trading and industrial sourcing.",
+    processQualifyProject: "SUBMIT AN ENQUIRY",
     processHowItWorks: "HOW IT WORKS ↓",
     
     // Process Stats
@@ -882,11 +882,11 @@ export const translations = {
     
     // Process Page
     processHeroLabel: "CHINE · DUBAÏ · MONDE",
-    processHeroTitle1: "Sourcez mieux depuis la Chine.",
-    processHeroTitle2: "Votre partenaire commercial",
-    processHeroTitle3: "Livraison mondiale.",
-    processHeroDescription: "Nous sourçons, vérifions et livrons des produits industriels de Chine vers l'Afrique, l'Europe et les Émirats arabes unis - de l'usine à votre port de destination.",
-    processQualifyProject: "DISCUTONS DE VOTRE PROJET →",
+    processHeroTitle1: "Relier l'industrie",
+    processHeroTitle2: "aux marchés du monde",
+    processHeroTitle3: "",
+    processHeroDescription: "Négoce international et sourcing industriel.",
+    processQualifyProject: "ADRESSER UNE DEMANDE",
     processHowItWorks: "COMMENT ÇA MARCHE ↓",
     
     // Process Stats

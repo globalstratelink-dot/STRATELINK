@@ -52,7 +52,6 @@ export function ProcessHero() {
         >
           <span className="block text-white">{t("processHeroTitle1")}</span>
           <span className="block text-copper mt-1">{t("processHeroTitle2")}</span>
-          <span className="block text-white mt-1">{t("processHeroTitle3")}</span>
         </motion.h1>
 
         {/* Description */}
