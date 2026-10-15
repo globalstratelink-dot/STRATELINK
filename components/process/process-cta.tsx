@@ -48,13 +48,9 @@ export function ProcessCta() {
             </h2>
           </div>
 
-          <p className="text-base sm:text-lg text-gray-400 leading-relaxed max-w-xl mb-10">
-            {t("processCtaDescription")}
-          </p>
-
           <QualifyProjectButton
             size="lg"
-            className="bg-copper hover:bg-copper/90 text-navy font-bold text-sm sm:text-base tracking-wider uppercase px-8 py-6 mb-12 sm:mb-14"
+            className="mt-4 bg-copper hover:bg-copper/90 text-navy font-bold text-sm sm:text-base tracking-wider uppercase px-8 py-6 mb-12 sm:mb-14"
           >
             {t("processCtaButton")} →
           </QualifyProjectButton>
