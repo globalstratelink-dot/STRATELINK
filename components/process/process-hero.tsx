@@ -3,9 +3,9 @@
 import { motion } from "framer-motion"
 import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
+import { QualifyProjectButton } from "@/components/process/qualify-project-button"
 import { useLanguage } from "@/contexts/language-context"
 import { SectionScrollHintAnchor } from "@/components/section-scroll-hint"
-import { scrollToQualifyProject } from "@/lib/scroll-to-qualify"
 import { ROUTES } from "@/lib/site-routes"
 import { useRouter } from "next/navigation"
 
@@ -74,13 +74,12 @@ export function ProcessHero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button
+          <QualifyProjectButton
             size="lg"
             className="bg-copper hover:bg-copper/90 text-navy font-bold text-sm sm:text-base tracking-wider uppercase px-8 py-6 w-full sm:w-auto"
-            onClick={scrollToQualifyProject}
           >
             {t("processQualifyProject")}
-          </Button>
+          </QualifyProjectButton>
 
           <Button
             size="lg"
