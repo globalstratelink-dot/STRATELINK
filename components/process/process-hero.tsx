@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { useLanguage } from "@/contexts/language-context"
 import { SectionScrollHintAnchor } from "@/components/section-scroll-hint"
@@ -8,56 +9,39 @@ import { scrollToQualifyProject } from "@/lib/scroll-to-qualify"
 
 export function ProcessHero() {
   const { t } = useLanguage()
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+    video.muted = true
+    void video.play().catch(() => undefined)
+  }, [])
 
   const scrollToHowItWorks = () => {
     document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })
   }
 
-  const circleCount = 5
-  const circleSpacing = 130
-
   return (
     <section className="h-screen bg-navy relative overflow-x-hidden">
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="/hero-home.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-navy/55 pointer-events-none" aria-hidden="true" />
+
       {/* Divider below navbar */}
       <div className="absolute top-20 md:top-24 left-0 right-0 h-px bg-white/10 z-10" />
 
-      {/* Concentric circles — origin at top-center, below navbar */}
-      <div className="absolute top-20 md:top-24 left-0 right-0 bottom-0 pointer-events-none overflow-hidden">
-        <svg
-          viewBox="0 0 1200 900"
-          className="absolute inset-0 w-full h-full"
-          preserveAspectRatio="xMidYMid slice"
-          aria-hidden="true"
-        >
-          {Array.from({ length: circleCount }, (_, i) => i + 1).map((ring) => (
-            <circle
-              key={ring}
-              cx="600"
-              cy="480"
-              r={ring * circleSpacing}
-              fill="none"
-              stroke="rgba(255,255,255,0.07)"
-              strokeWidth="1"
-            />
-          ))}
-        </svg>
-      </div>
-
       <div className="relative z-10 h-full flex flex-col items-center justify-center md:justify-start px-4 sm:px-6 lg:px-8 w-full max-w-4xl mx-auto md:pt-40">
-        {/* Top label */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center justify-center gap-4 sm:gap-6 mb-8 sm:mb-10"
-        >
-          <div className="h-px w-10 sm:w-16 bg-copper/50" />
-          <span className="text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.35em] text-copper uppercase font-medium whitespace-nowrap">
-            {t("processHeroLabel")}
-          </span>
-          <div className="h-px w-10 sm:w-16 bg-copper/50" />
-        </motion.div>
-
         <div className="text-center w-full">
         {/* Main headline */}
         <motion.h1
