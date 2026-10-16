@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { useLanguage } from "@/contexts/language-context"
-import { Mail, Phone, Building2, FileText, User } from "lucide-react"
+import { Mail, Phone, Building2, FileText } from "lucide-react"
 import { Footer } from "@/components/footer"
 
 export default function LegalNoticePage() {
@@ -77,10 +77,10 @@ export default function LegalNoticePage() {
                 <h2 className="text-2xl font-bold text-white">Email</h2>
               </div>
               <a 
-                href="mailto:admin@stratelink-global.com" 
+                href="mailto:contact@stratelink-global.com" 
                 className="text-copper hover:text-sand transition-colors"
               >
-                admin@stratelink-global.com
+                contact@stratelink-global.com
               </a>
             </div>
 
@@ -95,15 +95,6 @@ export default function LegalNoticePage() {
               >
                 +971 543 192 348
               </a>
-            </div>
-
-            {/* Legal Representative */}
-            <div className="mb-10">
-              <div className="flex items-center gap-3 mb-4">
-                <User className="w-6 h-6 text-copper" />
-                <h2 className="text-2xl font-bold text-white">{t('legalRepresentative')}</h2>
-              </div>
-              <p className="text-gray-300">{t('legalRepName')}</p>
             </div>
 
             {/* Activities */}

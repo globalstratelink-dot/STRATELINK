@@ -231,10 +231,8 @@ export const translations = {
     businessLicenseNumber: "No. 65284 – Issued by Dubai Integrated Economic Zones Authority (DIEZA)",
     headquarters: "Headquarters",
     headquartersAddress: "IFZA Properties, Dubai Silicon Oasis, DSO-IFZA, Dubai, United Arab Emirates",
-    legalRepresentative: "Legal Representative",
-    legalRepName: "Abdelhamid STITTOU – CEO",
     activities: "Activities",
-    activitiesList: "E-commerce | Management Consultancies | General Trading",
+    activitiesList: "General Trading",
     
     // Testimonials
     whatOurPartnersSay: "What Our Partners",
@@ -329,7 +327,7 @@ export const translations = {
     processSlide2DescPart1: "Stratelink Global is an ",
     processSlide2DescBold1: "international trade operator",
     processSlide2DescPart2: " registered in Dubai under IFZA.",
-    processSlide2DescBold2: "verified Chinese manufacturers",
+    processSlide2DescBold2: "verified manufacturers",
     processSlide2DescPart3: "We connect serious buyers with ",
     processSlide2DescPart4: ", handling ",
     processSlide2DescBold3: "everything in between",
@@ -805,10 +803,8 @@ export const translations = {
     businessLicenseNumber: "No. 65284 – délivrée par Dubai Integrated Economic Zones Authority (DIEZA)",
     headquarters: "Siège",
     headquartersAddress: "IFZA Properties, Dubai Silicon Oasis, DSO-IFZA, Dubaï, Émirats arabes unis",
-    legalRepresentative: "Représentant légal",
-    legalRepName: "Abdelhamid STITTOU – CEO",
     activities: "Activités",
-    activitiesList: "E-commerce | Management Consultancies | General Trading",
+    activitiesList: "General Trading",
     
     // Testimonials
     whatOurPartnersSay: "Qu'en disent nos partenaires",
@@ -906,7 +902,7 @@ export const translations = {
     processSlide2DescBold2: "acheteurs professionnels",
     processSlide2DescPart3: "Nous mettons en relation des ",
     processSlide2DescPart4: " avec des ",
-    processSlide2DescBold3: "fabricants chinois rigoureusement vérifiés",
+    processSlide2DescBold3: "fabricants rigoureusement vérifiés",
     processSlide2DescPart5: ", tout en prenant en charge l'ensemble du processus d'approvisionnement.",
     processService1Title: "SOURCING ET VÉRIFICATION DES FOURNISSEURS",
     processService1Desc: "Audit d'usine, validation des échantillons et contrôles de conformité. Nous ne proposons jamais de fournisseurs non vérifiés.",

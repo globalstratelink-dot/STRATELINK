@@ -29,9 +29,8 @@ export function AgencyContent() {
                   {t("agency")}
                 </div>
 
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight text-balance">
-                  <span className="block">{t("orchestratorOfInternationalGrowthLine1")}</span>
-                  <span className="block mt-2 text-copper">{t("orchestratorOfInternationalGrowthLine2")}</span>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-balance">
+                  <span className="block text-copper">{t("orchestratorOfInternationalGrowthLine2")}</span>
                 </h2>
 
                 <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-gray-300 leading-relaxed">
@@ -52,12 +51,10 @@ export function AgencyContent() {
 
                 <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
                   <img
-                    src="/workss.webp"
-                    alt="STRATELINK GLOBAL Agency"
+                    src="/tungart7-containers.jpg"
+                    alt="Shipping containers"
                     className="w-full h-auto object-cover"
                   />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent" />
                 </div>
               </div>
             </motion.div>

@@ -12,8 +12,7 @@ export function ProcessWhatWeDo({ scrollNext = "trade-corridors" }: { scrollNext
     { number: "01", title: t("processService1Title"), description: t("processService1Desc") },
     { number: "02", title: t("processService2Title"), description: t("processService2Desc") },
     { number: "03", title: t("processService3Title"), description: t("processService3Desc") },
-    { number: "04", title: t("processService4Title"), description: t("processService4Desc") },
-    { number: "05", title: t("processService5Title"), description: t("processService5Desc") },
+    { number: "04", title: t("processService5Title"), description: t("processService5Desc") },
   ]
 
   return (
@@ -39,9 +38,6 @@ export function ProcessWhatWeDo({ scrollNext = "trade-corridors" }: { scrollNext
               <span className="block text-white">{t("processSlide2Title1")}</span>
               <span className="block text-copper mt-1">{t("processSlide2Title2")}</span>
             </h2>
-            <p className="text-sm sm:text-base tracking-[0.15em] text-gray-500 uppercase">
-              {t("processSlide2ResponseTime")}
-            </p>
 
             <div className="space-y-4 max-w-md">
               <p className="text-base sm:text-lg text-gray-400 leading-relaxed">
