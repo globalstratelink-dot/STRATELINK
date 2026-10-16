@@ -235,7 +235,7 @@ export function HomeSlides() {
       {/* Slide 2: Nos Services */}
       <section id="our-expertise" className={cn("min-h-screen flex flex-col items-center justify-start relative overflow-x-hidden mt-12 md:mt-10 lg:mt-12 scroll-mt-24 pt-8 sm:pt-10 md:pt-12 lg:pt-10", sectionWithScrollHintClass)}>
         <img
-          src="/tungart7-containers-copy.jpg"
+          src="/nvd2.jpeg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 h-full w-full object-cover"
