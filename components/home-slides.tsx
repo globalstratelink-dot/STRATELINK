@@ -2,9 +2,8 @@
 
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, ArrowLeft, Globe, TrendingUp, Layers, CheckCircle } from "lucide-react"
+import { ArrowRight, ArrowLeft, Globe, Layers, CheckCircle } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
-import { HeroImage, ServicesImage, OptimizedAvatar } from "@/components/optimized-image"
 import Link from "next/link"
 import { ROUTES, qualifyProjectHref } from "@/lib/site-routes"
 import { SectionScrollHintAnchor, sectionWithScrollHintClass } from "@/components/section-scroll-hint"
@@ -234,120 +233,51 @@ export function HomeSlides() {
       </section>
 
       {/* Slide 2: Nos Services */}
-      <section id="our-expertise" className={cn("min-h-screen flex items-center justify-center bg-gradient-to-br from-navy/95 to-navy relative overflow-x-hidden mt-12 md:mt-10 lg:mt-12 pt-4 md:pt-6 scroll-mt-28", sectionWithScrollHintClass)}>
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-copper/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-sand/5 rounded-full blur-3xl"></div>
+      <section id="our-expertise" className={cn("min-h-screen flex flex-col items-center justify-start relative overflow-x-hidden mt-12 md:mt-10 lg:mt-12 scroll-mt-28 pt-14 sm:pt-16 md:pt-20", sectionWithScrollHintClass)}>
+        <img
+          src="/tungart7-containers.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-navy/70" aria-hidden="true" />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+          <div className="text-center max-w-3xl mx-auto">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="title-section text-white mb-8"
+            >
+              {t('globalSolutionsInternationalTrade')}
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.6 }}
+              viewport={{ once: true }}
+              className="text-lg sm:text-xl md:text-2xl text-gray-200 leading-relaxed"
+            >
+              {t('sourcingToDeliveryDescription')}
+            </motion.p>
+          </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Section principale en grille (titre + photo) */}
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mb-16">
-            {/* Left Content - Titre et description */}
-            <div className="text-center lg:text-left order-1 lg:order-1">
-              {/* Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.0 }}
-                viewport={{ once: true }}
-                className="inline-flex items-center justify-center w-12 h-12 bg-copper/10 border border-copper/20 rounded-full text-copper mb-8"
-                aria-hidden="true"
-              >
-                <TrendingUp className="w-5 h-5" />
-              </motion.div>
+        <SectionScrollHintAnchor targetId="our-expertise-details" />
+      </section>
 
-              {/* Main Title */}
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.3 }}
-                viewport={{ once: true }}
-                className="title-section text-white mb-8"
-              >
-                {t('globalSolutionsInternationalTrade')}
-              </motion.h2>
-
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.6 }}
-                viewport={{ once: true }}
-                className="text-lg sm:text-xl md:text-2xl text-gray-300 leading-relaxed"
-              >
-                {t('sourcingToDeliveryDescription')}
-              </motion.p>
-            </div>
-
-            {/* Right Image Block */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.5, delay: 0.5 }}
-              viewport={{ once: true }}
-              className="flex justify-center lg:justify-end order-2 lg:order-2"
-            >
-              {/* Hologram Image */}
-              <div className="relative max-w-lg mx-auto lg:mx-0">
-                {/* Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-copper/20 via-transparent to-sand/20 rounded-3xl blur-2xl"></div>
-                
-                {/* Image Container */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-copper/20">
-                  <ServicesImage
-                    className="w-full h-auto object-cover"
-                  />
-                  
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent"></div>
-                </div>
-                
-                {/* Floating Elements */}
-                <motion.div
-                  animate={{ 
-                    y: [0, -10, 0],
-                    rotate: [0, 5, 0]
-                  }}
-                  transition={{ 
-                    duration: 4, 
-                    repeat: Infinity, 
-                    ease: "easeInOut" 
-                  }}
-                  className="absolute top-2 right-2 w-10 h-10 bg-copper/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-copper/30 z-20"
-                >
-                  <Globe className="w-5 h-5 text-copper" />
-                </motion.div>
-                
-                <motion.div
-                  animate={{ 
-                    y: [0, 10, 0],
-                    rotate: [0, -5, 0]
-                  }}
-                  transition={{ 
-                    duration: 3, 
-                    repeat: Infinity, 
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                  className="absolute bottom-2 left-2 w-8 h-8 bg-sand/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-sand/30 z-20"
-                >
-                  <TrendingUp className="w-4 h-4 text-sand" />
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Services Grid - Modifié pour 2 cartes seulement */}
+      <section id="our-expertise-details" className="bg-navy py-16 md:py-24 scroll-mt-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.8 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-16 max-w-4xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-4xl mx-auto"
           >
-            {/* Service 1 - Import/Export */}
             <div className="bg-navy/50 backdrop-blur-sm border border-copper/20 rounded-2xl p-8 lg:p-10 hover:border-copper/40 transition-all duration-300">
               <div className="w-16 h-16 bg-copper/20 rounded-xl flex items-center justify-center mb-6 mx-auto">
                 <Globe className="w-8 h-8 text-copper" />
@@ -379,9 +309,8 @@ export function HomeSlides() {
                 ))}
               </ul>
               <Button
-                size="sm"
-                variant="outline"
-                className="w-full border-copper text-copper hover:bg-copper hover:text-navy font-semibold"
+                size="lg"
+                className="w-full bg-gradient-to-r from-copper to-sand text-navy font-bold text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 hover:scale-105 transition-transform duration-200"
                 asChild
               >
                 <Link href={ROUTES.catalogue}>{t('homeCatalogueCta')}</Link>
@@ -392,7 +321,7 @@ export function HomeSlides() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
             viewport={{ once: true }}
             className="mt-12 text-center max-w-2xl mx-auto"
           >

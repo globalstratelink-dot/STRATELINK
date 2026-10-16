@@ -288,7 +288,8 @@ export const translations = {
     // About Stratelink Global
     aboutStratelinkGlobal: "About Stratelink Global",
     orchestratorOfInternationalGrowthLine1: "Importer in Dubai.",
-    orchestratorOfInternationalGrowthLine2: "International procurement partner.",
+    orchestratorOfInternationalGrowthLine2: "International procurement",
+    orchestratorOfInternationalGrowthLine2End: "partner.",
     aboutStratelinkDescription1: "Stratelink Global is an international trade operator registered in Dubai under an IFZA licence. The company was founded on a simple insight: supplier availability is never the limiting factor reliability of execution is.",
     aboutStratelinkDescription1Part2: "Stratelink Global is designed to eliminate weaknesses in the supply chain, with an operational base in Dubai - an ideal location between Asian production zones and the markets it serves.",
     aboutStratelinkDescription2: "Our role: to simplify your import operations and guarantee stable supply, regardless of volume. We monitor every transaction, from sourcing to delivery.",
@@ -860,7 +861,8 @@ export const translations = {
     // About Stratelink Global
     aboutStratelinkGlobal: "À propos de Stratelink Global",
     orchestratorOfInternationalGrowthLine1: "Importateur à Dubaï.",
-    orchestratorOfInternationalGrowthLine2: "Partenaire international d'approvisionnement.",
+    orchestratorOfInternationalGrowthLine2: "Partenaire international",
+    orchestratorOfInternationalGrowthLine2End: "d'approvisionnement.",
     aboutStratelinkDescription1: "Stratelink Global est un opérateur de commerce international enregistré à Dubaï sous licence IFZA. La société est née d'un constat simple : la disponibilité des fournisseurs n'est jamais le facteur limitant, la fiabilité de l'exécution l'est.",
     aboutStratelinkDescription1Part2: "Stratelink Global est une structure conçue pour éliminer les faiblesses de la chaîne d'approvisionnement, avec une base opérationnelle à Dubaï - un positionnement naturel entre les pôles de production asiatiques et les marchés qu'il dessert.",
     aboutStratelinkDescription2: "Notre rôle : simplifier vos opérations d'import afin de garantir un approvisionnement stable, quel que soit le volume. Nous supervisons chaque transaction de l'approvisionnement à la livraison.",
