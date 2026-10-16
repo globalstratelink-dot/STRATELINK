@@ -61,7 +61,7 @@ export function Navbar() {
   const isActive = (href: string) => isSameRoute(pathname, href)
 
   const linkClass = (href: string) =>
-    `relative shrink-0 px-1 lg:px-1.5 xl:px-2.5 py-2 text-[11px] lg:text-xs xl:text-sm 2xl:text-base font-semibold whitespace-nowrap transition-colors duration-200 ${
+    `relative shrink-0 px-2 xl:px-2.5 py-2 text-sm 2xl:text-base font-semibold whitespace-nowrap transition-colors duration-200 ${
       isActive(href) ? "text-copper" : "text-gray-300 hover:text-copper"
     }`
 
@@ -77,18 +77,18 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-navy shadow-lg" : "bg-navy lg:bg-transparent"
+        isScrolled ? "bg-navy shadow-lg" : "bg-navy xl:bg-transparent"
       }`}
     >
       <div className="max-w-[90rem] mx-auto px-3 sm:px-4 lg:px-5 xl:px-6">
-        <div className="flex justify-between items-center min-h-[5rem] py-2 lg:py-0 lg:h-[4.5rem] xl:h-24 gap-2 lg:gap-3">
+        <div className="flex justify-between items-center min-h-[5rem] py-2 xl:py-0 xl:h-20 2xl:h-24 gap-2 xl:gap-3">
           <Link
             href={ROUTES.accueil}
-            className="flex items-center gap-2 sm:gap-3 lg:gap-2 xl:gap-3 min-w-0 shrink-0 lg:-ml-2 xl:-ml-8 2xl:-ml-12 overflow-visible"
+            className="flex items-center gap-2 sm:gap-3 min-w-0 shrink-0 overflow-visible"
           >
-            <ResponsiveOptimizedLogo className="w-11 h-9 sm:w-16 sm:h-12 lg:w-12 lg:h-10 xl:w-16 xl:h-12 2xl:w-20 2xl:h-14 shrink-0 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
+            <ResponsiveOptimizedLogo className="w-11 h-9 sm:w-16 sm:h-12 xl:w-14 xl:h-11 2xl:w-20 2xl:h-14 shrink-0 filter brightness-125 contrast-110 drop-shadow-[0_0_6px_rgba(255,255,255,0.25)]" />
             <div className="text-white flex flex-col justify-center leading-none gap-0.5">
-              <span className="text-sm sm:text-xl lg:text-base xl:text-lg 2xl:text-xl font-bold tracking-wide whitespace-nowrap">
+              <span className="text-sm sm:text-xl xl:text-lg 2xl:text-xl font-bold tracking-wide whitespace-nowrap">
                 {t("companyName")}
               </span>
               <span className="text-[10px] sm:text-xs text-copper tracking-[0.2em] font-semibold whitespace-nowrap">
@@ -98,7 +98,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop navigation — CSS breakpoints (identique SSR + client) */}
-          <div className="hidden lg:flex items-center justify-center gap-0 xl:gap-0.5 2xl:gap-1 flex-1 min-w-0 mx-1 xl:mx-2">
+          <div className="hidden xl:flex items-center justify-center gap-0.5 2xl:gap-1 flex-1 min-w-0 mx-2">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} className={linkClass(item.href)}>
                 {item.name}
@@ -109,7 +109,7 @@ export function Navbar() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
+          <div className="hidden xl:flex items-center gap-2 2xl:gap-3 shrink-0">
             <LanguageSwitcher />
             <Button
               variant="outline"
@@ -130,7 +130,7 @@ export function Navbar() {
           </div>
 
           {/* Mobile / tablette */}
-          <div className="flex lg:hidden items-center shrink-0">
+          <div className="flex xl:hidden items-center shrink-0">
             <button
               data-menu-button
               className="text-white p-2 hover:bg-copper/10 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-copper/50"
@@ -145,7 +145,7 @@ export function Navbar() {
         </div>
 
         {isMobileMenuOpen && (
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <div className="fixed inset-0 bg-black/50 z-40" onClick={closeMobileMenu} />
             <div data-mobile-menu className="relative z-50 bg-navy border-t border-copper/20">
               <div className="px-4 py-4 space-y-2">
