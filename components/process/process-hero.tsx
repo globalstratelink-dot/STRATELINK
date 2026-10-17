@@ -17,8 +17,49 @@ export function ProcessHero() {
   useEffect(() => {
     const video = videoRef.current
     if (!video) return
-    video.muted = true
-    void video.play().catch(() => undefined)
+
+    let visible = true
+    let disposed = false
+
+    const resume = () => {
+      if (disposed || !visible || document.hidden) return
+      video.muted = true
+      video.defaultMuted = true
+      video.playsInline = true
+      if (!video.paused && !video.ended) return
+      void video.play().catch(() => undefined)
+    }
+
+    resume()
+
+    const onVisibility = () => resume()
+    const events = ["loadeddata", "canplay", "pause", "stalled", "waiting"] as const
+    events.forEach((name) => video.addEventListener(name, resume))
+    document.addEventListener("visibilitychange", onVisibility)
+    window.addEventListener("pageshow", onVisibility)
+    window.addEventListener("touchstart", resume, { passive: true })
+
+    const section = video.closest("section")
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting
+        if (visible) resume()
+      },
+      { threshold: 0.25 }
+    )
+    if (section) observer.observe(section)
+
+    const timer = window.setInterval(resume, 1200)
+
+    return () => {
+      disposed = true
+      window.clearInterval(timer)
+      observer.disconnect()
+      events.forEach((name) => video.removeEventListener(name, resume))
+      document.removeEventListener("visibilitychange", onVisibility)
+      window.removeEventListener("pageshow", onVisibility)
+      window.removeEventListener("touchstart", resume)
+    }
   }, [])
 
   const openHowItWorks = () => {
@@ -30,15 +71,16 @@ export function ProcessHero() {
       <video
         ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover pointer-events-none"
+        src="/hero-home.mp4"
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
+        disablePictureInPicture
         aria-hidden="true"
-      >
-        <source src="/hero-home.mp4" type="video/mp4" />
-      </video>
+        {...{ "webkit-playsinline": "true" }}
+      />
       <div className="absolute inset-0 bg-navy/55 pointer-events-none" aria-hidden="true" />
 
       {/* Divider below navbar */}
